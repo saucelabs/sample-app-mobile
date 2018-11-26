@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, TextInput, View} from 'react-native';
 import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Credentials } from './credentials.js';
+import { Credentials } from '../credentials.js';
 
-export default class App extends Component {
+export default class LoginPage extends Component {
   
   constructor(props) {
     super(props);
@@ -57,6 +57,7 @@ export default class App extends Component {
         }
         
         // If we're here, we have a username and password. Redirect!
+        this.props.navigation.navigate('InventoryList')
         //window.location.href = './inventory.html';
       });
     } else {
@@ -78,9 +79,7 @@ export default class App extends Component {
     return (
       <ThemeProvider>
         <Header
-          leftComponent={{ icon: 'menu', color: '#fff' }}
           centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-          rightComponent={{ icon: 'shopping-cart', color: '#fff' }}
         />
       <View style={styles.container}>
         <Input containerStyle={styles.login_input} placeholder='Username' value={this.state.username}
