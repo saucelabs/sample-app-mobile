@@ -3,6 +3,8 @@ import {Platform, StyleSheet, Text, TextInput, View} from 'react-native';
 import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
+import SyncStorage from 'sync-storage';
+import { ShoppingCart } from '../shopping-cart.js';
 
 export default class LoginPage extends Component {
   
@@ -20,7 +22,13 @@ export default class LoginPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dismissError = this.dismissError.bind(this);
   }
-  
+
+  async componentWillMount() {
+    // This is the first page loaded, so init our storage here
+    const data = await SyncStorage.init();
+    console.log('AsyncStorage is ready!', data);
+  }
+
   dismissError() {
     this.setState({ error: '' });
   }
@@ -51,15 +59,15 @@ export default class LoginPage extends Component {
 
     if (Credentials.verifyCredentials(this.state.username, this.state.password)) {
       // Catch our locked-out user and bail out
-      Credentials.isLockedOutUser().then((isLockedOutUser) => {
-        if (isLockedOutUser) {
-          return this.setState({ error: 'Sorry, this user has been locked out.' });
-        }
-        
-        // If we're here, we have a username and password. Redirect!
-        this.props.navigation.navigate('InventoryList')
-        //window.location.href = './inventory.html';
-      });
+      const isLockedOutUser = Credentials.isLockedOutUser();
+
+      if (isLockedOutUser) {
+        return this.setState({ error: 'Sorry, this user has been locked out.' });
+      }
+
+      // If we're here, we have a username and password. Redirect after we wipe out any previous shopping cart contents
+      ShoppingCart.resetCart();
+      this.props.navigation.navigate('InventoryList');
     } else {
       return this.setState({ error: 'Username and password do not match any user in this service' });
     }

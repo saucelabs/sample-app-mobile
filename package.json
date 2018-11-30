@@ -10,8 +10,10 @@
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-elements": "1.0.0-beta7",
+    "react-native-modal-selector": "1.0.0",
     "react-native-vector-icons": "6.0.2",
-    "react-navigation": "2.18.2"
+    "react-navigation": "2.18.2",
+    "sync-storage": "0.3.0"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

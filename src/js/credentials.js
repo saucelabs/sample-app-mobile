@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native"
+import SyncStorage from 'sync-storage';
 
 export class Credentials {
 
@@ -13,20 +13,20 @@ export class Credentials {
 
 	// If we're here, we had a valid username and password.
 	// Store the username in our session storage.
-	storeValue = async () => { await AsyncStorage.setItem('session-username', username) };
-	storeValue();
+    SyncStorage.set('session-username', username);
 
 	return true;
   }
 
-  static async isLockedOutUser() {
-    const curUser = await AsyncStorage.getItem('session-username');
-    return await (curUser === "locked_out_user");
+  static isLockedOutUser() {
+    
+    const curUser = SyncStorage.get('session-username');
+    return (curUser === "locked_out_user");
   }
 
-  static async isProblemUser() {
-    const curUser = await AsyncStorage.getItem('session-username');
-    return await (curUser === "problem_user");
+  static isProblemUser() {
+    const curUser = SyncStorage.get('session-username');
+    return (curUser === "problem_user");
   }
 }
 

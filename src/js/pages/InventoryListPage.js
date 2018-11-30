@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TextInput, View, ScrollView, Image, Picker} from 'react-native';
+import {Platform, StyleSheet, Text, TextInput, View, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ModalSelector from 'react-native-modal-selector'
 import { Credentials } from '../credentials.js';
+import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
 
 class InventoryListItem extends Component {
@@ -16,24 +18,75 @@ class InventoryListItem extends Component {
       name: props.name,
       desc: props.desc,
       price: props.price,
+      // Set our initial state now
+      itemInCart: ShoppingCart.isItemInCart(props.id)
     };
+
+    ShoppingCart.registerCartListener(this);
+
+    if (Credentials.isProblemUser()) {
+      // Replace our image with our broken link image
+      this.state.image_url = require('../../img/sl-404.jpg');
+    }
+    
+    // Need to pass this in explicitly since it's a subcomponent
+    this.navigation = props.navigation;
+    
+    this.addToCart = this.addToCart.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
+    this.navigateToItem = this.navigateToItem.bind(this);
   }
 
-  render () {    
+  addToCart() {
+
+    if (Credentials.isProblemUser()) {
+      // Bail out now, don't add to cart if the item ID is odd
+      if (this.state.id % 2 == 1) {
+        return;
+      }
+    }
+
+    ShoppingCart.addItem(this.state.id);
+    this.setState({itemInCart: true});
+  }
+
+  removeFromCart() {
+
+    if (Credentials.isProblemUser()) {
+      // Bail out now, don't remove from cart if the item ID is even
+      if (this.state.id % 2 == 0) {
+        return;
+      }
+    }
+
+    ShoppingCart.removeItem(this.state.id);
+    this.setState({itemInCart: false});
+  }
+
+  navigateToItem() {
+
+    var itemId = this.state.id;
+    if (Credentials.isProblemUser()) {
+      itemId += 1; 
+    }
+    
+    this.navigation.navigate('InventoryItem', {id: itemId});    
+  }
+  
+  render () {
 
     var cartButton;
-    
-//    if (this.state.itemInCart) {
-//      cartButton = <Button style={styles.item_cart_button} title="REMOVE"/>;
-//    } else {
-      cartButton = <Button style={styles.item_cart_button} title="ADD TO CART"/>;
-//    }
-//    <button className="add-to-cart-button" onClick={() => this.addToCart(this.state.id)}>ADD TO CART</button>
+
+    if (ShoppingCart.isItemInCart(this.state.id)) {
+      cartButton = <Button style={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
+    } else {
+      cartButton = <Button style={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
+    }
   
     return (
       <View style={styles.item_container}>
         <Image source={this.state.image_url} style={styles.item_image} />
-        <View style={styles.item_infobox}>
+        <TouchableOpacity style={styles.item_infobox} onPress={this.navigateToItem}>
           <View style={styles.item_details}>
             <Text style={styles.item_name}>{this.state.name}</Text>
             <Text style={styles.item_desc}>{this.state.desc}</Text>
@@ -42,7 +95,7 @@ class InventoryListItem extends Component {
             <Text style={styles.price_text}>${this.state.price}</Text>
             { cartButton }
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -114,6 +167,14 @@ export default class InventoryListPage extends Component {
 
   render() {
     
+    const sortOptions = [
+        { key: "sectionLabel", section: true, label: 'Sort items by...' },
+        { key: "az", label: 'Name (A to Z)' },
+        { key: "za", label: 'Name (Z to A)' },
+        { key: "lohi", label: 'Price (low to high)' },
+        { key: "hilo", label: 'Price (high to low)' }
+    ];
+    
     return (
       <ThemeProvider>
         <Header
@@ -124,16 +185,13 @@ export default class InventoryListPage extends Component {
       <Image source={require('../../img/peek.png')} style={styles.peek_img} />
       <View style={styles.secondary_header}>
         <Text style={styles.header_title}>Products</Text>
-        <Picker selectedValue={this.state.sortState} style={styles.item_sort} itemStyle={styles.sort_text} onValueChange={(itemValue, itemIndex) => this.changeSort(itemValue)}>
-          <Picker.Item label="Name (A to Z)" value="az" />
-          <Picker.Item label="Name (Z to A)" value="za" />
-          <Picker.Item label="Price (low to high)" value="lohi" />
-          <Picker.Item label="Price (high to low)" value="hilo" />
-        </Picker>
+        <ModalSelector data={sortOptions} initValue="Name (A to Z)"
+          style={styles.item_sort} selectTextStyle={styles.sort_text}
+          onChange={(sortOption) => this.changeSort(sortOption.key)} />
       </View>
       <ScrollView style={styles.container}>
         {this.state.inventoryList.map((item, i) => {     
-          return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} />) 
+          return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />) 
         })}
       </ScrollView>
       </ThemeProvider>
@@ -207,8 +265,8 @@ const styles = StyleSheet.create({
   item_sort: {
     marginLeft: 15,
     width: 140,
-    height: 30,
-    top: -60
+    height: 40,
+    top: 30
   },
   sort_text: {
     color: '#FFF',
