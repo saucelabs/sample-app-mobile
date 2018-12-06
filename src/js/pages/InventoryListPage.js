@@ -5,7 +5,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ModalSelector from 'react-native-modal-selector'
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
+import CartButton from '../HeaderCartButton.js';
 import { InventoryData } from '../data/inventory-data.js';
+
 
 class InventoryListItem extends Component {
 
@@ -180,7 +182,7 @@ export default class InventoryListPage extends Component {
         <Header
           leftComponent={{ icon: 'menu', color: '#fff' }}
           centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-          rightComponent={{ icon: 'shopping-cart', color: '#fff' }}
+          rightComponent={<CartButton navigation={this.props.navigation} />}
         />
       <Image source={require('../../img/peek.png')} style={styles.peek_img} />
       <View style={styles.secondary_header}>

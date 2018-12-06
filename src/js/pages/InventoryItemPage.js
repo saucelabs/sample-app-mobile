@@ -4,6 +4,7 @@ import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
+import CartButton from '../HeaderCartButton.js';
 import { InventoryData } from '../data/inventory-data.js';
 import SyncStorage from 'sync-storage';
 
@@ -99,7 +100,7 @@ This is a recording.
           <Header
             leftComponent={{ icon: 'menu', color: '#fff' }}
             centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-            rightComponent={{ icon: 'shopping-cart', color: '#fff' }}
+            rightComponent={<CartButton navigation={this.props.navigation} />}
           />
           <ScrollView style={styles.container}>
             <Button style={styles.item_back_button} onPress={this.goBack} title="<- BACK"/>
