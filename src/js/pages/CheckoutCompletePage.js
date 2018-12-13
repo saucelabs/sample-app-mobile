@@ -8,68 +8,13 @@ import { ShoppingCart } from '../shopping-cart.js';
 import CartButton from '../HeaderCartButton.js';
 import { InventoryData } from '../data/inventory-data.js';
 
-
-class CartItem extends Component {
-
-  constructor(props) {
-    super(props);
-    
-    this.item = props.item;
-    this.state = {
-        itemVisible: true
-    }
-    
-    if (props.item == null) {
-      // Hide this if the item is invalid
-      this.state.itemVisible = false;
-    }
-    
-    this.removeFromCart = this.removeFromCart.bind(this);
-  }
-
-  removeFromCart() {
-
-    ShoppingCart.removeItem(this.item.id);
-    this.setState({itemVisible: false});
-  }
-
-  render () {
-
-    if (this.state.itemVisible) {
-  
-      return (
-        <View style={styles.item_container}>
-          <View style={styles.item_quantity_box}>
-            <Text style={styles.item_quantity}>1</Text>
-          </View>
-          <View style={styles.item_infobox}>
-            <View style={styles.item_details}>
-              <Text style={styles.item_name}>{this.item.name}</Text>
-              <Text style={styles.item_desc}>{this.item.desc}</Text>
-            </View>
-            <View style={styles.item_price_bar}>
-              <Text style={styles.price_text}>${this.item.price}</Text>
-              <Button style={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>
-            </View>
-          </View>
-        </View>
-      );
-    } else {
-      return ( <View /> );
-    }
-  }
-}
-
-export default class CartContentsPage extends Component {
+export default class CheckoutCompletePage extends Component {
   
   constructor(props) {
     super(props);
-
   }
 
   render() {
-
-    var contents = ShoppingCart.getCartContents();
 
     return (
       <ThemeProvider>
@@ -80,19 +25,19 @@ export default class CartContentsPage extends Component {
         />
       <Image source={require('../../img/peek.png')} style={styles.peek_img} />
       <View style={styles.secondary_header}>
-        <Text style={styles.header_title}>Your Cart</Text>
-      </View>
-      <View style={styles.section_header}>
-        <Text style={styles.section_qty}>QTY</Text>
-        <Text style={styles.section_desc}>DESCRIPTION</Text>
+        <Text style={styles.header_title}>Checkout Complete!</Text>
       </View>
       <ScrollView style={styles.container}>
-        {contents.map((item, i) => {
-          return (<CartItem key={i} item={InventoryData.ITEMS[item]} />) 
-        })}
+
+        <View style={styles.complete_container}>
+          <Text style={styles.complete_title}>THANK YOU FOR YOUR ORDER</Text>
+          <Text style={styles.complete_text}>Your order has been dispatched, and will arrive just as fast as the pony can get there!</Text>
+        </View>
+
+        <Image resizeMode='contain' source={require('../../img/pony-express.jpg')} style={styles.ship_image} />
+
         <View style={styles.cart_footer}>
-          <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title="CHECKOUT"/>
-          <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CONTINUE SHOPPING"/>
+          <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CONTINUE SHOPPING"/>
         </View>
       </ScrollView>
       </ThemeProvider>
@@ -103,19 +48,19 @@ export default class CartContentsPage extends Component {
 const styles = StyleSheet.create({
   secondary_header: {
     height: 80,
+
     backgroundColor: '#474c55',
     flexDirection: 'row'
   },
-  section_header: {
-    height: 35,
-    backgroundColor: '#FFF',
-    flexDirection: 'row',
+  complete_title: {
+    fontSize: 24,
+    fontWeight: '800',
     padding: 5
   },
-  section_qty: {
+  complete_text: {
     fontSize: 18,
     color: '#000',
-    paddingTop: 3
+    padding: 5
   },
   section_desc: {
     fontSize: 18,
@@ -132,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 5,
     backgroundColor: '#FFF',
+    paddingTop: 20,
   },
   item_image: {
     width: 80,
@@ -202,9 +148,8 @@ const styles = StyleSheet.create({
   checkout_button: {
     flex: 1,
   },
-  cancel_button: {
-    flex: 1,
-    backgroundColor: '#F00'
+  ship_image: {
+    width: '100%'
   },
   checkout_button_container: {
     marginTop: 10,
