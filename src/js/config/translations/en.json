@@ -1,0 +1,16 @@
+{
+  "login": {
+    "header": "Swag Labs",
+    "epicSadFace": "Epic sadface: ",
+    "loginButton": "Login",
+    "password": "Password",
+    "passwordError": "Password is required",
+    "locketOutError": "Sorry, this user has been locked out.",
+    "noMatchError": "Username and password do not match any user in this service.",
+    "screen": "Login",
+    "username": "Username",
+    "usernameError": "Username is required",
+    "loginText": "The currently accepted usernames for this application are:\nstandard_user\nlocked_out_user\nproblem_user\n\nAnd the password for all users is:\n\nsecret_sauce"
+  },
+  "username": "Username"
+}

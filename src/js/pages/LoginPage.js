@@ -1,144 +1,162 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TextInput, View} from 'react-native';
-import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button, ThemeProvider, Header, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
 import { ShoppingCart } from '../shopping-cart.js';
+import i18n from '../config/i18n';
+import { testProperties } from '../config/TestProperties';
 
 export default class LoginPage extends Component {
-  
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      username: '',
-      password: '',
-      error: ''
-    };
+	constructor(props) {
+		super(props);
 
-    this.handlePassChange = this.handlePassChange.bind(this);
-    this.handleUserChange = this.handleUserChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.dismissError = this.dismissError.bind(this);
-  }
+		this.state = {
+			username: '',
+			password: '',
+			error: ''
+		};
 
-  async componentWillMount() {
-    // This is the first page loaded, so init our storage here
-    const data = await SyncStorage.init();
-    console.log('AsyncStorage is ready!', data);
-  }
+		this.handlePassChange = this.handlePassChange.bind(this);
+		this.handleUserChange = this.handleUserChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.dismissError = this.dismissError.bind(this);
+	}
 
-  dismissError() {
-    this.setState({ error: '' });
-  }
+	async componentWillMount() {
+		// This is the first page loaded, so init our storage here
+		const data = await SyncStorage.init();
+		console.log('AsyncStorage is ready!', data);
+	}
 
-  handleUserChange(text) {
-    this.setState({
-      username: text,
-    });
-  };
+	dismissError() {
+		this.setState({ error: '' });
+	}
 
-  handlePassChange(text) {
-    this.setState({
-      password: text,
-    });
-  }
+	handleUserChange(text) {
+		this.setState({
+			username: text,
+		});
+	};
 
-  handleSubmit() {
-    // First, clear any errors
-    this.setState({ error: '' });
+	handlePassChange(text) {
+		this.setState({
+			password: text,
+		});
+	}
 
-    if (!this.state.username) {
-      return this.setState({ error: 'Username is required' });
-    }
+	handleSubmit() {
+		// First, clear any errors
+		this.setState({ error: '' });
 
-    if (!this.state.password) {
-      return this.setState({ error: 'Password is required' });
-    }
+		if (!this.state.username) {
+			return this.setState({ error: i18n.t('login.usernameError') });
+		}
 
-    if (Credentials.verifyCredentials(this.state.username, this.state.password)) {
-      // Catch our locked-out user and bail out
-      const isLockedOutUser = Credentials.isLockedOutUser();
+		if (!this.state.password) {
+			return this.setState({ error: i18n.t('login.passwordError') });
+		}
 
-      if (isLockedOutUser) {
-        return this.setState({ error: 'Sorry, this user has been locked out.' });
-      }
+		if (Credentials.verifyCredentials(this.state.username, this.state.password)) {
+			// Catch our locked-out user and bail out
+			const isLockedOutUser = Credentials.isLockedOutUser();
 
-      // If we're here, we have a username and password. Redirect after we wipe out any previous shopping cart contents
-      ShoppingCart.resetCart();
-      this.props.navigation.navigate('InventoryList');
-    } else {
-      return this.setState({ error: 'Username and password do not match any user in this service' });
-    }
-  }
+			if (isLockedOutUser) {
+				return this.setState({ error: i18n.t('login.lockedOutError') });
+			}
 
-  render() {
+			// If we're here, we have a username and password. Redirect after we wipe out any previous shopping cart contents
+			ShoppingCart.resetCart();
+			this.props.navigation.navigate('InventoryList');
+		} else {
+			return this.setState({ error: i18n.t('login.noMatchError') });
+		}
+	}
 
-    var errorMessage = (<View />);
-    
-    if (this.state.error != '') {
-      errorMessage = (<View>
-      <Icon onPress={this.dismissError} name='times-circle' size={24} color='red' />
-      <Text style={styles.error_message}>Epic sadface: {this.state.error}</Text>
-      </View>);
-    }
-    
-    return (
-      <ThemeProvider>
-        <Header
-          centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-        />
-      <View style={styles.container}>
-        <Input containerStyle={styles.login_input} placeholder='Username' value={this.state.username}
-               onChangeText={this.handleUserChange}
-               leftIcon={<Icon name='user' size={24} color='black' />}
-        shake={true} autoFocus={true} autoCapitalize='none' autoCorrect={false} /> 
-        <Input containerStyle={styles.login_input} placeholder='Password' value={this.state.password}
-               onChangeText={this.handlePassChange}
-               leftIcon={<Icon name='lock' size={28} color='black' />}
-        shake={true} secureTextEntry={true} /> 
-        <Button onPress={this.handleSubmit} title="LOGIN"/>
+	render() {
 
-        {errorMessage}          
+		var errorMessage = (<View/>);
 
-        <Text style={styles.login_info}>The currently accepted usernames for this application are:{'\n'}
-        {'\n'}
-standard_user{'\n'}
-locked_out_user{'\n'}
-problem_user{'\n'}
-{'\n'}
-And the password for all users is:{'\n'}
-{'\n'}
-secret_sauce</Text>
-      </View>
-      </ThemeProvider>
-    );
-  }
+		if (this.state.error != '') {
+			errorMessage = (
+				<View>
+					<Icon onPress={ this.dismissError } name='times-circle' size={ 24 } color='red'/>
+					<Text style={ styles.error_message }>{ i18n.t('login.epicSadFace') }{ this.state.error }</Text>
+				</View>
+			);
+		}
+
+		return (
+			<ThemeProvider>
+				<Header
+					centerComponent={ { text: i18n.t('login.header'), style: { color: '#fff' } } }
+				/>
+				<View style={ styles.container } { ...testProperties(i18n.t('login.screen')) }>
+					<Input
+						containerStyle={ styles.login_input }
+						placeholder={ i18n.t('login.username') }
+						value={ this.state.username }
+						onChangeText={ this.handleUserChange }
+						leftIcon={ <Icon name='user' size={ 24 } color='black'/> }
+						shake={ true }
+						autoFocus={ true }
+						autoCapitalize='none'
+						autoCorrect={ false }
+						{ ...testProperties(i18n.t('login.username')) }
+					/>
+					<Input
+						containerStyle={ styles.login_input }
+						placeholder={ i18n.t('login.password') }
+						value={ this.state.password }
+						onChangeText={ this.handlePassChange }
+						leftIcon={ <Icon name='lock' size={ 28 } color='black'/> }
+						shake={ true }
+						secureTextEntry={ true }
+						{ ...testProperties(i18n.t('login.password')) }
+					/>
+					<Button
+						onPress={ this.handleSubmit }
+						title={ i18n.t('login.loginButton') }
+						titleStyle={ styles.buttonTitle }
+						{ ...testProperties(i18n.t('login.loginText')) }
+					/>
+
+					{ errorMessage }
+
+					<Text style={ styles.login_info }>{ i18n.t('login.userNameText') }</Text>
+				</View>
+			</ThemeProvider>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  login_input: {
-    marginBottom: 20
-  },
-  login_info: {
-    textAlign: 'left',
-    fontSize: 14,
-    fontFamily: 'Courier New',
-    backgroundColor: '#FFFFFF',
-    padding: 20,
-    margin: 20,
-    borderStyle: 'dashed',
-    borderWidth: 4,
-    borderColor: '#000000'    
-  },
-  error_message: {
-    fontSize: 18,
-  }
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#F5FCFF',
+	},
+	login_input: {
+		marginBottom: 20
+	},
+	login_info: {
+		textAlign: 'left',
+		fontSize: 14,
+		fontFamily: 'Courier New',
+		backgroundColor: '#FFFFFF',
+		padding: 20,
+		margin: 20,
+		borderStyle: 'dashed',
+		borderWidth: 4,
+		borderColor: '#000000'
+	},
+	error_message: {
+		fontSize: 18,
+	},
+	buttonTitle: {
+		textTransform: 'uppercase',
+	}
 });
