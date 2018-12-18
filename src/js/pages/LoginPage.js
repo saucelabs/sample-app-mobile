@@ -120,12 +120,12 @@ export default class LoginPage extends Component {
 						onPress={ this.handleSubmit }
 						title={ i18n.t('login.loginButton') }
 						titleStyle={ styles.buttonTitle }
-						{ ...testProperties(i18n.t('login.loginText')) }
+						{ ...testProperties(i18n.t('login.loginButton')) }
 					/>
 
 					{ errorMessage }
 
-					<Text style={ styles.login_info }>{ i18n.t('login.userNameText') }</Text>
+					<Text style={ styles.login_info }>{ i18n.t('login.loginText') }</Text>
 				</View>
 			</ThemeProvider>
 		);
