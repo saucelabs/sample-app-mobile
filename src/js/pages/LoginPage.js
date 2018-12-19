@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button, ThemeProvider, Header, Input } from 'react-native-elements';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
@@ -77,53 +77,34 @@ export default class LoginPage extends Component {
 
 	render() {
 
-		var errorMessage = (<View/>);
+		var errorMessage = (<View />);
 
 		if (this.state.error != '') {
-			errorMessage = (
-				<View>
-					<Icon onPress={ this.dismissError } name='times-circle' size={ 24 } color='red'/>
-					<Text style={ styles.error_message }>{ i18n.t('login.epicSadFace') }{ this.state.error }</Text>
-				</View>
-			);
+			errorMessage = (<View>
+				<Icon onPress={this.dismissError} name='times-circle' size={24} color='red' />
+				<Text style={styles.error_message}>{ i18n.t('login.epicSadFace') }{ this.state.error }</Text>
+			</View>);
 		}
 
 		return (
 			<ThemeProvider>
 				<Header
-					centerComponent={ { text: i18n.t('login.header'), style: { color: '#fff' } } }
+					centerComponent={{ text: i18n.t('login.header'), style: { color: '#fff' } }}
 				/>
-				<View style={ styles.container } { ...testProperties(i18n.t('login.screen')) }>
-					<Input
-						containerStyle={ styles.login_input }
-						placeholder={ i18n.t('login.username') }
-						value={ this.state.username }
-						onChangeText={ this.handleUserChange }
-						leftIcon={ <Icon name='user' size={ 24 } color='black'/> }
-						shake={ true }
-						autoFocus={ true }
-						autoCapitalize='none'
-						autoCorrect={ false }
-						{ ...testProperties(i18n.t('login.username')) }
-					/>
-					<Input
-						containerStyle={ styles.login_input }
-						placeholder={ i18n.t('login.password') }
-						value={ this.state.password }
-						onChangeText={ this.handlePassChange }
-						leftIcon={ <Icon name='lock' size={ 28 } color='black'/> }
-						shake={ true }
-						secureTextEntry={ true }
-						{ ...testProperties(i18n.t('login.password')) }
-					/>
-					<Button
-						onPress={ this.handleSubmit }
-						title={ i18n.t('login.loginButton') }
-						titleStyle={ styles.buttonTitle }
-						{ ...testProperties(i18n.t('login.loginButton')) }
-					/>
+				<View style={styles.container} { ...testProperties(i18n.t('login.screen')) }>
+					<Input containerStyle={styles.login_input} placeholder={ i18n.t('login.username') } value={this.state.username}
+								 onChangeText={this.handleUserChange}
+								 leftIcon={<Icon name='user' size={24} color='black' />}
+								 shake={true} autoFocus={true} autoCapitalize='none' autoCorrect={false}
+								 { ...testProperties(i18n.t('login.username')) }/>
+					<Input containerStyle={styles.login_input} placeholder={ i18n.t('login.password') } value={this.state.password}
+								 onChangeText={this.handlePassChange}
+								 leftIcon={<Icon name='lock' size={28} color='black' />}
+								 shake={true} secureTextEntry={true}
+								 { ...testProperties(i18n.t('login.password')) }/>/>
+					<Button onPress={this.handleSubmit} titleStyle={ styles.buttonTitle } { ...testProperties(i18n.t('login.loginButton')) }/>
 
-					{ errorMessage }
+					{errorMessage}
 
 					<Text style={ styles.login_info }>{ i18n.t('login.loginText') }</Text>
 				</View>
