@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TextInput, View, ScrollView, Image, Picker} from 'react-native';
-import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {Button, ThemeProvider} from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
-import CartButton from '../HeaderCartButton.js';
+import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
-import SyncStorage from 'sync-storage';
 
 export default class InventoryItem extends Component {
 
@@ -83,27 +81,24 @@ This is a recording.
 
     return (
         <ThemeProvider>
-          <Header
-            leftComponent={{ icon: 'menu', color: '#fff' }}
-            centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-            rightComponent={<CartButton navigation={this.props.navigation} />}
-          />
-          <ScrollView style={styles.container}>
-            <Button style={styles.item_back_button} onPress={this.goBack} title="<- BACK"/>
-            <View style={styles.item_container}>
-              <Image source={this.item.image_url} style={styles.item_image} />
-              <View style={styles.item_infobox}>
-                <View style={styles.item_details}>
-                  <Text style={styles.item_name}>{this.item.name}</Text>
-                  <Text style={styles.item_desc}>{this.item.desc}</Text>
+          <AppHeader navigation={this.props.navigation}>
+            <ScrollView style={styles.container}>
+              <Button style={styles.item_back_button} onPress={this.goBack} title="<- BACK"/>
+              <View style={styles.item_container}>
+                <Image source={this.item.image_url} style={styles.item_image} />
+                <View style={styles.item_infobox}>
+                  <View style={styles.item_details}>
+                    <Text style={styles.item_name}>{this.item.name}</Text>
+                    <Text style={styles.item_desc}>{this.item.desc}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
-            <View style={styles.item_price_bar}>
-              <Text style={styles.price_text}>${this.item.price}</Text>
-              { cartButton }
-            </View>
-          </ScrollView>
+              <View style={styles.item_price_bar}>
+                <Text style={styles.price_text}>${this.item.price}</Text>
+                { cartButton }
+              </View>
+            </ScrollView>
+          </AppHeader>
         </ThemeProvider>
     );
   }
@@ -116,12 +111,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#57c1e8',
     zIndex: 10,
     margin: 5
-  },
-  header_title: {
-    fontSize: 30,
-    color: '#FFF',
-    marginLeft: 90,
-    marginTop: 32,
   },
   container: {
     flex: 5,
@@ -166,14 +155,5 @@ const styles = StyleSheet.create({
   },
   item_desc: {
     
-  },
-  item_sort: {
-    marginLeft: 15,
-    width: 140,
-    height: 30,
-    top: -60
-  },
-  sort_text: {
-    color: '#FFF',
   }
 });

@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TextInput, View, ScrollView, Image, TouchableOpacity} from 'react-native';
-import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import ModalSelector from 'react-native-modal-selector'
-import { Credentials } from '../credentials.js';
+import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {Button, ThemeProvider} from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
-import CartButton from '../HeaderCartButton.js';
+import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
-
 
 class CartItem extends Component {
 
@@ -64,7 +60,6 @@ export default class CartContentsPage extends Component {
   
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -73,28 +68,25 @@ export default class CartContentsPage extends Component {
 
     return (
       <ThemeProvider>
-        <Header
-          leftComponent={{ icon: 'menu', color: '#fff' }}
-          centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-          rightComponent={<CartButton navigation={this.props.navigation} />}
-        />
-      <Image source={require('../../img/peek.png')} style={styles.peek_img} />
-      <View style={styles.secondary_header}>
-        <Text style={styles.header_title}>Your Cart</Text>
-      </View>
-      <View style={styles.section_header}>
-        <Text style={styles.section_qty}>QTY</Text>
-        <Text style={styles.section_desc}>DESCRIPTION</Text>
-      </View>
-      <ScrollView style={styles.container}>
-        {contents.map((item, i) => {
-          return (<CartItem key={i} item={InventoryData.ITEMS[item]} />) 
-        })}
-        <View style={styles.cart_footer}>
-          <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title="CHECKOUT"/>
-          <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CONTINUE SHOPPING"/>
-        </View>
-      </ScrollView>
+        <AppHeader navigation={this.props.navigation}>
+          <Image source={require('../../img/peek.png')} style={styles.peek_img} />
+          <View style={styles.secondary_header}>
+            <Text style={styles.header_title}>Your Cart</Text>
+          </View>
+          <View style={styles.section_header}>
+            <Text style={styles.section_qty}>QTY</Text>
+            <Text style={styles.section_desc}>DESCRIPTION</Text>
+          </View>
+          <ScrollView style={styles.container}>
+            {contents.map((item, i) => {
+              return (<CartItem key={i} item={InventoryData.ITEMS[item]} />) 
+            })}
+            <View style={styles.cart_footer}>
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title="CHECKOUT"/>
+              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CONTINUE SHOPPING"/>
+            </View>
+          </ScrollView>
+        </AppHeader>
       </ThemeProvider>
     );
   }
@@ -132,11 +124,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 5,
     backgroundColor: '#FFF',
-  },
-  item_image: {
-    width: 80,
-    height: 100,
-    flex: 1
   },
   peek_img: {
     width: 71,
@@ -209,5 +196,5 @@ const styles = StyleSheet.create({
   checkout_button_container: {
     marginTop: 10,
     marginBottom: 10
-  },
+  }
 });
