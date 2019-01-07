@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: Platform.OS === 'ios' ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10

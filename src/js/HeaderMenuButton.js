@@ -26,7 +26,7 @@ export default class MenuButton extends Component {
 
 const styles = StyleSheet.create({
   menu_icon: {
-    height: 70,
+    height: Platform.OS === 'ios' ? 50 : 40,
     backgroundColor: '#2089DC'
   }
 });

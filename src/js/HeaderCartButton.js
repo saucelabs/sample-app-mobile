@@ -37,7 +37,7 @@ export default class CartButton extends Component {
 
 const styles = StyleSheet.create({
   cart_icon: {
-    height: 70,
+    height: Platform.OS === 'ios' ? 50 : 40,
     backgroundColor: '#2089DC'
   },
   shopping_cart_badge: {

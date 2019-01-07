@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector'
 import { Credentials } from '../credentials.js';
@@ -78,9 +78,9 @@ class InventoryListItem extends Component {
     var cartButton;
 
     if (ShoppingCart.isItemInCart(this.state.id)) {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
     } else {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
     }
   
     return (
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: Platform.OS === 'ios' ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
   item_sort: {
     marginLeft: 15,
-    width: 140,
+    width: 150,
     height: 40,
     top: 30
   },

@@ -87,6 +87,7 @@ export default class LoginPage extends Component {
     return (
       <ThemeProvider>
         <Header
+          containerStyle={styles.header_container}
           centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
         />
       <View style={styles.container}>
@@ -123,6 +124,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  header_container: {
+    height: Platform.OS === 'ios' ? 80 : 50,
   },
   login_input: {
     marginBottom: 20

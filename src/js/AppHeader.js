@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, View, Text, Linking} from 'react-native';
+import {Platform, StyleSheet, View, Text, Linking} from 'react-native';
 import {Header, Button, Divider} from 'react-native-elements';
 import CartButton from './HeaderCartButton.js';
 import MenuButton from './HeaderMenuButton.js';
@@ -49,10 +49,10 @@ class DrawerLinks extends Component {
     return (
       <View style={styles.container}>
         <Divider style={styles.menu_header_divider}/>
-        <Button style={styles.menu_button} onPress={this.handleAllItemsLink} title="ALL ITEMS"/>
-        <Button style={styles.menu_button} onPress={this.handleAboutLink} title="ABOUT"/>
-        <Button style={styles.menu_button} onPress={this.handleLogoutLink} title="LOGOUT"/>
-        <Button style={styles.menu_button} onPress={this.handleResetLink} title="RESET APP STATE"/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleAllItemsLink} title="ALL ITEMS"/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleAboutLink} title="ABOUT"/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleLogoutLink} title="LOGOUT"/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleResetLink} title="RESET APP STATE"/>
       </View>
     );
   }
@@ -99,6 +99,7 @@ export default class AppHeader extends Component {
         onClose={this.closeMenu}
       >
         <Header
+          containerStyle={styles.header_container}
           leftComponent={<MenuButton openMenuHandler={this.openMenu} />}
           centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
           rightComponent={<CartButton navigation={this.props.navigation} />}
@@ -112,6 +113,9 @@ export default class AppHeader extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFF'
+  },
+  header_container: {
+    height: Platform.OS === 'ios' ? 80 : 60,
   },
   menu_button: {
     backgroundColor: '#FFF',
