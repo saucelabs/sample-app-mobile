@@ -1,4 +1,4 @@
-package com.sampleappios;
+package com.swaglabsmobileapp;
 
 import android.app.Application;
 
