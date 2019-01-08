@@ -88,9 +88,7 @@ export default class LoginPage extends Component {
 
 		return (
 			<ThemeProvider>
-				<Header
-          centerComponent={{ text: i18n.t('login.header'), style: { color: '#fff' } }}
-				/>
+				<Header centerComponent={{ text: i18n.t('login.header'), style: { color: '#fff' } }} />
 				<ScrollView contentContainerStyle={ styles.scrollContainer } keyboardShouldPersistTaps='handled' { ...testProperties(i18n.t('login.screen')) }>
 					<View style={styles.container}>
 						<Input containerStyle={styles.login_input} placeholder={ i18n.t('login.username') } value={this.state.username}
@@ -105,7 +103,7 @@ export default class LoginPage extends Component {
 
 						{errorMessage}
 
-        <Text style={styles.login_info}>{ i18n.t('login.loginText') }</Text>
+        		<Text style={styles.login_info}>{ i18n.t('login.loginText') }</Text>
 					</View>
 				</ScrollView>
 			</ThemeProvider>
@@ -139,7 +137,7 @@ const styles = StyleSheet.create({
 	},
 	error_message: {
 		fontSize: 18,
-  },
+	},
 	buttonTitle: {
 		textTransform: 'uppercase',
 	}
