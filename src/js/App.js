@@ -14,10 +14,10 @@ const App = createStackNavigator({
   CartContents: {screen: CartContentsPage},
   CheckoutPageOne: {screen: CheckoutPageOne},
   CheckoutPageTwo: {screen: CheckoutPageTwo},
-  CheckoutComplete: {screen: CheckoutCompletePage}
+  CheckoutComplete: {screen: CheckoutCompletePage},
 },
 {
-  headerMode: 'none'
+  headerMode: 'none',
 });
 
 export default App;

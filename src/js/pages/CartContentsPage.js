@@ -9,17 +9,17 @@ class CartItem extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.item = props.item;
     this.state = {
-        itemVisible: true
-    }
-    
+        itemVisible: true,
+    };
+
     if (props.item == null) {
       // Hide this if the item is invalid
       this.state.itemVisible = false;
     }
-    
+
     this.removeFromCart = this.removeFromCart.bind(this);
   }
 
@@ -32,7 +32,7 @@ class CartItem extends Component {
   render () {
 
     if (this.state.itemVisible) {
-  
+
       return (
         <View style={styles.item_container}>
           <View style={styles.item_quantity_box}>
@@ -57,7 +57,7 @@ class CartItem extends Component {
 }
 
 export default class CartContentsPage extends Component {
-  
+
   constructor(props) {
     super(props);
   }
@@ -79,7 +79,7 @@ export default class CartContentsPage extends Component {
           </View>
           <ScrollView style={styles.container}>
             {contents.map((item, i) => {
-              return (<CartItem key={i} item={InventoryData.ITEMS[item]} />) 
+              return (<CartItem key={i} item={InventoryData.ITEMS[item]} />);
             })}
             <View style={styles.cart_footer}>
               <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title="CHECKOUT"/>
@@ -96,30 +96,30 @@ const styles = StyleSheet.create({
   secondary_header: {
     height: 80,
     backgroundColor: '#474c55',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   section_header: {
     height: 35,
     backgroundColor: '#FFF',
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   section_qty: {
     fontSize: 18,
     color: '#000',
-    paddingTop: 3
+    paddingTop: 3,
   },
   section_desc: {
     fontSize: 18,
     color: '#000',
     paddingTop: 3,
-    left: 70
+    left: 70,
   },
   header_title: {
     fontSize: 30,
     color: '#FFF',
     marginLeft: 90,
-    marginTop: 32
+    marginTop: 32,
   },
   container: {
     flex: 5,
@@ -131,46 +131,46 @@ const styles = StyleSheet.create({
     top: 108,
     left: 5,
     position: 'absolute',
-    zIndex: 10
+    zIndex: 10,
   },
   item_container: {
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   item_infobox: {
     flexDirection: 'column',
     flex: 4,
-    padding: 5
+    padding: 5,
   },
   item_price_bar: {
     flexDirection: 'row',
-    paddingTop: 5
+    paddingTop: 5,
   },
   item_cart_button: {
     flex: 3,
-    backgroundColor: '#57c1e8'
+    backgroundColor: '#57c1e8',
   },
   item_details: {
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   price_text: {
     color: '#569210',
     fontSize: 18,
     flex: 2,
-    paddingTop: 10
+    paddingTop: 10,
   },
   item_name: {
     fontSize: 18,
     fontWeight: '800',
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   item_desc: {
-    
+
   },
   item_quantity: {
     color: '#000',
     fontSize: 18,
-    padding: 4
+    padding: 4,
   },
   item_quantity_box: {
     borderWidth: 2,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     height: 35,
     marginTop: 30,
     marginLeft: 5,
-    marginRight: 5
+    marginRight: 5,
   },
   cart_footer: {
     flex: 3,
@@ -191,10 +191,10 @@ const styles = StyleSheet.create({
   },
   cancel_button: {
     flex: 1,
-    backgroundColor: '#F00'
+    backgroundColor: '#F00',
   },
   checkout_button_container: {
     marginTop: 10,
-    marginBottom: 10
-  }
+    marginBottom: 10,
+  },
 });

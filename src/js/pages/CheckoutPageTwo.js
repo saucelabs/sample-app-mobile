@@ -13,9 +13,9 @@ class SummaryItem extends Component {
 
       this.item = props.item;
       this.state = {
-          itemVisible: true
-      }
-      
+          itemVisible: true,
+      };
+
       if (props.item == null) {
         // Hide this if the item is invalid
         this.state.itemVisible = false;
@@ -23,7 +23,7 @@ class SummaryItem extends Component {
 
       // Need to pass this in explicitly since it's a subcomponent
       this.navigation = props.navigation;
-      
+
       this.navigateToItem = this.navigateToItem.bind(this);
     }
 
@@ -31,16 +31,16 @@ class SummaryItem extends Component {
 
       var itemId = this.state.id;
       if (Credentials.isProblemUser()) {
-        itemId += 1; 
+        itemId += 1;
       }
-      
-      this.navigation.navigate('InventoryItem', {id: itemId});    
+
+      this.navigation.navigate('InventoryItem', {id: itemId});
     }
 
     render () {
-      
+
       if (this.state.itemVisible) {
-        
+
         return (
           <View style={styles.item_container}>
             <View style={styles.item_quantity_box}>
@@ -77,16 +77,16 @@ export default class CheckoutPageTwo extends Component {
       // Wipe out our shopping cart
       ShoppingCart.resetCart();
     }
-    
+
     // Checkout complete, redirect to our order complete page
-    this.props.navigation.navigate('CheckoutComplete');      
+    this.props.navigation.navigate('CheckoutComplete');
   }
 
   render() {
 
     var contents = ShoppingCart.getCartContents();
     var orderTotal = 0;
-    
+
     for (var curItem in contents) {
       orderTotal = orderTotal + InventoryData.ITEMS[contents[curItem]].price;
       if (Credentials.isProblemUser()) {
@@ -110,9 +110,9 @@ export default class CheckoutPageTwo extends Component {
           </View>
           <ScrollView style={styles.container}>
             {contents.map((item, i) => {
-              return (<SummaryItem key={i} item={InventoryData.ITEMS[item]} />) 
+              return (<SummaryItem key={i} item={InventoryData.ITEMS[item]} />);
             })}
-    
+
             <View style={styles.summary_section}>
               <Text style={styles.summary_info_label}>Payment Information:</Text>
               <Text style={styles.summary_value_label}>SauceCard #31337</Text>
@@ -126,7 +126,7 @@ export default class CheckoutPageTwo extends Component {
               <Text style={styles.summary_tax_label}>Tax: ${orderTax}</Text>
               <Text style={styles.summary_total_label}>Total: ${(orderTotal + parseFloat(orderTax)).toFixed(2)}</Text>
             </View>
-    
+
             <View style={styles.cart_footer}>
               <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={this.clearCart} title="FINISH"/>
               <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CANCEL"/>
@@ -142,30 +142,30 @@ const styles = StyleSheet.create({
   secondary_header: {
     height: 80,
     backgroundColor: '#474c55',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   section_header: {
     height: 35,
     backgroundColor: '#FFF',
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   section_qty: {
     fontSize: 18,
     color: '#000',
-    paddingTop: 3
+    paddingTop: 3,
   },
   section_desc: {
     fontSize: 18,
     color: '#000',
     paddingTop: 3,
-    left: 70
+    left: 70,
   },
   header_title: {
     fontSize: 30,
     color: '#FFF',
     marginLeft: 90,
-    marginTop: 32
+    marginTop: 32,
   },
   container: {
     flex: 5,
@@ -178,42 +178,42 @@ const styles = StyleSheet.create({
     top: 108,
     left: 5,
     position: 'absolute',
-    zIndex: 10
+    zIndex: 10,
   },
   item_container: {
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   item_infobox: {
     flexDirection: 'column',
     flex: 4,
-    padding: 5
+    padding: 5,
   },
   item_price_bar: {
     flexDirection: 'row',
-    paddingTop: 5
+    paddingTop: 5,
   },
   item_details: {
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   price_text: {
     color: '#569210',
     fontSize: 18,
     flex: 2,
-    paddingTop: 10
+    paddingTop: 10,
   },
   item_name: {
     fontSize: 18,
     fontWeight: '800',
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   item_desc: {
-    
+
   },
   item_quantity: {
     color: '#000',
     fontSize: 18,
-    padding: 4
+    padding: 4,
   },
   item_quantity_box: {
     borderWidth: 2,
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     height: 35,
     marginTop: 30,
     marginLeft: 5,
-    marginRight: 5
+    marginRight: 5,
   },
   cart_footer: {
     borderTopWidth: 3,
@@ -236,36 +236,36 @@ const styles = StyleSheet.create({
   },
   cancel_button: {
     flex: 1,
-    backgroundColor: '#F00'
+    backgroundColor: '#F00',
   },
   checkout_button_container: {
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   summary_section: {
     borderTopWidth: 1,
-    borderTopColor: '#000'
+    borderTopColor: '#000',
   },
   summary_info_label: {
     fontSize: 18,
-    padding: 4
+    padding: 4,
   },
   summary_value_label: {
     fontSize: 18,
     fontWeight: '800',
-    padding: 4
+    padding: 4,
   },
   summary_subtotal_label: {
     fontSize: 18,
-    padding: 4
+    padding: 4,
   },
   summary_tax_label: {
     fontSize: 18,
-    padding: 4
+    padding: 4,
   },
   summary_total_label: {
     fontSize: 22,
     fontWeight: '800',
-    padding: 4
-  }
+    padding: 4,
+  },
 });

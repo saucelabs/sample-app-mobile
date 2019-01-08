@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, View, Text} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class MenuButton extends Component {
@@ -16,10 +16,10 @@ export default class MenuButton extends Component {
     }
   }
 
-  render () {
+  render() {
 
     return (
-      <Icon.Button name="bars" size={30} color="#FFF" style={styles.menu_icon} onPress={this.openMenu} />
+      <Icon.Button name="bars" size={ 30 } color="#FFF" style={ styles.menu_icon } onPress={ this.openMenu }/>
     );
   }
 }
@@ -27,6 +27,6 @@ export default class MenuButton extends Component {
 const styles = StyleSheet.create({
   menu_icon: {
     height: 70,
-    backgroundColor: '#2089DC'
-  }
+    backgroundColor: '#2089DC',
+  },
 });
