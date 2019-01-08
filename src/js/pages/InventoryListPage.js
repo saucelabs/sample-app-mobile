@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TextInput, View, ScrollView, Image, TouchableOpacity} from 'react-native';
-import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {Button, ThemeProvider} from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector'
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
-import CartButton from '../HeaderCartButton.js';
 import { InventoryData } from '../data/inventory-data.js';
-
+import AppHeader from '../AppHeader.js';
 
 class InventoryListItem extends Component {
 
@@ -110,7 +108,8 @@ export default class InventoryListPage extends Component {
     
     this.state = {
         inventoryList: InventoryData.ITEMS_NAME_AZ,
-        sortState: "az"
+        sortState: "az",
+        menuOpen: false
     };
 
     this.changeSort = this.changeSort.bind(this);
@@ -118,6 +117,8 @@ export default class InventoryListPage extends Component {
     this.sortNameZA = this.sortNameZA.bind(this);
     this.sortPriceLoHi = this.sortPriceLoHi.bind(this);
     this.sortPriceHiLo = this.sortPriceHiLo.bind(this);
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
 
   changeSort(sortType) {
@@ -167,6 +168,18 @@ export default class InventoryListPage extends Component {
     });
   }
 
+  openMenu() {
+    this.setState({
+       menuOpen: true
+    });
+  }
+
+  closeMenu() {
+    this.setState({
+       menuOpen: false
+    });
+  }
+  
   render() {
     
     const sortOptions = [
@@ -179,11 +192,7 @@ export default class InventoryListPage extends Component {
     
     return (
       <ThemeProvider>
-        <Header
-          leftComponent={{ icon: 'menu', color: '#fff' }}
-          centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-          rightComponent={<CartButton navigation={this.props.navigation} />}
-        />
+      <AppHeader navigation={this.props.navigation}>
       <Image source={require('../../img/peek.png')} style={styles.peek_img} />
       <View style={styles.secondary_header}>
         <Text style={styles.header_title}>Products</Text>
@@ -196,6 +205,7 @@ export default class InventoryListPage extends Component {
           return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />) 
         })}
       </ScrollView>
+      </AppHeader>
       </ThemeProvider>
     );
   }

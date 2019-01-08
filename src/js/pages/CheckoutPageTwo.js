@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TextInput, View, ScrollView, Image, TouchableOpacity} from 'react-native';
-import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import ModalSelector from 'react-native-modal-selector'
+import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {Button, ThemeProvider} from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
-import CartButton from '../HeaderCartButton.js';
+import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 
 class SummaryItem extends Component {
@@ -101,43 +99,40 @@ export default class CheckoutPageTwo extends Component {
 
     return (
       <ThemeProvider>
-        <Header
-          leftComponent={{ icon: 'menu', color: '#fff' }}
-          centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-          rightComponent={<CartButton navigation={this.props.navigation} />}
-        />
-      <Image source={require('../../img/peek.png')} style={styles.peek_img} />
-      <View style={styles.secondary_header}>
-        <Text style={styles.header_title}>Checkout: Overview</Text>
-      </View>
-      <View style={styles.section_header}>
-        <Text style={styles.section_qty}>QTY</Text>
-        <Text style={styles.section_desc}>DESCRIPTION</Text>
-      </View>
-      <ScrollView style={styles.container}>
-        {contents.map((item, i) => {
-          return (<SummaryItem key={i} item={InventoryData.ITEMS[item]} />) 
-        })}
-
-        <View style={styles.summary_section}>
-          <Text style={styles.summary_info_label}>Payment Information:</Text>
-          <Text style={styles.summary_value_label}>SauceCard #31337</Text>
-        </View>
-        <View style={styles.summary_section}>
-          <Text style={styles.summary_info_label}>Shipping Information:</Text>
-          <Text style={styles.summary_value_label}>FREE PONY EXPRESS DELIVERY!</Text>
-        </View>
-        <View style={styles.summary_section}>
-          <Text style={styles.summary_subtotal_label}>Item total: ${orderTotal}</Text>
-          <Text style={styles.summary_tax_label}>Tax: ${orderTax}</Text>
-          <Text style={styles.summary_total_label}>Total: ${(orderTotal + parseFloat(orderTax)).toFixed(2)}</Text>
-        </View>
-
-        <View style={styles.cart_footer}>
-          <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={this.clearCart} title="FINISH"/>
-          <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CANCEL"/>
-        </View>
-      </ScrollView>
+        <AppHeader navigation={this.props.navigation}>
+          <Image source={require('../../img/peek.png')} style={styles.peek_img} />
+          <View style={styles.secondary_header}>
+            <Text style={styles.header_title}>Checkout: Overview</Text>
+          </View>
+          <View style={styles.section_header}>
+            <Text style={styles.section_qty}>QTY</Text>
+            <Text style={styles.section_desc}>DESCRIPTION</Text>
+          </View>
+          <ScrollView style={styles.container}>
+            {contents.map((item, i) => {
+              return (<SummaryItem key={i} item={InventoryData.ITEMS[item]} />) 
+            })}
+    
+            <View style={styles.summary_section}>
+              <Text style={styles.summary_info_label}>Payment Information:</Text>
+              <Text style={styles.summary_value_label}>SauceCard #31337</Text>
+            </View>
+            <View style={styles.summary_section}>
+              <Text style={styles.summary_info_label}>Shipping Information:</Text>
+              <Text style={styles.summary_value_label}>FREE PONY EXPRESS DELIVERY!</Text>
+            </View>
+            <View style={styles.summary_section}>
+              <Text style={styles.summary_subtotal_label}>Item total: ${orderTotal}</Text>
+              <Text style={styles.summary_tax_label}>Tax: ${orderTax}</Text>
+              <Text style={styles.summary_total_label}>Total: ${(orderTotal + parseFloat(orderTax)).toFixed(2)}</Text>
+            </View>
+    
+            <View style={styles.cart_footer}>
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={this.clearCart} title="FINISH"/>
+              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CANCEL"/>
+            </View>
+          </ScrollView>
+        </AppHeader>
       </ThemeProvider>
     );
   }
@@ -177,11 +172,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingTop: 5,
   },
-  item_image: {
-    width: 80,
-    height: 100,
-    flex: 1
-  },
   peek_img: {
     width: 71,
     height: 70,
@@ -202,10 +192,6 @@ const styles = StyleSheet.create({
   item_price_bar: {
     flexDirection: 'row',
     paddingTop: 5
-  },
-  item_cart_button: {
-    flex: 3,
-    backgroundColor: '#57c1e8'
   },
   item_details: {
     flexDirection: 'column'
@@ -256,12 +242,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
-  text_input: {
-    marginBottom: 20
-  },
-  error_message: {
-    fontSize: 18
-  },
   summary_section: {
     borderTopWidth: 1,
     borderTopColor: '#000'
@@ -287,5 +267,5 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '800',
     padding: 4
-  },
+  }
 });
