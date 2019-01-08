@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Button, ThemeProvider, Header, Input } from 'react-native-elements';
+import React, {Component} from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
@@ -75,56 +75,42 @@ export default class LoginPage extends Component {
 
 	render() {
 
-		var errorMessage = (<View/>);
+		var errorMessage = (<View />);
 
-		if (this.state.error != '') {
+		if (this.state.error !== '') {
 			errorMessage = (<View>
-				<Icon onPress={ this.dismissError } name='times-circle' size={ 24 } color='red'/>
-				<Text style={ styles.error_message }>Epic sadface: { this.state.error }</Text>
+				<Icon onPress={this.dismissError} name='times-circle' size={24} color='red' />
+				<Text style={styles.error_message}>Epic sadface: {this.state.error}</Text>
 			</View>);
 		}
 
 		return (
 			<ThemeProvider>
 				<Header
-					centerComponent={ { text: 'Swag Labs', style: { color: '#fff' } } }
+					centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
 				/>
-				<ScrollView
-					contentContainerStyle={ styles.scrollContainer }
-					keyboardShouldPersistTaps='handled'
-				>
-					<View style={ styles.container }>
-						<Input
-							containerStyle={ styles.login_input }
-							placeholder='Username' value={ this.state.username }
-							onChangeText={ this.handleUserChange }
-							leftIcon={ <Icon name='user' size={ 24 } color='black'/> }
-							shake={ true }
-							autoFocus={ true }
-							autoCapitalize='none'
-							autoCorrect={ false }
-						/>
-						<Input
-							containerStyle={ styles.login_input }
-							placeholder='Password'
-							value={ this.state.password }
-							onChangeText={ this.handlePassChange }
-							leftIcon={ <Icon name='lock' size={ 28 } color='black'/> }
-							shake={ true }
-							secureTextEntry={ true }
-						/>
-						<Button onPress={ this.handleSubmit } title="LOGIN"/>
+				<ScrollView contentContainerStyle={ styles.scrollContainer } keyboardShouldPersistTaps='handled'>
+					<View style={styles.container}>
+						<Input containerStyle={styles.login_input} placeholder='Username' value={this.state.username}
+									 onChangeText={this.handleUserChange}
+									 leftIcon={<Icon name='user' size={24} color='black' />}
+									 shake={true} autoFocus={true} autoCapitalize='none' autoCorrect={false} />
+						<Input containerStyle={styles.login_input} placeholder='Password' value={this.state.password}
+									 onChangeText={this.handlePassChange}
+									 leftIcon={<Icon name='lock' size={28} color='black' />}
+									 shake={true} secureTextEntry={true} />
+						<Button onPress={this.handleSubmit} title="LOGIN"/>
 
-						{ errorMessage }
+						{errorMessage}
 
-						<Text style={ styles.login_info }>The currently accepted usernames for this application are:{ '\n' }
-							{ '\n' }
-							standard_user{ '\n' }
-							locked_out_user{ '\n' }
-							problem_user{ '\n' }
-							{ '\n' }
-							And the password for all users is:{ '\n' }
-							{ '\n' }
+						<Text style={styles.login_info}>The currently accepted usernames for this application are:{'\n'}
+							{'\n'}
+							standard_user{'\n'}
+							locked_out_user{'\n'}
+							problem_user{'\n'}
+							{'\n'}
+							And the password for all users is:{'\n'}
+							{'\n'}
 							secret_sauce</Text>
 					</View>
 				</ScrollView>
@@ -134,7 +120,7 @@ export default class LoginPage extends Component {
 }
 
 const styles = StyleSheet.create({
-	scrollContainer: {
+	scrollContainer:{
 		flex: 1,
 	},
 	container: {
