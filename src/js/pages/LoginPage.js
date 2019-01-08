@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
 import { ShoppingCart } from '../shopping-cart.js';
+import i18n from '../config/i18n';
+import {testProperties} from '../config/TestProperties';
 
 export default class LoginPage extends Component {
 
@@ -50,11 +52,11 @@ export default class LoginPage extends Component {
 		this.setState({ error: '' });
 
 		if (!this.state.username) {
-			return this.setState({ error: 'Username is required' });
+			return this.setState({ error: i18n.t('login.usernameError') });
 		}
 
 		if (!this.state.password) {
-			return this.setState({ error: 'Password is required' });
+			return this.setState({ error: i18n.t('login.passwordError') });
 		}
 
 		if (Credentials.verifyCredentials(this.state.username, this.state.password)) {
@@ -62,14 +64,14 @@ export default class LoginPage extends Component {
 			const isLockedOutUser = Credentials.isLockedOutUser();
 
 			if (isLockedOutUser) {
-				return this.setState({ error: 'Sorry, this user has been locked out.' });
+				return this.setState({ error: i18n.t('login.lockedOutError') });
 			}
 
 			// If we're here, we have a username and password. Redirect after we wipe out any previous shopping cart contents
 			ShoppingCart.resetCart();
 			this.props.navigation.navigate('InventoryList');
 		} else {
-			return this.setState({ error: 'Username and password do not match any user in this service' });
+			return this.setState({ error: i18n.t('login.noMatchError') });
 		}
 	}
 
@@ -80,38 +82,28 @@ export default class LoginPage extends Component {
 		if (this.state.error !== '') {
 			errorMessage = (<View>
 				<Icon onPress={this.dismissError} name='times-circle' size={24} color='red' />
-				<Text style={styles.error_message}>Epic sadface: {this.state.error}</Text>
+      <Text style={styles.error_message}>{i18n.t('login.epicSadFace')}{this.state.error}</Text>
 			</View>);
 		}
 
 		return (
 			<ThemeProvider>
-				<Header
-					centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
-				/>
-				<ScrollView contentContainerStyle={ styles.scrollContainer } keyboardShouldPersistTaps='handled'>
+				<Header centerComponent={{ text: i18n.t('login.header'), style: { color: '#fff' } }} />
+				<ScrollView contentContainerStyle={ styles.scrollContainer } keyboardShouldPersistTaps='handled' { ...testProperties(i18n.t('login.screen')) }>
 					<View style={styles.container}>
-						<Input containerStyle={styles.login_input} placeholder='Username' value={this.state.username}
+						<Input containerStyle={styles.login_input} placeholder={ i18n.t('login.username') } value={this.state.username}
 									 onChangeText={this.handleUserChange}
 									 leftIcon={<Icon name='user' size={24} color='black' />}
-									 shake={true} autoFocus={true} autoCapitalize='none' autoCorrect={false} />
-						<Input containerStyle={styles.login_input} placeholder='Password' value={this.state.password}
+									 shake={true} autoFocus={true} autoCapitalize='none' autoCorrect={false} { ...testProperties(i18n.t('login.username')) } />
+						<Input containerStyle={styles.login_input} placeholder={ i18n.t('login.password') } value={this.state.password}
 									 onChangeText={this.handlePassChange}
 									 leftIcon={<Icon name='lock' size={28} color='black' />}
-									 shake={true} secureTextEntry={true} />
-						<Button onPress={this.handleSubmit} title="LOGIN"/>
+									 shake={true} secureTextEntry={true} { ...testProperties(i18n.t('login.password')) } />
+						<Button onPress={this.handleSubmit} titleStyle={ styles.buttonTitle } title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
 
 						{errorMessage}
 
-						<Text style={styles.login_info}>The currently accepted usernames for this application are:{'\n'}
-							{'\n'}
-							standard_user{'\n'}
-							locked_out_user{'\n'}
-							problem_user{'\n'}
-							{'\n'}
-							And the password for all users is:{'\n'}
-							{'\n'}
-							secret_sauce</Text>
+        		<Text style={styles.login_info}>{ i18n.t('login.loginText') }</Text>
 					</View>
 				</ScrollView>
 			</ThemeProvider>
@@ -145,5 +137,8 @@ const styles = StyleSheet.create({
 	},
 	error_message: {
 		fontSize: 18,
+	},
+	buttonTitle: {
+		textTransform: 'uppercase',
 	}
 });
