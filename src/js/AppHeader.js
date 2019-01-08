@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, View, Text, Linking} from 'react-native';
+import {StyleSheet, View, Linking} from 'react-native';
 import {Header, Button, Divider} from 'react-native-elements';
 import CartButton from './HeaderCartButton.js';
 import MenuButton from './HeaderMenuButton.js';
 import Drawer from 'react-native-drawer';
 import { ShoppingCart } from './shopping-cart.js';
 import { Credentials } from './credentials.js';
+import { IS_IOS } from './config/Constants';
 
 class DrawerLinks extends Component {
 
@@ -27,7 +28,7 @@ class DrawerLinks extends Component {
 
     var aboutUrl = "https://saucelabs.com/";
     if (Credentials.isProblemUser()) {
-      aboutUrl = "https://saucelabs.com/error/404"; 
+      aboutUrl = "https://saucelabs.com/error/404";
     }
 
     this.props.closeMenu();
@@ -43,7 +44,7 @@ class DrawerLinks extends Component {
     this.props.closeMenu();
     ShoppingCart.resetCart();
   }
-  
+
   render () {
 
     return (
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF'
   },
   header_container: {
-    height: Platform.OS === 'ios' ? 80 : 60,
+    height: IS_IOS ? 80 : 60,
   },
   menu_button: {
     backgroundColor: '#FFF',

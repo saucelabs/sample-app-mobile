@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
+import { IS_IOS } from '../config/Constants';
 
 class SummaryItem extends Component {
 
@@ -15,7 +16,7 @@ class SummaryItem extends Component {
       this.state = {
           itemVisible: true
       }
-      
+
       if (props.item == null) {
         // Hide this if the item is invalid
         this.state.itemVisible = false;
@@ -23,7 +24,7 @@ class SummaryItem extends Component {
 
       // Need to pass this in explicitly since it's a subcomponent
       this.navigation = props.navigation;
-      
+
       this.navigateToItem = this.navigateToItem.bind(this);
     }
 
@@ -31,16 +32,16 @@ class SummaryItem extends Component {
 
       var itemId = this.state.id;
       if (Credentials.isProblemUser()) {
-        itemId += 1; 
+        itemId += 1;
       }
-      
-      this.navigation.navigate('InventoryItem', {id: itemId});    
+
+      this.navigation.navigate('InventoryItem', {id: itemId});
     }
 
     render () {
-      
+
       if (this.state.itemVisible) {
-        
+
         return (
           <View style={styles.item_container}>
             <View style={styles.item_quantity_box}>
@@ -77,16 +78,16 @@ export default class CheckoutPageTwo extends Component {
       // Wipe out our shopping cart
       ShoppingCart.resetCart();
     }
-    
+
     // Checkout complete, redirect to our order complete page
-    this.props.navigation.navigate('CheckoutComplete');      
+    this.props.navigation.navigate('CheckoutComplete');
   }
 
   render() {
 
     var contents = ShoppingCart.getCartContents();
     var orderTotal = 0;
-    
+
     for (var curItem in contents) {
       orderTotal = orderTotal + InventoryData.ITEMS[contents[curItem]].price;
       if (Credentials.isProblemUser()) {
@@ -110,9 +111,9 @@ export default class CheckoutPageTwo extends Component {
           </View>
           <ScrollView style={styles.container}>
             {contents.map((item, i) => {
-              return (<SummaryItem key={i} item={InventoryData.ITEMS[item]} />) 
+              return (<SummaryItem key={i} item={InventoryData.ITEMS[item]} />)
             })}
-    
+
             <View style={styles.summary_section}>
               <Text style={styles.summary_info_label}>Payment Information:</Text>
               <Text style={styles.summary_value_label}>SauceCard #31337</Text>
@@ -126,7 +127,7 @@ export default class CheckoutPageTwo extends Component {
               <Text style={styles.summary_tax_label}>Tax: ${orderTax}</Text>
               <Text style={styles.summary_total_label}>Total: ${(orderTotal + parseFloat(orderTax)).toFixed(2)}</Text>
             </View>
-    
+
             <View style={styles.cart_footer}>
               <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={this.clearCart} title="FINISH"/>
               <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CANCEL"/>
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: Platform.OS === 'ios' ? 100 : 80,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   item_desc: {
-    
+
   },
   item_quantity: {
     color: '#000',
