@@ -12,5 +12,19 @@
     "usernameError": "Username is required",
     "loginText": "The currently accepted usernames for this application are:\n\n- standard_user\n- locked_out_user\n- problem_user\n\nAnd the password for all users is:\n\nsecret_sauce"
   },
-  "username": "Username"
+  "username": "Username",
+  "cartContent": {
+    "checkout": "Checkout",
+    "continueShopping": "Continue shopping",
+    "description": "Description",
+    "header": "Your Cart",
+    "quantity": "qty",
+    "screen": "Cart Content",
+    "cartItem": {
+      "itemContainer": "Item",
+      "description": "Description",
+      "amount": "Amount",
+      "remove": "Remove"
+    }
+  }
 }
