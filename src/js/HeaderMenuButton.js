@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, View, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { IS_IOS } from './config/Constants';
 
 export default class MenuButton extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class MenuButton extends Component {
 
 const styles = StyleSheet.create({
   menu_icon: {
-    height: Platform.OS === 'ios' ? 50 : 40,
+    height: IS_IOS ? 50 : 40,
     backgroundColor: '#2089DC'
   }
 });

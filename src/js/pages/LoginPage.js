@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, TextInput, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
 import { ShoppingCart } from '../shopping-cart.js';
+import i18n from '../config/i18n';
+import {testProperties} from '../config/TestProperties';
+import { IS_IOS } from '../config/Constants';
 
 export default class LoginPage extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -50,11 +53,11 @@ export default class LoginPage extends Component {
     this.setState({ error: '' });
 
     if (!this.state.username) {
-      return this.setState({ error: 'Username is required' });
+			return this.setState({ error: i18n.t('login.usernameError') });
     }
 
     if (!this.state.password) {
-      return this.setState({ error: 'Password is required' });
+			return this.setState({ error: i18n.t('login.passwordError') });
     }
 
     if (Credentials.verifyCredentials(this.state.username, this.state.password)) {
@@ -62,63 +65,60 @@ export default class LoginPage extends Component {
       const isLockedOutUser = Credentials.isLockedOutUser();
 
       if (isLockedOutUser) {
-        return this.setState({ error: 'Sorry, this user has been locked out.' });
+				return this.setState({ error: i18n.t('login.lockedOutError') });
       }
 
       // If we're here, we have a username and password. Redirect after we wipe out any previous shopping cart contents
       ShoppingCart.resetCart();
       this.props.navigation.navigate('InventoryList');
     } else {
-      return this.setState({ error: 'Username and password do not match any user in this service' });
+			return this.setState({ error: i18n.t('login.noMatchError') });
     }
   }
 
   render() {
 
     var errorMessage = (<View />);
-    
-    if (this.state.error != '') {
+
+		if (this.state.error !== '') {
       errorMessage = (<View>
       <Icon onPress={this.dismissError} name='times-circle' size={24} color='red' />
-      <Text style={styles.error_message}>Epic sadface: {this.state.error}</Text>
+      <Text style={styles.error_message}>{i18n.t('login.epicSadFace')}{this.state.error}</Text>
       </View>);
     }
-    
+
     return (
       <ThemeProvider>
         <Header
           containerStyle={styles.header_container}
-          centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
+          centerComponent={{ text: i18n.t('login.header'), style: { color: '#fff' } }}
         />
-      <View style={styles.container}>
-        <Input containerStyle={styles.login_input} placeholder='Username' value={this.state.username}
-               onChangeText={this.handleUserChange}
-               leftIcon={<Icon name='user' size={24} color='black' />}
-        shake={true} autoFocus={true} autoCapitalize='none' autoCorrect={false} /> 
-        <Input containerStyle={styles.login_input} placeholder='Password' value={this.state.password}
-               onChangeText={this.handlePassChange}
-               leftIcon={<Icon name='lock' size={28} color='black' />}
-        shake={true} secureTextEntry={true} /> 
-        <Button onPress={this.handleSubmit} title="LOGIN"/>
+        <ScrollView contentContainerStyle={ styles.scrollContainer } keyboardShouldPersistTaps='handled' { ...testProperties(i18n.t('login.screen')) }>
+					<View style={styles.container}>
+						<Input containerStyle={styles.login_input} placeholder={ i18n.t('login.username') } value={this.state.username}
+									 onChangeText={this.handleUserChange}
+									 leftIcon={<Icon name='user' size={24} color='black' />}
+									 shake={true} autoFocus={true} autoCapitalize='none' autoCorrect={false} { ...testProperties(i18n.t('login.username')) } />
+						<Input containerStyle={styles.login_input} placeholder={ i18n.t('login.password') } value={this.state.password}
+									 onChangeText={this.handlePassChange}
+									 leftIcon={<Icon name='lock' size={28} color='black' />}
+									 shake={true} secureTextEntry={true} { ...testProperties(i18n.t('login.password')) } />
+						<Button onPress={this.handleSubmit} titleStyle={ styles.buttonTitle } title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
 
-        {errorMessage}          
+						{errorMessage}
 
-        <Text style={styles.login_info}>The currently accepted usernames for this application are:{'\n'}
-        {'\n'}
-standard_user{'\n'}
-locked_out_user{'\n'}
-problem_user{'\n'}
-{'\n'}
-And the password for all users is:{'\n'}
-{'\n'}
-secret_sauce</Text>
-      </View>
+								<Text style={styles.login_info}>{ i18n.t('login.loginText') }</Text>
+					</View>
+				</ScrollView>
       </ThemeProvider>
     );
   }
 }
 
 const styles = StyleSheet.create({
+	scrollContainer: {
+		flex: 1,
+	},
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   header_container: {
-    height: Platform.OS === 'ios' ? 80 : 50,
+    height: IS_IOS ? 80 : 50,
   },
   login_input: {
     marginBottom: 20
@@ -140,9 +140,12 @@ const styles = StyleSheet.create({
     margin: 20,
     borderStyle: 'dashed',
     borderWidth: 4,
-    borderColor: '#000000'    
+    borderColor: '#000000'
   },
   error_message: {
     fontSize: 18,
+	},
+	buttonTitle: {
+		textTransform: 'uppercase',
   }
 });

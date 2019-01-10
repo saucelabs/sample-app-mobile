@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
 import AppHeader from '../AppHeader.js';
+import { IS_IOS } from '../config/Constants';
 
 export default class CheckoutCompletePage extends Component {
-  
+
   constructor(props) {
     super(props);
   }
@@ -19,14 +20,14 @@ export default class CheckoutCompletePage extends Component {
             <Text style={styles.header_title}>Checkout Complete!</Text>
           </View>
           <ScrollView style={styles.container}>
-    
+
             <View style={styles.complete_container}>
               <Text style={styles.complete_title}>THANK YOU FOR YOUR ORDER</Text>
               <Text style={styles.complete_text}>Your order has been dispatched, and will arrive just as fast as the pony can get there!</Text>
             </View>
-    
+
             <Image resizeMode='contain' source={require('../../img/pony-express.jpg')} style={styles.ship_image} />
-    
+
             <View style={styles.cart_footer}>
               <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CONTINUE SHOPPING"/>
             </View>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: Platform.OS === 'ios' ? 100 : 80,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10

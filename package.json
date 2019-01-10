@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "clear.cache": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro* && rm -rf $TMPDIR/haste-*",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
+    "i18n-js": "^3.1.0",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-drawer": "2.5.1",
     "react-native-elements": "1.0.0-beta7",
+    "react-native-languages": "^3.0.1",
     "react-native-modal-selector": "1.0.0",
     "react-native-vector-icons": "6.0.2",
     "react-navigation": "2.18.2",
