@@ -6,12 +6,13 @@ import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
 import AppHeader from '../AppHeader.js';
+import { IS_IOS } from '../config/Constants';
 
 class InventoryListItem extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       id: props.id,
       image_url: props.image_url,
@@ -28,10 +29,10 @@ class InventoryListItem extends Component {
       // Replace our image with our broken link image
       this.state.image_url = require('../../img/sl-404.jpg');
     }
-    
+
     // Need to pass this in explicitly since it's a subcomponent
     this.navigation = props.navigation;
-    
+
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
     this.navigateToItem = this.navigateToItem.bind(this);
@@ -67,22 +68,22 @@ class InventoryListItem extends Component {
 
     var itemId = this.state.id;
     if (Credentials.isProblemUser()) {
-      itemId += 1; 
+      itemId += 1;
     }
-    
-    this.navigation.navigate('InventoryItem', {id: itemId});    
+
+    this.navigation.navigate('InventoryItem', {id: itemId});
   }
-  
+
   render () {
 
     var cartButton;
 
     if (ShoppingCart.isItemInCart(this.state.id)) {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
     } else {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
     }
-  
+
     return (
       <View style={styles.item_container}>
         <Image source={this.state.image_url} style={styles.item_image} />
@@ -102,10 +103,10 @@ class InventoryListItem extends Component {
 }
 
 export default class InventoryListPage extends Component {
-  
+
   constructor(props) {
     super(props);
-    
+
     this.state = {
         inventoryList: InventoryData.ITEMS_NAME_AZ,
         sortState: "az",
@@ -139,7 +140,7 @@ export default class InventoryListPage extends Component {
         break;
     }
   }
-  
+
   sortNameAZ() {
     this.setState({
       inventoryList: InventoryData.ITEMS_NAME_AZ,
@@ -179,9 +180,9 @@ export default class InventoryListPage extends Component {
        menuOpen: false
     });
   }
-  
+
   render() {
-    
+
     const sortOptions = [
         { key: "sectionLabel", section: true, label: 'Sort items by...' },
         { key: "az", label: 'Name (A to Z)' },
@@ -189,7 +190,7 @@ export default class InventoryListPage extends Component {
         { key: "lohi", label: 'Price (low to high)' },
         { key: "hilo", label: 'Price (high to low)' }
     ];
-    
+
     return (
       <ThemeProvider>
       <AppHeader navigation={this.props.navigation}>
@@ -201,8 +202,8 @@ export default class InventoryListPage extends Component {
           onChange={(sortOption) => this.changeSort(sortOption.key)} />
       </View>
       <ScrollView style={styles.container}>
-        {this.state.inventoryList.map((item, i) => {     
-          return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />) 
+        {this.state.inventoryList.map((item, i) => {
+          return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />)
         })}
       </ScrollView>
       </AppHeader>
@@ -235,7 +236,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10
@@ -272,11 +273,11 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   item_desc: {
-    
+
   },
   item_sort: {
     marginLeft: 15,
-    width: 140,
+    width: 150,
     height: 40,
     top: 30
   },

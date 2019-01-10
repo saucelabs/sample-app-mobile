@@ -4,22 +4,23 @@ import {Button, ThemeProvider} from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
+import { IS_IOS } from '../config/Constants';
 
 class CartItem extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.item = props.item;
     this.state = {
         itemVisible: true
     }
-    
+
     if (props.item == null) {
       // Hide this if the item is invalid
       this.state.itemVisible = false;
     }
-    
+
     this.removeFromCart = this.removeFromCart.bind(this);
   }
 
@@ -32,7 +33,7 @@ class CartItem extends Component {
   render () {
 
     if (this.state.itemVisible) {
-  
+
       return (
         <View style={styles.item_container}>
           <View style={styles.item_quantity_box}>
@@ -57,7 +58,7 @@ class CartItem extends Component {
 }
 
 export default class CartContentsPage extends Component {
-  
+
   constructor(props) {
     super(props);
   }
@@ -79,7 +80,7 @@ export default class CartContentsPage extends Component {
           </View>
           <ScrollView style={styles.container}>
             {contents.map((item, i) => {
-              return (<CartItem key={i} item={InventoryData.ITEMS[item]} />) 
+              return (<CartItem key={i} item={InventoryData.ITEMS[item]} />)
             })}
             <View style={styles.cart_footer}>
               <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title="CHECKOUT"/>
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   item_desc: {
-    
+
   },
   item_quantity: {
     color: '#000',
