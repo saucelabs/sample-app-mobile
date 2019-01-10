@@ -4,9 +4,10 @@ import {Button, ThemeProvider, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import AppHeader from '../AppHeader.js';
+import { IS_IOS } from '../config/Constants';
 
 export default class CheckoutPageOne extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -35,7 +36,7 @@ export default class CheckoutPageOne extends Component {
   };
 
   handleLastNameChange(text) {
-    
+
     var newState = {
       lastName: text,
     };
@@ -71,13 +72,13 @@ export default class CheckoutPageOne extends Component {
     }
 
     // If we're here, we have our required info. Redirect!
-    this.props.navigation.navigate('CheckoutPageTwo');      
+    this.props.navigation.navigate('CheckoutPageTwo');
   }
 
   render() {
 
     var errorMessage = (<View />);
-    
+
     if (this.state.error != '') {
       errorMessage = (<View>
       <Icon onPress={this.dismissError} name='times-circle' size={24} color='red' />
@@ -98,13 +99,13 @@ export default class CheckoutPageOne extends Component {
               shake={true} autoFocus={true} autoCorrect={false} />
             <Input containerStyle={styles.text_input} placeholder='Last Name' value={this.state.lastName}
               onChangeText={this.handleLastNameChange} leftIcon={<Icon name='user' size={24} color='black' />}
-              shake={true} autoCorrect={false} /> 
+              shake={true} autoCorrect={false} />
             <Input containerStyle={styles.text_input} placeholder='Zip/Postal Code' value={this.state.postalCode}
               onChangeText={this.handlePostalCodeChange} leftIcon={<Icon name='envelope' size={24} color='black' />}
-              shake={true} autoCorrect={false} /> 
-    
-            {errorMessage}          
-    
+              shake={true} autoCorrect={false} />
+
+            {errorMessage}
+
             <View style={styles.cart_footer}>
               <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={this.handleSubmit} title="CONTINUE CHECKOUT"/>
               <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CANCEL"/>
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10

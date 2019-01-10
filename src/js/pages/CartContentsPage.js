@@ -6,6 +6,7 @@ import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 import i18n from '../config/i18n';
 import {testProperties} from '../config/TestProperties';
+import { IS_IOS } from '../config/Constants';
 
 class CartItem extends Component {
 
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10
