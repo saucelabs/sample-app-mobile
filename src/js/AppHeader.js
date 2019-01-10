@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Linking } from 'react-native';
-import { Header, Button, Divider } from 'react-native-elements';
+import {StyleSheet, View, Linking} from 'react-native';
+import {Header, Button, Divider} from 'react-native-elements';
 import CartButton from './HeaderCartButton.js';
 import MenuButton from './HeaderMenuButton.js';
 import Drawer from 'react-native-drawer';
 import { ShoppingCart } from './shopping-cart.js';
 import { Credentials } from './credentials.js';
+import { IS_IOS } from './config/Constants';
 
 class DrawerLinks extends Component {
 
@@ -44,15 +45,15 @@ class DrawerLinks extends Component {
     ShoppingCart.resetCart();
   }
 
-  render() {
+  render () {
 
     return (
-      <View style={ styles.container }>
-        <Divider style={ styles.menu_header_divider }/>
-        <Button style={ styles.menu_button } onPress={ this.handleAllItemsLink } title="ALL ITEMS"/>
-        <Button style={ styles.menu_button } onPress={ this.handleAboutLink } title="ABOUT"/>
-        <Button style={ styles.menu_button } onPress={ this.handleLogoutLink } title="LOGOUT"/>
-        <Button style={ styles.menu_button } onPress={ this.handleResetLink } title="RESET APP STATE"/>
+      <View style={styles.container}>
+        <Divider style={styles.menu_header_divider}/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleAllItemsLink} title="ALL ITEMS"/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleAboutLink} title="ABOUT"/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleLogoutLink} title="LOGOUT"/>
+        <Button containerStyle={styles.menu_button} onPress={this.handleResetLink} title="RESET APP STATE"/>
       </View>
     );
   }
@@ -82,28 +83,29 @@ export default class AppHeader extends Component {
     });
   }
 
-  render() {
+  render () {
 
     return (
       <Drawer
-        open={ this.state.menuOpen }
+        open={this.state.menuOpen}
         type="static"
-        tapToClose={ true }
-        openDrawerOffset={ 0.5 }
-        closedDrawerOffset={ 0 }
-        content={ <DrawerLinks navigation={ this.props.navigation } closeMenu={ this.closeMenu }/> }
-        styles={ styles.container }
-        tweenHandler={ Drawer.tweenPresets.parallax }
-        tweenEasing={ 'easeInOutQuad' }
-        tweenDuration={ 400 }
-        onClose={ this.closeMenu }
+        tapToClose={true}
+        openDrawerOffset={0.5}
+        closedDrawerOffset={0}
+        content={<DrawerLinks navigation={this.props.navigation} closeMenu={this.closeMenu} />}
+        styles={styles.container}
+        tweenHandler={Drawer.tweenPresets.parallax}
+        tweenEasing={'easeInOutQuad'}
+        tweenDuration={400}
+        onClose={this.closeMenu}
       >
         <Header
-          leftComponent={ <MenuButton openMenuHandler={ this.openMenu }/> }
-          centerComponent={ { text: 'Swag Labs', style: { color: '#fff' } } }
-          rightComponent={ <CartButton navigation={ this.props.navigation }/> }
+          containerStyle={styles.header_container}
+          leftComponent={<MenuButton openMenuHandler={this.openMenu} />}
+          centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
+          rightComponent={<CartButton navigation={this.props.navigation} />}
         />
-        { this.props.children }
+        {this.props.children}
       </Drawer>
     );
   }
@@ -112,6 +114,9 @@ export default class AppHeader extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
+  },
+  header_container: {
+    height: IS_IOS ? 80 : 60,
   },
   menu_button: {
     backgroundColor: '#FFF',

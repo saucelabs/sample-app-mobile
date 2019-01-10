@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Button, ThemeProvider, Header, Input } from 'react-native-elements';
+import React, {Component} from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Button, ThemeProvider, Header, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
 import { ShoppingCart } from '../shopping-cart.js';
 import i18n from '../config/i18n';
-import { testProperties } from '../config/TestProperties';
+import {testProperties} from '../config/TestProperties';
+import { IS_IOS } from '../config/Constants';
 
 export default class LoginPage extends Component {
 
@@ -77,36 +78,36 @@ export default class LoginPage extends Component {
 
   render() {
 
-    var errorMessage = (<View/>);
+    var errorMessage = (<View />);
 
     if (this.state.error !== '') {
       errorMessage = (<View>
-        <Icon onPress={ this.dismissError } name="times-circle" size={ 24 } color="red"/>
-        <Text style={ styles.error_message }>{ i18n.t('login.epicSadFace') }{ this.state.error }</Text>
+        <Icon onPress={this.dismissError} name="times-circle" size={24} color="red" />
+        <Text style={styles.error_message}>{i18n.t('login.epicSadFace')}{this.state.error}</Text>
       </View>);
     }
 
     return (
       <ThemeProvider>
-        <Header centerComponent={ { text: i18n.t('login.header'), style: { color: '#fff' } } }/>
-        <ScrollView contentContainerStyle={ styles.scrollContainer }
-                    keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('login.screen')) }>
-          <View style={ styles.container }>
-            <Input containerStyle={ styles.login_input } placeholder={ i18n.t('login.username') } value={ this.state.username }
-                   onChangeText={ this.handleUserChange }
-                   leftIcon={ <Icon name="user" size={ 24 } color="black"/> }
-                   shake={ true } autoFocus={ true } autoCapitalize="none"
-                   autoCorrect={ false } { ...testProperties(i18n.t('login.username')) } />
-            <Input containerStyle={ styles.login_input } placeholder={ i18n.t('login.password') } value={ this.state.password }
-                   onChangeText={ this.handlePassChange }
-                   leftIcon={ <Icon name="lock" size={ 28 } color="black"/> }
-                   shake={ true } secureTextEntry={ true } { ...testProperties(i18n.t('login.password')) } />
-            <Button onPress={ this.handleSubmit } titleStyle={ styles.buttonTitle }
-                    title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
+        <Header
+          containerStyle={styles.header_container}
+          centerComponent={{ text: i18n.t('login.header'), style: { color: '#fff' } }}
+        />
+        <ScrollView contentContainerStyle={ styles.scrollContainer } keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('login.screen')) }>
+          <View style={styles.container}>
+            <Input containerStyle={styles.login_input} placeholder={ i18n.t('login.username') } value={this.state.username}
+                   onChangeText={this.handleUserChange}
+                   leftIcon={<Icon name="user" size={24} color="black" />}
+                   shake={true} autoFocus={true} autoCapitalize="none" autoCorrect={false} { ...testProperties(i18n.t('login.username')) } />
+            <Input containerStyle={styles.login_input} placeholder={ i18n.t('login.password') } value={this.state.password}
+                   onChangeText={this.handlePassChange}
+                   leftIcon={<Icon name="lock" size={28} color="black" />}
+                   shake={true} secureTextEntry={true} { ...testProperties(i18n.t('login.password')) } />
+            <Button onPress={this.handleSubmit} titleStyle={ styles.buttonTitle } title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
 
-            { errorMessage }
+            {errorMessage}
 
-            <Text style={ styles.login_info }>{ i18n.t('login.loginText') }</Text>
+            <Text style={styles.login_info}>{ i18n.t('login.loginText') }</Text>
           </View>
         </ScrollView>
       </ThemeProvider>
@@ -123,6 +124,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  header_container: {
+    height: IS_IOS ? 80 : 50,
   },
   login_input: {
     marginBottom: 20,

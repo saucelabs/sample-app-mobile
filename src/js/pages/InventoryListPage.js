@@ -6,6 +6,7 @@ import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
 import AppHeader from '../AppHeader.js';
+import { IS_IOS } from '../config/Constants';
 
 class InventoryListItem extends Component {
 
@@ -78,9 +79,9 @@ class InventoryListItem extends Component {
     var cartButton;
 
     if (ShoppingCart.isItemInCart(this.state.id)) {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
     } else {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
     }
 
     return (
@@ -107,9 +108,9 @@ export default class InventoryListPage extends Component {
     super(props);
 
     this.state = {
-        inventoryList: InventoryData.ITEMS_NAME_AZ,
-        sortState: 'az',
-        menuOpen: false,
+      inventoryList: InventoryData.ITEMS_NAME_AZ,
+      sortState: 'az',
+      menuOpen: false,
     };
 
     this.changeSort = this.changeSort.bind(this);
@@ -170,42 +171,42 @@ export default class InventoryListPage extends Component {
 
   openMenu() {
     this.setState({
-       menuOpen: true,
+      menuOpen: true,
     });
   }
 
   closeMenu() {
     this.setState({
-       menuOpen: false,
+      menuOpen: false,
     });
   }
 
   render() {
 
     const sortOptions = [
-        { key: 'sectionLabel', section: true, label: 'Sort items by...' },
-        { key: 'az', label: 'Name (A to Z)' },
-        { key: 'za', label: 'Name (Z to A)' },
-        { key: 'lohi', label: 'Price (low to high)' },
-        { key: 'hilo', label: 'Price (high to low)' },
+      { key: 'sectionLabel', section: true, label: 'Sort items by...' },
+      { key: 'az', label: 'Name (A to Z)' },
+      { key: 'za', label: 'Name (Z to A)' },
+      { key: 'lohi', label: 'Price (low to high)' },
+      { key: 'hilo', label: 'Price (high to low)' },
     ];
 
     return (
       <ThemeProvider>
-      <AppHeader navigation={this.props.navigation}>
-      <Image source={require('../../img/peek.png')} style={styles.peek_img} />
-      <View style={styles.secondary_header}>
-        <Text style={styles.header_title}>Products</Text>
-        <ModalSelector data={sortOptions} initValue="Name (A to Z)"
-          style={styles.item_sort} selectTextStyle={styles.sort_text}
-          onChange={(sortOption) => this.changeSort(sortOption.key)} />
-      </View>
-      <ScrollView style={styles.container}>
-        {this.state.inventoryList.map((item, i) => {
-          return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />);
-        })}
-      </ScrollView>
-      </AppHeader>
+        <AppHeader navigation={this.props.navigation}>
+          <Image source={require('../../img/peek.png')} style={styles.peek_img} />
+          <View style={styles.secondary_header}>
+            <Text style={styles.header_title}>Products</Text>
+            <ModalSelector data={sortOptions} initValue="Name (A to Z)"
+                           style={styles.item_sort} selectTextStyle={styles.sort_text}
+                           onChange={(sortOption) => this.changeSort(sortOption.key)} />
+          </View>
+          <ScrollView style={styles.container}>
+            {this.state.inventoryList.map((item, i) => {
+              return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />);
+            })}
+          </ScrollView>
+        </AppHeader>
       </ThemeProvider>
     );
   }
@@ -235,7 +236,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10,
@@ -276,7 +277,7 @@ const styles = StyleSheet.create({
   },
   item_sort: {
     marginLeft: 15,
-    width: 140,
+    width: 150,
     height: 40,
     top: 30,
   },

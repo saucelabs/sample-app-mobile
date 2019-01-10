@@ -5,62 +5,63 @@ import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
+import { IS_IOS } from '../config/Constants';
 
 class SummaryItem extends Component {
 
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.item = props.item;
-      this.state = {
-          itemVisible: true,
-      };
+    this.item = props.item;
+    this.state = {
+      itemVisible: true,
+    };
 
-      if (props.item == null) {
-        // Hide this if the item is invalid
-        this.state.itemVisible = false;
-      }
-
-      // Need to pass this in explicitly since it's a subcomponent
-      this.navigation = props.navigation;
-
-      this.navigateToItem = this.navigateToItem.bind(this);
+    if (props.item == null) {
+      // Hide this if the item is invalid
+      this.state.itemVisible = false;
     }
 
-    navigateToItem() {
+    // Need to pass this in explicitly since it's a subcomponent
+    this.navigation = props.navigation;
 
-      var itemId = this.state.id;
-      if (Credentials.isProblemUser()) {
-        itemId += 1;
-      }
+    this.navigateToItem = this.navigateToItem.bind(this);
+  }
 
-      this.navigation.navigate('InventoryItem', {id: itemId});
+  navigateToItem() {
+
+    var itemId = this.state.id;
+    if (Credentials.isProblemUser()) {
+      itemId += 1;
     }
 
-    render () {
+    this.navigation.navigate('InventoryItem', {id: itemId});
+  }
 
-      if (this.state.itemVisible) {
+  render () {
 
-        return (
-          <View style={styles.item_container}>
-            <View style={styles.item_quantity_box}>
-              <Text style={styles.item_quantity}>1</Text>
+    if (this.state.itemVisible) {
+
+      return (
+        <View style={styles.item_container}>
+          <View style={styles.item_quantity_box}>
+            <Text style={styles.item_quantity}>1</Text>
+          </View>
+          <View style={styles.item_infobox}>
+            <View style={styles.item_details}>
+              <Text style={styles.item_name}>{this.item.name}</Text>
+              <Text style={styles.item_desc}>{this.item.desc}</Text>
             </View>
-            <View style={styles.item_infobox}>
-              <View style={styles.item_details}>
-                <Text style={styles.item_name}>{this.item.name}</Text>
-                <Text style={styles.item_desc}>{this.item.desc}</Text>
-              </View>
-              <View style={styles.item_price_bar}>
-                <Text style={styles.price_text}>${this.item.price}</Text>
-              </View>
+            <View style={styles.item_price_bar}>
+              <Text style={styles.price_text}>${this.item.price}</Text>
             </View>
           </View>
-        );
-      } else {
-        return ( <View /> );
-      }
+        </View>
+      );
+    } else {
+      return ( <View /> );
     }
+  }
 }
 
 export default class CheckoutPageTwo extends Component {
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10,

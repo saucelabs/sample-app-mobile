@@ -74,16 +74,16 @@ This is a recording.
     var cartButton;
 
     if (this.state.itemInCart) {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
     } else {
-      cartButton = <Button style={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
     }
 
     return (
         <ThemeProvider>
           <AppHeader navigation={this.props.navigation}>
             <ScrollView style={styles.container}>
-              <Button style={styles.item_back_button} onPress={this.goBack} title="<- BACK"/>
+              <Button containerStyle={styles.item_back_button} onPress={this.goBack} title="<- BACK"/>
               <View style={styles.item_container}>
                 <Image source={this.item.image_url} style={styles.item_image} />
                 <View style={styles.item_infobox}>

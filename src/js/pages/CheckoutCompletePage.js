@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
 import AppHeader from '../AppHeader.js';
+import { IS_IOS } from '../config/Constants';
 
 export default class CheckoutCompletePage extends Component {
 
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10,
@@ -86,5 +87,7 @@ const styles = StyleSheet.create({
   checkout_button_container: {
     marginTop: 10,
     marginBottom: 10,
+    position: 'relative',
+    top: -10,
   },
 });

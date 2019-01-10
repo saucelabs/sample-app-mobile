@@ -4,6 +4,7 @@ import {Button, ThemeProvider} from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
+import { IS_IOS } from '../config/Constants';
 
 class CartItem extends Component {
 
@@ -12,7 +13,7 @@ class CartItem extends Component {
 
     this.item = props.item;
     this.state = {
-        itemVisible: true,
+      itemVisible: true,
     };
 
     if (props.item == null) {
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
   peek_img: {
     width: 71,
     height: 70,
-    top: 108,
+    top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
     zIndex: 10,
