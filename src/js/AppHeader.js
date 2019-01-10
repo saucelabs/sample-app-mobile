@@ -26,9 +26,9 @@ class DrawerLinks extends Component {
 
   handleAboutLink() {
 
-    var aboutUrl = "https://saucelabs.com/";
+    var aboutUrl = 'https://saucelabs.com/';
     if (Credentials.isProblemUser()) {
-      aboutUrl = "https://saucelabs.com/error/404";
+      aboutUrl = 'https://saucelabs.com/error/404';
     }
 
     this.props.closeMenu();
@@ -64,7 +64,7 @@ export default class AppHeader extends Component {
     super(props);
 
     this.state = {
-        menuOpen: false
+      menuOpen: false,
     };
 
     this.openMenu = this.openMenu.bind(this);
@@ -73,20 +73,20 @@ export default class AppHeader extends Component {
 
   openMenu() {
     this.setState({
-       menuOpen: true
+      menuOpen: true,
     });
   }
 
   closeMenu() {
     this.setState({
-       menuOpen: false
+      menuOpen: false,
     });
   }
 
   render () {
 
     return (
-        <Drawer
+      <Drawer
         open={this.state.menuOpen}
         type="static"
         tapToClose={true}
@@ -95,7 +95,7 @@ export default class AppHeader extends Component {
         content={<DrawerLinks navigation={this.props.navigation} closeMenu={this.closeMenu} />}
         styles={styles.container}
         tweenHandler={Drawer.tweenPresets.parallax}
-        tweenEasing={"easeInOutQuad"}
+        tweenEasing={'easeInOutQuad'}
         tweenDuration={400}
         onClose={this.closeMenu}
       >
@@ -113,21 +113,21 @@ export default class AppHeader extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
   },
   header_container: {
     height: IS_IOS ? 80 : 60,
   },
   menu_button: {
     backgroundColor: '#FFF',
-    margin: 10
+    margin: 10,
   },
   menu_text: {
     color: '#000',
-    fontWeight: '800'
+    fontWeight: '800',
   },
   menu_header_divider: {
     height: 50,
-    backgroundColor: '#FFF'
-  }
+    backgroundColor: '#FFF',
+  },
 });

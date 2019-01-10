@@ -15,7 +15,7 @@ export default class CheckoutPageOne extends Component {
       firstName: '',
       lastName: '',
       postalCode: '',
-      error: ''
+      error: '',
     };
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -33,7 +33,7 @@ export default class CheckoutPageOne extends Component {
     this.setState({
       firstName: text,
     });
-  };
+  }
 
   handleLastNameChange(text) {
 
@@ -47,13 +47,13 @@ export default class CheckoutPageOne extends Component {
     }
 
     this.setState(newState);
-  };
+  }
 
   handlePostalCodeChange(text) {
     this.setState({
       postalCode: text,
     });
-  };
+  }
 
   handleSubmit() {
     // First, clear any errors
@@ -79,10 +79,10 @@ export default class CheckoutPageOne extends Component {
 
     var errorMessage = (<View />);
 
-    if (this.state.error != '') {
+    if (this.state.error !== '') {
       errorMessage = (<View>
-      <Icon onPress={this.dismissError} name='times-circle' size={24} color='red' />
-      <Text style={styles.error_message}>Epic sadface: {this.state.error}</Text>
+        <Icon onPress={this.dismissError} name="times-circle" size={24} color="red" />
+        <Text style={styles.error_message}>Epic sadface: {this.state.error}</Text>
       </View>);
     }
 
@@ -94,15 +94,15 @@ export default class CheckoutPageOne extends Component {
             <Text style={styles.header_title}>Checkout: Your Info</Text>
           </View>
           <ScrollView style={styles.container}>
-            <Input containerStyle={styles.text_input} placeholder='First Name' value={this.state.firstName}
-              onChangeText={this.handleFirstNameChange} leftIcon={<Icon name='user' size={24} color='black' />}
-              shake={true} autoFocus={true} autoCorrect={false} />
-            <Input containerStyle={styles.text_input} placeholder='Last Name' value={this.state.lastName}
-              onChangeText={this.handleLastNameChange} leftIcon={<Icon name='user' size={24} color='black' />}
-              shake={true} autoCorrect={false} />
-            <Input containerStyle={styles.text_input} placeholder='Zip/Postal Code' value={this.state.postalCode}
-              onChangeText={this.handlePostalCodeChange} leftIcon={<Icon name='envelope' size={24} color='black' />}
-              shake={true} autoCorrect={false} />
+            <Input containerStyle={styles.text_input} placeholder="First Name" value={this.state.firstName}
+                   onChangeText={this.handleFirstNameChange} leftIcon={<Icon name="user" size={24} color="black" />}
+                   shake={true} autoFocus={true} autoCorrect={false} />
+            <Input containerStyle={styles.text_input} placeholder="Last Name" value={this.state.lastName}
+                   onChangeText={this.handleLastNameChange} leftIcon={<Icon name="user" size={24} color="black" />}
+                   shake={true} autoCorrect={false} />
+            <Input containerStyle={styles.text_input} placeholder="Zip/Postal Code" value={this.state.postalCode}
+                   onChangeText={this.handlePostalCodeChange} leftIcon={<Icon name="envelope" size={24} color="black" />}
+                   shake={true} autoCorrect={false} />
 
             {errorMessage}
 
@@ -122,13 +122,13 @@ const styles = StyleSheet.create({
     height: 80,
 
     backgroundColor: '#474c55',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   header_title: {
     fontSize: 30,
     color: '#FFF',
     marginLeft: 90,
-    marginTop: 32
+    marginTop: 32,
   },
   container: {
     flex: 5,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
-    zIndex: 10
+    zIndex: 10,
   },
   cart_footer: {
     flex: 3,
@@ -153,16 +153,16 @@ const styles = StyleSheet.create({
   },
   cancel_button: {
     flex: 1,
-    backgroundColor: '#F00'
+    backgroundColor: '#F00',
   },
   checkout_button_container: {
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   text_input: {
-    marginBottom: 20
+    marginBottom: 20,
   },
   error_message: {
     fontSize: 18,
-  }
+  },
 });

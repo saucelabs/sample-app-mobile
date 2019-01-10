@@ -21,7 +21,7 @@ export default class CartButton extends Component {
 
   render () {
 
-    var cartBadge = "";
+    var cartBadge = '';
     var cartContents = ShoppingCart.getCartContents();
 
     if (cartContents.length > 0) {
@@ -39,12 +39,12 @@ export default class CartButton extends Component {
 const styles = StyleSheet.create({
   cart_icon: {
     height: IS_IOS ? 50 : 40,
-    backgroundColor: '#2089DC'
+    backgroundColor: '#2089DC',
   },
   shopping_cart_badge: {
     color: '#FFF',
     paddingLeft: 4,
-    fontSize: 18
+    fontSize: 18,
   },
   badge:{
     color:'#F00',
@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor:'red',
     borderRadius:15,
     width: 30,
-    height: 30
-  }
+    height: 30,
+  },
 });

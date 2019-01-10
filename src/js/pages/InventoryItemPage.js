@@ -23,15 +23,15 @@ If you are in need of assistance, please dial 0 to be connected with an operator
 This is a recording.
 4 T 1.`,
           image_url: require('../../img/sl-404.jpg'),
-          price: '√-1'
-          
+          price: '√-1',
+
       };
     }
     this.item.id = inventoryId;
-    
+
     this.state = {
       // Set our initial state now
-      itemInCart: ShoppingCart.isItemInCart(inventoryId)
+      itemInCart: ShoppingCart.isItemInCart(inventoryId),
     };
 
     this.addToCart = this.addToCart.bind(this);
@@ -47,7 +47,7 @@ This is a recording.
 
     if (Credentials.isProblemUser()) {
       // Bail out now, don't add to cart if the item ID is odd
-      if (this.state.id % 2 == 1) {
+      if (this.state.id % 2 === 1) {
         return;
       }
     }
@@ -60,7 +60,7 @@ This is a recording.
 
     if (Credentials.isProblemUser()) {
       // Bail out now, don't remove from cart if the item ID is even
-      if (this.state.id % 2 == 0) {
+      if (this.state.id % 2 === 0) {
         return;
       }
     }
@@ -69,10 +69,10 @@ This is a recording.
     this.setState({itemInCart: false});
   }
 
-  render () {    
+  render () {
 
     var cartButton;
-    
+
     if (this.state.itemInCart) {
       cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
     } else {
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#57c1e8',
     zIndex: 10,
-    margin: 5
+    margin: 5,
   },
   container: {
     flex: 5,
@@ -119,41 +119,41 @@ const styles = StyleSheet.create({
   item_image: {
     width: 240,
     height: 300,
-    flex: 1
+    flex: 1,
   },
   item_container: {
     flexDirection: 'row',
     padding: 5,
-    marginTop: 40
+    marginTop: 40,
   },
   item_infobox: {
     flexDirection: 'column',
     flex: 1,
-    padding: 5
+    padding: 5,
   },
   item_price_bar: {
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   item_cart_button: {
     flex: 3,
-    backgroundColor: '#57c1e8'
+    backgroundColor: '#57c1e8',
   },
   item_details: {
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   price_text: {
     color: '#569210',
     fontSize: 18,
     flex: 2,
-    paddingTop: 10
+    paddingTop: 10,
   },
   item_name: {
     fontSize: 18,
     fontWeight: '800',
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   item_desc: {
-    
-  }
+
+  },
 });

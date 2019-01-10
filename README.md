@@ -68,3 +68,14 @@ set up your Android development environment:
 https://facebook.github.io/react-native/docs/getting-started.html
 ```
 - In a shell, run: `react-native run-android`
+
+## Linting the code
+The linting rules were taken from the React Native project itself and can be used by running 
+
+    $ npm run lint
+
+Issues / warning will be shown in the console and most of them can automatically be fixed by running
+
+    $ npm run lint -- --fix
+
+The linting will also be run on each `git push` and fail if there are issues.
