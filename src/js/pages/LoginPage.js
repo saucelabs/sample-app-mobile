@@ -103,7 +103,7 @@ export default class LoginPage extends Component {
                    onChangeText={this.handlePassChange}
                    leftIcon={<Icon name="lock" size={28} color="black" />}
                    shake={true} secureTextEntry={true} { ...testProperties(i18n.t('login.password')) } />
-            <Button onPress={this.handleSubmit} titleStyle={ styles.buttonTitle } title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
+            <Button onPress={this.handleSubmit} titleStyle={ styles.upperCaseText } title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
 
             {errorMessage}
 
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   error_message: {
     fontSize: 18,
   },
-  buttonTitle: {
+  upperCaseText: {
     textTransform: 'uppercase',
   },
 });

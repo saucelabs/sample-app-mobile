@@ -81,7 +81,7 @@ export default class CartContentsPage extends Component {
             <Text style={[styles.section_qty, styles.upperCaseText]}>{ i18n.t('cartContent.quantity') }</Text>
             <Text style={[styles.section_desc, styles.upperCaseText]}>{ i18n.t('cartContent.description') }</Text>
           </View>
-          <ScrollView style={styles.container} { ...testProperties(i18n.t('cartContent.screen')) }>
+          <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('cartContent.screen')) }>
             {contents.map((item, i) => {
               return (<CartItem key={i} item={InventoryData.ITEMS[item]} />);
             })}

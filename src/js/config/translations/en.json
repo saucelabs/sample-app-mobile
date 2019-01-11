@@ -26,5 +26,97 @@
       "amount": "Amount",
       "remove": "Remove"
     }
+  },
+  "checkoutPageOne": {
+    "errors": {
+      "epicSadFace": "Epic sadface: ",
+      "firstName": "First Name is required",
+      "lastName": "Last Name is required",
+      "postalCode": "Postal Code is required"
+    },
+    "header": "Checkout: Your Info",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "postalCode": "Zip/Postal Code",
+    "screen": "Checkout: Your Info",
+    "cancelButton": "Cancel",
+    "continueButton": "Continue checkout"
+  },
+  "checkoutPageTwo": {
+    "header": "Checkout: Overview",
+    "screen": "Checkout: Overview",
+    "description": "Description",
+    "quantity": "qty",
+    "cartItem": {
+      "itemContainer": "Item",
+      "description": "Description",
+      "amount": "Amount",
+      "remove": "Remove"
+    },
+    "summary": {
+      "paymentLabel": "Payment Information:",
+      "card": "SauceCard #31337",
+      "shippingLabel": "Shipping Information:",
+      "shippingText": "Free pony express delivery!",
+      "itemsTotal": "Item total: ",
+      "itemsTax": "Tax: ",
+      "totalAmount": "Total: "
+    },
+    "finishButton": "Finish",
+    "cancelButton": "Cancel"
+  },
+  "checkoutCompletePage": {
+    "header": "Checkout Complete!",
+    "screen": "Checkout Complete",
+    "completeContainer": {
+      "header": "Thank you for your order",
+      "text": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+    },
+    "goToButton": "Continue shopping"
+  },
+  "inventoryListPage": {
+    "screen": "Inventory list page",
+    "addButton": "Add to chart",
+    "removeButton": "Remove",
+    "itemContainer": "Item",
+    "itemDescription": "Description",
+    "price": "Price"
+  },
+  "inventoryItemPage": {
+    "screen": "Inventory item page",
+    "itemNotFound": {
+      "name": "ITEM NOT FOUND",
+      "description": "We're sorry, but your call could not be completed as dialled.\nPlease check your number, and try your call again.\nIf you are in need of assistance, please dial 0 to be connected with an operator.\nThis is a recording.\n4 T 1.",
+      "price": "√-1"
+    },
+    "addButton": "Add to chart",
+    "backButton": "<- BACK",
+    "removeButton": "Remove",
+    "itemDescription": "Item description",
+    "price": "Price"
+  },
+  "modalSelector": {
+    "cancel": "Cancel",
+    "container": "Selector container",
+    "sectionLabel": "Sort items by...",
+    "azLabel": "Name (A to Z)",
+    "zaLabel": "Name (Z to A)",
+    "loHiLabel": "Price (low to high)",
+    "hiLoLabel": "Price (high to low)"
+  },
+  "cart": {
+    "label": "Cart"
+  },
+  "menu": {
+    "label": "Menu",
+    "allItems": "All items",
+    "about": "About",
+    "logout": "Logout",
+    "reset": "Reset app state"
+  },
+  "appHeader": {
+    "label": "Swag Labs",
+    "url": "https://saucelabs.com/",
+    "404Url": "https://saucelabs.com/error/404"
   }
 }

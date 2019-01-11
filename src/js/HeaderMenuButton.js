@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { IS_IOS } from './config/Constants';
+import { testProperties } from './config/TestProperties';
+import i18n from './config/i18n';
 
 export default class MenuButton extends Component {
   constructor(props) {
@@ -20,7 +22,9 @@ export default class MenuButton extends Component {
   render () {
 
     return (
-      <Icon.Button name="bars" size={30} color="#FFF" style={styles.menu_icon} onPress={this.openMenu} />
+      <View {...testProperties(i18n.t('menu.label'))}>
+        <Icon.Button name="bars" size={30} color="#FFF" style={styles.menu_icon} onPress={this.openMenu} />
+      </View>
     );
   }
 }

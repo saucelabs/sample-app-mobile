@@ -7,6 +7,8 @@ import Drawer from 'react-native-drawer';
 import { ShoppingCart } from './shopping-cart.js';
 import { Credentials } from './credentials.js';
 import { IS_IOS } from './config/Constants';
+import i18n from './config/i18n';
+import {testProperties} from './config/TestProperties';
 
 class DrawerLinks extends Component {
 
@@ -26,9 +28,9 @@ class DrawerLinks extends Component {
 
   handleAboutLink() {
 
-    var aboutUrl = 'https://saucelabs.com/';
+    var aboutUrl = i18n.t('appHeader.url');
     if (Credentials.isProblemUser()) {
-      aboutUrl = 'https://saucelabs.com/error/404';
+      aboutUrl = i18n.t('appHeader.404Url');
     }
 
     this.props.closeMenu();
@@ -50,10 +52,14 @@ class DrawerLinks extends Component {
     return (
       <View style={styles.container}>
         <Divider style={styles.menu_header_divider}/>
-        <Button containerStyle={styles.menu_button} onPress={this.handleAllItemsLink} title="ALL ITEMS"/>
-        <Button containerStyle={styles.menu_button} onPress={this.handleAboutLink} title="ABOUT"/>
-        <Button containerStyle={styles.menu_button} onPress={this.handleLogoutLink} title="LOGOUT"/>
-        <Button containerStyle={styles.menu_button} onPress={this.handleResetLink} title="RESET APP STATE"/>
+        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleAllItemsLink}
+                title={i18n.t('menu.allItems')} {...testProperties(i18n.t('menu.allItems'))}/>
+        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleAboutLink}
+                title={i18n.t('menu.about')} {...testProperties(i18n.t('menu.about'))}/>
+        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleLogoutLink}
+                title={i18n.t('menu.logout')} {...testProperties(i18n.t('menu.logout'))}/>
+        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleResetLink}
+                title={i18n.t('menu.reset')} {...testProperties(i18n.t('menu.reset'))}/>
       </View>
     );
   }
@@ -102,7 +108,7 @@ export default class AppHeader extends Component {
         <Header
           containerStyle={styles.header_container}
           leftComponent={<MenuButton openMenuHandler={this.openMenu} />}
-          centerComponent={{ text: 'Swag Labs', style: { color: '#fff' } }}
+          centerComponent={{ text: i18n.t('appHeader.label'), style: { color: '#fff' } }}
           rightComponent={<CartButton navigation={this.props.navigation} />}
         />
         {this.props.children}
@@ -129,5 +135,8 @@ const styles = StyleSheet.create({
   menu_header_divider: {
     height: 50,
     backgroundColor: '#FFF',
+  },
+  upperCaseText: {
+    textTransform: 'uppercase',
   },
 });

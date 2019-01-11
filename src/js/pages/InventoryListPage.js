@@ -6,7 +6,9 @@ import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
 import AppHeader from '../AppHeader.js';
-import { IS_IOS } from '../config/Constants';
+import { IS_IOS, MAKE_ACCESSIBLE_FOR_AUTOMATION } from '../config/Constants';
+import i18n from '../config/i18n';
+import {testProperties} from '../config/TestProperties';
 
 class InventoryListItem extends Component {
 
@@ -79,21 +81,24 @@ class InventoryListItem extends Component {
     var cartButton;
 
     if (ShoppingCart.isItemInCart(this.state.id)) {
-      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} titleStyle={ styles.upperCaseText } onPress={this.removeFromCart}
+                           title={i18n.t('inventoryItemPage.removeButton')} {...testProperties(i18n.t('inventoryListPage.removeButton'))}/>;
     } else {
-      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} titleStyle={ styles.upperCaseText } onPress={this.addToCart}
+                           title={i18n.t('inventoryItemPage.addButton')} {...testProperties(i18n.t('inventoryListPage.addButton'))}/>;
     }
-
+    // Needed to add `accessible={false}` to the TouchableOpacity component, otherwise the components are not accessible and shown
+    // in a flat UI structure
     return (
-      <View style={styles.item_container}>
+      <View style={styles.item_container} {...testProperties(i18n.t('inventoryListPage.itemContainer'))}>
         <Image source={this.state.image_url} style={styles.item_image} />
-        <TouchableOpacity style={styles.item_infobox} onPress={this.navigateToItem}>
-          <View style={styles.item_details}>
+        <TouchableOpacity style={styles.item_infobox} onPress={this.navigateToItem} {...MAKE_ACCESSIBLE_FOR_AUTOMATION}>
+          <View style={styles.item_details} {...testProperties(i18n.t('inventoryListPage.itemDescription'))}>
             <Text style={styles.item_name}>{this.state.name}</Text>
             <Text style={styles.item_desc}>{this.state.desc}</Text>
           </View>
           <View style={styles.item_price_bar}>
-            <Text style={styles.price_text}>${this.state.price}</Text>
+            <Text style={styles.price_text} {...testProperties(i18n.t('inventoryListPage.price'))}>${this.state.price}</Text>
             { cartButton }
           </View>
         </TouchableOpacity>
@@ -184,11 +189,11 @@ export default class InventoryListPage extends Component {
   render() {
 
     const sortOptions = [
-      { key: 'sectionLabel', section: true, label: 'Sort items by...' },
-      { key: 'az', label: 'Name (A to Z)' },
-      { key: 'za', label: 'Name (Z to A)' },
-      { key: 'lohi', label: 'Price (low to high)' },
-      { key: 'hilo', label: 'Price (high to low)' },
+      { key: 'sectionLabel', section: true, label: i18n.t('modalSelector.sectionLabel') },
+      { key: 'az', label: i18n.t('modalSelector.azLabel')},
+      { key: 'za', label: i18n.t('modalSelector.zaLabel')},
+      { key: 'lohi', label: i18n.t('modalSelector.loHiLabel')},
+      { key: 'hilo', label: i18n.t('modalSelector.hiLoLabel')},
     ];
 
     return (
@@ -197,11 +202,16 @@ export default class InventoryListPage extends Component {
           <Image source={require('../../img/peek.png')} style={styles.peek_img} />
           <View style={styles.secondary_header}>
             <Text style={styles.header_title}>Products</Text>
-            <ModalSelector data={sortOptions} initValue="Name (A to Z)"
+            <ModalSelector data={sortOptions} initValue={i18n.t('modalSelector.azLabel')}
                            style={styles.item_sort} selectTextStyle={styles.sort_text}
-                           onChange={(sortOption) => this.changeSort(sortOption.key)} />
+                           onChange={(sortOption) => this.changeSort(sortOption.key)}
+                           cancelText={i18n.t('modalSelector.cancel')}
+                           listItemAccessible
+                           cancelButtonAccessible
+                           openButtonContainerAccessible
+                           scrollViewAccessibilityLabel={i18n.t('modalSelector.container')}/>
           </View>
-          <ScrollView style={styles.container}>
+          <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" {...testProperties(i18n.t('inventoryListPage.screen'))}>
             {this.state.inventoryList.map((item, i) => {
               return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />);
             })}
@@ -283,5 +293,8 @@ const styles = StyleSheet.create({
   },
   sort_text: {
     color: '#FFF',
+  },
+  upperCaseText: {
+    textTransform: 'uppercase',
   },
 });

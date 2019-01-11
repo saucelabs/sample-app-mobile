@@ -3,6 +3,8 @@ import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ShoppingCart } from './shopping-cart.js';
 import { IS_IOS } from './config/Constants';
+import { testProperties } from './config/TestProperties';
+import i18n from './config/i18n';
 
 export default class CartButton extends Component {
   constructor(props) {
@@ -29,9 +31,11 @@ export default class CartButton extends Component {
     }
 
     return (
-      <Icon.Button name="shopping-cart" size={30} color="#FFF" style={styles.cart_icon} onPress={this.navigateToShoppingCart}>
-        { cartBadge }
-      </Icon.Button>
+      <View {...testProperties(i18n.t('cart.label'))}>
+        <Icon.Button name="shopping-cart" size={30} color="#FFF" style={styles.cart_icon} onPress={this.navigateToShoppingCart}>
+          { cartBadge }
+        </Icon.Button>
+      </View>
     );
   }
 }
