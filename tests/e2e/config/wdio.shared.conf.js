@@ -37,6 +37,15 @@ exports.config = {
   // Hooks
   // =====
   beforeSession: (config, capabilities, specs) => {
+    // Use Babel to compile the code before running all tests
     require('@babel/register');
+  },
+  before: ()=>{
+    /**
+     * Custom property that is used to determine if the app is already launched for the first time
+     * This property is needed because the first time the app is automatically started, so a double
+     * restart is not needed.
+     */
+    driver.firstAppStart = true;
   },
 };

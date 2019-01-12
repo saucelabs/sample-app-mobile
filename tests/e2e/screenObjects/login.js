@@ -1,5 +1,6 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import { DEFAULT_TIMEOUT } from '../config/e2eConstants';
+import { getTextOfElement } from '../helpers/utils';
 
 class LoginScreen {
   get screen () {
@@ -19,7 +20,7 @@ class LoginScreen {
   }
 
   get errorMessage () {
-    return $('~test-errorMessages');
+    return $(`~test-${SELECTORS.login.errorMessage}`);
   }
 
   /**
@@ -45,6 +46,16 @@ class LoginScreen {
     this.username.setValue(username);
     this.password.setValue(password);
     this.loginButton.click();
+  }
+
+  /**
+   * Get the text or the error message container
+   *
+   * @return {string}
+   */
+  getErrorMessage(){
+    this.waitForIsDisplayed(this.errorMessage);
+    return getTextOfElement(this.errorMessage);
   }
 }
 
