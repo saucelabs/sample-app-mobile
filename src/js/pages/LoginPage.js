@@ -81,7 +81,7 @@ export default class LoginPage extends Component {
     var errorMessage = (<View />);
 
     if (this.state.error !== '') {
-      errorMessage = (<View>
+      errorMessage = (<View {...testProperties(i18n.t('login.errorMessage'))}>
         <Icon onPress={this.dismissError} name="times-circle" size={24} color="red" />
         <Text style={styles.error_message}>{i18n.t('login.epicSadFace')}{this.state.error}</Text>
       </View>);
