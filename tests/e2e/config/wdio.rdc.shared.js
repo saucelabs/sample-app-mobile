@@ -1,5 +1,5 @@
 const { config } = require('../wdio.shared.conf');
-const SauceLabs = require('./helpers/SauceLabs');
+const SauceLabs = require('../helpers/SauceLabs');
 
 // =========================
 // Sauce RDC specific config
