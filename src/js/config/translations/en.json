@@ -2,7 +2,7 @@
   "login": {
     "header": "Swag Labs",
     "epicSadFace": "Epic sadface: ",
-    "loginButton": "Login",
+    "loginButton": "LOGIN",
     "password": "Password",
     "passwordError": "Password is required",
     "locketOutError": "Sorry, this user has been locked out.",
@@ -14,17 +14,17 @@
   },
   "username": "Username",
   "cartContent": {
-    "checkout": "Checkout",
-    "continueShopping": "Continue shopping",
-    "description": "Description",
+    "checkout": "CHECKOUT",
+    "continueShopping": "CONTINUE SHOPPING",
+    "description": "DESCRIPTION",
     "header": "Your Cart",
-    "quantity": "qty",
+    "quantity": "QTY",
     "screen": "Cart Content",
     "cartItem": {
       "itemContainer": "Item",
       "description": "Description",
       "amount": "Amount",
-      "remove": "Remove"
+      "remove": "REMOVE"
     }
   },
   "checkoutPageOne": {
@@ -39,31 +39,31 @@
     "lastName": "Last Name",
     "postalCode": "Zip/Postal Code",
     "screen": "Checkout: Your Info",
-    "cancelButton": "Cancel",
-    "continueButton": "Continue checkout"
+    "cancelButton": "CANCEL",
+    "continueButton": "CONTINUE CHECKOUT"
   },
   "checkoutPageTwo": {
     "header": "Checkout: Overview",
     "screen": "Checkout: Overview",
-    "description": "Description",
-    "quantity": "qty",
+    "description": "DESCRIPTION",
+    "quantity": "QTY",
     "cartItem": {
       "itemContainer": "Item",
       "description": "Description",
       "amount": "Amount",
-      "remove": "Remove"
+      "remove": "REMOVE"
     },
     "summary": {
       "paymentLabel": "Payment Information:",
       "card": "SauceCard #31337",
       "shippingLabel": "Shipping Information:",
-      "shippingText": "Free pony express delivery!",
+      "shippingText": "FREE PONY EXPRESS DELIVERY!",
       "itemsTotal": "Item total: ",
       "itemsTax": "Tax: ",
       "totalAmount": "Total: "
     },
-    "finishButton": "Finish",
-    "cancelButton": "Cancel"
+    "finishButton": "FINISH",
+    "cancelButton": "CANCEL"
   },
   "checkoutCompletePage": {
     "header": "Checkout Complete!",
@@ -72,12 +72,12 @@
       "header": "Thank you for your order",
       "text": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
     },
-    "goToButton": "Continue shopping"
+    "goToButton": "CONTINUE SHOPPING"
   },
   "inventoryListPage": {
     "screen": "Inventory list page",
-    "addButton": "Add to chart",
-    "removeButton": "Remove",
+    "addButton": "ADD TO CHART",
+    "removeButton": "REMOVE",
     "itemContainer": "Item",
     "itemDescription": "Description",
     "price": "Price"
@@ -89,9 +89,9 @@
       "description": "We're sorry, but your call could not be completed as dialled.\nPlease check your number, and try your call again.\nIf you are in need of assistance, please dial 0 to be connected with an operator.\nThis is a recording.\n4 T 1.",
       "price": "√-1"
     },
-    "addButton": "Add to chart",
+    "addButton": "ADD TO CHART",
     "backButton": "<- BACK",
-    "removeButton": "Remove",
+    "removeButton": "REMOVE",
     "itemDescription": "Item description",
     "price": "Price"
   },
@@ -109,10 +109,10 @@
   },
   "menu": {
     "label": "Menu",
-    "allItems": "All items",
-    "about": "About",
-    "logout": "Logout",
-    "reset": "Reset app state"
+    "allItems": "ALL ITEMS",
+    "about": "ABOUT",
+    "logout": "LOGOUT",
+    "reset": "RESET APP STATE"
   },
   "appHeader": {
     "label": "Swag Labs",

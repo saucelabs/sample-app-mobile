@@ -31,7 +31,7 @@ export default class CheckoutCompletePage extends Component {
             <Image resizeMode="contain" source={require('../../img/pony-express.jpg')} style={styles.ship_image} />
 
             <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} titleStyle={ styles.upperCaseText }
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
                       onPress={() => {this.props.navigation.navigate('InventoryList');}} title={ i18n.t('checkoutCompletePage.goToButton')}
                       { ...testProperties(i18n.t('checkoutCompletePage.goToButton')) }/>
             </View>
@@ -93,8 +93,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     position: 'relative',
     top: -10,
-  },
-  upperCaseText:{
-    textTransform: 'uppercase',
   },
 });

@@ -108,8 +108,8 @@ export default class CheckoutPageTwo extends Component {
             <Text style={styles.header_title}>{ i18n.t('checkoutPageTwo.header') }</Text>
           </View>
           <View style={styles.section_header}>
-            <Text style={[styles.section_qty, styles.upperCaseText]}>{ i18n.t('checkoutPageTwo.quantity') }</Text>
-            <Text style={[styles.section_desc, styles.upperCaseText]}>{ i18n.t('checkoutPageTwo.description') }</Text>
+            <Text style={styles.section_qty}>{ i18n.t('checkoutPageTwo.quantity') }</Text>
+            <Text style={styles.section_desc}>{ i18n.t('checkoutPageTwo.description') }</Text>
           </View>
           <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" {...testProperties( i18n.t('checkoutPageTwo.screen') )}>
             {contents.map((item, i) => {
@@ -122,7 +122,7 @@ export default class CheckoutPageTwo extends Component {
             </View>
             <View style={styles.summary_section}>
               <Text style={styles.summary_info_label}>{ i18n.t('checkoutPageTwo.summary.shippingLabel') }</Text>
-              <Text style={[styles.summary_value_label, styles.upperCaseText]}>{ i18n.t('checkoutPageTwo.summary.shippingText') }</Text>
+              <Text style={styles.summary_value_label}>{ i18n.t('checkoutPageTwo.summary.shippingText') }</Text>
             </View>
             <View style={styles.summary_section}>
               <Text style={styles.summary_subtotal_label}>{ i18n.t('checkoutPageTwo.summary.itemsTotal') }${orderTotal}</Text>
@@ -133,9 +133,9 @@ export default class CheckoutPageTwo extends Component {
             </View>
 
             <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} titleStyle={ styles.upperCaseText }
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
                       onPress={this.clearCart} title={ i18n.t('checkoutPageTwo.finishButton') } {...testProperties(i18n.t('checkoutPageTwo.finishButton'))}/>
-              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} titleStyle={ styles.upperCaseText }
+              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container}
                       onPress={() => {this.props.navigation.navigate('InventoryList');}}
                       title={ i18n.t('checkoutPageTwo.cancelButton')} {...testProperties(i18n.t('checkoutPageTwo.cancelButton'))}/>
             </View>
@@ -275,8 +275,5 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '800',
     padding: 4,
-  },
-  upperCaseText:{
-    textTransform: 'uppercase',
   },
 });

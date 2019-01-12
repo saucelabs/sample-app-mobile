@@ -112,10 +112,10 @@ export default class CheckoutPageOne extends Component {
             {errorMessage}
 
             <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} titleStyle={ styles.upperCaseText }
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
                       onPress={this.handleSubmit} title={i18n.t('checkoutPageOne.continueButton')}
                      { ...testProperties(i18n.t('checkoutPageOne.continueButton')) } />
-              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} titleStyle={ styles.upperCaseText }
+              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container}
                       onPress={() => {this.props.navigation.navigate('InventoryList');}} title={i18n.t('checkoutPageOne.cancelButton')}
                      { ...testProperties(i18n.t('checkoutPageOne.cancelButton')) } />
             </View>
@@ -173,8 +173,5 @@ const styles = StyleSheet.create({
   },
   error_message: {
     fontSize: 18,
-  },
-  upperCaseText:{
-    textTransform: 'uppercase',
   },
 });

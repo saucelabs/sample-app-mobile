@@ -13,9 +13,9 @@ import { IS_IOS, TEST_PREFIX } from './Constants';
 export function testProperties(id, disableAccessible = false) {
 	const disableAccessibility = disableAccessible ? { accessible: false } : {};
 
-	if (IS_IOS) {
-		return { ...disableAccessibility, testID: TEST_PREFIX + id };
-	}
+  if (IS_IOS) {
+    return { ...disableAccessibility, testID: TEST_PREFIX + id };
+  }
 
 	return { ...disableAccessibility, accessibilityLabel: TEST_PREFIX + id };
 }

@@ -81,10 +81,10 @@ class InventoryListItem extends Component {
     var cartButton;
 
     if (ShoppingCart.isItemInCart(this.state.id)) {
-      cartButton = <Button containerStyle={styles.item_cart_button} titleStyle={ styles.upperCaseText } onPress={this.removeFromCart}
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart}
                            title={i18n.t('inventoryItemPage.removeButton')} {...testProperties(i18n.t('inventoryListPage.removeButton'))}/>;
     } else {
-      cartButton = <Button containerStyle={styles.item_cart_button} titleStyle={ styles.upperCaseText } onPress={this.addToCart}
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart}
                            title={i18n.t('inventoryItemPage.addButton')} {...testProperties(i18n.t('inventoryListPage.addButton'))}/>;
     }
     // Needed to add `accessible={false}` to the TouchableOpacity component, otherwise the components are not accessible and shown
@@ -293,8 +293,5 @@ const styles = StyleSheet.create({
   },
   sort_text: {
     color: '#FFF',
-  },
-  upperCaseText: {
-    textTransform: 'uppercase',
   },
 });

@@ -49,7 +49,7 @@ class CartItem extends Component {
             <View style={styles.item_price_bar}>
               <Text style={styles.price_text}>${this.item.price}</Text>
               <Button style={styles.item_cart_button} onPress={this.removeFromCart} title={ i18n.t('cartContent.cartItem.remove')}
-                      titleStyle={ styles.upperCaseText } { ...testProperties(i18n.t('cartContent.cartItem.remove')) }/>
+                      { ...testProperties(i18n.t('cartContent.cartItem.remove')) }/>
             </View>
           </View>
         </View>
@@ -78,18 +78,18 @@ export default class CartContentsPage extends Component {
             <Text style={styles.header_title}>{ i18n.t('cartContent.header') }</Text>
           </View>
           <View style={styles.section_header}>
-            <Text style={[styles.section_qty, styles.upperCaseText]}>{ i18n.t('cartContent.quantity') }</Text>
-            <Text style={[styles.section_desc, styles.upperCaseText]}>{ i18n.t('cartContent.description') }</Text>
+            <Text style={styles.section_qty}>{ i18n.t('cartContent.quantity') }</Text>
+            <Text style={styles.section_desc}>{ i18n.t('cartContent.description') }</Text>
           </View>
           <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('cartContent.screen')) }>
             {contents.map((item, i) => {
               return (<CartItem key={i} item={InventoryData.ITEMS[item]} />);
             })}
             <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} titleStyle={ styles.upperCaseText }
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
                       onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title={ i18n.t('cartContent.checkout') }
                       { ...testProperties(i18n.t('cartContent.checkout')) }/>
-              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} titleStyle={ styles.upperCaseText }
+              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container}
                       onPress={() => {this.props.navigation.navigate('InventoryList');}} title={ i18n.t('cartContent.continueShopping') }
                       { ...testProperties(i18n.t('cartContent.continueShopping')) }/>
             </View>
@@ -204,8 +204,5 @@ const styles = StyleSheet.create({
   checkout_button_container: {
     marginTop: 10,
     marginBottom: 10,
-  },
-  upperCaseText:{
-    textTransform: 'uppercase',
   },
 });

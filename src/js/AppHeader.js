@@ -52,13 +52,13 @@ class DrawerLinks extends Component {
     return (
       <View style={styles.container}>
         <Divider style={styles.menu_header_divider}/>
-        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleAllItemsLink}
+        <Button containerStyle={styles.menu_button} onPress={this.handleAllItemsLink}
                 title={i18n.t('menu.allItems')} {...testProperties(i18n.t('menu.allItems'))}/>
-        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleAboutLink}
+        <Button containerStyle={styles.menu_button} onPress={this.handleAboutLink}
                 title={i18n.t('menu.about')} {...testProperties(i18n.t('menu.about'))}/>
-        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleLogoutLink}
+        <Button containerStyle={styles.menu_button} onPress={this.handleLogoutLink}
                 title={i18n.t('menu.logout')} {...testProperties(i18n.t('menu.logout'))}/>
-        <Button containerStyle={styles.menu_button} titleStyle={ styles.upperCaseText } onPress={this.handleResetLink}
+        <Button containerStyle={styles.menu_button} onPress={this.handleResetLink}
                 title={i18n.t('menu.reset')} {...testProperties(i18n.t('menu.reset'))}/>
       </View>
     );
@@ -135,8 +135,5 @@ const styles = StyleSheet.create({
   menu_header_divider: {
     height: 50,
     backgroundColor: '#FFF',
-  },
-  upperCaseText: {
-    textTransform: 'uppercase',
   },
 });

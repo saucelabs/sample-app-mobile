@@ -72,10 +72,10 @@ export default class InventoryItem extends Component {
     var cartButton;
 
     if (this.state.itemInCart) {
-      cartButton = <Button containerStyle={styles.item_cart_button} titleStyle={ styles.upperCaseText } onPress={this.removeFromCart}
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart}
                            title={i18n.t('inventoryItemPage.removeButton')} {...testProperties(i18n.t('inventoryItemPage.backButton'))}/>;
     } else {
-      cartButton = <Button containerStyle={styles.item_cart_button} titleStyle={ styles.upperCaseText } onPress={this.addToCart}
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart}
                            title={i18n.t('inventoryItemPage.addButton')} {...testProperties(i18n.t('inventoryItemPage.addButton'))}/>;
     }
 
@@ -83,7 +83,7 @@ export default class InventoryItem extends Component {
         <ThemeProvider>
           <AppHeader navigation={this.props.navigation}>
             <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" {...testProperties(i18n.t('inventoryItemPage.screen'))}>
-              <Button containerStyle={styles.item_back_button} titleStyle={ styles.upperCaseText } onPress={this.goBack}
+              <Button containerStyle={styles.item_back_button} onPress={this.goBack}
                       title={i18n.t('inventoryItemPage.backButton')} {...testProperties(i18n.t('inventoryItemPage.backButton'))}/>
               <View style={styles.item_container}>
                 <Image source={this.item.image_url} style={styles.item_image} />
@@ -156,8 +156,5 @@ const styles = StyleSheet.create({
   },
   item_desc: {
 
-  },
-  upperCaseText: {
-    textTransform: 'uppercase',
   },
 });
