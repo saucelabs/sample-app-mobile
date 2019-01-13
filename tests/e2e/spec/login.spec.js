@@ -11,9 +11,9 @@ describe('Login', () => {
 
   it('should be able to login with a standard user', () => {
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
-    InventoryListScreen.waitForScreenIsDisplayed();
+    InventoryListScreen.waitForIsDisplayed();
 
-    expect(InventoryListScreen.screen.isDisplayed()).toEqual(true, 'Inventory List screen was not shown');
+    expect(InventoryListScreen.isDisplayed()).toEqual(true, 'Inventory List screen was not shown');
   });
 
   it('should not be able to login with a locked user', () => {

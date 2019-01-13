@@ -1,38 +1,21 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
+import Base from './base';
 
-class SortingModal {
-  get modal() {
+const SCREEN_SELECTOR = `~${ SELECTORS.modalSelector.container }`;
+
+class SortingModal extends Base{
+  constructor () {
+    super(SCREEN_SELECTOR);
+  }
+
+  get screen() {
     // Can only get the modal based on the second option
-    return $(`~${ SELECTORS.modalSelector.container }`);
+    return $(SCREEN_SELECTOR);
   }
 
   get sortingButton() {
     return $(`~test-${ SELECTORS.modalSelector.button }`);
-  }
-
-  get a2z() {
-    const selector = driver.isIOS ? `~${ SELECTORS.modalSelector.azLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[2]`;
-
-    return $(selector);
-  }
-
-  get z2a() {
-    const selector = driver.isIOS ? `~${ SELECTORS.modalSelector.zaLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[3]`;
-
-    return $(selector);
-  }
-
-  get lowHigh() {
-    const selector = driver.isIOS ? `~${ SELECTORS.modalSelector.loHiLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[4]`;
-
-    return $(selector);
-  }
-
-  get hiLow() {
-    const selector = driver.isIOS ? `~${ SELECTORS.modalSelector.hiLoLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[5]`;
-
-    return $(selector);
   }
 
   get cancel() {
@@ -42,36 +25,45 @@ class SortingModal {
   }
 
   /**
+   * Select an option
+   *
+   * @param {string} option
+   *
+   * @return {void}
+   */
+  selectOption(option){
+    let selector;
+
+    switch (option) {
+      case SELECTORS.modalSelector.azLabel:
+        selector = driver.isIOS ? `~${ SELECTORS.modalSelector.azLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[2]`;
+        break;
+      case SELECTORS.modalSelector.zaLabel:
+        selector = driver.isIOS ? `~${ SELECTORS.modalSelector.zaLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[3]`;
+        break;
+      case SELECTORS.modalSelector.loHiLabel:
+        selector = driver.isIOS ? `~${ SELECTORS.modalSelector.loHiLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[4]`;
+        break;
+      case SELECTORS.modalSelector.hiLoLabel:
+        selector = driver.isIOS ? `~${ SELECTORS.modalSelector.hiLoLabel }` : `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/*/android.view.ViewGroup[5]`;
+        break;
+      default:
+        throw new Error(`The option '${option}' is not valid`);
+    }
+
+    $(selector).click();
+    // There is a sorting delay, this can only be done with a hard sleep :(
+    return driver.pause(750);
+  }
+
+  /**
    * Open the sorting modal
    *
    * @return {boolean}
    */
   openSortingModal() {
     this.sortingButton.click();
-    return this.waitForSortingModalIsDisplayed();
-  }
-
-  /**
-   * Wait for the modal screen to be displayed
-   *
-   * @return {boolean}
-   */
-  waitForSortingModalIsDisplayed() {
-    return this.modal.waitForDisplayed(DEFAULT_TIMEOUT);
-  }
-
-  /**
-   * The sorting modal is not displayed.
-   * iOS still has it in it's UI tree, Android doesnt have it anymore
-   *
-   * @return {boolean}
-   */
-  sortingModalNotDisplayed() {
-    if (driver.isIOS) {
-      return this.modal.isDisplayed();
-    }
-
-    return this.modal.isExisting();
+    return this.waitForIsDisplayed();
   }
 }
 

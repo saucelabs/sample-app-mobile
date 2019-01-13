@@ -10,14 +10,14 @@ describe('Inventory List Page', () => {
     // Restart the app before each session, only not for the first session
     restartApp();
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
-    InventoryListScreen.waitForScreenIsDisplayed();
+    InventoryListScreen.waitForIsDisplayed();
   });
 
   it('should show the details of the selected swag', () => {
     const selectedSwagItemText = InventoryListScreen.getSwagItemText(1);
 
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForScreenIsDisplayed();
+    InventoryItemScreen.waitForIsDisplayed();
 
     const swagItemDetailsText = InventoryItemScreen.getSwagItemText();
 
@@ -26,7 +26,7 @@ describe('Inventory List Page', () => {
 
   it('should be able to add a swag item to the cart from the details page', () => {
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForScreenIsDisplayed();
+    InventoryItemScreen.waitForIsDisplayed();
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');
 
@@ -38,7 +38,7 @@ describe('Inventory List Page', () => {
   it('should be able to remove a swag item from the cart from the details page added in the inventory page', () => {
     InventoryListScreen.addSwagItemToCart(1);
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForScreenIsDisplayed();
+    InventoryItemScreen.waitForIsDisplayed();
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
@@ -49,7 +49,7 @@ describe('Inventory List Page', () => {
 
   it('should be able to remove a swag item from the cart from the details page', () => {
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForScreenIsDisplayed();
+    InventoryItemScreen.waitForIsDisplayed();
 
     InventoryItemScreen.addSwagItemToCart();
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
@@ -60,10 +60,10 @@ describe('Inventory List Page', () => {
 
   it('should be able to get back from the swag details page through the back button', () => {
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForScreenIsDisplayed();
+    InventoryItemScreen.waitForIsDisplayed();
 
     InventoryItemScreen.goBackToAllItems();
-    InventoryListScreen.waitForScreenIsDisplayed();
+    InventoryListScreen.waitForIsDisplayed();
 
     expect(InventoryItemScreen.swagItemDetailsNotDisplayed()).toEqual(false, 'The swag items details page should not be visible');
   });

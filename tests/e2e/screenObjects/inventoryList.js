@@ -1,10 +1,17 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 import { getTextOfElement } from '../helpers/utils';
+import Base from './base';
 
-class InventoryListScreen {
+const SCREEN_SELECTOR = `~test-${ SELECTORS.inventoryListPage.screen }`;
+
+class InventoryListScreen extends Base{
+  constructor () {
+    super(SCREEN_SELECTOR);
+  }
+
   get screen() {
-    return $(`~test-${ SELECTORS.inventoryListPage.screen }`);
+    return $(SCREEN_SELECTOR);
   }
 
   get swagItems() {
@@ -68,17 +75,6 @@ class InventoryListScreen {
    */
   openSwagItemDetails(needle){
     return this.swagItem(needle).click();
-  }
-
-  /**
-   * Wait for the inventory list screen to be displayed
-   *
-   * @param {boolean} isShown
-   *
-   * @return {boolean}
-   */
-  waitForScreenIsDisplayed(isShown = true) {
-    return this.screen.waitForDisplayed(DEFAULT_TIMEOUT, !isShown);
   }
 }
 

@@ -1,10 +1,16 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
-import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 import { getTextOfElement } from '../helpers/utils';
+import Base from './base';
 
-class LoginScreen {
+const SCREEN_SELECTOR = `~test-${SELECTORS.login.screen}`;
+
+class LoginScreen extends Base{
+  constructor () {
+    super(SCREEN_SELECTOR);
+  }
+
   get screen () {
-    return $(`~test-${SELECTORS.login.screen}`);
+    return $(SCREEN_SELECTOR);
   }
 
   get username () {
@@ -21,18 +27,6 @@ class LoginScreen {
 
   get errorMessage () {
     return $(`~test-${SELECTORS.login.errorMessage}`);
-  }
-
-  /**
-   * Wait for the element to be displayed
-   *
-   * @param {Element} element
-   * @param {boolean} isShown
-   *
-   * @return {boolean}
-   */
-  waitForIsDisplayed (element, isShown = true) {
-    return element.waitForDisplayed(DEFAULT_TIMEOUT, !isShown);
   }
 
   /**

@@ -1,3 +1,4 @@
+import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import { restartApp } from '../helpers/utils';
 import LoginScreen from '../screenObjects/login';
 import InventoryListScreen from '../screenObjects/inventoryList';
@@ -11,7 +12,7 @@ describe('Inventory List Page', () => {
     // Restart the app before each session, only not for the first session
     restartApp();
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
-    InventoryListScreen.waitForScreenIsDisplayed();
+    InventoryListScreen.waitForIsDisplayed();
   });
 
   it('should contain swag', () => {
@@ -20,20 +21,17 @@ describe('Inventory List Page', () => {
 
   it('should be able to select a swag item and open the details page', () => {
     InventoryListScreen.openSwagItemDetails('Bike Light');
-    InventoryItemScreen.waitForScreenIsDisplayed();
+    InventoryItemScreen.waitForIsDisplayed();
 
-    expect(InventoryItemScreen.screen.isDisplayed()).toEqual(true, 'The inventory item screen is not shown');
+    expect(InventoryItemScreen.isDisplayed()).toEqual(true, 'The inventory item screen is not shown');
   });
 
-  it('should be able to sort the items', () => {
+  fit('should be able to sort the items', () => {
     // Check the first item is the backpack
     expect(InventoryListScreen.getSwagItemText(0)).toContain('Sauce Labs Backpack', 'Selected item did not match');
 
     ModalSelect.openSortingModal();
-    ModalSelect.z2a.click();
-
-    // There is a sorting delay, this can only be done with a hard sleep :(
-    driver.pause(750);
+    ModalSelect.selectOption(SELECTORS.modalSelector.zaLabel);
 
     expect(InventoryListScreen.getSwagItemText(0)).toContain('Test.allTheThings() T-Shirt (Red)', 'Selected item did not match');
   });
@@ -42,7 +40,7 @@ describe('Inventory List Page', () => {
     ModalSelect.openSortingModal();
     ModalSelect.cancel.click();
 
-    expect(ModalSelect.sortingModalNotDisplayed()).toEqual(false, 'Sorting modal is still visible');
+    expect(ModalSelect.isNotDisplayed()).toEqual(false, 'Sorting modal is still visible');
   });
 
   it('should be able to add swag to the cart', ()=>{

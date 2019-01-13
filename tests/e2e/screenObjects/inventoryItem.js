@@ -1,10 +1,16 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
-import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 import { getTextOfElement } from '../helpers/utils';
+import Base from './base';
 
-class InventoryItemScreen {
+const SCREEN_SELECTOR = `~test-${ SELECTORS.inventoryItemPage.screen }`;
+
+class InventoryItemScreen extends Base{
+  constructor () {
+    super(SCREEN_SELECTOR);
+  }
+
   get screen() {
-    return $(`~test-${ SELECTORS.inventoryItemPage.screen }`);
+    return $(SCREEN_SELECTOR);
   }
 
   get description(){
@@ -85,17 +91,6 @@ class InventoryItemScreen {
    */
   goBackToAllItems(){
     return this.goBackButton.click();
-  }
-
-  /**
-   * Wait for the inventory list screen to be displayed
-   *
-   * @param {boolean} isShown
-   *
-   * @return {boolean}
-   */
-  waitForScreenIsDisplayed(isShown = true) {
-    return this.screen.waitForDisplayed(DEFAULT_TIMEOUT, !isShown);
   }
 
   /**
