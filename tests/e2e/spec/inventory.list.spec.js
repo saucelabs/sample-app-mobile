@@ -40,7 +40,7 @@ describe('Inventory List Page', () => {
     ModalSelect.openSortingModal();
     ModalSelect.cancel.click();
 
-    expect(ModalSelect.isNotDisplayed()).toEqual(false, 'Sorting modal is still visible');
+    expect(ModalSelect.isDisplayed()).toEqual(false, 'Sorting modal is still visible');
   });
 
   it('should be able to add swag to the cart', ()=>{

@@ -17,6 +17,15 @@ class AppHeader {
 
     return getTextOfElement(this.cart);
   }
+
+  /**
+   * Open the cart
+   *
+   * @return {void}
+   */
+  openCart(){
+    return this.cart.click();
+  }
 }
 
 export default new AppHeader();

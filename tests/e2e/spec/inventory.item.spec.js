@@ -5,7 +5,7 @@ import InventoryItemScreen from '../screenObjects/inventoryItem';
 import AppHeader from '../screenObjects/appHeader';
 import { LOGIN_USERS } from '../helpers/e2eConstants';
 
-describe('Inventory List Page', () => {
+describe('Inventory Item Page', () => {
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();

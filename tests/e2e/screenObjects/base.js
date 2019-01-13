@@ -20,20 +20,16 @@ export default class Base {
    * @return {boolean}
    */
   isDisplayed() {
-    return $(this.selector).isDisplayed();
-  }
-
-  /**
-   * Give back if the element is NOT displayed
-   * iOS still has it in it's UI tree, Android doesnt have it anymore
-   *
-   * @return {boolean}
-   */
-  isNotDisplayed() {
-    if (driver.isIOS) {
+    // For android an element that is not visible is also not in the UI tree,
+    // so a different approach should be used
+    try {
       return $(this.selector).isDisplayed();
-    }
+    } catch (error) {
+      if (driver.isAndroid) {
+        return $(this.selector).isExisting();
+      }
 
-    return $(this.selector).isExisting();
+      throw new Error(error);
+    }
   }
 }
