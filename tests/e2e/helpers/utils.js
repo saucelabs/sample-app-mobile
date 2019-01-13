@@ -24,11 +24,11 @@ export function getTextOfElement(element, isXpath = false) {
 
   try {
     if (driver.isAndroid) {
-      visualText = element.$$('*//android.widget.TextView').reduce((currentValue, el) => el.getText() + ' ', '');
+      visualText = element.$$('*//android.widget.TextView').reduce((currentValue, el) => `${currentValue} ${el.getText()}`, '');
     } else {
       const iosElement = isXpath ? element.$$('*//XCUIElementTypeStaticText') : element;
       if (isXpath){
-        visualText = element.$$('*//XCUIElementTypeStaticText').reduce((currentValue, el) => el.getText() + ' ', '');
+        visualText = element.$$('*//XCUIElementTypeStaticText').reduce((currentValue, el) => `${currentValue} ${el.getText()}`, '');
       } else {
         visualText = iosElement.getText();
       }

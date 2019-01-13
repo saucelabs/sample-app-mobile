@@ -1,5 +1,5 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
-import { DEFAULT_TIMEOUT } from '../config/e2eConstants';
+import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 import { getTextOfElement } from '../helpers/utils';
 
 class LoginScreen {
@@ -38,10 +38,13 @@ class LoginScreen {
   /**
    * Sign in
    *
-   * @param {string} username
-   * @param {string} password
+   * @param {object} userDetails
+   * @param {string} userDetails.username
+   * @param {string} userDetails.password
    */
-  signIn(username, password) {
+  signIn(userDetails) {
+    const {password, username} = userDetails;
+
     this.waitForIsDisplayed(this.screen);
     this.username.setValue(username);
     this.password.setValue(password);

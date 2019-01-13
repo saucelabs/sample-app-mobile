@@ -97,6 +97,7 @@
     "price": "Price"
   },
   "modalSelector": {
+    "button": "Modal Selector Button",
     "cancel": "Cancel",
     "container": "Selector container",
     "sectionLabel": "Sort items by...",
