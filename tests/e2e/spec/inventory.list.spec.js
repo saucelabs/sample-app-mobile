@@ -19,7 +19,7 @@ describe('Inventory List Page', () => {
   });
 
   it('should be able to select a swag item and open the details page', () => {
-    InventoryListScreen.swagItem('Bike Light').click();
+    InventoryListScreen.openSwagItemDetails('Bike Light');
     InventoryItemScreen.waitForScreenIsDisplayed();
 
     expect(InventoryItemScreen.screen.isDisplayed()).toEqual(true, 'The inventory item screen is not shown');

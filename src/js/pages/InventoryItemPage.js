@@ -73,7 +73,7 @@ export default class InventoryItem extends Component {
 
     if (this.state.itemInCart) {
       cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart}
-                           title={i18n.t('inventoryItemPage.removeButton')} {...testProperties(i18n.t('inventoryItemPage.backButton'))}/>;
+                           title={i18n.t('inventoryItemPage.removeButton')} {...testProperties(i18n.t('inventoryItemPage.removeButton'))}/>;
     } else {
       cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart}
                            title={i18n.t('inventoryItemPage.addButton')} {...testProperties(i18n.t('inventoryItemPage.addButton'))}/>;

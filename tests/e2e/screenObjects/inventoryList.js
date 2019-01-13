@@ -60,6 +60,17 @@ class InventoryListScreen {
   }
 
   /**
+   * Open the details of a swag item
+   *
+   * @param needle
+   *
+   * @return {void}
+   */
+  openSwagItemDetails(needle){
+    return this.swagItem(needle).click();
+  }
+
+  /**
    * Wait for the inventory list screen to be displayed
    *
    * @param {boolean} isShown

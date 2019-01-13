@@ -8,7 +8,7 @@ import CheckoutPageTwo from './pages/CheckoutPageTwo';
 import CheckoutCompletePage from './pages/CheckoutCompletePage';
 
 const App = createStackNavigator({
-  // Login: {screen: LoginPage},
+  Login: {screen: LoginPage},
   InventoryList: {screen: InventoryListPage},
   InventoryItem: {screen: InventoryItemPage},
   CartContents: {screen: CartContentsPage},

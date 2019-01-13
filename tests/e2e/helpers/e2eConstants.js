@@ -5,8 +5,8 @@ export const LOGIN_USERS = {
     password: 'secret_sauce'
   },
   NO_USER_DETAILS:{
-    username: 'locked_user',
-    password: 'secret_sauce'
+    username: '',
+    password: ''
   },
   NO_PASSWORD:{
     username: 'standard_user',

@@ -12,6 +12,9 @@ class AppHeader {
    * @return {string}
    */
   getCartAmount(){
+    // There is a little delay in adding / removing data from the cart
+    driver.pause(100);
+
     return getTextOfElement(this.cart);
   }
 }

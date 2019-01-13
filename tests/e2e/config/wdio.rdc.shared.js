@@ -1,4 +1,4 @@
-const { config } = require('../wdio.shared.conf');
+const { config } = require('./wdio.shared.conf');
 const SauceLabs = require('../helpers/SauceLabs');
 
 // =========================
@@ -6,9 +6,9 @@ const SauceLabs = require('../helpers/SauceLabs');
 // =========================
 config.protocol = 'https';
 // For using the EU RDC cloud, just remove the comments and comment the US url
-// config.host = 'eu1.appium.testobject.com';
+// config.hostname = 'eu1.appium.testobject.com';
 // For using the US RDC cloud
-config.host = 'us1.appium.testobject.com';
+config.hostname = 'us1.appium.testobject.com';
 config.port = 443;
 config.path = '/wd/hub';
 config.services = [];
