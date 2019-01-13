@@ -38,6 +38,28 @@ class InventoryListScreen {
   }
 
   /**
+   * Add a swag items to the cart
+   *
+   * @param {number|string} needle
+   *
+   * @return {void}
+   */
+  addSwagItemToCart(needle){
+    return this.swagItem(needle).$(`~test-${SELECTORS.inventoryListPage.addButton}`).click();
+  }
+
+  /**
+   * Remove a swag items from the cart
+   *
+   * @param {number|string} needle
+   *
+   * @return {void}
+   */
+  removeSwagItemFromCart(needle){
+    return this.swagItem(needle).$(`~test-${SELECTORS.inventoryListPage.removeButton}`).click();
+  }
+
+  /**
    * Wait for the inventory list screen to be displayed
    *
    * @param {boolean} isShown
