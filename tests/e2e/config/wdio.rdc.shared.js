@@ -13,6 +13,11 @@ config.port = 443;
 config.path = '/wd/hub';
 config.services = [];
 
+// =============================================
+// Max instances of the same device in the cloud
+// =============================================
+config.maxInstances = 10;
+
 // ==============================================
 // Update the testjob in the cloud after finished
 // ==============================================
