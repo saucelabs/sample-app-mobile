@@ -1,5 +1,4 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
-import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 
@@ -27,7 +26,7 @@ class InventoryListScreen extends Base{
    */
   swagItem(needle) {
     if (typeof needle === 'string') {
-      return this.swagItems.find(swagItem => getTextOfElement(swagItem).includes(needle))
+      return this.swagItems.find(swagItem => getTextOfElement(swagItem).includes(needle));
     }
 
     return this.swagItems[ needle ];

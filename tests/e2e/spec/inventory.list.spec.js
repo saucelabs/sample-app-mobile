@@ -45,17 +45,21 @@ describe('Inventory List Page', () => {
 
   it('should be able to add swag to the cart', ()=>{
     InventoryListScreen.addSwagItemToCart(0);
+
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
     InventoryListScreen.addSwagItemToCart(2);
+
     expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
   });
 
   it('should be able to remove swag from the cart', ()=>{
     InventoryListScreen.addSwagItemToCart(0);
+
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
     InventoryListScreen.removeSwagItemFromCart(0);
+
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');
   });
 });

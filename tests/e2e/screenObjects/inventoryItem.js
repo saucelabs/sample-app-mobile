@@ -48,7 +48,7 @@ class InventoryItemScreen extends Base{
    * @return {string}
    */
   getPrice(){
-    return getTextOfElement(this.price)
+    return getTextOfElement(this.price);
   }
 
   /**

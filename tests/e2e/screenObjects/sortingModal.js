@@ -1,5 +1,4 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
-import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 import Base from './base';
 
 const SCREEN_SELECTOR = `~${ SELECTORS.modalSelector.container }`;

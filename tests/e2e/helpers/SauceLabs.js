@@ -62,7 +62,7 @@ class SauceLabs {
      *
      * @private
      */
-    _handleRequest (urlSuffix, data, errorMessage) { // eslint-disable-line
+    _handleRequest (urlSuffix, data, errorMessage) {
         return fetch(url + urlSuffix, data)
             .then((response) => {
                 if (response.status !== 204) {

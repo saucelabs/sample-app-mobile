@@ -1,32 +1,33 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
+import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 
-const SCREEN_SELECTOR = `~test-${SELECTORS.login.screen}`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.login.screen }`;
 
-class LoginScreen extends Base{
-  constructor () {
+class LoginScreen extends Base {
+  constructor() {
     super(SCREEN_SELECTOR);
   }
 
-  get screen () {
+  get screen() {
     return $(SCREEN_SELECTOR);
   }
 
-  get username () {
-    return $(`~test-${SELECTORS.login.username}`);
+  get username() {
+    return $(`~test-${ SELECTORS.login.username }`);
   }
 
-  get password () {
-    return $(`~test-${SELECTORS.login.password}`);
+  get password() {
+    return $(`~test-${ SELECTORS.login.password }`);
   }
 
-  get loginButton () {
-    return $(`~test-${SELECTORS.login.loginButton}`);
+  get loginButton() {
+    return $(`~test-${ SELECTORS.login.loginButton }`);
   }
 
-  get errorMessage () {
-    return $(`~test-${SELECTORS.login.errorMessage}`);
+  get errorMessage() {
+    return $(`~test-${ SELECTORS.login.errorMessage }`);
   }
 
   /**
@@ -39,9 +40,9 @@ class LoginScreen extends Base{
   signIn(userDetails) {
     const {password, username} = userDetails;
 
-    this.waitForIsDisplayed(this.screen);
-    this.username.setValue(username);
-    this.password.setValue(password);
+    this.waitForIsDisplayed();
+    this.username.addValue(username);
+    this.password.addValue(password);
     this.loginButton.click();
   }
 
@@ -50,8 +51,9 @@ class LoginScreen extends Base{
    *
    * @return {string}
    */
-  getErrorMessage(){
-    this.waitForIsDisplayed(this.errorMessage);
+  getErrorMessage() {
+    this.errorMessage.waitForDisplayed(DEFAULT_TIMEOUT);
+
     return getTextOfElement(this.errorMessage);
   }
 }

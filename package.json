@@ -44,6 +44,7 @@
     "eslint-config-fbjs": "^2.1.0",
     "eslint-plugin-eslint-comments": "^3.0.1",
     "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-jasmine": "^2.10.1",
     "eslint-plugin-jest": "^22.1.2",
     "eslint-plugin-react": "^7.12.3",
     "eslint-plugin-react-native": "^3.5.0",

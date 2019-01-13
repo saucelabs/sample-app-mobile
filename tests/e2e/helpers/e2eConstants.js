@@ -2,18 +2,40 @@ export const DEFAULT_TIMEOUT = 15000;
 export const LOGIN_USERS = {
   LOCKED:{
     username: 'locked_user',
-    password: 'secret_sauce'
+    password: 'secret_sauce',
   },
   NO_USER_DETAILS:{
     username: '',
-    password: ''
+    password: '',
   },
   NO_PASSWORD:{
     username: 'standard_user',
-    password: ''
+    password: '',
   },
   STANDARD:{
     username: 'standard_user',
-    password: 'secret_sauce'
+    password: 'secret_sauce',
+  },
+};
+export const PERSONAL_INFO = {
+  STANDARD:{
+    firstName: 'Sauce',
+    lastName: 'Bot',
+    zip: '94105',
+  },
+  NO_FIRSTNAME:{
+    firstName: '',
+    lastName: 'Bot',
+    zip: '94105',
+  },
+  NO_LAST_NAME:{
+    firstName: 'Sauce',
+    lastName: '',
+    zip: '94105',
+  },
+  NO_ZIP:{
+    firstName: 'Sauce',
+    lastName: 'Bot',
+    zip: 'd',
   },
 };

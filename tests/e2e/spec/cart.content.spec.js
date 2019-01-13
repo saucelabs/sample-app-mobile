@@ -3,7 +3,7 @@ import LoginScreen from '../screenObjects/login';
 import InventoryListScreen from '../screenObjects/inventoryList';
 import CartContent from '../screenObjects/cart';
 import AppHeader from '../screenObjects/appHeader';
-import CheckOutPageOne from '../screenObjects/checkOutPageOne';
+import CheckoutPageOne from '../screenObjects/checkoutPageOne';
 import { LOGIN_USERS } from '../helpers/e2eConstants';
 
 describe('Cart Content Page', () => {
@@ -37,17 +37,19 @@ describe('Cart Content Page', () => {
     expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
 
     CartContent.removeItem(1);
+
     expect(AppHeader.getCartAmount()).toContain(1, 'The amount if items in the cart is not correct.');
 
     CartContent.removeItem(0);
+
     expect(AppHeader.getCartAmount()).not.toContain(1, 'The amount if items in the cart is not correct.');
   });
 
   it('should open the checkout page one page if checkout is clicked', () => {
     CartContent.goToCheckout();
-    CheckOutPageOne.waitForIsDisplayed();
+    CheckoutPageOne.waitForIsDisplayed();
 
     expect(CartContent.isDisplayed()).toEqual(false, 'The cart content page is still visible');
-    expect(CheckOutPageOne.isDisplayed()).toEqual(true, 'The checkout page one is not visible');
+    expect(CheckoutPageOne.isDisplayed()).toEqual(true, 'The checkout page one is not visible');
   });
 });

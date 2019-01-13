@@ -6,7 +6,7 @@ const SCREEN_SELECTOR = `~test-${ SELECTORS.cartContent.screen }`;
 
 class CartContent extends Base{
   constructor(){
-    super(SCREEN_SELECTOR)
+    super(SCREEN_SELECTOR);
   }
 
   get screen() {
@@ -34,7 +34,7 @@ class CartContent extends Base{
    */
   item(needle) {
     if (typeof needle === 'string') {
-      return this.items.find(cartItem => getTextOfElement(cartItem).includes(needle))
+      return this.items.find(cartItem => getTextOfElement(cartItem).includes(needle));
     }
 
     return this.items[ needle ];

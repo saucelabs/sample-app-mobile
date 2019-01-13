@@ -52,9 +52,11 @@ describe('Inventory Item Page', () => {
     InventoryItemScreen.waitForIsDisplayed();
 
     InventoryItemScreen.addSwagItemToCart();
+
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
     InventoryItemScreen.removeSwagItemFromCart();
+
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');
   });
 

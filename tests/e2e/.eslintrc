@@ -1,0 +1,26 @@
+{
+  "plugins": [
+    "jasmine"
+  ],
+  "extends": "plugin:jasmine/recommended",
+  "globals": {
+    "$": true,
+    "$$": true,
+    "driver": true,
+    // Expose some Jasmine globals for test helpers
+    "afterAll": true,
+    "afterEach": true,
+    "beforeAll": true,
+    "beforeEach": true,
+    "describe": true,
+    "fdescribe": true,
+    "xdescribe": true,
+    "it": true,
+    "fit": true,
+    "xit": true,
+    "expect": true
+  },
+  "rules": {
+    "jasmine/no-focused-tests": 2
+  }
+}
