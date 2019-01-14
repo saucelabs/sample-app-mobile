@@ -30,6 +30,7 @@
   },
   "checkoutPageOne": {
     "errors": {
+      "container": "Error message",
       "epicSadFace": "Epic sadface: ",
       "firstName": "First Name is required",
       "lastName": "Last Name is required",

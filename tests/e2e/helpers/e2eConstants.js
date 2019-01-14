@@ -33,9 +33,9 @@ export const PERSONAL_INFO = {
     lastName: '',
     zip: '94105',
   },
-  NO_ZIP:{
+  NO_POSTAL_CODE:{
     firstName: 'Sauce',
     lastName: 'Bot',
-    zip: 'd',
+    zip: '',
   },
 };

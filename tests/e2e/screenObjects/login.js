@@ -56,6 +56,15 @@ class LoginScreen extends Base {
 
     return getTextOfElement(this.errorMessage);
   }
+
+  /**
+   * Check if the error message is displayed
+   *
+   * @return {boolean}
+   */
+  isErrorMessageDisplayed() {
+    return this.errorMessage.isDisplayed();
+  }
 }
 
 export default new LoginScreen();

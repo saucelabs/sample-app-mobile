@@ -1,11 +1,11 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import Base from './base';
 
-const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageOne.screen }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageTwo.screen }`;
 
-class CheckOutPageOne extends Base{
+class CheckoutPageTwo extends Base{
   constructor(){
-    super(SCREEN_SELECTOR)
+    super(SCREEN_SELECTOR);
   }
 
   get screen() {
@@ -13,4 +13,4 @@ class CheckOutPageOne extends Base{
   }
 }
 
-export default new CheckOutPageOne();
+export default new CheckoutPageTwo();

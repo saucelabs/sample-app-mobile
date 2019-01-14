@@ -19,6 +19,7 @@ describe('Login', () => {
   it('should not be able to login with a locked user', () => {
     LoginScreen.signIn(LOGIN_USERS.LOCKED);
 
+    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain(
       'Epic sadface: Username and password do not match any user in this service',
       'The error message is not as expected',
@@ -28,13 +29,14 @@ describe('Login', () => {
   it('should show an error when no username is provided', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_USER_DETAILS);
 
-    expect(LoginScreen.errorMessage.isDisplayed()).toEqual(true, 'Error message is shown');
+    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain('Epic sadface: Username is required', 'The error message is not as expected');
   });
 
   it('should show an error when no password is provided', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_PASSWORD);
 
+    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain('Epic sadface: Password is required', 'The error message is not as expected');
   });
 
