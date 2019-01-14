@@ -51,11 +51,11 @@
     "screen": "Checkout: Overview",
     "description": "DESCRIPTION",
     "quantity": "QTY",
-    "cartItem": {
-      "itemContainer": "Item",
+    "item": {
+      "container": "Item",
       "description": "Description",
       "amount": "Amount",
-      "remove": "REMOVE"
+      "price": "Price"
     },
     "summary": {
       "paymentLabel": "Payment Information:",
