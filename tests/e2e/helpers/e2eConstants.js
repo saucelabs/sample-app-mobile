@@ -1,8 +1,12 @@
 export const DEFAULT_TIMEOUT = 15000;
 export const LOGIN_USERS = {
   LOCKED:{
-    username: 'locked_user',
+    username: 'locked_out_user',
     password: 'secret_sauce',
+  },
+  NO_MATCH:{
+    username: 'd',
+    password: 'd',
   },
   NO_USER_DETAILS:{
     username: '',

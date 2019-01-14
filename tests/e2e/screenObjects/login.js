@@ -27,7 +27,7 @@ class LoginScreen extends Base {
   }
 
   get errorMessage() {
-    return $(`~test-${ SELECTORS.login.errorMessage }`);
+    return $(`~test-${ SELECTORS.login.errors.container }`);
   }
 
   /**

@@ -2,6 +2,7 @@ import LoginScreen from '../screenObjects/login';
 import InventoryListScreen from '../screenObjects/inventoryList';
 import { restartApp } from '../helpers/utils';
 import { LOGIN_USERS } from '../helpers/e2eConstants';
+import * as SELECTORS from '../../../src/js/config/translations/en.json';
 
 describe('Login', () => {
   beforeEach(() => {
@@ -21,7 +22,7 @@ describe('Login', () => {
 
     expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain(
-      'Epic sadface: Username and password do not match any user in this service',
+      `${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.lockedOut}`,
       'The error message is not as expected',
     );
   });
@@ -30,14 +31,21 @@ describe('Login', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_USER_DETAILS);
 
     expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
-    expect(LoginScreen.getErrorMessage()).toContain('Epic sadface: Username is required', 'The error message is not as expected');
+    expect(LoginScreen.getErrorMessage()).toContain(`${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.username}`);
   });
 
   it('should show an error when no password is provided', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_PASSWORD);
 
     expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
-    expect(LoginScreen.getErrorMessage()).toContain('Epic sadface: Password is required', 'The error message is not as expected');
+    expect(LoginScreen.getErrorMessage()).toContain(`${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.password}`);
+  });
+
+  it('should show an error when no match is found', () => {
+    LoginScreen.signIn(LOGIN_USERS.NO_MATCH);
+
+    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
+    expect(LoginScreen.getErrorMessage()).toContain(`${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.noMatch}`);
   });
 
 });
