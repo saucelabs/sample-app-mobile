@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
-import ModalSelector from 'react-native-modal-selector'
+import ModalSelector from 'react-native-modal-selector';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
@@ -20,7 +20,7 @@ class InventoryListItem extends Component {
       desc: props.desc,
       price: props.price,
       // Set our initial state now
-      itemInCart: ShoppingCart.isItemInCart(props.id)
+      itemInCart: ShoppingCart.isItemInCart(props.id),
     };
 
     ShoppingCart.registerCartListener(this);
@@ -42,7 +42,7 @@ class InventoryListItem extends Component {
 
     if (Credentials.isProblemUser()) {
       // Bail out now, don't add to cart if the item ID is odd
-      if (this.state.id % 2 == 1) {
+      if (this.state.id % 2 === 1) {
         return;
       }
     }
@@ -55,7 +55,7 @@ class InventoryListItem extends Component {
 
     if (Credentials.isProblemUser()) {
       // Bail out now, don't remove from cart if the item ID is even
-      if (this.state.id % 2 == 0) {
+      if (this.state.id % 2 === 0) {
         return;
       }
     }
@@ -108,9 +108,9 @@ export default class InventoryListPage extends Component {
     super(props);
 
     this.state = {
-        inventoryList: InventoryData.ITEMS_NAME_AZ,
-        sortState: "az",
-        menuOpen: false
+      inventoryList: InventoryData.ITEMS_NAME_AZ,
+      sortState: 'az',
+      menuOpen: false,
     };
 
     this.changeSort = this.changeSort.bind(this);
@@ -124,16 +124,16 @@ export default class InventoryListPage extends Component {
 
   changeSort(sortType) {
     switch (sortType){
-      case "az":
+      case 'az':
         this.sortNameAZ();
         break;
-      case "za":
+      case 'za':
         this.sortNameZA();
         break;
-      case "lohi":
+      case 'lohi':
         this.sortPriceLoHi();
         break;
-      case "hilo":
+      case 'hilo':
         this.sortPriceHiLo();
         break;
       default:
@@ -144,69 +144,69 @@ export default class InventoryListPage extends Component {
   sortNameAZ() {
     this.setState({
       inventoryList: InventoryData.ITEMS_NAME_AZ,
-      sortState: "az"
+      sortState: 'az',
     });
   }
 
   sortNameZA() {
     this.setState({
       inventoryList: InventoryData.ITEMS_NAME_ZA,
-      sortState: "za"
+      sortState: 'za',
     });
   }
 
   sortPriceLoHi() {
     this.setState({
       inventoryList: InventoryData.ITEMS_PRICE_LOHI,
-      sortState: "lohi"
+      sortState: 'lohi',
     });
   }
 
   sortPriceHiLo() {
     this.setState({
       inventoryList: InventoryData.ITEMS_PRICE_HILO,
-      sortState: "hilo"
+      sortState: 'hilo',
     });
   }
 
   openMenu() {
     this.setState({
-       menuOpen: true
+      menuOpen: true,
     });
   }
 
   closeMenu() {
     this.setState({
-       menuOpen: false
+      menuOpen: false,
     });
   }
 
   render() {
 
     const sortOptions = [
-        { key: "sectionLabel", section: true, label: 'Sort items by...' },
-        { key: "az", label: 'Name (A to Z)' },
-        { key: "za", label: 'Name (Z to A)' },
-        { key: "lohi", label: 'Price (low to high)' },
-        { key: "hilo", label: 'Price (high to low)' }
+      { key: 'sectionLabel', section: true, label: 'Sort items by...' },
+      { key: 'az', label: 'Name (A to Z)' },
+      { key: 'za', label: 'Name (Z to A)' },
+      { key: 'lohi', label: 'Price (low to high)' },
+      { key: 'hilo', label: 'Price (high to low)' },
     ];
 
     return (
       <ThemeProvider>
-      <AppHeader navigation={this.props.navigation}>
-      <Image source={require('../../img/peek.png')} style={styles.peek_img} />
-      <View style={styles.secondary_header}>
-        <Text style={styles.header_title}>Products</Text>
-        <ModalSelector data={sortOptions} initValue="Name (A to Z)"
-          style={styles.item_sort} selectTextStyle={styles.sort_text}
-          onChange={(sortOption) => this.changeSort(sortOption.key)} />
-      </View>
-      <ScrollView style={styles.container}>
-        {this.state.inventoryList.map((item, i) => {
-          return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />)
-        })}
-      </ScrollView>
-      </AppHeader>
+        <AppHeader navigation={this.props.navigation}>
+          <Image source={require('../../img/peek.png')} style={styles.peek_img} />
+          <View style={styles.secondary_header}>
+            <Text style={styles.header_title}>Products</Text>
+            <ModalSelector data={sortOptions} initValue="Name (A to Z)"
+                           style={styles.item_sort} selectTextStyle={styles.sort_text}
+                           onChange={(sortOption) => this.changeSort(sortOption.key)} />
+          </View>
+          <ScrollView style={styles.container}>
+            {this.state.inventoryList.map((item, i) => {
+              return (<InventoryListItem key={item.id} id={item.id} image_url={item.image_url} name={item.name} desc={item.desc} price={item.price} navigation={this.props.navigation} />);
+            })}
+          </ScrollView>
+        </AppHeader>
       </ThemeProvider>
     );
   }
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   secondary_header: {
     height: 80,
     backgroundColor: '#474c55',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   header_title: {
     fontSize: 30,
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   item_image: {
     width: 80,
     height: 100,
-    flex: 1
+    flex: 1,
   },
   peek_img: {
     width: 71,
@@ -239,38 +239,38 @@ const styles = StyleSheet.create({
     top: IS_IOS ? 100 : 80,
     left: 5,
     position: 'absolute',
-    zIndex: 10
+    zIndex: 10,
   },
   item_container: {
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   item_infobox: {
     flexDirection: 'column',
     flex: 4,
-    padding: 5
+    padding: 5,
   },
   item_price_bar: {
     flexDirection: 'row',
-    paddingTop: 5
+    paddingTop: 5,
   },
   item_cart_button: {
     flex: 3,
-    backgroundColor: '#57c1e8'
+    backgroundColor: '#57c1e8',
   },
   item_details: {
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   price_text: {
     color: '#569210',
     fontSize: 18,
     flex: 2,
-    paddingTop: 10
+    paddingTop: 10,
   },
   item_name: {
     fontSize: 18,
     fontWeight: '800',
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   item_desc: {
 
@@ -279,9 +279,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     width: 150,
     height: 40,
-    top: 30
+    top: 30,
   },
   sort_text: {
     color: '#FFF',
-  }
+  },
 });

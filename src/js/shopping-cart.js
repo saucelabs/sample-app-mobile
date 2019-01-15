@@ -32,7 +32,7 @@ export class ShoppingCart {
   static isItemInCart(itemId) {
     // pull out our current cart contents
     var curContents = ShoppingCart.getCartContents();
-    
+
     // If the item is in the array, return true
     return (curContents.indexOf(itemId) >= 0);
   }
@@ -41,7 +41,7 @@ export class ShoppingCart {
     // pull out our current cart contents
     var curContents = SyncStorage.get('cart-contents');
 
-    if (typeof curContents === 'string') {        
+    if (typeof curContents === 'string') {
       // We have an existing cart, so deserialize it now since localStorage stores in JSON strings
       curContents = JSON.parse(curContents);
     } else {
@@ -65,7 +65,7 @@ export class ShoppingCart {
 
   static resetCart() {
     SyncStorage.set('cart-contents', JSON.stringify([]));
-    
+
     // Notify our listeners
     ShoppingCart.LISTENERS.forEach((curListener) => {
       curListener.forceUpdate();

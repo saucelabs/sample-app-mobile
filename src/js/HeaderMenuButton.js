@@ -28,6 +28,6 @@ export default class MenuButton extends Component {
 const styles = StyleSheet.create({
   menu_icon: {
     height: IS_IOS ? 50 : 40,
-    backgroundColor: '#2089DC'
-  }
+    backgroundColor: '#2089DC',
+  },
 });

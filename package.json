@@ -5,6 +5,8 @@
   "scripts": {
     "clear.cache": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro* && rm -rf $TMPDIR/haste-*",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint .",
+    "prepush": "npm run lint",
     "test": "jest"
   },
   "dependencies": {
@@ -20,7 +22,17 @@
     "sync-storage": "0.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-jest": "23.6.0",
+    "eslint": "^5.12.0",
+    "eslint-config-fb-strict": "^23.2.0",
+    "eslint-config-fbjs": "^2.1.0",
+    "eslint-plugin-eslint-comments": "^3.0.1",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-jest": "^22.1.2",
+    "eslint-plugin-react": "^7.12.3",
+    "eslint-plugin-react-native": "^3.5.0",
+    "husky": "^1.3.1",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.49.0",
     "react-test-renderer": "16.6.0-alpha.8af6728"
