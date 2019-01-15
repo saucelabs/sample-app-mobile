@@ -3,6 +3,8 @@ import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
 import AppHeader from '../AppHeader.js';
 import { IS_IOS } from '../config/Constants';
+import i18n from '../config/i18n';
+import {testProperties} from '../config/TestProperties';
 
 export default class CheckoutCompletePage extends Component {
 
@@ -17,19 +19,21 @@ export default class CheckoutCompletePage extends Component {
         <AppHeader navigation={this.props.navigation}>
           <Image source={require('../../img/peek.png')} style={styles.peek_img} />
           <View style={styles.secondary_header}>
-            <Text style={styles.header_title}>Checkout Complete!</Text>
+            <Text style={styles.header_title}>{ i18n.t('checkoutCompletePage.header')}</Text>
           </View>
-          <ScrollView style={styles.container}>
+          <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('checkoutCompletePage.screen')) }>
 
             <View style={styles.complete_container}>
-              <Text style={styles.complete_title}>THANK YOU FOR YOUR ORDER</Text>
-              <Text style={styles.complete_text}>Your order has been dispatched, and will arrive just as fast as the pony can get there!</Text>
+              <Text style={styles.complete_title}>{ i18n.t('checkoutCompletePage.completeContainer.header')}</Text>
+              <Text style={styles.complete_text}>{ i18n.t('checkoutCompletePage.completeContainer.text')}</Text>
             </View>
 
             <Image resizeMode="contain" source={require('../../img/pony-express.jpg')} style={styles.ship_image} />
 
             <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CONTINUE SHOPPING"/>
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
+                      onPress={() => {this.props.navigation.navigate('InventoryList');}} title={ i18n.t('checkoutCompletePage.goToButton')}
+                      { ...testProperties(i18n.t('checkoutCompletePage.goToButton')) }/>
             </View>
           </ScrollView>
         </AppHeader>

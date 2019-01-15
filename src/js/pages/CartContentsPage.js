@@ -4,6 +4,8 @@ import {Button, ThemeProvider} from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
+import i18n from '../config/i18n';
+import {testProperties} from '../config/TestProperties';
 import { IS_IOS } from '../config/Constants';
 
 class CartItem extends Component {
@@ -35,18 +37,19 @@ class CartItem extends Component {
     if (this.state.itemVisible) {
 
       return (
-        <View style={styles.item_container}>
-          <View style={styles.item_quantity_box}>
+        <View style={styles.item_container} { ...testProperties(i18n.t('cartContent.cartItem.itemContainer'))}>
+          <View style={styles.item_quantity_box} { ...testProperties(i18n.t('cartContent.cartItem.amount'))}>
             <Text style={styles.item_quantity}>1</Text>
           </View>
-          <View style={styles.item_infobox}>
+          <View style={styles.item_infobox} { ...testProperties(i18n.t('cartContent.cartItem.description'))}>
             <View style={styles.item_details}>
               <Text style={styles.item_name}>{this.item.name}</Text>
               <Text style={styles.item_desc}>{this.item.desc}</Text>
             </View>
             <View style={styles.item_price_bar}>
               <Text style={styles.price_text}>${this.item.price}</Text>
-              <Button style={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>
+              <Button style={styles.item_cart_button} onPress={this.removeFromCart} title={ i18n.t('cartContent.cartItem.remove')}
+                      { ...testProperties(i18n.t('cartContent.cartItem.remove')) }/>
             </View>
           </View>
         </View>
@@ -72,19 +75,23 @@ export default class CartContentsPage extends Component {
         <AppHeader navigation={this.props.navigation}>
           <Image source={require('../../img/peek.png')} style={styles.peek_img} />
           <View style={styles.secondary_header}>
-            <Text style={styles.header_title}>Your Cart</Text>
+            <Text style={styles.header_title}>{ i18n.t('cartContent.header') }</Text>
           </View>
           <View style={styles.section_header}>
-            <Text style={styles.section_qty}>QTY</Text>
-            <Text style={styles.section_desc}>DESCRIPTION</Text>
+            <Text style={styles.section_qty}>{ i18n.t('cartContent.quantity') }</Text>
+            <Text style={styles.section_desc}>{ i18n.t('cartContent.description') }</Text>
           </View>
-          <ScrollView style={styles.container}>
+          <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('cartContent.screen')) }>
             {contents.map((item, i) => {
               return (<CartItem key={i} item={InventoryData.ITEMS[item]} />);
             })}
             <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title="CHECKOUT"/>
-              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CONTINUE SHOPPING"/>
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
+                      onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title={ i18n.t('cartContent.checkout') }
+                      { ...testProperties(i18n.t('cartContent.checkout')) }/>
+              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container}
+                      onPress={() => {this.props.navigation.navigate('InventoryList');}} title={ i18n.t('cartContent.continueShopping') }
+                      { ...testProperties(i18n.t('cartContent.continueShopping')) }/>
             </View>
           </ScrollView>
         </AppHeader>

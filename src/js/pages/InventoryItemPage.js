@@ -5,6 +5,8 @@ import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
+import i18n from '../config/i18n';
+import {testProperties} from '../config/TestProperties';
 
 export default class InventoryItem extends Component {
 
@@ -16,14 +18,10 @@ export default class InventoryItem extends Component {
       this.item = InventoryData.ITEMS[inventoryId];
     } else {
       this.item = {
-          name: 'ITEM NOT FOUND',
-          desc: `We're sorry, but your call could not be completed as dialled.
-Please check your number, and try your call again.
-If you are in need of assistance, please dial 0 to be connected with an operator.
-This is a recording.
-4 T 1.`,
+          name: i18n.t('inventoryItemPage.itemNotFound.name'),
+          desc: i18n.t('inventoryItemPage.itemNotFound.description'),
           image_url: require('../../img/sl-404.jpg'),
-          price: '√-1',
+          price: i18n.t('inventoryItemPage.itemNotFound.price'),
 
       };
     }
@@ -74,19 +72,22 @@ This is a recording.
     var cartButton;
 
     if (this.state.itemInCart) {
-      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart} title="REMOVE"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart}
+                           title={i18n.t('inventoryItemPage.removeButton')} {...testProperties(i18n.t('inventoryItemPage.backButton'))}/>;
     } else {
-      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart} title="ADD TO CART"/>;
+      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart}
+                           title={i18n.t('inventoryItemPage.addButton')} {...testProperties(i18n.t('inventoryItemPage.addButton'))}/>;
     }
 
     return (
         <ThemeProvider>
           <AppHeader navigation={this.props.navigation}>
-            <ScrollView style={styles.container}>
-              <Button containerStyle={styles.item_back_button} onPress={this.goBack} title="<- BACK"/>
+            <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" {...testProperties(i18n.t('inventoryItemPage.screen'))}>
+              <Button containerStyle={styles.item_back_button} onPress={this.goBack}
+                      title={i18n.t('inventoryItemPage.backButton')} {...testProperties(i18n.t('inventoryItemPage.backButton'))}/>
               <View style={styles.item_container}>
                 <Image source={this.item.image_url} style={styles.item_image} />
-                <View style={styles.item_infobox}>
+                <View style={styles.item_infobox} {...testProperties(i18n.t('inventoryItemPage.itemDescription'))}>
                   <View style={styles.item_details}>
                     <Text style={styles.item_name}>{this.item.name}</Text>
                     <Text style={styles.item_desc}>{this.item.desc}</Text>
@@ -94,7 +95,7 @@ This is a recording.
                 </View>
               </View>
               <View style={styles.item_price_bar}>
-                <Text style={styles.price_text}>${this.item.price}</Text>
+                <Text style={styles.price_text} {...testProperties(i18n.t('inventoryItemPage.price'))}>${this.item.price}</Text>
                 { cartButton }
               </View>
             </ScrollView>

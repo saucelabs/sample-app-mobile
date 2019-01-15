@@ -80,3 +80,37 @@ Issues / warning will be shown in the console and most of them can automatically
 
 The linting will also be run on each `git push` and fail if there are issues.
 
+## i18n internationalization
+This application uses the module [`react-native-languages`](https://github.com/react-native-community/react-native-languages) (click on the link to see how it works) to provide translations in the app for all text components in the users preferred language.
+
+> Currently only English is enabled, but more languages can be added
+
+When adding text to this app, please add them to the translation-JSON-file that can be found [here](src/js/config/translations/en.json) and add it to the component like this
+
+```js
+import React, {Component} from 'react';
+import {Text, View} from 'react-native';
+import i18n from './config/i18n';
+
+export default class ExampleComponent extends Component {
+  render(){
+    return (
+      <View>
+        <Text>{i18n.t('key')}</Text>
+      </View>
+    );
+  }
+}
+```
+
+## AccessibilityID's
+This application uses accessibilityID's which makes it easier to select elements in a crossplatform way with Appium.
+
+When adding a new component to the code that can be used to interact with or that displays text needs to be provided with a `testProperties` that will automatically add the accessibilityID to the component.
+For example, with a button component the following code needs to be added
+
+    <Button title={i18n.t('menu.reset')} {...testProperties(i18n.t('menu.reset'))}/>
+
+Always try to use the text that is already available in the translation-JSON-file that can be found [here](src/js/config/translations/en.json). The `testProperties`-method will make it unique by adding a prefix to it.
+
+> More information about testing with accessibilitID's will be added later when tests are added with WebdriverIO and Appium 

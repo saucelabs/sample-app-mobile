@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
 import AppHeader from '../AppHeader.js';
 import { IS_IOS } from '../config/Constants';
+import i18n from '../config/i18n';
+import {testProperties} from '../config/TestProperties';
 
 export default class CheckoutPageOne extends Component {
 
@@ -60,15 +62,15 @@ export default class CheckoutPageOne extends Component {
     this.setState({ error: '' });
 
     if (!this.state.firstName) {
-      return this.setState({ error: 'First Name is required' });
+      return this.setState({ error: i18n.t('checkoutPageOne.errors.firstName') });
     }
 
     if (!this.state.lastName) {
-      return this.setState({ error: 'Last Name is required' });
+      return this.setState({ error: i18n.t('checkoutPageOne.errors.lastName') });
     }
 
     if (!this.state.postalCode) {
-      return this.setState({ error: 'Postal Code is required' });
+      return this.setState({ error: i18n.t('checkoutPageOne.errors.postalCode') });
     }
 
     // If we're here, we have our required info. Redirect!
@@ -82,7 +84,7 @@ export default class CheckoutPageOne extends Component {
     if (this.state.error !== '') {
       errorMessage = (<View>
         <Icon onPress={this.dismissError} name="times-circle" size={24} color="red" />
-        <Text style={styles.error_message}>Epic sadface: {this.state.error}</Text>
+        <Text style={styles.error_message}>{i18n.t('checkoutPageOne.errors.epicSadFace')}{this.state.error}</Text>
       </View>);
     }
 
@@ -91,24 +93,31 @@ export default class CheckoutPageOne extends Component {
         <AppHeader navigation={this.props.navigation}>
           <Image source={require('../../img/peek.png')} style={styles.peek_img} />
           <View style={styles.secondary_header}>
-            <Text style={styles.header_title}>Checkout: Your Info</Text>
+            <Text style={styles.header_title}>{i18n.t('checkoutPageOne.header')}</Text>
           </View>
-          <ScrollView style={styles.container}>
-            <Input containerStyle={styles.text_input} placeholder="First Name" value={this.state.firstName}
+          <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" {...testProperties(i18n.t('checkoutPageOne.screen'))}>
+            <Input containerStyle={styles.text_input} placeholder={i18n.t('checkoutPageOne.firstName')} value={this.state.firstName}
                    onChangeText={this.handleFirstNameChange} leftIcon={<Icon name="user" size={24} color="black" />}
-                   shake={true} autoFocus={true} autoCorrect={false} />
-            <Input containerStyle={styles.text_input} placeholder="Last Name" value={this.state.lastName}
+                   shake={true} autoFocus={true} autoCorrect={false}
+                   { ...testProperties(i18n.t('checkoutPageOne.firstName')) } />
+            <Input containerStyle={styles.text_input} placeholder={i18n.t('checkoutPageOne.lastName')} value={this.state.lastName}
                    onChangeText={this.handleLastNameChange} leftIcon={<Icon name="user" size={24} color="black" />}
-                   shake={true} autoCorrect={false} />
-            <Input containerStyle={styles.text_input} placeholder="Zip/Postal Code" value={this.state.postalCode}
+                   shake={true} autoCorrect={false}
+                   { ...testProperties(i18n.t('checkoutPageOne.lastName')) } />
+            <Input containerStyle={styles.text_input} placeholder={i18n.t('checkoutPageOne.postalCode')} value={this.state.postalCode}
                    onChangeText={this.handlePostalCodeChange} leftIcon={<Icon name="envelope" size={24} color="black" />}
-                   shake={true} autoCorrect={false} />
+                   shake={true} autoCorrect={false}
+                   { ...testProperties(i18n.t('checkoutPageOne.postalCode')) } />
 
             {errorMessage}
 
             <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container} onPress={this.handleSubmit} title="CONTINUE CHECKOUT"/>
-              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container} onPress={() => {this.props.navigation.navigate('InventoryList');}} title="CANCEL"/>
+              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
+                      onPress={this.handleSubmit} title={i18n.t('checkoutPageOne.continueButton')}
+                     { ...testProperties(i18n.t('checkoutPageOne.continueButton')) } />
+              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container}
+                      onPress={() => {this.props.navigation.navigate('InventoryList');}} title={i18n.t('checkoutPageOne.cancelButton')}
+                     { ...testProperties(i18n.t('checkoutPageOne.cancelButton')) } />
             </View>
           </ScrollView>
         </AppHeader>

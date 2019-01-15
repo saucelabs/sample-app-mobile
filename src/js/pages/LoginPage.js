@@ -81,7 +81,7 @@ export default class LoginPage extends Component {
     var errorMessage = (<View />);
 
     if (this.state.error !== '') {
-      errorMessage = (<View>
+      errorMessage = (<View {...testProperties(i18n.t('login.errorMessage'))}>
         <Icon onPress={this.dismissError} name="times-circle" size={24} color="red" />
         <Text style={styles.error_message}>{i18n.t('login.epicSadFace')}{this.state.error}</Text>
       </View>);
@@ -103,7 +103,7 @@ export default class LoginPage extends Component {
                    onChangeText={this.handlePassChange}
                    leftIcon={<Icon name="lock" size={28} color="black" />}
                    shake={true} secureTextEntry={true} { ...testProperties(i18n.t('login.password')) } />
-            <Button onPress={this.handleSubmit} titleStyle={ styles.buttonTitle } title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
+            <Button onPress={this.handleSubmit} title={ i18n.t('login.loginButton') } { ...testProperties(i18n.t('login.loginButton')) } />
 
             {errorMessage}
 
@@ -144,8 +144,5 @@ const styles = StyleSheet.create({
   },
   error_message: {
     fontSize: 18,
-  },
-  buttonTitle: {
-    textTransform: 'uppercase',
   },
 });

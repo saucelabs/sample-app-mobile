@@ -2,15 +2,122 @@
   "login": {
     "header": "Swag Labs",
     "epicSadFace": "Epic sadface: ",
-    "loginButton": "Login",
+    "loginButton": "LOGIN",
     "password": "Password",
     "passwordError": "Password is required",
-    "locketOutError": "Sorry, this user has been locked out.",
+    "lockedOutError": "Sorry, this user has been locked out.",
     "noMatchError": "Username and password do not match any user in this service.",
     "screen": "Login",
     "username": "Username",
     "usernameError": "Username is required",
+    "errorMessage": "Error message",
     "loginText": "The currently accepted usernames for this application are:\n\n- standard_user\n- locked_out_user\n- problem_user\n\nAnd the password for all users is:\n\nsecret_sauce"
   },
-  "username": "Username"
+  "username": "Username",
+  "cartContent": {
+    "checkout": "CHECKOUT",
+    "continueShopping": "CONTINUE SHOPPING",
+    "description": "DESCRIPTION",
+    "header": "Your Cart",
+    "quantity": "QTY",
+    "screen": "Cart Content",
+    "cartItem": {
+      "itemContainer": "Item",
+      "description": "Description",
+      "amount": "Amount",
+      "remove": "REMOVE"
+    }
+  },
+  "checkoutPageOne": {
+    "errors": {
+      "epicSadFace": "Epic sadface: ",
+      "firstName": "First Name is required",
+      "lastName": "Last Name is required",
+      "postalCode": "Postal Code is required"
+    },
+    "header": "Checkout: Your Info",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "postalCode": "Zip/Postal Code",
+    "screen": "Checkout: Your Info",
+    "cancelButton": "CANCEL",
+    "continueButton": "CONTINUE CHECKOUT"
+  },
+  "checkoutPageTwo": {
+    "header": "Checkout: Overview",
+    "screen": "Checkout: Overview",
+    "description": "DESCRIPTION",
+    "quantity": "QTY",
+    "cartItem": {
+      "itemContainer": "Item",
+      "description": "Description",
+      "amount": "Amount",
+      "remove": "REMOVE"
+    },
+    "summary": {
+      "paymentLabel": "Payment Information:",
+      "card": "SauceCard #31337",
+      "shippingLabel": "Shipping Information:",
+      "shippingText": "FREE PONY EXPRESS DELIVERY!",
+      "itemsTotal": "Item total: ",
+      "itemsTax": "Tax: ",
+      "totalAmount": "Total: "
+    },
+    "finishButton": "FINISH",
+    "cancelButton": "CANCEL"
+  },
+  "checkoutCompletePage": {
+    "header": "Checkout Complete!",
+    "screen": "Checkout Complete",
+    "completeContainer": {
+      "header": "Thank you for your order",
+      "text": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+    },
+    "goToButton": "CONTINUE SHOPPING"
+  },
+  "inventoryListPage": {
+    "screen": "Inventory list page",
+    "addButton": "ADD TO CART",
+    "removeButton": "REMOVE",
+    "itemContainer": "Item",
+    "itemDescription": "Description",
+    "price": "Price"
+  },
+  "inventoryItemPage": {
+    "screen": "Inventory item page",
+    "itemNotFound": {
+      "name": "ITEM NOT FOUND",
+      "description": "We're sorry, but your call could not be completed as dialled.\nPlease check your number, and try your call again.\nIf you are in need of assistance, please dial 0 to be connected with an operator.\nThis is a recording.\n4 T 1.",
+      "price": "√-1"
+    },
+    "addButton": "ADD TO CART",
+    "backButton": "<- BACK",
+    "removeButton": "REMOVE",
+    "itemDescription": "Item description",
+    "price": "Price"
+  },
+  "modalSelector": {
+    "cancel": "Cancel",
+    "container": "Selector container",
+    "sectionLabel": "Sort items by...",
+    "azLabel": "Name (A to Z)",
+    "zaLabel": "Name (Z to A)",
+    "loHiLabel": "Price (low to high)",
+    "hiLoLabel": "Price (high to low)"
+  },
+  "cart": {
+    "label": "Cart"
+  },
+  "menu": {
+    "label": "Menu",
+    "allItems": "ALL ITEMS",
+    "about": "ABOUT",
+    "logout": "LOGOUT",
+    "reset": "RESET APP STATE"
+  },
+  "appHeader": {
+    "label": "Swag Labs",
+    "url": "https://saucelabs.com/",
+    "404Url": "https://saucelabs.com/error/404"
+  }
 }
