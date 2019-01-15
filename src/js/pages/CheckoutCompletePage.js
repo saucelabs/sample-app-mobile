@@ -24,7 +24,7 @@ export default class CheckoutCompletePage extends Component {
           <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('checkoutCompletePage.screen')) }>
 
             <View style={styles.complete_container}>
-              <Text style={[styles.complete_title, styles.upperCaseText]}>{ i18n.t('checkoutCompletePage.completeContainer.header')}</Text>
+              <Text style={styles.complete_title}>{ i18n.t('checkoutCompletePage.completeContainer.header')}</Text>
               <Text style={styles.complete_text}>{ i18n.t('checkoutCompletePage.completeContainer.text')}</Text>
             </View>
 
