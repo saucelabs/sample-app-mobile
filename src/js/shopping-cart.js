@@ -73,7 +73,7 @@ export class ShoppingCart {
   }
 
   static registerCartListener(handler) {
-    ShoppingCart.LISTENERS.push(handler);
+    ShoppingCart.LISTENERS.push(handler),
   }
 }
 
