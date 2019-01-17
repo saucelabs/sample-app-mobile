@@ -15,6 +15,19 @@ export default class Base {
   }
 
   /**
+   * Wait for the element NOT to be displayed
+   *
+   * @return {boolean}
+   */
+  waitForIsNotDisplayed() {
+    if (driver.isIOS) {
+      return $(this.selector).waitForDisplayed(DEFAULT_TIMEOUT, true);
+    }
+
+    return driver.waitUntil(() => !$(this.selector).isExisting(), DEFAULT_TIMEOUT);
+  }
+
+  /**
    * Give back if the element is displayed
    *
    * @return {boolean}

@@ -8,8 +8,6 @@ import CheckoutPageTwo from '../screenObjects/checkoutPageTwo';
 import CheckoutComplete from '../screenObjects/checkoutComplete';
 import { LOGIN_USERS, PERSONAL_INFO } from '../helpers/e2eConstants';
 
-let selectedSwagItemText;
-
 describe('Checkout Complete', () => {
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
@@ -18,7 +16,6 @@ describe('Checkout Complete', () => {
 
     // Add an item to the cart
     InventoryListScreen.waitForIsDisplayed();
-    selectedSwagItemText = InventoryListScreen.getSwagItemText(0);
     InventoryListScreen.addSwagItemToCart(0);
 
     // Open the cart
