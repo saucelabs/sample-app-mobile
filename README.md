@@ -1,4 +1,15 @@
-# sample-app-ios
+# Sauce Labs Native Sample Application
+
+## Table of contents
+1. [sample-app-ios](#sample-app-ios)
+1. [sample-app-android](#sample-app-android)
+1. [Linting the code](#linting-the-code)
+1. [i18n internationalization](#i18n-internationalization)
+1. [AccessibilityID's](#accessibilityids)
+1. [Testautomation](#testautomation)
+1. [Building the app for the RDC](#building-the-app-for-the-rdc)
+
+## sample-app-ios
 This is the Sauce Labs Sample Application which is designed to be used from iOS devices
 
 - install XCode: https://developer.apple.com/xcode/
@@ -11,7 +22,7 @@ This is the Sauce Labs Sample Application which is designed to be used from iOS 
 
 - react-native run-ios
 
-# sample-app-android
+## sample-app-android
 
 Most of this comes from https://facebook.github.io/react-native/docs/getting-started.html
 
@@ -113,4 +124,17 @@ For example, with a button component the following code needs to be added
 
 Always try to use the text that is already available in the translation-JSON-file that can be found [here](src/js/config/translations/en.json). The `testProperties`-method will make it unique by adding a prefix to it.
 
-> More information about testing with accessibilitID's will be added later when tests are added with WebdriverIO and Appium 
+> More information about testing with accessibilitID's can be found [here](./docs/AUTOMATION.md#writing-tests) 
+
+## Testautomation
+More information about:
+
+- how to setup Appium
+- how to write tests
+- how to run tests on a local machine
+- how to run tests in the cloud
+
+can be found [here](./docs/AUTOMATION.md).
+
+## Building the app for the RDC
+More information about building the app can be found [here](./docs/BUILDING.md)

@@ -10,9 +10,9 @@ config.capabilities = [
   {
     // The defaults you need to have in your config
     automationName: 'UiAutomator2',
-    deviceName: 'Nexus_5_7.1.1',
+    deviceName: 'Pixel_8.1',
     platformName: 'Android',
-    platformVersion: '7.1.1',
+    platformVersion: '8.1',
     orientation: 'PORTRAIT',
     app: join(process.cwd(), './android/app/build/outputs/apk/debug/app-debug.apk'),
     // Read the reset strategies very well, they differ per platform, see
