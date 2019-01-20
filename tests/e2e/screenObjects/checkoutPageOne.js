@@ -5,8 +5,8 @@ import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 
 const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageOne.screen }`;
 
-class CheckoutPageOne extends Base{
-  constructor(){
+class CheckoutPageOne extends Base {
+  constructor() {
     super(SCREEN_SELECTOR);
   }
 
@@ -14,28 +14,28 @@ class CheckoutPageOne extends Base{
     return $(SCREEN_SELECTOR);
   }
 
-  get cancelButton(){
-    return $(`~test-${SELECTORS.checkoutPageOne.cancelButton}`);
+  get cancelButton() {
+    return $(`~test-${ SELECTORS.checkoutPageOne.cancelButton }`);
   }
 
-  get continueCheckoutButton(){
-    return $(`~test-${SELECTORS.checkoutPageOne.continueButton}`);
+  get continueCheckoutButton() {
+    return $(`~test-${ SELECTORS.checkoutPageOne.continueButton }`);
   }
 
-  get firstName(){
-    return $(`~test-${SELECTORS.checkoutPageOne.firstName}`);
+  get firstName() {
+    return $(`~test-${ SELECTORS.checkoutPageOne.firstName }`);
   }
 
-  get lastName(){
-    return $(`~test-${SELECTORS.checkoutPageOne.lastName}`);
+  get lastName() {
+    return $(`~test-${ SELECTORS.checkoutPageOne.lastName }`);
   }
 
-  get postalCode(){
-    return $(`~test-${SELECTORS.checkoutPageOne.postalCode}`);
+  get postalCode() {
+    return $(`~test-${ SELECTORS.checkoutPageOne.postalCode }`);
   }
 
-  get errorMessage(){
-    return $(`~test-${SELECTORS.checkoutPageOne.errors.container}`);
+  get errorMessage() {
+    return $(`~test-${ SELECTORS.checkoutPageOne.errors.container }`);
   }
 
   /**
@@ -47,12 +47,20 @@ class CheckoutPageOne extends Base{
    * @param {string} personalInfo.postalCode
    */
   submitPersonalInfo(personalInfo) {
-    const {firstName, lastName, zip} = personalInfo;
+    const { firstName, lastName, zip } = personalInfo;
 
     this.waitForIsDisplayed();
-    this.firstName.addValue(firstName);
-    this.lastName.addValue(lastName);
-    this.postalCode.addValue(zip);
+
+    if (firstName !== '') {
+      this.firstName.addValue(firstName);
+    }
+    if (lastName !== '') {
+      this.lastName.addValue(lastName);
+    }
+    if (zip !== '') {
+      this.postalCode.addValue(zip);
+    }
+
     // On smaller devices the keyboard is in front of the submit button, so hide it
     driver.hideKeyboard();
     this.continueCheckoutButton.click();
@@ -83,7 +91,7 @@ class CheckoutPageOne extends Base{
    *
    * @return {void}
    */
-  cancelCheckout(){
+  cancelCheckout() {
     // On smaller devices the keyboard is in front of the submit button, so hide it
     driver.hideKeyboard();
     return this.cancelButton.click();

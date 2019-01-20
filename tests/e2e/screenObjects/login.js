@@ -38,11 +38,17 @@ class LoginScreen extends Base {
    * @param {string} userDetails.password
    */
   signIn(userDetails) {
-    const {password, username} = userDetails;
+    const { password, username } = userDetails;
 
     this.waitForIsDisplayed();
-    this.username.addValue(username);
-    this.password.addValue(password);
+
+    if (username !== '') {
+      this.username.addValue(username);
+    }
+    if (username !== 'password') {
+      this.password.addValue(password);
+    }
+
     this.loginButton.click();
   }
 
