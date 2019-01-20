@@ -7,7 +7,7 @@ const { config } = require('./wdio.rdc.shared');
 // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
 config.capabilities = [
   {
-    deviceName: 'Google Pixel',
+    deviceName: 'Samsung Galaxy S9',
     automationName: 'UiAutomator2',
     // The reference to the app
     testobject_app_id: '1',
@@ -17,6 +17,7 @@ config.capabilities = [
     testobject_test_name: 'sample-app-mobile',
     // Some default settings
     // You can find more info in the TO Appium Basic Setup section
+    appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
     platformName: 'Android',
     idleTimeout: 180,
     maxInstances: 1,

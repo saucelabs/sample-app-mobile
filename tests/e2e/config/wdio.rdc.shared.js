@@ -6,9 +6,9 @@ const SauceLabs = require('../helpers/SauceLabs');
 // =========================
 config.protocol = 'https';
 // For using the EU RDC cloud, just remove the comments and comment the US url
-// config.hostname = 'eu1.appium.testobject.com';
+config.hostname = 'eu1.appium.testobject.com';
 // For using the US RDC cloud
-config.hostname = 'us1.appium.testobject.com';
+// config.hostname = 'us1.appium.testobject.com';
 config.port = 443;
 config.path = '/wd/hub';
 config.services = [];
@@ -21,6 +21,8 @@ config.maxInstances = 10;
 // ==============================================
 // Update the testjob in the cloud after finished
 // ==============================================
-config.after = (result) => new SauceLabs().updateJobStatus(driver.session().sessionId, result === 0);
+config.after = (result) => {
+  new SauceLabs().updateJobStatus(driver.sessionId, result === 0);
+}
 
 exports.config = config;
