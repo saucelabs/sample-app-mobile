@@ -4,7 +4,11 @@
 1. [Intro](#intro)
 1. [Setup Appium on a local machine](#setup-appium-on-a-local-machine)
 1. [Writing tests](#writing tests)
-1. [Running tests](#running-tests)
+1. [Running tests on a local machine](#running-tests-on-a-local-machine)
+1. [Running tests on the Sauce Labs Real Device Cloud](#running-tests-on-the-sauce-labs-real-device-cloud)
+    1. [The setup](#the-setup)
+    1. [Running Android](#running-android)
+    1. [Running iOS](#running-ios)
 1. [FAQ](#faq)
 
 # Intro
@@ -44,10 +48,10 @@ This method will hold all the logic to add accessibilityLabels on each needed co
 We try to use the text labels from the `en.json` as much as possible so we can easily link a change in the translation to a change in the selector without breaking the automation. 
 
 
-## Running tests
-> Because local automation will be ran against a build connected with a packager adjusting code during test execution is not wise. It will reflect immediately in the app which may cause breaking the tests.
+## Running tests on a local machine
+> Because local automation will be ran against a build connected with the packager/metro builder, adjusting code during test execution is not wise. It will reflect immediately in the app which may cause breaking the tests.
 
-> Android and iOS tests can't be run in parallel on a local machine
+> Android and iOS tests can't be run in parallel on a local machine with this setup, you need to create a local grid to be able to do that.
 
 To run a complete testset use the following commands
 
@@ -149,6 +153,38 @@ When all tests have been executed the following will be  shown in the console
 Test Suites:     8 passed, 8 total (100% completed)
 Time:            🕙  460.00s
 ```
+
+## Running tests on the Sauce Labs Real Device Cloud
+This project setup also has a setup for running the tests on the Real Device Cloud of Sauce LAbs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that.
+
+### The setup
+This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](tests/e2e/config/wdio.shared.conf.js) where all the basics (like the testframework and so on) are defined. On top of that a [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js) is created that holds the RDC specific configuration for both iOS and Android.
+
+Depending on where the tests need to be run (US/EU-cloud), the correct url of the cloud need to be selected. Change this piece of code in the [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js)-file to select or the US or the EU cloud.
+
+```js
+// For using the EU RDC cloud, just remove the comments and comment the US url
+config.hostname = 'eu1.appium.testobject.com';
+// For using the US RDC cloud
+// config.hostname = 'us1.appium.testobject.com';
+```
+
+### Running Android
+To be able to run the Android tests on the Sauce Labs cloud please check the [`wdio.android.rdc.conf.js`](tests/e2e/config/wdio.android.rdc.conf.js)-file. There the configuration for 1 Android device can be found.
+
+Change the `deviceName` to get the right device you want to use and or add the `platformVersion` to get a specific Android version. More information about setting up the correct device can be found on [Appium Testing on Real Devices](https://wiki.saucelabs.com/display/DOCS/Appium+Testing+on+Real+Devices) or on the Sauce Labs cloud under `/appium/basic/instructions`
+
+> **NOTE:** Make sure the `testobject_api_key` of the correct Android project, that has been created in the Sauce Labs Real Device Cloud, has been added to the environment variables and is called `SAUCE_RDC_EU_ACCESS_KEY_ANDROID`.    
+
+Running the test on the Sauce Labs Real Device Cloud can be done by running the following command:
+
+```shell
+$ npm run android.rdc
+```
+
+### Running iOS
+
+> **NOTE:** iOS tests for this app can't be run on the SL cloud because we can't create a correct build of the iOS app to run on real device, see [Building iOS](./BUILDING.md#building-ios) for more information.
 
 ## FAQ
 ### `An unknown server-side error occurred while processing the command` while sending text to an iOS simulator

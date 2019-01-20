@@ -7,7 +7,8 @@
 1. [i18n internationalization](#i18n-internationalization)
 1. [AccessibilityID's](#accessibilityids)
 1. [Testautomation](#testautomation)
-1. [Building the app for the RDC](#building-the-app-for-the-rdc)
+1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)
+
 
 ## sample-app-ios
 This is the Sauce Labs Sample Application which is designed to be used from iOS devices
@@ -136,5 +137,5 @@ More information about:
 
 can be found [here](./docs/AUTOMATION.md).
 
-## Building the app for the RDC
+## Building the app for the Sauce Labs Real Device Cloud (RDC)
 More information about building the app can be found [here](./docs/BUILDING.md)
