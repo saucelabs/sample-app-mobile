@@ -12,7 +12,7 @@ export default class Base {
    *
    * @return {boolean}
    */
-  waitForIsShown(element = $(this.selector)) {
+  waitForIsShown(element = null) {
     return driver.waitUntil(
       () => this.isShown(element),
       DEFAULT_TIMEOUT,
@@ -27,7 +27,7 @@ export default class Base {
    *
    * @return {boolean}
    */
-  waitForIsNotShown(element = $(this.selector)) {
+  waitForIsNotShown(element = null) {
     return driver.waitUntil(
       () => !this.isShown(element),
       DEFAULT_TIMEOUT,
@@ -42,14 +42,16 @@ export default class Base {
    *
    * @return {boolean}
    */
-  isShown(element = $(this.selector)) {
+  isShown(element) {
     // For android an element that is not visible is also not in the UI tree,
     // so a different approach should be used
     try {
-      return element.isDisplayed();
+      const el = element || $(this.selector);
+
+      return  el.isDisplayed();
     } catch (error) {
       if (driver.isAndroid) {
-        return element.isExisting();
+        return false;
       }
 
       throw new Error(error);
