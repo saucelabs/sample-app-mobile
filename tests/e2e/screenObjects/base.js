@@ -6,40 +6,50 @@ export default class Base {
   }
 
   /**
-   * Wait for the element to be displayed
+   * Wait for the element to be shown
+   *
+   * @param {Element} element
    *
    * @return {boolean}
    */
-  waitForIsDisplayed() {
-    return $(this.selector).waitForDisplayed(DEFAULT_TIMEOUT);
+  waitForIsShown(element = $(this.selector)) {
+    return driver.waitUntil(
+      () => this.isShown(element),
+      DEFAULT_TIMEOUT,
+      `The element was not shown within the default timeout of ${DEFAULT_TIMEOUT}`,
+    );
   }
 
   /**
    * Wait for the element NOT to be displayed
    *
+   * @param {Element} element
+   *
    * @return {boolean}
    */
-  waitForIsNotDisplayed() {
-    if (driver.isIOS) {
-      return $(this.selector).waitForDisplayed(DEFAULT_TIMEOUT, true);
-    }
-
-    return driver.waitUntil(() => !$(this.selector).isExisting(), DEFAULT_TIMEOUT);
+  waitForIsNotShown(element = $(this.selector)) {
+    return driver.waitUntil(
+      () => !this.isShown(element),
+      DEFAULT_TIMEOUT,
+      `The element was still shown within the default timeout of ${DEFAULT_TIMEOUT}`,
+    );
   }
 
   /**
    * Give back if the element is displayed
    *
+   * @param {Element} element
+   *
    * @return {boolean}
    */
-  isDisplayed() {
+  isShown(element = $(this.selector)) {
     // For android an element that is not visible is also not in the UI tree,
     // so a different approach should be used
     try {
-      return $(this.selector).isDisplayed();
+      return element.isDisplayed();
     } catch (error) {
       if (driver.isAndroid) {
-        return $(this.selector).isExisting();
+        return element.isExisting();
       }
 
       throw new Error(error);

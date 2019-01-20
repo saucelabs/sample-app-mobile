@@ -11,8 +11,9 @@ describe('Inventory List Page', () => {
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
+    LoginScreen.waitForIsShown();
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
-    InventoryListScreen.waitForIsDisplayed();
+    InventoryListScreen.waitForIsShown();
   });
 
   it('should contain swag', () => {
@@ -21,9 +22,8 @@ describe('Inventory List Page', () => {
 
   it('should be able to select a swag item and open the details page', () => {
     InventoryListScreen.openSwagItemDetails('Bike Light');
-    InventoryItemScreen.waitForIsDisplayed();
 
-    expect(InventoryItemScreen.isDisplayed()).toEqual(true, 'The inventory item screen is not shown');
+    expect(InventoryItemScreen.waitForIsShown()).toEqual(true, 'The inventory item screen is not shown');
   });
 
   it('should be able to sort the items', () => {
@@ -40,7 +40,7 @@ describe('Inventory List Page', () => {
     ModalSelect.openSortingModal();
     ModalSelect.cancel.click();
 
-    expect(ModalSelect.isDisplayed()).toEqual(false, 'Sorting modal is still visible');
+    expect(ModalSelect.waitForIsNotShown()).toEqual(true, 'Sorting modal is still visible');
   });
 
   it('should be able to add swag to the cart', ()=>{

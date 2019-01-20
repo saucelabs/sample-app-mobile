@@ -23,6 +23,6 @@ config.maxInstances = 10;
 // ==============================================
 config.after = (result) => {
   new SauceLabs().updateJobStatus(driver.sessionId, result === 0);
-}
+};
 
 exports.config = config;

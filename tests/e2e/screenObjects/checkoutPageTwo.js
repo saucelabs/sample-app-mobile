@@ -14,11 +14,11 @@ class CheckoutPageTwo extends Base{
   }
 
   description(needle){
-    return this.item(needle).$(`~test-${SELECTORS.checkoutPageTwo.item.description}`);
+    return this.swagItem(needle).$(`~test-${SELECTORS.checkoutPageTwo.item.description}`);
   }
 
   price(needle){
-    return this.item(needle).$(`~test-${SELECTORS.checkoutPageTwo.item.price}`);
+    return this.swagItem(needle).$(`~test-${SELECTORS.checkoutPageTwo.item.price}`);
   }
 
   get cancelButton(){
@@ -40,7 +40,7 @@ class CheckoutPageTwo extends Base{
    *
    * @return the selected cart item
    */
-  item(needle) {
+  swagItem(needle) {
     if (typeof needle === 'string') {
       return this.items.find(cartItem => getTextOfElement(cartItem).includes(needle));
     }

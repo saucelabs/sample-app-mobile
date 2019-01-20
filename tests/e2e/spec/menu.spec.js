@@ -10,8 +10,9 @@ describe('Menu', () => {
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
+    LoginScreen.waitForIsShown();
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
-    InventoryListScreen.waitForIsDisplayed();
+    InventoryListScreen.waitForIsShown();
   });
 
   it('should be able to be opened and closed', () => {
@@ -28,11 +29,11 @@ describe('Menu', () => {
 
   it('should be able to bring me to the all items page', () => {
     InventoryListScreen.openSwagItemDetails(0);
-    InventoryItemScreen.waitForIsDisplayed();
+    InventoryItemScreen.waitForIsShown();
     Menu.open();
     Menu.openAllItems();
 
-    expect(InventoryListScreen.isDisplayed()).toEqual(true, 'All items page is not shown');
+    expect(InventoryListScreen.isShown()).toEqual(true, 'All items page is not shown');
   });
 
   it('should be able reset the app state', () => {
@@ -49,9 +50,9 @@ describe('Menu', () => {
   it('should be able to logout', () => {
     Menu.open();
     Menu.clickOnLogout();
-    InventoryListScreen.waitForIsNotDisplayed();
+    InventoryListScreen.waitForIsNotShown();
 
-    expect(LoginScreen.isDisplayed()).toEqual(true, 'The login screen is not shown.');
+    expect(LoginScreen.isShown()).toEqual(true, 'The login screen is not shown.');
   });
 
   it('should be able to open the about page and go to a browser', () => {

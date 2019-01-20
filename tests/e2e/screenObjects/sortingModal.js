@@ -62,7 +62,7 @@ class SortingModal extends Base{
    */
   openSortingModal() {
     this.sortingButton.click();
-    return this.waitForIsDisplayed();
+    return this.waitForIsShown();
   }
 }
 

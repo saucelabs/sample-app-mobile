@@ -32,7 +32,7 @@ class CartContent extends Base{
    *
    * @return the selected cart item
    */
-  item(needle) {
+  swagItem(needle) {
     if (typeof needle === 'string') {
       return this.items.find(cartItem => getTextOfElement(cartItem).includes(needle));
     }
@@ -47,8 +47,8 @@ class CartContent extends Base{
    *
    * @return {string}
    */
-  getItemText(needle){
-    return getTextOfElement(this.item(needle));
+  getSwagItemText(needle){
+    return getTextOfElement(this.swagItem(needle));
   }
 
   /**
@@ -58,8 +58,8 @@ class CartContent extends Base{
    *
    * @return {void}
    */
-  removeItem(needle){
-    return this.item(needle).$(`~test-${SELECTORS.cartContent.cartItem.remove}`).click();
+  removeSwagItem(needle){
+    return this.swagItem(needle).$(`~test-${SELECTORS.cartContent.cartItem.remove}`).click();
   }
 
   /**

@@ -9,24 +9,23 @@ describe('Inventory Item Page', () => {
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
+    LoginScreen.waitForIsShown();
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
-    InventoryListScreen.waitForIsDisplayed();
+    InventoryListScreen.waitForIsShown();
   });
 
   it('should show the details of the selected swag', () => {
     const selectedSwagItemText = InventoryListScreen.getSwagItemText(1);
 
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForIsDisplayed();
+    InventoryItemScreen.waitForIsShown();
 
-    const swagItemDetailsText = InventoryItemScreen.getSwagItemText();
-
-    expect(selectedSwagItemText).toContain(swagItemDetailsText, 'The details of the selected swag item was not correct');
+    expect(selectedSwagItemText).toContain(InventoryItemScreen.getSwagItemText(), 'The details of the selected swag item was not correct');
   });
 
   it('should be able to add a swag item to the cart from the details page', () => {
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForIsDisplayed();
+    InventoryItemScreen.waitForIsShown();
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');
 
@@ -38,7 +37,7 @@ describe('Inventory Item Page', () => {
   it('should be able to remove a swag item from the cart from the details page added in the inventory page', () => {
     InventoryListScreen.addSwagItemToCart(1);
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForIsDisplayed();
+    InventoryItemScreen.waitForIsShown();
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
@@ -49,7 +48,7 @@ describe('Inventory Item Page', () => {
 
   it('should be able to remove a swag item from the cart from the details page', () => {
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForIsDisplayed();
+    InventoryItemScreen.waitForIsShown();
 
     InventoryItemScreen.addSwagItemToCart();
 
@@ -62,11 +61,11 @@ describe('Inventory Item Page', () => {
 
   it('should be able to get back from the swag details page through the back button', () => {
     InventoryListScreen.openSwagItemDetails(1);
-    InventoryItemScreen.waitForIsDisplayed();
+    InventoryItemScreen.waitForIsShown();
 
-    InventoryItemScreen.goBackToAllItems();
-    InventoryListScreen.waitForIsDisplayed();
+    InventoryItemScreen.goBackToAllSwagItems();
+    InventoryListScreen.waitForIsShown();
 
-    expect(InventoryItemScreen.swagItemDetailsNotDisplayed()).toEqual(false, 'The swag items details page should not be visible');
+    expect(InventoryItemScreen.isShown()).toEqual(false, 'The swag items details page should not be visible');
   });
 });

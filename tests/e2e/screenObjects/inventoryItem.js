@@ -38,7 +38,7 @@ class InventoryItemScreen extends Base{
    *
    * @return {string}
    */
-  getDescription(){
+  getSwagDescription(){
     return getTextOfElement(this.description);
   }
 
@@ -47,7 +47,7 @@ class InventoryItemScreen extends Base{
    *
    * @return {string}
    */
-  getPrice(){
+  getSwagPrice(){
     return getTextOfElement(this.price);
   }
 
@@ -57,7 +57,7 @@ class InventoryItemScreen extends Base{
    * @return {string}
    */
   getSwagItemText(){
-    return `${this.getDescription()} ${this.getPrice()}`;
+    return `${this.getSwagDescription()} ${this.getSwagPrice()}`;
   }
 
   /**
@@ -89,22 +89,8 @@ class InventoryItemScreen extends Base{
    *
    * @return {void}
    */
-  goBackToAllItems(){
+  goBackToAllSwagItems(){
     return this.goBackButton.click();
-  }
-
-  /**
-   * The swag items page is not displayed.
-   * iOS still has it in it's UI tree, Android doesnt have it anymore
-   *
-   * @return {boolean}
-   */
-  swagItemDetailsNotDisplayed() {
-    if (driver.isIOS) {
-      return this.screen.isDisplayed();
-    }
-
-    return this.screen.isExisting();
   }
 }
 

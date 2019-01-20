@@ -40,12 +40,10 @@ class LoginScreen extends Base {
   signIn(userDetails) {
     const { password, username } = userDetails;
 
-    this.waitForIsDisplayed();
-
     if (username !== '') {
       this.username.addValue(username);
     }
-    if (username !== 'password') {
+    if (password !== '') {
       this.password.addValue(password);
     }
 
@@ -68,8 +66,8 @@ class LoginScreen extends Base {
    *
    * @return {boolean}
    */
-  isErrorMessageDisplayed() {
-    return this.errorMessage.isDisplayed();
+  isErrorMessageIsShown() {
+    return this.isShown(this.errorMessage);
   }
 }
 

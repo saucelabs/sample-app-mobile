@@ -49,7 +49,7 @@ class CheckoutPageOne extends Base {
   submitPersonalInfo(personalInfo) {
     const { firstName, lastName, zip } = personalInfo;
 
-    this.waitForIsDisplayed();
+    this.waitForIsShown();
 
     if (firstName !== '') {
       this.firstName.addValue(firstName);
@@ -72,18 +72,18 @@ class CheckoutPageOne extends Base {
    * @return {string}
    */
   getErrorMessage() {
-    this.errorMessage.waitForDisplayed(DEFAULT_TIMEOUT);
+    this.waitForIsShown(this.errorMessage);
 
     return getTextOfElement(this.errorMessage);
   }
 
   /**
-   * Check if the error message is displayed
+   * Check if the error message is shown
    *
    * @return {boolean}
    */
-  isErrorMessageDisplayed() {
-    return this.errorMessage.isDisplayed();
+  isErrorMessageShown() {
+    return this.isShown(this.errorMessage);
   }
 
   /**

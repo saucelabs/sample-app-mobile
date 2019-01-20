@@ -10,16 +10,17 @@ describe('Cart Content Page', () => {
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
+    LoginScreen.waitForIsShown();
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
 
     // Add some items to the cart
-    InventoryListScreen.waitForIsDisplayed();
+    InventoryListScreen.waitForIsShown();
     InventoryListScreen.addSwagItemToCart(0);
     InventoryListScreen.addSwagItemToCart(1);
 
     // Open the cart
     AppHeader.openCart();
-    CartContent.waitForIsDisplayed();
+    CartContent.waitForIsShown();
   });
 
   it('should show 2 items in the cart', () => {
@@ -28,28 +29,28 @@ describe('Cart Content Page', () => {
 
   it('should show the items page if continue shopping is selected', () => {
     CartContent.continueShopping();
-    InventoryListScreen.waitForIsDisplayed();
+    InventoryListScreen.waitForIsShown();
 
-    expect(CartContent.isDisplayed()).toEqual(false, 'The car content page is still visible');
+    expect(CartContent.isShown()).toEqual(false, 'The car content page is still visible');
   });
 
   it('should update the cart if an item is removed', () => {
     expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
 
-    CartContent.removeItem(1);
+    CartContent.removeSwagItem(1);
 
     expect(AppHeader.getCartAmount()).toContain(1, 'The amount if items in the cart is not correct.');
 
-    CartContent.removeItem(0);
+    CartContent.removeSwagItem(0);
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'The amount if items in the cart is not correct.');
   });
 
   it('should open the checkout page one page if checkout is clicked', () => {
     CartContent.goToCheckout();
-    CheckoutPageOne.waitForIsDisplayed();
+    CheckoutPageOne.waitForIsShown();
 
-    expect(CartContent.isDisplayed()).toEqual(false, 'The cart content page is still visible');
-    expect(CheckoutPageOne.isDisplayed()).toEqual(true, 'The checkout page one is not visible');
+    expect(CartContent.isShown()).toEqual(false, 'The cart content page is still visible');
+    expect(CheckoutPageOne.isShown()).toEqual(true, 'The checkout page one is not visible');
   });
 });

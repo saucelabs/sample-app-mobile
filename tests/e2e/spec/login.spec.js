@@ -6,21 +6,21 @@ import * as SELECTORS from '../../../src/js/config/translations/en.json';
 
 describe('Login', () => {
   beforeEach(() => {
-    // Restart the app before each session, only not for the first session
     restartApp();
+    LoginScreen.waitForIsShown();
   });
 
   it('should be able to login with a standard user', () => {
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
-    InventoryListScreen.waitForIsDisplayed();
+    InventoryListScreen.waitForIsShown();
 
-    expect(InventoryListScreen.isDisplayed()).toEqual(true, 'Inventory List screen was not shown');
+    expect(InventoryListScreen.isShown()).toEqual(true, 'Inventory List screen was not shown');
   });
 
   it('should not be able to login with a locked user', () => {
     LoginScreen.signIn(LOGIN_USERS.LOCKED);
 
-    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
+    expect(LoginScreen.isErrorMessageIsShown()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain(
       `${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.lockedOut}`,
       'The error message is not as expected',
@@ -30,21 +30,21 @@ describe('Login', () => {
   it('should show an error when no username is provided', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_USER_DETAILS);
 
-    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
+    expect(LoginScreen.isErrorMessageIsShown()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain(`${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.username}`);
   });
 
   it('should show an error when no password is provided', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_PASSWORD);
 
-    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
+    expect(LoginScreen.isErrorMessageIsShown()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain(`${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.password}`);
   });
 
   it('should show an error when no match is found', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_MATCH);
 
-    expect(LoginScreen.isErrorMessageDisplayed()).toEqual(true, 'Error message is shown');
+    expect(LoginScreen.isErrorMessageIsShown()).toEqual(true, 'Error message is shown');
     expect(LoginScreen.getErrorMessage()).toContain(`${SELECTORS.login.errors.epicSadFace}${SELECTORS.login.errors.noMatch}`);
   });
 
