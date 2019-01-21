@@ -202,14 +202,16 @@ export default class InventoryListPage extends Component {
           <Image source={require('../../img/peek.png')} style={styles.peek_img} />
           <View style={styles.secondary_header}>
             <Text style={styles.header_title}>Products</Text>
-            <ModalSelector data={sortOptions} initValue={i18n.t('modalSelector.azLabel')}
-                           style={styles.item_sort} selectTextStyle={styles.sort_text}
-                           onChange={(sortOption) => this.changeSort(sortOption.key)}
-                           cancelText={i18n.t('modalSelector.cancel')}
-                           listItemAccessible
-                           cancelButtonAccessible
-                           openButtonContainerAccessible
-                           scrollViewAccessibilityLabel={i18n.t('modalSelector.container')}/>
+            <View {...testProperties(i18n.t('modalSelector.button'))}>
+              <ModalSelector data={sortOptions} initValue={i18n.t('modalSelector.azLabel')}
+                             style={styles.item_sort} selectTextStyle={styles.sort_text}
+                             onChange={(sortOption) => this.changeSort(sortOption.key)}
+                             cancelText={i18n.t('modalSelector.cancel')}
+                             listItemAccessible
+                             cancelButtonAccessible
+                             openButtonContainerAccessible
+                             scrollViewAccessibilityLabel={i18n.t('modalSelector.container')}/>
+            </View>
           </View>
           <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" {...testProperties(i18n.t('inventoryListPage.screen'))}>
             {this.state.inventoryList.map((item, i) => {

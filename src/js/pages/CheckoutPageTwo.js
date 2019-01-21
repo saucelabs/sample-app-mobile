@@ -45,17 +45,17 @@ class SummaryItem extends Component {
     if (this.state.itemVisible) {
 
       return (
-        <View style={styles.item_container} { ...testProperties(i18n.t('checkoutPageTwo.cartItem.itemContainer'))}>
-          <View style={styles.item_quantity_box} { ...testProperties(i18n.t('checkoutPageTwo.cartItem.amount'))}>
+        <View style={styles.item_container} { ...testProperties(i18n.t('checkoutPageTwo.item.container'))}>
+          <View style={styles.item_quantity_box} { ...testProperties(i18n.t('checkoutPageTwo.item.amount'))}>
             <Text style={styles.item_quantity}>1</Text>
           </View>
-          <View style={styles.item_infobox} { ...testProperties(i18n.t('checkoutPageTwo.cartItem.description'))}>
-            <View style={styles.item_details}>
+          <View style={styles.item_infobox}>
+            <View style={styles.item_details} { ...testProperties(i18n.t('checkoutPageTwo.item.description'))}>
               <Text style={styles.item_name}>{this.item.name}</Text>
               <Text style={styles.item_desc}>{this.item.desc}</Text>
             </View>
             <View style={styles.item_price_bar}>
-              <Text style={styles.price_text}>${this.item.price}</Text>
+              <Text style={styles.price_text} {...testProperties(i18n.t('checkoutPageTwo.item.price'))}>${this.item.price}</Text>
             </View>
           </View>
         </View>

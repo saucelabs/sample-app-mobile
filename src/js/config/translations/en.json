@@ -1,17 +1,19 @@
 {
   "login": {
     "header": "Swag Labs",
-    "epicSadFace": "Epic sadface: ",
     "loginButton": "LOGIN",
     "password": "Password",
-    "passwordError": "Password is required",
-    "lockedOutError": "Sorry, this user has been locked out.",
-    "noMatchError": "Username and password do not match any user in this service.",
     "screen": "Login",
     "username": "Username",
-    "usernameError": "Username is required",
-    "errorMessage": "Error message",
-    "loginText": "The currently accepted usernames for this application are:\n\n- standard_user\n- locked_out_user\n- problem_user\n\nAnd the password for all users is:\n\nsecret_sauce"
+    "loginText": "The currently accepted usernames for this application are:\n\n- standard_user\n- locked_out_user\n- problem_user\n\nAnd the password for all users is:\n\nsecret_sauce",
+    "errors": {
+      "container": "Error message",
+      "epicSadFace": "Epic sadface: ",
+      "password": "Password is required",
+      "lockedOut": "Sorry, this user has been locked out.",
+      "noMatch": "Username and password do not match any user in this service.",
+      "username": "Username is required"
+    }
   },
   "username": "Username",
   "cartContent": {
@@ -30,6 +32,7 @@
   },
   "checkoutPageOne": {
     "errors": {
+      "container": "Error message",
       "epicSadFace": "Epic sadface: ",
       "firstName": "First Name is required",
       "lastName": "Last Name is required",
@@ -48,11 +51,11 @@
     "screen": "Checkout: Overview",
     "description": "DESCRIPTION",
     "quantity": "QTY",
-    "cartItem": {
-      "itemContainer": "Item",
+    "item": {
+      "container": "Item",
       "description": "Description",
       "amount": "Amount",
-      "remove": "REMOVE"
+      "price": "Price"
     },
     "summary": {
       "paymentLabel": "Payment Information:",
@@ -97,6 +100,7 @@
     "price": "Price"
   },
   "modalSelector": {
+    "button": "Modal Selector Button",
     "cancel": "Cancel",
     "container": "Selector container",
     "sectionLabel": "Sort items by...",

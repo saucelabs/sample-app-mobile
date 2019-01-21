@@ -53,11 +53,11 @@ export default class LoginPage extends Component {
     this.setState({ error: '' });
 
     if (!this.state.username) {
-      return this.setState({ error: i18n.t('login.usernameError') });
+      return this.setState({ error: i18n.t('login.errors.username') });
     }
 
     if (!this.state.password) {
-      return this.setState({ error: i18n.t('login.passwordError') });
+      return this.setState({ error: i18n.t('login.errors.password') });
     }
 
     if (Credentials.verifyCredentials(this.state.username, this.state.password)) {
@@ -65,14 +65,14 @@ export default class LoginPage extends Component {
       const isLockedOutUser = Credentials.isLockedOutUser();
 
       if (isLockedOutUser) {
-        return this.setState({ error: i18n.t('login.lockedOutError') });
+        return this.setState({ error: i18n.t('login.errors.lockedOut') });
       }
 
       // If we're here, we have a username and password. Redirect after we wipe out any previous shopping cart contents
       ShoppingCart.resetCart();
       this.props.navigation.navigate('InventoryList');
     } else {
-      return this.setState({ error: i18n.t('login.noMatchError') });
+      return this.setState({ error: i18n.t('login.errors.noMatch') });
     }
   }
 
@@ -81,9 +81,9 @@ export default class LoginPage extends Component {
     var errorMessage = (<View />);
 
     if (this.state.error !== '') {
-      errorMessage = (<View {...testProperties(i18n.t('login.errorMessage'))}>
+      errorMessage = (<View {...testProperties(i18n.t('login.errors.container'))}>
         <Icon onPress={this.dismissError} name="times-circle" size={24} color="red" />
-        <Text style={styles.error_message}>{i18n.t('login.epicSadFace')}{this.state.error}</Text>
+        <Text style={styles.error_message}>{i18n.t('login.errors.epicSadFace')}{this.state.error}</Text>
       </View>);
     }
 
