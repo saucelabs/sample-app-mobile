@@ -7,7 +7,8 @@ import { ShoppingCart } from '../shopping-cart.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import { IS_IOS, IS_IPHONEX, MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
-import { parseText } from '../utils/parseText';
+import { ParseText } from '../utils/parseText';
+import { colors } from '../utils/colors';
 
 export default class LoginPage extends Component {
 
@@ -28,8 +29,7 @@ export default class LoginPage extends Component {
 
   async componentWillMount() {
     // This is the first page loaded, so init our storage here
-    const data = await SyncStorage.init();
-    console.log('AsyncStorage is ready!', data);
+    await SyncStorage.init();
   }
 
   dismissError() {
@@ -76,17 +76,27 @@ export default class LoginPage extends Component {
     }
   }
 
+  parseNormalBoldText(string) {
+    return (ParseText(string).map(text => (
+      <Text style={ [ text.bold ? styles.textBold : {} ] }>
+        { text.value }
+      </Text>
+    )));
+  }
+
   render() {
 
-    var errorMessage = (<View/>);
+    let errorMessage = (<View/>);
 
     if (this.state.error !== '') {
-      errorMessage = (<View
-        style={ styles.errorMessageContainer }
-        { ...testProperties(i18n.t('login.errors.container')) }
-      >
-        <Text style={ styles.error_message }>{ this.state.error }</Text>
-      </View>);
+      errorMessage = (
+        <View
+          style={ styles.errorMessageContainer }
+          { ...testProperties(i18n.t('login.errors.container')) }
+        >
+          <Text style={ styles.error_message }>{ this.state.error }</Text>
+        </View>
+      );
     }
 
     return (
@@ -140,23 +150,11 @@ export default class LoginPage extends Component {
           </View>
           <View style={ styles.loginInfoContainer }>
             <Text style={ styles.login_info }>
-              { parseText(i18n.t('login.loginText.usernames')).map(text => (
-                <Text
-                  style={ [ text.type === 'strong' ? styles.textBold : styles.text ] }
-                >
-                  { text.value }
-                </Text>
-              )) }
+              { this.parseNormalBoldText(i18n.t('login.loginText.usernames')) }
             </Text>
             <Divider style={ styles.divider }/>
             <Text style={ styles.login_info }>
-              { parseText(i18n.t('login.loginText.password')).map(text => (
-                <Text
-                  style={ [ text.type === 'strong' ? styles.textBold : styles.text ] }
-                >
-                  { text.value }
-                </Text>
-              )) }
+              { this.parseNormalBoldText(i18n.t('login.loginText.password')) }
             </Text>
           </View>
         </View>
@@ -167,7 +165,7 @@ export default class LoginPage extends Component {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     paddingTop: IS_IOS ? (IS_IPHONEX ? 44 : 20) : (StatusBar.currentHeight || 0),
   },
   wrapper: {
@@ -189,7 +187,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   inputContainerStyle: {
-    borderColor: '#EDEDEF',
+    borderColor: colors.lightGray,
     borderBottomWidth: 2,
   },
   buttonContainerStyle: {
@@ -197,15 +195,15 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buttonStyle: {
-    backgroundColor: '#fff',
-    borderColor: '#E2231A',
+    backgroundColor: colors.white,
+    borderColor: colors.slRed,
     borderWidth: 2,
     borderRadius: 0,
     paddingBottom: 5,
     paddingTop: 5,
   },
   buttonTitleStyle: {
-    color: '#E2231A',
+    color: colors.slRed,
     fontSize: 18,
     fontFamily: MUSEO_SANS_NORMAL,
   },
@@ -214,7 +212,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   error_message: {
-    color: '#E2231A',
+    color: colors.slRed,
     fontSize: 18,
     fontFamily: MUSEO_SANS_NORMAL,
     textAlign: 'center',
@@ -225,27 +223,24 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   loginInfoContainer: {
-    backgroundColor: 'rgba(237,237,239,0.6)',
+    backgroundColor: colors.superLightGray,
     paddingBottom: IS_IPHONEX ? 44 : 20,
     paddingLeft: 40,
     paddingRight: 40,
     paddingTop: 20,
   },
   login_info: {
+    color: colors.gray,
     fontSize: 18,
     fontFamily: MUSEO_SANS_NORMAL,
   },
   divider: {
-    borderColor: '#EDEDEF',
+    borderColor: colors.lightGray,
     borderBottomWidth: 2,
     marginBottom: 20,
     marginTop: 20,
   },
-  text: {
-    color: '#474C55',
-  },
   textBold: {
-    color: '#474C55',
     fontFamily: MUSEO_SANS_BOLD,
   },
 });

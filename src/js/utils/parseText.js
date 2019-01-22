@@ -1,10 +1,15 @@
 const SPLIT_REGEX = /(__.*?__|\r)/g;
 const STRONG_REGEX = /(__)(.*?)\1/g;
 
-const NORMAL = 'normal';
-const STRONG = 'strong';
 
-const parseText = (text) => {
+/**
+ * Parse a string that holds `Hi, how are __you__` to make `__you__` bold
+ *
+ * @param {string} text
+ *
+ * @return {{bold: boolean, value: string}[]}
+ */
+export const ParseText = (text) => {
   const strongRegExp = new RegExp(STRONG_REGEX);
 
   return text
@@ -12,12 +17,6 @@ const parseText = (text) => {
     .filter(value => value.length)
     .map((value) => ({
       value: value.replace(STRONG_REGEX, '$2'),
-      type: strongRegExp.test(value) ? STRONG : NORMAL,
+      bold: strongRegExp.test(value),
     }));
-};
-
-export {
-  NORMAL,
-  STRONG,
-  parseText,
 };
