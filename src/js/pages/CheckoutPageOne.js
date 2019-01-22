@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
-import AppHeader from '../AppHeader.js';
+import AppHeader from '../components/AppHeader.js';
 import { IS_IOS } from '../config/Constants';
 import i18n from '../config/i18n';
 import {testProperties} from '../config/TestProperties';

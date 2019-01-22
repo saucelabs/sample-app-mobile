@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider} from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
-import AppHeader from '../AppHeader.js';
+import AppHeader from '../components/AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 import i18n from '../config/i18n';
 import {testProperties} from '../config/TestProperties';
