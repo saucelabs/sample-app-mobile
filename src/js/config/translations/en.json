@@ -127,5 +127,9 @@
     "label": "Swag Labs",
     "url": "https://saucelabs.com/",
     "404Url": "https://saucelabs.com/error/404"
+  },
+  "footer": {
+    "rights": "© 2018 Sauce Labs. All Rights Reserved.",
+    "termsAndPrivacy": "Terms of Service | Privacy Policy"
   }
 }

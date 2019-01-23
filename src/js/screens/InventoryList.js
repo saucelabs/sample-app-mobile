@@ -8,6 +8,7 @@ import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import InventoryListItem from '../components/InventoryListItem';
 import { colors } from '../utils/colors';
+import Footer from '../components/Footer';
 
 export default class InventoryList extends Component {
 
@@ -146,6 +147,7 @@ export default class InventoryList extends Component {
                   navigation={ this.props.navigation }
                 />);
             }) }
+            <Footer/>
           </ScrollView>
         </AppHeader>
       </ThemeProvider>
