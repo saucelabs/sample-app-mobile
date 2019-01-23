@@ -12,4 +12,4 @@ export const IS_IPHONEX = IS_IOS &&
   !Platform.isTVOS &&
   ((WINDOW_WIDTH === 812 || WINDOW_HEIGHT === 812) || (WINDOW_WIDTH === 896 || WINDOW_HEIGHT === 896));
 export const MUSEO_SANS_NORMAL = IS_IOS ? 'MuseoSans-500' : 'MuseoSans_500';
-export const MUSEO_SANS_BOLD = IS_IOS ? 'MuseoSans-900' : 'MuseoSans_900';
+export const MUSEO_SANS_BOLD = IS_IOS ? 'MuseoSans-700' : 'MuseoSans_700';

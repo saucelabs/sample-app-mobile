@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
 import { InventoryData } from '../data/inventory-data.js';
 import AppHeader from '../components/AppHeader.js';
-import { IS_IOS } from '../config/Constants';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import InventoryListItem from '../components/InventoryListItem';
+import { colors } from '../utils/colors';
 
-export default class InventoryListPage extends Component {
+export default class InventoryList extends Component {
 
   constructor(props) {
     super(props);
@@ -97,27 +97,38 @@ export default class InventoryListPage extends Component {
       { key: 'lohi', label: i18n.t('modalSelector.loHiLabel') },
       { key: 'hilo', label: i18n.t('modalSelector.hiLoLabel') },
     ];
+    const modalSelector = (
+      <View
+        { ...testProperties(i18n.t('modalSelector.button')) }
+        style={ styles.selectorContainer }
+      >
+        <ModalSelector
+          data={ sortOptions }
+          style={ styles.selector }
+          selectTextStyle={ styles.selector_text }
+          onChange={ (sortOption) => this.changeSort(sortOption.key) }
+          cancelText={ i18n.t('modalSelector.cancel') }
+          listItemAccessible
+          cancelButtonAccessible
+          openButtonContainerAccessible
+          scrollViewAccessibilityLabel={ i18n.t('modalSelector.container') }
+        >
+          <Image
+            style={ styles.selector_image }
+            resizeMode="contain"
+            source={ require('../../img/filter-button.png') }
+          />
+        </ModalSelector>
+      </View>
+    );
 
     return (
       <ThemeProvider>
-        <AppHeader navigation={ this.props.navigation }>
-          <View style={ styles.secondary_header }>
-            <Text style={ styles.header_title }>Products</Text>
-            <View { ...testProperties(i18n.t('modalSelector.button')) }>
-              <ModalSelector
-                data={ sortOptions }
-                initValue={ i18n.t('modalSelector.azLabel') }
-                style={ styles.item_sort }
-                selectTextStyle={ styles.sort_text }
-                onChange={ (sortOption) => this.changeSort(sortOption.key) }
-                cancelText={ i18n.t('modalSelector.cancel') }
-                listItemAccessible
-                cancelButtonAccessible
-                openButtonContainerAccessible
-                scrollViewAccessibilityLabel={ i18n.t('modalSelector.container') }
-              />
-            </View>
-          </View>
+        <AppHeader
+          navigation={ this.props.navigation }
+          header={ i18n.t('inventoryListPage.header') }
+          component={ modalSelector }
+        >
           <ScrollView
             style={ styles.container }
             keyboardShouldPersistTaps="handled"
@@ -143,41 +154,24 @@ export default class InventoryListPage extends Component {
 }
 
 const styles = StyleSheet.create({
-  secondary_header: {
-    height: 80,
-    backgroundColor: '#474c55',
-    flexDirection: 'row',
+  selectorContainer:{
+    position: 'absolute',
+    right: 10,
+    top: 14,
   },
-  header_title: {
-    fontSize: 30,
+  selector: {
+    height: 40,
+  },
+  selector_text: {
     color: '#FFF',
-    marginLeft: 90,
-    marginTop: 32,
+  },
+  selector_image: {
+    backgroundColor: colors.white,
+    height: 40,
+    width: 40,
   },
   container: {
     flex: 5,
     backgroundColor: '#FFF',
-  },
-  peek_img: {
-    width: 71,
-    height: 70,
-    top: IS_IOS ? 100 : 80,
-    left: 5,
-    position: 'absolute',
-    zIndex: 10,
-  },
-  item_infobox: {
-    flexDirection: 'column',
-    flex: 4,
-    padding: 5,
-  },
-  item_sort: {
-    marginLeft: 15,
-    width: 150,
-    height: 40,
-    top: 30,
-  },
-  sort_text: {
-    color: '#FFF',
   },
 });

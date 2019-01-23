@@ -6,7 +6,7 @@ import { IS_IOS } from '../config/Constants';
 import i18n from '../config/i18n';
 import {testProperties} from '../config/TestProperties';
 
-export default class CheckoutCompletePage extends Component {
+export default class CheckoutComplete extends Component {
 
   constructor(props) {
     super(props);

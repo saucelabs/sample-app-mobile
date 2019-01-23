@@ -60,7 +60,7 @@ class CartItem extends Component {
   }
 }
 
-export default class CartContentsPage extends Component {
+export default class CartContents extends Component {
 
   constructor(props) {
     super(props);
@@ -87,7 +87,7 @@ export default class CartContentsPage extends Component {
             })}
             <View style={styles.cart_footer}>
               <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
-                      onPress={() => {this.props.navigation.navigate('CheckoutPageOne');}} title={ i18n.t('cartContent.checkout') }
+                      onPress={() => {this.props.navigation.navigate('CheckoutScreenOne');}} title={ i18n.t('cartContent.checkout') }
                       { ...testProperties(i18n.t('cartContent.checkout')) }/>
               <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container}
                       onPress={() => {this.props.navigation.navigate('InventoryList');}} title={ i18n.t('cartContent.continueShopping') }

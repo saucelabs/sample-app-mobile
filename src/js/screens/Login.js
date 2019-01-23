@@ -10,7 +10,7 @@ import { IS_IOS, IS_IPHONEX, MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../confi
 import { ParseText } from '../utils/parseText';
 import { colors } from '../utils/colors';
 
-export default class LoginPage extends Component {
+export default class Login extends Component {
 
   constructor(props) {
     super(props);
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   },
   inputContainerStyle: {
     borderColor: colors.lightGray,
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
   },
   buttonContainerStyle: {
     marginTop: 20,
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: colors.white,
     borderColor: colors.slRed,
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 0,
     paddingBottom: 5,
     paddingTop: 5,
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   buttonTitleStyle: {
     color: colors.slRed,
     fontSize: 18,
-    fontFamily: MUSEO_SANS_NORMAL,
+    fontFamily: MUSEO_SANS_BOLD,
   },
   errorMessageContainer: {
     marginBottom: 20,
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     borderColor: colors.lightGray,
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
     marginBottom: 20,
     marginTop: 20,
   },

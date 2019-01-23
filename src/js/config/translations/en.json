@@ -82,7 +82,8 @@
     "goToButton": "CONTINUE SHOPPING"
   },
   "inventoryListPage": {
-    "screen": "Inventory list page",
+    "header": "PRODUCTS",
+    "screen": "PRODUCTS",
     "addButton": "ADD TO CART",
     "removeButton": "REMOVE",
     "itemContainer": "Item",

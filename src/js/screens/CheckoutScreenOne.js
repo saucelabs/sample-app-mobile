@@ -8,7 +8,7 @@ import { IS_IOS } from '../config/Constants';
 import i18n from '../config/i18n';
 import {testProperties} from '../config/TestProperties';
 
-export default class CheckoutPageOne extends Component {
+export default class CheckoutScreenOne extends Component {
 
   constructor(props) {
     super(props);
@@ -74,7 +74,7 @@ export default class CheckoutPageOne extends Component {
     }
 
     // If we're here, we have our required info. Redirect!
-    this.props.navigation.navigate('CheckoutPageTwo');
+    this.props.navigation.navigate('CheckoutScreenTwo');
   }
 
   render() {

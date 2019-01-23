@@ -16,5 +16,6 @@ export default class HeaderSwagLogo extends Component {
 const styles = StyleSheet.create({
   header_image: {
     height: 30,
+    width: '100%',
   },
 });

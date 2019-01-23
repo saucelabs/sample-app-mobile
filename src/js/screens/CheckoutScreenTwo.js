@@ -66,7 +66,7 @@ class SummaryItem extends Component {
   }
 }
 
-export default class CheckoutPageTwo extends Component {
+export default class CheckoutScreenTwo extends Component {
 
   constructor(props) {
     super(props);

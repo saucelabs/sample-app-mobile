@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Header } from 'react-native-elements';
 import CartButton from './HeaderCartButton.js';
 import MenuButton from './MenuButton.js';
 import Drawer from 'react-native-drawer';
 import HeaderSwagLogo from './HeaderSwagLogo';
-import { IS_IOS } from '../config/Constants';
+import { IS_IOS, MUSEO_SANS_BOLD } from '../config/Constants';
 import DrawerLinks from './DrawerLinks';
 import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from './StatusBar';
@@ -35,18 +35,17 @@ export default class AppHeader extends Component {
   }
 
   render() {
+    const headerText = this.props.header ? <Text style={ styles.header_title }>{this.props.header}</Text> : null;
+    const component = this.props.component || null;
+
     return (
       <Drawer
         open={ this.state.menuOpen }
-        type="static"
+        type="overlay"
         tapToClose={ true }
-        openDrawerOffset={ 0.5 }
         closedDrawerOffset={ 0 }
         content={ <DrawerLinks navigation={ this.props.navigation } closeMenu={ this.closeMenu }/> }
         styles={ styles.container }
-        tweenHandler={ Drawer.tweenPresets.parallax }
-        tweenEasing={ 'easeInOutQuad' }
-        tweenDuration={ 400 }
         onClose={ this.closeMenu }
       >
         <Header
@@ -55,6 +54,10 @@ export default class AppHeader extends Component {
           centerComponent={ <HeaderSwagLogo/> }
           rightComponent={ <CartButton navigation={ this.props.navigation }/> }
         />
+        <View style={ styles.secondary_header }>
+          {headerText}
+          {component}
+        </View>
         { this.props.children }
       </Drawer>
     );
@@ -63,11 +66,24 @@ export default class AppHeader extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
   },
   header_container: {
     backgroundColor: colors.white,
     height: IS_IOS ? 90 : 60,
     paddingTop: STATUS_BAR_HEIGHT,
+  },
+  secondary_header: {
+    height: 65,
+    backgroundColor: colors.gray,
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  header_title: {
+    fontSize: 24,
+    fontFamily: MUSEO_SANS_BOLD,
+    color: colors.white,
+    marginTop: 20,
   },
 });

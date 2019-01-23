@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import i18n from '../config/i18n';
 import { Credentials } from '../credentials';
-import { Linking, StyleSheet, View } from 'react-native';
+import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ShoppingCart } from '../shopping-cart';
-import { Button, Divider } from 'react-native-elements';
 import { testProperties } from '../config/TestProperties';
+import { colors } from '../utils/colors';
+import { STATUS_BAR_HEIGHT } from './StatusBar';
+import { MUSEO_SANS_BOLD } from '../config/Constants';
 
 export default class DrawerLinks extends Component {
 
@@ -15,10 +17,11 @@ export default class DrawerLinks extends Component {
     this.handleAboutLink = this.handleAboutLink.bind(this);
     this.handleLogoutLink = this.handleLogoutLink.bind(this);
     this.handleResetLink = this.handleResetLink.bind(this);
+    this.handleCloseMenu = this.handleCloseMenu.bind(this);
   }
 
   handleAllItemsLink() {
-    this.props.closeMenu();
+    this.handleCloseMenu();
     this.props.navigation.navigate('InventoryList');
   }
 
@@ -29,49 +32,63 @@ export default class DrawerLinks extends Component {
       aboutUrl = i18n.t('appHeader.404Url');
     }
 
-    this.props.closeMenu();
+    this.handleCloseMenu();
     Linking.openURL(aboutUrl);
   }
 
   handleLogoutLink() {
-    this.props.closeMenu();
+    this.handleCloseMenu();
     this.props.navigation.navigate('Login');
   }
 
   handleResetLink() {
-    this.props.closeMenu();
+    this.handleCloseMenu();
     ShoppingCart.resetCart();
+  }
+
+  handleCloseMenu() {
+    this.props.closeMenu();
   }
 
   render() {
 
     return (
       <View style={ styles.container }>
-        <Divider style={ styles.menu_header_divider }/>
-        <Button
-          containerStyle={ styles.menu_button }
+        <TouchableOpacity onPress={ this.handleCloseMenu }>
+          <Image
+            style={ styles.menu_close }
+            resizeMode="contain"
+            source={ require('../../img/menu-close.png') }
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={ styles.menu_button }
           onPress={ this.handleAllItemsLink }
-          title={ i18n.t('menu.allItems') }
           { ...testProperties(i18n.t('menu.allItems')) }
-        />
-        <Button
-          containerStyle={ styles.menu_button }
+        >
+          <Text style={ styles.menu_item_text }>{ i18n.t('menu.allItems') }</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={ styles.menu_button }
           onPress={ this.handleAboutLink }
-          title={ i18n.t('menu.about') }
           { ...testProperties(i18n.t('menu.about')) }
-        />
-        <Button
-          containerStyle={ styles.menu_button }
+        >
+          <Text style={ styles.menu_item_text }>{ i18n.t('menu.about') }</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={ styles.menu_button }
           onPress={ this.handleLogoutLink }
-          title={ i18n.t('menu.logout') }
           { ...testProperties(i18n.t('menu.logout')) }
-        />
-        <Button
-          containerStyle={ styles.menu_button }
+        >
+          <Text style={ styles.menu_item_text }>{ i18n.t('menu.logout') }</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={ styles.menu_button }
           onPress={ this.handleResetLink }
-          title={ i18n.t('menu.reset') }
           { ...testProperties(i18n.t('menu.reset')) }
-        />
+        >
+          <Text style={ styles.menu_item_text }>{ i18n.t('menu.reset') }</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -79,14 +96,28 @@ export default class DrawerLinks extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
+    flex: 1,
+    flexDirection: 'column',
+    paddingTop: STATUS_BAR_HEIGHT,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  menu_close: {
+    alignSelf: 'flex-end',
+    height: 60,
+    width: 60,
   },
   menu_button: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
     margin: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 3,
+    borderBottomColor: colors.gray,
   },
-  menu_header_divider: {
-    height: 50,
-    backgroundColor: '#FFF',
+  menu_item_text: {
+    color: colors.gray,
+    fontFamily: MUSEO_SANS_BOLD,
+    fontSize: 20,
   },
 });
