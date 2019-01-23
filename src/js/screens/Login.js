@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View, StatusBar } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button, Divider, Input } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
 import { ShoppingCart } from '../shopping-cart.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
-import { IS_IOS, IS_IPHONEX, MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
+import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
 import { ParseText } from '../utils/parseText';
 import { colors } from '../utils/colors';
+import { STATUS_BAR_HEIGHT } from '../components/StatusBar';
 
 export default class Login extends Component {
 
@@ -76,6 +77,14 @@ export default class Login extends Component {
     }
   }
 
+  /**
+   * Parse a string that holds a `__text__` markdown and transform it into a
+   * string with bolds or normal text components
+   *
+   * @param {string} string
+   *
+   * @return {*[]}
+   */
   parseNormalBoldText(string) {
     return (ParseText(string).map(text => (
       <Text style={ [ text.bold ? styles.textBold : {} ] }>
@@ -166,7 +175,7 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   scrollContainer: {
     backgroundColor: colors.white,
-    paddingTop: IS_IOS ? (IS_IPHONEX ? 44 : 20) : (StatusBar.currentHeight || 0),
+    paddingTop: STATUS_BAR_HEIGHT,
   },
   wrapper: {
     flex: 1,
@@ -224,7 +233,7 @@ const styles = StyleSheet.create({
   },
   loginInfoContainer: {
     backgroundColor: colors.superLightGray,
-    paddingBottom: IS_IPHONEX ? 44 : 20,
+    paddingBottom: STATUS_BAR_HEIGHT,
     paddingLeft: 40,
     paddingRight: 40,
     paddingTop: 20,
