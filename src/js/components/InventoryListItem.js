@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { ShoppingCart } from '../shopping-cart';
 import { Credentials } from '../credentials';
-import { Button } from 'react-native-elements';
+import { Button, Divider } from 'react-native-elements';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { MAKE_ACCESSIBLE_FOR_AUTOMATION } from '../config/Constants';
+import {
+  MAKE_ACCESSIBLE_FOR_AUTOMATION,
+  MUSEO_SANS_BOLD,
+  MUSEO_SANS_NORMAL,
+  WINDOW_WIDTH,
+} from '../config/Constants';
+import { colors } from '../utils/colors';
 
 
 export default class InventoryListItem extends Component {
@@ -80,7 +86,9 @@ export default class InventoryListItem extends Component {
     if (ShoppingCart.isItemInCart(this.state.id)) {
       cartButton = (
         <Button
-          containerStyle={ styles.item_cart_button }
+          buttonStyle={ [ styles.buttonStyle, styles.removeButtonStyle ] }
+          containerStyle={ styles.buttonContainerStyle }
+          titleStyle={ [ styles.buttonTitleStyle, styles.removeButtonTitleStyle ] }
           onPress={ this.removeFromCart }
           title={ i18n.t('inventoryItemPage.removeButton') }
           { ...testProperties(i18n.t('inventoryListPage.removeButton')) }
@@ -88,7 +96,9 @@ export default class InventoryListItem extends Component {
     } else {
       cartButton = (
         <Button
-          containerStyle={ styles.item_cart_button }
+          buttonStyle={ styles.buttonStyle }
+          containerStyle={ styles.buttonContainerStyle }
+          titleStyle={ styles.buttonTitleStyle }
           onPress={ this.addToCart }
           title={ i18n.t('inventoryItemPage.addButton') }
           { ...testProperties(i18n.t('inventoryListPage.addButton')) }
@@ -98,22 +108,32 @@ export default class InventoryListItem extends Component {
     // in a flat UI structure
     return (
       <View style={ styles.item_container }{ ...testProperties(i18n.t('inventoryListPage.itemContainer')) }>
-        <Image source={ this.state.image_url } style={ styles.item_image }/>
         <TouchableOpacity
-          style={ styles.item_infobox }
           onPress={ this.navigateToItem }
           { ...MAKE_ACCESSIBLE_FOR_AUTOMATION }
         >
-          <View style={ styles.item_details } { ...testProperties(i18n.t('inventoryListPage.itemDescription')) }>
+          <Image
+            source={ this.state.image_url }
+            style={ styles.item_image }
+            resizeMode="contain"
+          />
+
+          <View { ...testProperties(i18n.t('inventoryListPage.itemDescription')) }>
             <Text style={ styles.item_name }>{ this.state.name }</Text>
             <Text style={ styles.item_desc }>{ this.state.desc }</Text>
           </View>
-          <View style={ styles.item_price_bar }>
+
+          <Divider style={ [ styles.divider, styles.descriptionPriceDivider ] }/>
+
+          <View>
             <Text style={ styles.price_text }{ ...testProperties(i18n.t('inventoryListPage.price')) }>
               ${ this.state.price }
             </Text>
             { cartButton }
           </View>
+
+          <Divider style={ styles.divider }/>
+
         </TouchableOpacity>
       </View>
     );
@@ -121,41 +141,68 @@ export default class InventoryListItem extends Component {
 }
 
 const styles = StyleSheet.create({
-  item_image: {
-    width: 80,
-    height: 100,
-    flex: 1,
-  },
   item_container: {
     flexDirection: 'row',
-    padding: 5,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 40,
   },
-  item_infobox: {
-    flexDirection: 'column',
-    flex: 4,
-    padding: 5,
-  },
-  item_price_bar: {
-    flexDirection: 'row',
-    paddingTop: 5,
-  },
-  item_cart_button: {
-    flex: 3,
-    backgroundColor: '#57c1e8',
-  },
-  item_details: {
-    flexDirection: 'column',
-  },
-  price_text: {
-    color: '#569210',
-    fontSize: 18,
-    flex: 2,
-    paddingTop: 10,
+  item_image: {
+    flex: 1,
+    alignSelf: 'stretch',
+    height: (WINDOW_WIDTH - 50) * 1.25,
+    width: WINDOW_WIDTH - 50,
+    marginBottom: 20,
   },
   item_name: {
-    fontSize: 18,
-    fontWeight: '800',
-    paddingBottom: 5,
+    color: colors.slRed,
+    fontSize: 24,
+    fontFamily: MUSEO_SANS_BOLD,
+    paddingBottom: 10,
   },
-  item_desc: {},
+  item_desc: {
+    color: colors.gray,
+    fontSize: 16,
+    fontFamily: MUSEO_SANS_NORMAL,
+  },
+  divider: {
+    borderBottomColor: colors.lightGray,
+    borderBottomWidth: 2,
+    width: '100%',
+    marginBottom: 0,
+    marginTop: 40,
+  },
+  descriptionPriceDivider: {
+    width: '40%',
+    marginBottom: 30,
+    marginTop: 30,
+  },
+  price_text: {
+    color: colors.slRed,
+    fontSize: 28,
+    fontFamily: MUSEO_SANS_NORMAL,
+    paddingBottom: 20,
+  },
+  buttonContainerStyle: {
+    width: '100%',
+  },
+  buttonStyle: {
+    backgroundColor: colors.white,
+    borderColor: colors.slRed,
+    borderWidth: 3,
+    borderRadius: 0,
+    paddingBottom: 5,
+    paddingTop: 5,
+  },
+  buttonTitleStyle: {
+    color: colors.slRed,
+    fontSize: 18,
+    fontFamily: MUSEO_SANS_BOLD,
+  },
+  removeButtonStyle: {
+    borderColor: colors.gray,
+  },
+  removeButtonTitleStyle: {
+    color: colors.gray,
+  },
 });
