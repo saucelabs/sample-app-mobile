@@ -1,7 +1,6 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import Base from './base';
 import { getTextOfElement } from '../helpers/utils';
-import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 
 const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageOne.screen }`;
 

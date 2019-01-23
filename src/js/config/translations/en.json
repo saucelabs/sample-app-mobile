@@ -5,7 +5,10 @@
     "password": "Password",
     "screen": "Login",
     "username": "Username",
-    "loginText": "The currently accepted usernames for this application are:\n\n- standard_user\n- locked_out_user\n- problem_user\n\nAnd the password for all users is:\n\nsecret_sauce",
+    "loginText": {
+      "usernames": "The currently accepted usernames for this application are:\n\n__standard_user__\n__locked_out_user__\n__problem_user__",
+      "password": "And the password for all users is:\n\n__secret_sauce__"
+    },
     "errors": {
       "container": "Error message",
       "epicSadFace": "Epic sadface: ",

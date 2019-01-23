@@ -55,6 +55,16 @@
 		FE488D1567194449923CA00E /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF33436C5C5F479C92DDEEAD /* FontAwesome5_Solid.ttf */; };
 		DC2CD206F0114AE690907BD1 /* libRNLanguages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D442E6C43E9F491D93EFA409 /* libRNLanguages.a */; };
 		CDEDEF7AD74743428F1F0355 /* libRNLanguages-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8200945C4C684F9F8BC3C695 /* libRNLanguages-tvOS.a */; };
+		985ECD6DC0E34DEE9F117286 /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCE4307B38EF401994B5B68F /* MuseoSans_500.otf */; };
+		677A5A985C4046CAAA27AD69 /* MuseoSans_500_Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE4269A452F34DFB9A481F8D /* MuseoSans_500_Italic.otf */; };
+		672B62E151424CC39EEBFB20 /* MuseoSans_700.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D8F5098FF97416C8EF32474 /* MuseoSans_700.otf */; };
+		1837081BFD4E46AA938433CA /* MuseoSans_900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39C135E140AD4B3B83D7EB3F /* MuseoSans_900.otf */; };
+		B234CA53076B4EA2ACA131D8 /* MuseoSans-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9CAD3FBB78D4850A97E43F9 /* MuseoSans-100.otf */; };
+		E94BADAF9FFA4B2D91F3857A /* MuseoSans-100Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 830078C066904EB3841CF0E2 /* MuseoSans-100Italic.otf */; };
+		9F0ECD61C5564EDDA4C03CCC /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60DD2E7700B843D5BA340ECA /* MuseoSans-300.otf */; };
+		303C9B0D0C3D41DFA546E090 /* MuseoSans-300Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 12D42F9459104109B7B86610 /* MuseoSans-300Italic.otf */; };
+		37F25D0608324712827C2692 /* MuseoSans-700Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB60605840654972B4212160 /* MuseoSans-700Italic.otf */; };
+		DAC72A217AD0499AB2F1BCE0 /* MuseoSans-900Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 64B21BC5060844CFB61DB8B4 /* MuseoSans-900Italic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -380,6 +390,16 @@
 		388E87C2E50E4E58AE23D8CC /* RNLanguages.xcodeproj */ = {isa = PBXFileReference; name = "RNLanguages.xcodeproj"; path = "../node_modules/react-native-languages/ios/RNLanguages.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		D442E6C43E9F491D93EFA409 /* libRNLanguages.a */ = {isa = PBXFileReference; name = "libRNLanguages.a"; path = "libRNLanguages.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		8200945C4C684F9F8BC3C695 /* libRNLanguages-tvOS.a */ = {isa = PBXFileReference; name = "libRNLanguages-tvOS.a"; path = "libRNLanguages-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		BCE4307B38EF401994B5B68F /* MuseoSans_500.otf */ = {isa = PBXFileReference; name = "MuseoSans_500.otf"; path = "../assets/fonts/MuseoSans_500.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CE4269A452F34DFB9A481F8D /* MuseoSans_500_Italic.otf */ = {isa = PBXFileReference; name = "MuseoSans_500_Italic.otf"; path = "../assets/fonts/MuseoSans_500_Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5D8F5098FF97416C8EF32474 /* MuseoSans_700.otf */ = {isa = PBXFileReference; name = "MuseoSans_700.otf"; path = "../assets/fonts/MuseoSans_700.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		39C135E140AD4B3B83D7EB3F /* MuseoSans_900.otf */ = {isa = PBXFileReference; name = "MuseoSans_900.otf"; path = "../assets/fonts/MuseoSans_900.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C9CAD3FBB78D4850A97E43F9 /* MuseoSans-100.otf */ = {isa = PBXFileReference; name = "MuseoSans-100.otf"; path = "../assets/fonts/MuseoSans-100.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		830078C066904EB3841CF0E2 /* MuseoSans-100Italic.otf */ = {isa = PBXFileReference; name = "MuseoSans-100Italic.otf"; path = "../assets/fonts/MuseoSans-100Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		60DD2E7700B843D5BA340ECA /* MuseoSans-300.otf */ = {isa = PBXFileReference; name = "MuseoSans-300.otf"; path = "../assets/fonts/MuseoSans-300.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		12D42F9459104109B7B86610 /* MuseoSans-300Italic.otf */ = {isa = PBXFileReference; name = "MuseoSans-300Italic.otf"; path = "../assets/fonts/MuseoSans-300Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FB60605840654972B4212160 /* MuseoSans-700Italic.otf */ = {isa = PBXFileReference; name = "MuseoSans-700Italic.otf"; path = "../assets/fonts/MuseoSans-700Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		64B21BC5060844CFB61DB8B4 /* MuseoSans-900Italic.otf */ = {isa = PBXFileReference; name = "MuseoSans-900Italic.otf"; path = "../assets/fonts/MuseoSans-900Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -664,6 +684,16 @@
 				2C514CD2B71E42FC87CBFD2A /* FontAwesome5_Brands.ttf */,
 				1FD2CA0081734C9AAAE8C7B9 /* FontAwesome5_Regular.ttf */,
 				DF33436C5C5F479C92DDEEAD /* FontAwesome5_Solid.ttf */,
+				BCE4307B38EF401994B5B68F /* MuseoSans_500.otf */,
+				CE4269A452F34DFB9A481F8D /* MuseoSans_500_Italic.otf */,
+				5D8F5098FF97416C8EF32474 /* MuseoSans_700.otf */,
+				39C135E140AD4B3B83D7EB3F /* MuseoSans_900.otf */,
+				C9CAD3FBB78D4850A97E43F9 /* MuseoSans-100.otf */,
+				830078C066904EB3841CF0E2 /* MuseoSans-100Italic.otf */,
+				60DD2E7700B843D5BA340ECA /* MuseoSans-300.otf */,
+				12D42F9459104109B7B86610 /* MuseoSans-300Italic.otf */,
+				FB60605840654972B4212160 /* MuseoSans-700Italic.otf */,
+				64B21BC5060844CFB61DB8B4 /* MuseoSans-900Italic.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1133,6 +1163,16 @@
 				03339E2F2C204CBDA954FE55 /* FontAwesome5_Brands.ttf in Resources */,
 				3E07662E5FD54ED3A144486F /* FontAwesome5_Regular.ttf in Resources */,
 				FE488D1567194449923CA00E /* FontAwesome5_Solid.ttf in Resources */,
+				985ECD6DC0E34DEE9F117286 /* MuseoSans_500.otf in Resources */,
+				677A5A985C4046CAAA27AD69 /* MuseoSans_500_Italic.otf in Resources */,
+				672B62E151424CC39EEBFB20 /* MuseoSans_700.otf in Resources */,
+				1837081BFD4E46AA938433CA /* MuseoSans_900.otf in Resources */,
+				B234CA53076B4EA2ACA131D8 /* MuseoSans-100.otf in Resources */,
+				E94BADAF9FFA4B2D91F3857A /* MuseoSans-100Italic.otf in Resources */,
+				9F0ECD61C5564EDDA4C03CCC /* MuseoSans-300.otf in Resources */,
+				303C9B0D0C3D41DFA546E090 /* MuseoSans-300Italic.otf in Resources */,
+				37F25D0608324712827C2692 /* MuseoSans-700Italic.otf in Resources */,
+				DAC72A217AD0499AB2F1BCE0 /* MuseoSans-900Italic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
