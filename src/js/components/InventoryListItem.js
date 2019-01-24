@@ -86,9 +86,9 @@ export default class InventoryListItem extends Component {
     if (ShoppingCart.isItemInCart(this.state.id)) {
       cartButton = (
         <Button
-          buttonStyle={ [ styles.buttonStyle, styles.removeButtonStyle ] }
-          containerStyle={ styles.buttonContainerStyle }
-          titleStyle={ [ styles.buttonTitleStyle, styles.removeButtonTitleStyle ] }
+          buttonStyle={ [ styles.button_style, styles.remove_button_style ] }
+          containerStyle={ styles.button_container_style }
+          titleStyle={ [ styles.button_title_style, styles.remove_button_title_style ] }
           onPress={ this.removeFromCart }
           title={ i18n.t('inventoryItemPage.removeButton') }
           { ...testProperties(i18n.t('inventoryListPage.removeButton')) }
@@ -96,9 +96,9 @@ export default class InventoryListItem extends Component {
     } else {
       cartButton = (
         <Button
-          buttonStyle={ styles.buttonStyle }
-          containerStyle={ styles.buttonContainerStyle }
-          titleStyle={ styles.buttonTitleStyle }
+          buttonStyle={ styles.button_style }
+          containerStyle={ styles.button_container_style }
+          titleStyle={ styles.button_title_style }
           onPress={ this.addToCart }
           title={ i18n.t('inventoryItemPage.addButton') }
           { ...testProperties(i18n.t('inventoryListPage.addButton')) }
@@ -123,7 +123,7 @@ export default class InventoryListItem extends Component {
             <Text style={ styles.item_desc }>{ this.state.desc }</Text>
           </View>
 
-          <Divider style={ [ styles.divider, styles.descriptionPriceDivider ] }/>
+          <Divider style={ [ styles.divider, styles.description_price_divider ] }/>
 
           <View>
             <Text style={ styles.price_text }{ ...testProperties(i18n.t('inventoryListPage.price')) }>
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     marginTop: 40,
   },
-  descriptionPriceDivider: {
+  description_price_divider: {
     width: '40%',
     marginBottom: 30,
     marginTop: 30,
@@ -184,26 +184,27 @@ const styles = StyleSheet.create({
     fontFamily: MUSEO_SANS_NORMAL,
     paddingBottom: 20,
   },
-  buttonContainerStyle: {
+  button_container_style: {
     width: '100%',
   },
-  buttonStyle: {
+  button_style: {
     backgroundColor: colors.white,
     borderColor: colors.slRed,
     borderWidth: 3,
     borderRadius: 0,
     paddingBottom: 5,
     paddingTop: 5,
+    elevation: 0,
   },
-  buttonTitleStyle: {
+  button_title_style: {
     color: colors.slRed,
     fontSize: 18,
     fontFamily: MUSEO_SANS_BOLD,
   },
-  removeButtonStyle: {
+  remove_button_style: {
     borderColor: colors.gray,
   },
-  removeButtonTitleStyle: {
+  remove_button_title_style: {
     color: colors.gray,
   },
 });

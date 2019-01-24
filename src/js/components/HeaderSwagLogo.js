@@ -7,7 +7,7 @@ export default class HeaderSwagLogo extends Component {
       <Image
         style={ styles.header_image }
         resizeMode="contain"
-        source={ require('../../img/swag.labs.logo.png') }
+        source={ require('../../img/swag-labs-logo.png') }
       />
     );
   }

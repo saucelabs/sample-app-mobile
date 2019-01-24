@@ -28,9 +28,9 @@ export default class CartButton extends Component {
 
     if (cartContents.length > 0) {
       cartBadge = (
-        <View style={ styles.badgeContainer }>
+        <View style={ styles.badge_container }>
           <View style={ styles.badge }/>
-          <Text style={ styles.badgeText }>{ cartContents.length }</Text>
+          <Text style={ styles.badge_text }>{ cartContents.length }</Text>
         </View>
       );
     }
@@ -51,7 +51,7 @@ export default class CartButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  badgeContainer: {
+  badge_container: {
     position: 'absolute',
     top: 2,
     right: 2,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  badgeText: {
+  badge_text: {
     color: colors.white,
     paddingLeft: 1,
     fontSize: 14,

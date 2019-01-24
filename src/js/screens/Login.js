@@ -87,7 +87,7 @@ export default class Login extends Component {
    */
   parseNormalBoldText(string) {
     return (ParseText(string).map(text => (
-      <Text style={ [ text.bold ? styles.textBold : {} ] }>
+      <Text style={ [ text.bold ? styles.text_bold : {} ] }>
         { text.value }
       </Text>
     )));
@@ -100,7 +100,7 @@ export default class Login extends Component {
     if (this.state.error !== '') {
       errorMessage = (
         <View
-          style={ styles.errorMessageContainer }
+          style={ styles.error_message_container }
           { ...testProperties(i18n.t('login.errors.container')) }
         >
           <Text style={ styles.error_message }>{ this.state.error }</Text>
@@ -110,20 +110,20 @@ export default class Login extends Component {
 
     return (
       <ScrollView
-        contentContainerStyle={ styles.scrollContainer }
+        contentContainerStyle={ styles.scroll_container }
         keyboardShouldPersistTaps="handled"
         { ...testProperties(i18n.t('login.screen')) }
       >
         <View style={ styles.wrapper }>
-          <View style={ styles.loginContainer }>
+          <View style={ styles.login_container }>
             <Image
               resizeMode="contain"
-              source={ require('../../img/swag.labs.logo.png') }
-              style={ styles.swagLogo }
+              source={ require('../../img/swag-labs-logo.png') }
+              style={ styles.swag_logo_image }
             />
             <Input
               containerStyle={ styles.login_input }
-              inputContainerStyle={ styles.inputContainerStyle }
+              inputContainerStyle={ styles.input_container_style }
               placeholder={ i18n.t('login.username') }
               value={ this.state.username }
               onChangeText={ this.handleUserChange }
@@ -134,7 +134,7 @@ export default class Login extends Component {
             />
             <Input
               containerStyle={ styles.login_input }
-              inputContainerStyle={ styles.inputContainerStyle }
+              inputContainerStyle={ styles.input_container_style }
               placeholder={ i18n.t('login.password') }
               value={ this.state.password }
               onChangeText={ this.handlePassChange }
@@ -144,20 +144,20 @@ export default class Login extends Component {
             />
             { errorMessage }
             <Button
-              buttonStyle={ styles.buttonStyle }
-              containerStyle={ styles.buttonContainerStyle }
-              titleStyle={ styles.buttonTitleStyle }
+              buttonStyle={ styles.button_style }
+              containerStyle={ styles.button_container_style }
+              titleStyle={ styles.button_title_style }
               onPress={ this.handleSubmit }
               title={ i18n.t('login.loginButton') }
               { ...testProperties(i18n.t('login.loginButton')) }
             />
             <Image
-              source={ require('../../img/login.bot.png') }
-              style={ styles.loginBot }
+              source={ require('../../img/login-bot.png') }
+              style={ styles.login_bot_image }
               resizeMode="contain"
             />
           </View>
-          <View style={ styles.loginInfoContainer }>
+          <View style={ styles.login_info_container }>
             <Text style={ styles.login_info }>
               { this.parseNormalBoldText(i18n.t('login.loginText.usernames')) }
             </Text>
@@ -173,20 +173,20 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: {
+  scroll_container: {
     backgroundColor: colors.white,
     paddingTop: STATUS_BAR_HEIGHT,
   },
   wrapper: {
     flex: 1,
   },
-  loginContainer: {
+  login_container: {
     alignItems: 'center',
     paddingTop: 20,
     paddingRight: 40,
     paddingLeft: 40,
   },
-  swagLogo: {
+  swag_logo_image: {
     marginBottom: 30,
     width: '100%',
   },
@@ -195,28 +195,29 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '100%',
   },
-  inputContainerStyle: {
+  input_container_style: {
     borderColor: colors.lightGray,
     borderBottomWidth: 3,
   },
-  buttonContainerStyle: {
+  button_container_style: {
     marginTop: 20,
     width: '100%',
   },
-  buttonStyle: {
+  button_style: {
     backgroundColor: colors.white,
     borderColor: colors.slRed,
     borderWidth: 3,
     borderRadius: 0,
     paddingBottom: 5,
     paddingTop: 5,
+    elevation: 0,
   },
-  buttonTitleStyle: {
+  button_title_style: {
     color: colors.slRed,
     fontSize: 18,
     fontFamily: MUSEO_SANS_BOLD,
   },
-  errorMessageContainer: {
+  error_message_container: {
     marginBottom: 20,
     marginTop: 20,
   },
@@ -226,12 +227,12 @@ const styles = StyleSheet.create({
     fontFamily: MUSEO_SANS_NORMAL,
     textAlign: 'center',
   },
-  loginBot: {
+  login_bot_image: {
     flex: 1,
     height: 320,
     width: '100%',
   },
-  loginInfoContainer: {
+  login_info_container: {
     backgroundColor: colors.superLightGray,
     paddingBottom: STATUS_BAR_HEIGHT,
     paddingLeft: 40,
@@ -249,7 +250,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 20,
   },
-  textBold: {
+  text_bold: {
     fontFamily: MUSEO_SANS_BOLD,
   },
 });

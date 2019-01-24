@@ -9,15 +9,15 @@ import { Text } from 'react-native-elements';
 export default class Footer extends Component {
   render() {
     return (
-      <View style={ styles.footerContainer }>
-        <View style={ styles.socialContainer }>
+      <View style={ styles.footer_container }>
+        <View style={ styles.social_container }>
           <Icon style={ styles.icon } name="twitter"/>
           <Icon style={ styles.icon } name="facebook-f"/>
           <Icon style={ styles.icon } name="google-plus"/>
           <Icon style={ styles.icon } name="linkedin"/>
         </View>
-        <Text style={styles.footerText}>{i18n.t('footer.rights')}</Text>
-        <Text style={styles.footerText}>{i18n.t('footer.termsAndPrivacy')}</Text>
+        <Text style={styles.footer_text}>{i18n.t('footer.rights')}</Text>
+        <Text style={styles.footer_text}>{i18n.t('footer.termsAndPrivacy')}</Text>
         <Image
           style={ styles.footer_image }
           resizeMode="contain"
@@ -29,14 +29,14 @@ export default class Footer extends Component {
 }
 
 const styles = StyleSheet.create({
-  footerContainer: {
+  footer_container: {
     backgroundColor: colors.gray,
     marginTop: 20,
     paddingTop: 40,
     paddingLeft: 20,
     paddingRight: 20,
   },
-  socialContainer: {
+  social_container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     paddingTop: 13,
     textAlign: 'center',
   },
-  footerText: {
+  footer_text: {
     color: colors.white,
     fontFamily: MUSEO_SANS_NORMAL,
     fontSize: 16,

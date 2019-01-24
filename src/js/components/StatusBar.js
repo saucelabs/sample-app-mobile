@@ -10,7 +10,7 @@ export default class SwagLabsStatusBar extends Component {
   render() {
     if (IS_IOS) {
       return (
-        <View style={ styles.statusBar }>
+        <View style={ styles.status_bar }>
           <StatusBar translucent={ false }/>
         </View>
       );
@@ -21,7 +21,7 @@ export default class SwagLabsStatusBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  statusBar: {
+  status_bar: {
     backgroundColor: colors.white,
     position: 'absolute',
     top: 0,
