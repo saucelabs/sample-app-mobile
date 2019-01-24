@@ -7,12 +7,16 @@ import { colors } from '../utils/colors';
 export const STATUS_BAR_HEIGHT = IS_IOS ? (IS_IPHONEX ? 44 : 20) : (StatusBar.currentHeight || 0);
 
 export default class SwagLabsStatusBar extends Component {
-  render(){
-    return (
-      <View style={ styles.statusBar }>
-        <StatusBar translucent={false}/>
-      </View>
-    );
+  render() {
+    if (IS_IOS) {
+      return (
+        <View style={ styles.statusBar }>
+          <StatusBar translucent={ false }/>
+        </View>
+      );
+    }
+
+    return null;
   }
 }
 

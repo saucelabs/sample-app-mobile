@@ -35,7 +35,7 @@ export default class AppHeader extends Component {
   }
 
   render() {
-    const headerText = this.props.header ? <Text style={ styles.header_title }>{this.props.header}</Text> : null;
+    const headerText = this.props.header ? <Text style={ styles.header_title }>{ this.props.header }</Text> : null;
     const component = this.props.component || null;
 
     return (
@@ -55,8 +55,8 @@ export default class AppHeader extends Component {
           rightComponent={ <CartButton navigation={ this.props.navigation }/> }
         />
         <View style={ styles.secondary_header }>
-          {headerText}
-          {component}
+          { headerText }
+          { component }
         </View>
         { this.props.children }
       </Drawer>
@@ -64,14 +64,18 @@ export default class AppHeader extends Component {
   }
 }
 
+var IS_ANDROID;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
   },
   header_container: {
     backgroundColor: colors.white,
-    height: IS_IOS ? 90 : 60,
-    paddingTop: STATUS_BAR_HEIGHT,
+    // Add the height if the statusbar for iOS to the height of the header container
+    height: 60 + (IS_IOS ? STATUS_BAR_HEIGHT : 0),
+    // for iOS the elements can be behind the statusbar, that's why there is a padding
+    paddingTop: IS_IOS ? STATUS_BAR_HEIGHT : 0,
+    paddingBottom: IS_ANDROID ? 10 : 0,
   },
   secondary_header: {
     height: 65,
