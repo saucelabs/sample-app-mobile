@@ -1,27 +1,31 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
-import {Button, ThemeProvider} from 'react-native-elements';
+import React, { Component } from 'react';
+import { StyleSheet, ScrollView, Image } from 'react-native';
+import { Button, ThemeProvider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../components/AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 import i18n from '../config/i18n';
-import {testProperties} from '../config/TestProperties';
+import { testProperties } from '../config/TestProperties';
+import { colors } from '../utils/colors';
+import { MUSEO_SANS_BOLD } from '../config/Constants';
+import InventoryListItem from '../components/InventoryListItem';
+import Footer from '../components/Footer';
 
 export default class InventoryItem extends Component {
-
   constructor(props) {
     super(props);
 
-    var inventoryId = this.props.navigation.getParam('id', -1);
+    const inventoryId = this.props.navigation.getParam('id', -1);
+
     if ((inventoryId >= 0) && (InventoryData.ITEMS.length > inventoryId)) {
-      this.item = InventoryData.ITEMS[inventoryId];
+      this.item = InventoryData.ITEMS[ inventoryId ];
     } else {
       this.item = {
-          name: i18n.t('inventoryItemPage.itemNotFound.name'),
-          desc: i18n.t('inventoryItemPage.itemNotFound.description'),
-          image_url: require('../../img/sl-404.jpg'),
-          price: i18n.t('inventoryItemPage.itemNotFound.price'),
+        name: i18n.t('inventoryItemPage.itemNotFound.name'),
+        desc: i18n.t('inventoryItemPage.itemNotFound.description'),
+        image_url: require('../../img/sl-404.jpg'),
+        price: i18n.t('inventoryItemPage.itemNotFound.price'),
 
       };
     }
@@ -42,7 +46,6 @@ export default class InventoryItem extends Component {
   }
 
   addToCart() {
-
     if (Credentials.isProblemUser()) {
       // Bail out now, don't add to cart if the item ID is odd
       if (this.state.id % 2 === 1) {
@@ -51,11 +54,10 @@ export default class InventoryItem extends Component {
     }
 
     ShoppingCart.addItem(this.item.id);
-    this.setState({itemInCart: true});
+    this.setState({ itemInCart: true });
   }
 
   removeFromCart() {
-
     if (Credentials.isProblemUser()) {
       // Bail out now, don't remove from cart if the item ID is even
       if (this.state.id % 2 === 0) {
@@ -64,97 +66,74 @@ export default class InventoryItem extends Component {
     }
 
     ShoppingCart.removeItem(this.item.id);
-    this.setState({itemInCart: false});
+    this.setState({ itemInCart: false });
   }
 
-  render () {
-
-    var cartButton;
-
-    if (this.state.itemInCart) {
-      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.removeFromCart}
-                           title={i18n.t('inventoryItemPage.removeButton')} {...testProperties(i18n.t('inventoryItemPage.removeButton'))}/>;
-    } else {
-      cartButton = <Button containerStyle={styles.item_cart_button} onPress={this.addToCart}
-                           title={i18n.t('inventoryItemPage.addButton')} {...testProperties(i18n.t('inventoryItemPage.addButton'))}/>;
-    }
-
+  render() {
     return (
-        <ThemeProvider>
-          <AppHeader navigation={this.props.navigation}>
-            <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" {...testProperties(i18n.t('inventoryItemPage.screen'))}>
-              <Button containerStyle={styles.item_back_button} onPress={this.goBack}
-                      title={i18n.t('inventoryItemPage.backButton')} {...testProperties(i18n.t('inventoryItemPage.backButton'))}/>
-              <View style={styles.item_container}>
-                <Image source={this.item.image_url} style={styles.item_image} />
-                <View style={styles.item_infobox} {...testProperties(i18n.t('inventoryItemPage.itemDescription'))}>
-                  <View style={styles.item_details}>
-                    <Text style={styles.item_name}>{this.item.name}</Text>
-                    <Text style={styles.item_desc}>{this.item.desc}</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.item_price_bar}>
-                <Text style={styles.price_text} {...testProperties(i18n.t('inventoryItemPage.price'))}>${this.item.price}</Text>
-                { cartButton }
-              </View>
-            </ScrollView>
-          </AppHeader>
-        </ThemeProvider>
+      <ThemeProvider>
+        <AppHeader
+          navigation={ this.props.navigation }
+          component={
+            <Button
+              buttonStyle={ styles.back_button_style }
+              containerStyle={ styles.back_button_container }
+              titleStyle={ styles.back_button_title }
+              onPress={ this.goBack }
+              title={ i18n.t('inventoryItemPage.backButton') }
+              icon={
+                <Image
+                  style={ styles.back_button_image }
+                  source={ require('../../img/arrow-left.png') }
+                /> }
+              { ...testProperties(i18n.t('inventoryItemPage.backButton')) }
+            />
+          }
+        >
+          <ScrollView
+            style={ styles.container }
+            keyboardShouldPersistTaps="handled"
+            { ...testProperties(i18n.t('inventoryItemPage.screen')) }
+          >
+            <InventoryListItem
+              key={ this.item.id }
+              id={ this.item.id }
+              image_url={ this.item.image_url }
+              name={ this.item.name }
+              desc={ this.item.desc }
+              price={ this.item.price }
+              navigation={ this.props.navigation }
+            />
+            <Footer/>
+          </ScrollView>
+        </AppHeader>
+      </ThemeProvider>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  item_back_button: {
-    right: 10,
-    position: 'absolute',
-    backgroundColor: '#57c1e8',
-    zIndex: 10,
-    margin: 5,
-  },
   container: {
     flex: 5,
     backgroundColor: '#FFF',
   },
-  item_image: {
-    width: 240,
-    height: 300,
+  back_button_container: {
     flex: 1,
+    height: 40,
+    marginTop: 14,
   },
-  item_container: {
-    flexDirection: 'row',
-    padding: 5,
-    marginTop: 40,
+  back_button_style: {
+    borderRadius: 0,
+    backgroundColor: colors.white,
   },
-  item_infobox: {
-    flexDirection: 'column',
-    flex: 1,
-    padding: 5,
+  back_button_title: {
+    color: colors.gray,
+    fontFamily: MUSEO_SANS_BOLD,
+    fontSize: 20,
   },
-  item_price_bar: {
-    flexDirection: 'row',
-    padding: 5,
-  },
-  item_cart_button: {
-    flex: 3,
-    backgroundColor: '#57c1e8',
-  },
-  item_details: {
-    flexDirection: 'column',
-  },
-  price_text: {
-    color: '#569210',
-    fontSize: 18,
-    flex: 2,
-    paddingTop: 10,
-  },
-  item_name: {
-    fontSize: 18,
-    fontWeight: '800',
-    paddingBottom: 5,
-  },
-  item_desc: {
-
+  back_button_image: {
+    position: 'absolute',
+    top: 9,
+    left: 10,
   },
 });

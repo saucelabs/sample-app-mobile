@@ -98,7 +98,7 @@
       "price": "√-1"
     },
     "addButton": "ADD TO CART",
-    "backButton": "<- BACK",
+    "backButton": "BACK",
     "removeButton": "REMOVE",
     "itemDescription": "Item description",
     "price": "Price"
