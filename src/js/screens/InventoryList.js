@@ -1,0 +1,177 @@
+import React, { Component } from 'react';
+import { StyleSheet, View, ScrollView, Image } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
+import ModalSelector from 'react-native-modal-selector';
+import { InventoryData } from '../data/inventory-data.js';
+import AppHeader from '../components/AppHeader.js';
+import i18n from '../config/i18n';
+import { testProperties } from '../config/TestProperties';
+import InventoryListItem from '../components/InventoryListItem';
+import { colors } from '../utils/colors';
+import Footer from '../components/Footer';
+
+export default class InventoryList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inventoryList: InventoryData.ITEMS_NAME_AZ,
+      sortState: 'az',
+      menuOpen: false,
+    };
+
+    this.changeSort = this.changeSort.bind(this);
+    this.sortNameAZ = this.sortNameAZ.bind(this);
+    this.sortNameZA = this.sortNameZA.bind(this);
+    this.sortPriceLoHi = this.sortPriceLoHi.bind(this);
+    this.sortPriceHiLo = this.sortPriceHiLo.bind(this);
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+  }
+
+  changeSort(sortType) {
+    switch (sortType) {
+      case 'az':
+        this.sortNameAZ();
+        break;
+      case 'za':
+        this.sortNameZA();
+        break;
+      case 'lohi':
+        this.sortPriceLoHi();
+        break;
+      case 'hilo':
+        this.sortPriceHiLo();
+        break;
+      default:
+        break;
+    }
+  }
+
+  sortNameAZ() {
+    this.setState({
+      inventoryList: InventoryData.ITEMS_NAME_AZ,
+      sortState: 'az',
+    });
+  }
+
+  sortNameZA() {
+    this.setState({
+      inventoryList: InventoryData.ITEMS_NAME_ZA,
+      sortState: 'za',
+    });
+  }
+
+  sortPriceLoHi() {
+    this.setState({
+      inventoryList: InventoryData.ITEMS_PRICE_LOHI,
+      sortState: 'lohi',
+    });
+  }
+
+  sortPriceHiLo() {
+    this.setState({
+      inventoryList: InventoryData.ITEMS_PRICE_HILO,
+      sortState: 'hilo',
+    });
+  }
+
+  openMenu() {
+    this.setState({
+      menuOpen: true,
+    });
+  }
+
+  closeMenu() {
+    this.setState({
+      menuOpen: false,
+    });
+  }
+
+  render() {
+    const sortOptions = [
+      { key: 'sectionLabel', section: true, label: i18n.t('modalSelector.sectionLabel') },
+      { key: 'az', label: i18n.t('modalSelector.azLabel') },
+      { key: 'za', label: i18n.t('modalSelector.zaLabel') },
+      { key: 'lohi', label: i18n.t('modalSelector.loHiLabel') },
+      { key: 'hilo', label: i18n.t('modalSelector.hiLoLabel') },
+    ];
+    const modalSelector = (
+      <View
+        { ...testProperties(i18n.t('modalSelector.button')) }
+        style={ styles.selectorContainer }
+      >
+        <ModalSelector
+          data={ sortOptions }
+          style={ styles.selector }
+          selectTextStyle={ styles.selector_text }
+          onChange={ (sortOption) => this.changeSort(sortOption.key) }
+          cancelText={ i18n.t('modalSelector.cancel') }
+          listItemAccessible
+          cancelButtonAccessible
+          openButtonContainerAccessible
+          scrollViewAccessibilityLabel={ i18n.t('modalSelector.container') }
+        >
+          <Image
+            style={ styles.selector_image }
+            resizeMode="contain"
+            source={ require('../../img/filter-button.png') }
+          />
+        </ModalSelector>
+      </View>
+    );
+
+    return (
+      <ThemeProvider>
+        <AppHeader
+          navigation={ this.props.navigation }
+          header={ i18n.t('inventoryListPage.header') }
+          component={ modalSelector }
+        >
+          <ScrollView
+            style={ styles.container }
+            keyboardShouldPersistTaps="handled"
+            { ...testProperties(i18n.t('inventoryListPage.screen')) }
+          >
+            { this.state.inventoryList.map((item, i) => {
+              return (
+                <InventoryListItem
+                  key={ item.id }
+                  id={ item.id }
+                  image_url={ item.image_url }
+                  name={ item.name }
+                  desc={ item.desc }
+                  price={ item.price }
+                  navigation={ this.props.navigation }
+                />);
+            }) }
+            <Footer/>
+          </ScrollView>
+        </AppHeader>
+      </ThemeProvider>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  selectorContainer:{
+    position: 'absolute',
+    right: 10,
+    top: 14,
+  },
+  selector: {
+    height: 40,
+  },
+  selector_text: {
+    color: '#FFF',
+  },
+  selector_image: {
+    backgroundColor: colors.white,
+    height: 40,
+    width: 40,
+  },
+  container: {
+    flex: 5,
+    backgroundColor: '#FFF',
+  },
+});

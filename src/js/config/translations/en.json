@@ -82,7 +82,8 @@
     "goToButton": "CONTINUE SHOPPING"
   },
   "inventoryListPage": {
-    "screen": "Inventory list page",
+    "header": "PRODUCTS",
+    "screen": "PRODUCTS",
     "addButton": "ADD TO CART",
     "removeButton": "REMOVE",
     "itemContainer": "Item",
@@ -97,7 +98,7 @@
       "price": "√-1"
     },
     "addButton": "ADD TO CART",
-    "backButton": "<- BACK",
+    "backButton": "BACK",
     "removeButton": "REMOVE",
     "itemDescription": "Item description",
     "price": "Price"
@@ -126,5 +127,9 @@
     "label": "Swag Labs",
     "url": "https://saucelabs.com/",
     "404Url": "https://saucelabs.com/error/404"
+  },
+  "footer": {
+    "rights": "© 2019 Sauce Labs. All Rights Reserved.",
+    "termsAndPrivacy": "Terms of Service | Privacy Policy"
   }
 }

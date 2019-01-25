@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import {StyleSheet, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { IS_IOS } from './config/Constants';
-import { testProperties } from './config/TestProperties';
-import i18n from './config/i18n';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { testProperties } from '../config/TestProperties';
+import i18n from '../config/i18n';
 
 export default class MenuButton extends Component {
   constructor(props) {
@@ -23,15 +21,21 @@ export default class MenuButton extends Component {
 
     return (
       <View {...testProperties(i18n.t('menu.label'))}>
-        <Icon.Button name="bars" size={30} color="#FFF" style={styles.menu_icon} onPress={this.openMenu} />
+        <TouchableOpacity onPress={this.openMenu}>
+          <Image
+            style={styles.menu_image}
+            resizeMode="contain"
+            source={ require('../../img/menu-button.png') }
+          />
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  menu_icon: {
-    height: IS_IOS ? 50 : 40,
-    backgroundColor: '#2089DC',
+  menu_image: {
+    height: 40,
+    width: 40,
   },
 });

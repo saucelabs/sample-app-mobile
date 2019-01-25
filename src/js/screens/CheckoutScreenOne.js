@@ -3,12 +3,12 @@ import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, ThemeProvider, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Credentials } from '../credentials.js';
-import AppHeader from '../AppHeader.js';
+import AppHeader from '../components/AppHeader.js';
 import { IS_IOS } from '../config/Constants';
 import i18n from '../config/i18n';
 import {testProperties} from '../config/TestProperties';
 
-export default class CheckoutPageOne extends Component {
+export default class CheckoutScreenOne extends Component {
 
   constructor(props) {
     super(props);
@@ -74,7 +74,7 @@ export default class CheckoutPageOne extends Component {
     }
 
     // If we're here, we have our required info. Redirect!
-    this.props.navigation.navigate('CheckoutPageTwo');
+    this.props.navigation.navigate('CheckoutScreenTwo');
   }
 
   render() {

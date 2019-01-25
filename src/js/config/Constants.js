@@ -16,4 +16,4 @@ export const IS_IPHONEX = IS_IOS &&
 // Naming convention of custom fonts can differ in iOS and Android, this fixes it
 // Check https://stackoverflow.com/questions/33088510/react-native-android-fontfamily-does-not-take-effect
 export const MUSEO_SANS_NORMAL = IS_IOS ? 'MuseoSans-500' : 'MuseoSans_500';
-export const MUSEO_SANS_BOLD = IS_IOS ? 'MuseoSans-900' : 'MuseoSans_900';
+export const MUSEO_SANS_BOLD = IS_IOS ? 'MuseoSans-700' : 'MuseoSans_700';
