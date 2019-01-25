@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     flex: 1,
     alignSelf: 'stretch',
-    // This is for keeping the aspect ratio and make it repsonse
+    // This is for keeping the aspect ratio and make it responsive
     height: (WINDOW_WIDTH - 40) * 0.73,
     width: WINDOW_WIDTH - 40,
   },
