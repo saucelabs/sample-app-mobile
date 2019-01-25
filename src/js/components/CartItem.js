@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Divider } from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
+import { colors } from '../utils/colors';
+import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
+import RemoveButton from './RemoveButton';
 
 export default class CartItem extends Component {
-
   constructor(props) {
     super(props);
 
@@ -24,52 +26,70 @@ export default class CartItem extends Component {
   }
 
   removeFromCart() {
-
     ShoppingCart.removeItem(this.item.id);
     this.setState({ itemVisible: false });
   }
 
   render() {
-
     if (this.state.itemVisible) {
-
       return (
-        <View style={ styles.item_container } { ...testProperties(i18n.t('cartContent.cartItem.itemContainer')) }>
-          <View style={ styles.item_quantity_box } { ...testProperties(i18n.t('cartContent.cartItem.amount')) }>
-            <Text style={ styles.item_quantity }>1</Text>
-          </View>
-          <View style={ styles.item_infobox } { ...testProperties(i18n.t('cartContent.cartItem.description')) }>
-            <View style={ styles.item_details }>
-              <Text style={ styles.item_name }>{ this.item.name }</Text>
-              <Text style={ styles.item_desc }>{ this.item.desc }</Text>
+        <View>
+          <View style={ styles.item_container } { ...testProperties(i18n.t('cartContent.cartItem.itemContainer')) }>
+            <View style={ styles.item_quantity_box } { ...testProperties(i18n.t('cartContent.cartItem.amount')) }>
+              <Text style={ styles.item_quantity }>1</Text>
             </View>
-            <View style={ styles.item_price_bar }>
-              <Text style={ styles.price_text }>${ this.item.price }</Text>
-              <Button style={ styles.item_cart_button } onPress={ this.removeFromCart } title={ i18n.t('cartContent.cartItem.remove') }
-                      { ...testProperties(i18n.t('cartContent.cartItem.remove')) }/>
+            <View style={ styles.item_info_box } { ...testProperties(i18n.t('cartContent.cartItem.description')) }>
+              <View style={ styles.item_details }>
+                <Text style={ styles.item_name }>{ this.item.name }</Text>
+                <Text style={ styles.item_desc }>{ this.item.desc }</Text>
+              </View>
+              <Divider style={ [ styles.divider, styles.description_price_divider ] }/>
+              <View>
+                <Text style={ styles.price_text }>${ this.item.price }</Text>
+                <RemoveButton
+                  onPress={ this.removeFromCart }
+                  title={ i18n.t('cartContent.cartItem.remove') }
+                />
+              </View>
             </View>
           </View>
+          <Divider style={ styles.divider }/>
         </View>
       );
-    } else {
-      return (<View/>);
     }
+
+    return (<View/>);
   }
 }
 
 const styles = StyleSheet.create({
   item_container: {
     flexDirection: 'row',
-    padding: 5,
+    marginBottom: 25,
+    marginTop: 15,
   },
-  item_infobox: {
+  item_quantity_box: {
+    borderWidth: 2,
+    borderColor: colors.lightGray,
+    width: 35,
+    height: 35,
+  },
+  item_quantity: {
+    color: colors.gray,
+    fontFamily: MUSEO_SANS_NORMAL,
+    fontSize: 24,
+    textAlign: 'center',
+  },
+  item_info_box: {
     flexDirection: 'column',
-    flex: 4,
-    padding: 5,
+    flex: 1,
+    paddingLeft: 25,
   },
-  item_price_bar: {
-    flexDirection: 'row',
-    paddingTop: 5,
+  price_text: {
+    color: colors.slRed,
+    fontSize: 28,
+    fontFamily: MUSEO_SANS_NORMAL,
+    paddingBottom: 20,
   },
   item_cart_button: {
     flex: 3,
@@ -78,30 +98,27 @@ const styles = StyleSheet.create({
   item_details: {
     flexDirection: 'column',
   },
-  price_text: {
-    color: '#569210',
-    fontSize: 18,
-    flex: 2,
-    paddingTop: 10,
-  },
   item_name: {
-    fontSize: 18,
-    fontWeight: '800',
-    paddingBottom: 5,
+    color: colors.slRed,
+    fontSize: 20,
+    fontFamily: MUSEO_SANS_BOLD,
+    paddingBottom: 10,
   },
-  item_desc: {},
-  item_quantity: {
-    color: '#000',
-    fontSize: 18,
-    padding: 4,
+  item_desc: {
+    color: colors.gray,
+    fontSize: 16,
+    fontFamily: MUSEO_SANS_NORMAL,
   },
-  item_quantity_box: {
-    borderWidth: 2,
-    borderColor: '#000',
-    width: 22,
-    height: 35,
+  divider: {
+    borderBottomColor: colors.lightGray,
+    borderBottomWidth: 2,
+    width: '100%',
+    marginBottom: 10,
+    marginTop: 15,
+  },
+  description_price_divider: {
+    width: '40%',
+    marginBottom: 30,
     marginTop: 30,
-    marginLeft: 5,
-    marginRight: 5,
   },
 });
