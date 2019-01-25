@@ -35,6 +35,9 @@ export default class InventoryListItem extends Component {
       this.state.image_url = require('../../img/sl-404.jpg');
     }
 
+    // This prop will disable the navigation / flashy press if it should not be touchable
+    this.isDisabled = this.props.disabled || false;
+
     // Need to pass this in explicitly since it's a subcomponent
     this.navigation = props.navigation;
 
@@ -111,6 +114,7 @@ export default class InventoryListItem extends Component {
         <TouchableOpacity
           onPress={ this.navigateToItem }
           { ...MAKE_ACCESSIBLE_FOR_AUTOMATION }
+          disabled={this.isDisabled}
         >
           <Image
             source={ this.state.image_url }

@@ -11,7 +11,6 @@ import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
 
 export default class InventoryList extends Component {
-
   constructor(props) {
     super(props);
 
@@ -90,7 +89,6 @@ export default class InventoryList extends Component {
   }
 
   render() {
-
     const sortOptions = [
       { key: 'sectionLabel', section: true, label: i18n.t('modalSelector.sectionLabel') },
       { key: 'az', label: i18n.t('modalSelector.azLabel') },
