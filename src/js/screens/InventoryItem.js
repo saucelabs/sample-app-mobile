@@ -103,6 +103,7 @@ export default class InventoryItem extends Component {
               desc={ this.item.desc }
               price={ this.item.price }
               navigation={ this.props.navigation }
+              disabled
             />
             <Footer/>
           </ScrollView>
