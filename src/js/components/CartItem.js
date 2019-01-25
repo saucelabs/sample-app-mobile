@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
 import i18n from '../config/i18n';

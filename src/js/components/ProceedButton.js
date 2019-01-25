@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.slRed,
     paddingBottom: 5,
     paddingTop: 5,
+    elevation: 0,
   },
   button_title: {
     color: colors.white,
