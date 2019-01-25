@@ -83,11 +83,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 10,
     paddingRight: 10,
+    alignItems: 'center',
   },
   header_title: {
     fontSize: 24,
     fontFamily: MUSEO_SANS_BOLD,
     color: colors.white,
-    marginTop: 20,
   },
 });

@@ -23,7 +23,7 @@
     "checkout": "CHECKOUT",
     "continueShopping": "CONTINUE SHOPPING",
     "description": "DESCRIPTION",
-    "header": "Your Cart",
+    "header": "YOUR CART",
     "quantity": "QTY",
     "screen": "Cart Content",
     "cartItem": {

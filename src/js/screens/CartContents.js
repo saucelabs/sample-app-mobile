@@ -1,67 +1,19 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
-import {Button, ThemeProvider} from 'react-native-elements';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Divider, ThemeProvider } from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../components/AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 import i18n from '../config/i18n';
-import {testProperties} from '../config/TestProperties';
-import { IS_IOS } from '../config/Constants';
-
-class CartItem extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.item = props.item;
-    this.state = {
-      itemVisible: true,
-    };
-
-    if (props.item == null) {
-      // Hide this if the item is invalid
-      this.state.itemVisible = false;
-    }
-
-    this.removeFromCart = this.removeFromCart.bind(this);
-  }
-
-  removeFromCart() {
-
-    ShoppingCart.removeItem(this.item.id);
-    this.setState({itemVisible: false});
-  }
-
-  render () {
-
-    if (this.state.itemVisible) {
-
-      return (
-        <View style={styles.item_container} { ...testProperties(i18n.t('cartContent.cartItem.itemContainer'))}>
-          <View style={styles.item_quantity_box} { ...testProperties(i18n.t('cartContent.cartItem.amount'))}>
-            <Text style={styles.item_quantity}>1</Text>
-          </View>
-          <View style={styles.item_infobox} { ...testProperties(i18n.t('cartContent.cartItem.description'))}>
-            <View style={styles.item_details}>
-              <Text style={styles.item_name}>{this.item.name}</Text>
-              <Text style={styles.item_desc}>{this.item.desc}</Text>
-            </View>
-            <View style={styles.item_price_bar}>
-              <Text style={styles.price_text}>${this.item.price}</Text>
-              <Button style={styles.item_cart_button} onPress={this.removeFromCart} title={ i18n.t('cartContent.cartItem.remove')}
-                      { ...testProperties(i18n.t('cartContent.cartItem.remove')) }/>
-            </View>
-          </View>
-        </View>
-      );
-    } else {
-      return ( <View /> );
-    }
-  }
-}
+import { testProperties } from '../config/TestProperties';
+import { MUSEO_SANS_NORMAL } from '../config/Constants';
+import Footer from '../components/Footer';
+import CartItem from '../components/CartItem';
+import { colors } from '../utils/colors';
+import ArrowButton from '../components/ArrowButton';
+import ProceedButton from '../components/ProceedButton';
 
 export default class CartContents extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -72,27 +24,37 @@ export default class CartContents extends Component {
 
     return (
       <ThemeProvider>
-        <AppHeader navigation={this.props.navigation}>
-          <Image source={require('../../img/peek.png')} style={styles.peek_img} />
-          <View style={styles.secondary_header}>
-            <Text style={styles.header_title}>{ i18n.t('cartContent.header') }</Text>
-          </View>
-          <View style={styles.section_header}>
-            <Text style={styles.section_qty}>{ i18n.t('cartContent.quantity') }</Text>
-            <Text style={styles.section_desc}>{ i18n.t('cartContent.description') }</Text>
-          </View>
-          <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" { ...testProperties(i18n.t('cartContent.screen')) }>
-            {contents.map((item, i) => {
-              return (<CartItem key={i} item={InventoryData.ITEMS[item]} />);
-            })}
-            <View style={styles.cart_footer}>
-              <Button buttonStyle={styles.checkout_button} containerStyle={styles.checkout_button_container}
-                      onPress={() => {this.props.navigation.navigate('CheckoutScreenOne');}} title={ i18n.t('cartContent.checkout') }
-                      { ...testProperties(i18n.t('cartContent.checkout')) }/>
-              <Button buttonStyle={styles.cancel_button} containerStyle={styles.checkout_button_container}
-                      onPress={() => {this.props.navigation.navigate('InventoryList');}} title={ i18n.t('cartContent.continueShopping') }
-                      { ...testProperties(i18n.t('cartContent.continueShopping')) }/>
+        <AppHeader
+          navigation={ this.props.navigation }
+          header={ i18n.t('cartContent.header') }
+        >
+          <View style={ styles.section_header }>
+            <View style={ styles.section_header_container }>
+              <Text style={ styles.section_qty }>{ i18n.t('cartContent.quantity') }</Text>
+              <Text style={ styles.section_desc }>{ i18n.t('cartContent.description') }</Text>
             </View>
+            <Divider style={ styles.divider }/>
+          </View>
+          <ScrollView
+            style={ styles.container }
+            keyboardShouldPersistTaps="handled"
+            { ...testProperties(i18n.t('cartContent.screen')) }
+          >
+            <View style={ styles.cart_item_container }>
+              { contents.map((item, i) => <CartItem key={ i } item={ InventoryData.ITEMS[ item ] }/>) }
+            </View>
+            <View style={ styles.button_container }>
+              <ArrowButton
+                title={ i18n.t('cartContent.continueShopping') }
+                onPress={ () => this.props.navigation.navigate('InventoryList') }
+              />
+              <Divider style={styles.button_divider}/>
+              <ProceedButton
+                title={ i18n.t('cartContent.checkout') }
+                onPress={ () => this.props.navigation.navigate('CheckoutScreenOne') }
+              />
+            </View>
+            <Footer/>
           </ScrollView>
         </AppHeader>
       </ThemeProvider>
@@ -101,108 +63,49 @@ export default class CartContents extends Component {
 }
 
 const styles = StyleSheet.create({
-  secondary_header: {
-    height: 80,
-    backgroundColor: '#474c55',
-    flexDirection: 'row',
-  },
   section_header: {
-    height: 35,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
+    padding: 10,
+  },
+  section_header_container: {
     flexDirection: 'row',
-    padding: 5,
   },
   section_qty: {
+    color: colors.gray,
+    fontFamily: MUSEO_SANS_NORMAL,
     fontSize: 18,
-    color: '#000',
     paddingTop: 3,
   },
   section_desc: {
     fontSize: 18,
-    color: '#000',
+    color: colors.gray,
     paddingTop: 3,
     left: 70,
   },
-  header_title: {
-    fontSize: 30,
-    color: '#FFF',
-    marginLeft: 90,
-    marginTop: 32,
+  divider: {
+    borderBottomColor: colors.lightGray,
+    borderBottomWidth: 2,
+    width: '100%',
+    marginBottom: 10,
+    marginTop: 15,
   },
   container: {
-    flex: 5,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
   },
-  peek_img: {
-    width: 71,
-    height: 70,
-    top: IS_IOS ? 100 : 80,
-    left: 5,
-    position: 'absolute',
-    zIndex: 10,
+  cart_item_container: {
+    paddingLeft: 10,
+    paddingRight: 10,
   },
-  item_container: {
-    flexDirection: 'row',
-    padding: 5,
+  button_container: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginBottom: 20,
   },
-  item_infobox: {
-    flexDirection: 'column',
-    flex: 4,
-    padding: 5,
-  },
-  item_price_bar: {
-    flexDirection: 'row',
-    paddingTop: 5,
-  },
-  item_cart_button: {
-    flex: 3,
-    backgroundColor: '#57c1e8',
-  },
-  item_details: {
-    flexDirection: 'column',
-  },
-  price_text: {
-    color: '#569210',
-    fontSize: 18,
-    flex: 2,
-    paddingTop: 10,
-  },
-  item_name: {
-    fontSize: 18,
-    fontWeight: '800',
-    paddingBottom: 5,
-  },
-  item_desc: {
-
-  },
-  item_quantity: {
-    color: '#000',
-    fontSize: 18,
-    padding: 4,
-  },
-  item_quantity_box: {
-    borderWidth: 2,
-    borderColor: '#000',
-    width: 22,
-    height: 35,
-    marginTop: 30,
-    marginLeft: 5,
-    marginRight: 5,
-  },
-  cart_footer: {
-    flex: 3,
-    flexDirection: 'column',
-    backgroundColor: '#FFF',
-  },
-  checkout_button: {
-    flex: 1,
-  },
-  cancel_button: {
-    flex: 1,
-    backgroundColor: '#F00',
-  },
-  checkout_button_container: {
-    marginTop: 10,
+  button_divider:{
+    backgroundColor: colors.white,
+    borderTopWidth:0,
+    borderBottomWidth: 0,
     marginBottom: 10,
+    marginTop: 10,
   },
 });
