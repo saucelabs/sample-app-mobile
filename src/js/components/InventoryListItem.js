@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   item_image: {
     flex: 1,
     alignSelf: 'stretch',
-    // This is for keeping the aspect ratio and make it repsonse
+    // This is for keeping the aspect ratio and make it responsive
     height: (WINDOW_WIDTH - 50) * 1.25,
     width: WINDOW_WIDTH - 50,
     marginBottom: 20,
