@@ -148,7 +148,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-splash-screen')
     compile project(':react-native-languages')
     compile project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
