@@ -44,7 +44,6 @@ describe('Inventory Item Page', () => {
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
-    console.log('here')
     InventoryItemScreen.removeSwagItemFromCart();
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');

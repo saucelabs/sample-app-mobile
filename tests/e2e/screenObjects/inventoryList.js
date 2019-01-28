@@ -8,15 +8,15 @@ const SWAG_ITEM_SELECTOR = `test-${ SELECTORS.inventoryListPage.itemContainer }`
 
 class InventoryListScreen extends Base {
   constructor() {
-    super(`~${SCREEN_SELECTOR}`);
+    super(`~${ SCREEN_SELECTOR }`);
   }
 
   get screen() {
-    return $(`~${SCREEN_SELECTOR}`);
+    return $(`~${ SCREEN_SELECTOR }`);
   }
 
   get swagItems() {
-    return $$(`~${SWAG_ITEM_SELECTOR}`);
+    return $$(`~${ SWAG_ITEM_SELECTOR }`);
   }
 
   /**
@@ -40,8 +40,8 @@ class InventoryListScreen extends Base {
    * @return {string}
    */
   getSwagItemLabelText(needle) {
-    const elm = this.swagItems[needle].$(`~test-${ SELECTORS.inventoryListPage.itemDescription }`);
-    Gestures.scrollDownToElement(elm)
+    const elm = this.swagItems[ needle ].$(`~test-${ SELECTORS.inventoryListPage.itemDescription }`);
+    Gestures.scrollDownToElement(elm);
 
     return getTextOfElement(elm);
   }
@@ -110,9 +110,9 @@ class InventoryListScreen extends Base {
         return elm;
       }
 
-      if(scrollUp){
+      if (scrollUp) {
         Gestures.swipeDown(0.50);
-      }else{
+      } else {
         Gestures.swipeUp(0.50);
       }
     }
