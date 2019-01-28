@@ -28,7 +28,7 @@ describe('Menu', () => {
   });
 
   it('should be able to bring me to the all items page', () => {
-    InventoryListScreen.openSwagItemDetails(0);
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
     InventoryItemScreen.waitForIsShown();
     Menu.open();
     Menu.openAllItems();
@@ -37,7 +37,7 @@ describe('Menu', () => {
   });
 
   it('should be able reset the app state', () => {
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     expect(AppHeader.getCartAmount()).toContain('1', 'The cart amount is not correct.');
 
