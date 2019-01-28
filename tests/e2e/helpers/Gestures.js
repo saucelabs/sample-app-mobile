@@ -10,7 +10,7 @@ let SCREEN_SIZE;
  */
 const SWIPE_DIRECTION = {
   down: {
-    start: { x: 50, y: 15 },
+    start: { x: 50, y: 35 },
     end: { x: 50, y: 85 },
   },
   left: {
@@ -36,9 +36,9 @@ class Gestures {
    * @param {number} maxScrolls
    * @param {number} amount
    */
-  static scrollDownToElement(element, maxScrolls, amount = 0) {
+  static scrollDownToElement(element, maxScrolls = 10, amount = 0) {
     if ((!element.isExisting() || !element.isDisplayed()) && amount <= maxScrolls) {
-      this.swipeUp(0.70);
+      this.swipeUp(0.50);
       this.scrollDownToElement(element, maxScrolls, amount + 1);
     } else if (amount > maxScrolls) {
       throw new Error(`The element '${ element }' could not be found or is not visible.`);

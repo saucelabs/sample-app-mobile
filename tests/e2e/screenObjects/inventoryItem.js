@@ -1,11 +1,12 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
+import Gestures from '../helpers/Gestures';
 
 const SCREEN_SELECTOR = `~test-${ SELECTORS.inventoryItemPage.screen }`;
 
-class InventoryItemScreen extends Base{
-  constructor () {
+class InventoryItemScreen extends Base {
+  constructor() {
     super(SCREEN_SELECTOR);
   }
 
@@ -13,24 +14,24 @@ class InventoryItemScreen extends Base{
     return $(SCREEN_SELECTOR);
   }
 
-  get description(){
-    return $(`~test-${SELECTORS.inventoryItemPage.itemDescription}`);
+  get description() {
+    return $(`~test-${ SELECTORS.inventoryItemPage.itemDescription }`);
   }
 
-  get price(){
-    return $(`~test-${SELECTORS.inventoryItemPage.price}`);
+  get price() {
+    return $(`~test-${ SELECTORS.inventoryItemPage.price }`);
   }
 
-  get addButton(){
-    return $(`~test-${SELECTORS.inventoryItemPage.addButton}`);
+  get addButton() {
+    return $(`~test-${ SELECTORS.inventoryItemPage.addButton }`);
   }
 
-  get removeButton(){
-    return $(`~test-${SELECTORS.inventoryItemPage.removeButton}`);
+  get removeButton() {
+    return $(`~test-${ SELECTORS.inventoryItemPage.removeButton }`);
   }
 
-  get goBackButton(){
-    return $(`~test-${SELECTORS.inventoryItemPage.backButton}`);
+  get goBackButton() {
+    return $(`~test-${ SELECTORS.inventoryItemPage.backButton }`);
   }
 
   /**
@@ -38,7 +39,9 @@ class InventoryItemScreen extends Base{
    *
    * @return {string}
    */
-  getSwagDescription(){
+  getSwagDescription() {
+    Gestures.scrollDownToElement(this.description, 4);
+
     return getTextOfElement(this.description);
   }
 
@@ -47,17 +50,19 @@ class InventoryItemScreen extends Base{
    *
    * @return {string}
    */
-  getSwagPrice(){
+  getSwagPrice() {
+    Gestures.scrollDownToElement(this.price, 4);
+
     return getTextOfElement(this.price);
   }
 
   /**
-   * Get the text of the selected swag
+   * Get the label text of the selected swag
    *
    * @return {string}
    */
-  getSwagItemText(){
-    return `${this.getSwagDescription()} ${this.getSwagPrice()}`;
+  getSwagItemLabelText() {
+    return this.getSwagDescription();
   }
 
   /**
@@ -65,7 +70,8 @@ class InventoryItemScreen extends Base{
    *
    * @return {void}
    */
-  addSwagItemToCart(){
+  addSwagItemToCart() {
+    Gestures.scrollDownToElement(this.addButton, 4);
     this.addButton.click();
 
     // There is a little delay in adding the item to the cart :(
@@ -77,7 +83,8 @@ class InventoryItemScreen extends Base{
    *
    * @return {void}
    */
-  removeSwagItemFromCart(){
+  removeSwagItemFromCart() {
+    Gestures.scrollDownToElement(this.removeButton, 4);
     this.removeButton.click();
 
     // There is a little delay in removing the item to the cart :(
@@ -89,7 +96,7 @@ class InventoryItemScreen extends Base{
    *
    * @return {void}
    */
-  goBackToAllSwagItems(){
+  goBackToAllSwagItems() {
     return this.goBackButton.click();
   }
 }

@@ -21,24 +21,29 @@ class InventoryListScreen extends Base {
 
   /**
    * Get a swag Item based on a search string
+   * By default the scroll is down, but can also be up
    *
    * @param {string} needle
+   * @param {boolean} scrollUp
    *
    * @return the selected swagItem
    */
-  swagItem(needle) {
-    return this.findParentElementByText(SWAG_ITEM_SELECTOR, needle);
+  swagItem(needle, scrollUp = false) {
+    return this.findParentElementByText(SWAG_ITEM_SELECTOR, needle, scrollUp);
   }
 
   /**
-   * Get the text of the swag item, the needle needs to be of the shown swag item in the screen
+   * Get the label text of the swag item, the needle needs to be of the shown swag item in the screen
    *
    * @param {number} needle
    *
    * @return {string}
    */
-  getSwagItemText(needle) {
-    return getTextOfElement(this.swagItems[needle]);
+  getSwagItemLabelText(needle) {
+    const elm = this.swagItems[needle].$(`~test-${ SELECTORS.inventoryListPage.itemDescription }`);
+    Gestures.scrollDownToElement(elm)
+
+    return getTextOfElement(elm);
   }
 
   /**
@@ -70,27 +75,31 @@ class InventoryListScreen extends Base {
   }
 
   /**
-   * Open the details of a swag item
+   * Open the details of a swag item.
+   * By default the scroll is down, but can also be up
    *
    * @param {string} needle
+   * @param {boolean} scrollUp
    *
    * @return {void}
    */
-  openSwagItemDetails(needle) {
-    return this.swagItem(needle).click();
+  openSwagItemDetails(needle, scrollUp = false) {
+    return this.swagItem(needle, scrollUp).click();
   }
 
   /**
    * Find a swag item container element based on text.
    * This is a very heavy methods because it uses XPATH
+   * By default the scroll is down, but can also be up
    *
    * @param {string} selector
    * @param {string} needle
+   * @param {boolean} scrollUp
    * @param {number} maxScrolls
    *
    * @return {Element}
    */
-  findParentElementByText(selector, needle, maxScrolls = 10) {
+  findParentElementByText(selector, needle, scrollUp = false, maxScrolls = 10) {
     for (let i = 0; i < maxScrolls; i++) {
       const xpathSelector = driver.isIOS ?
         `//XCUIElementTypeStaticText[contains(@value,'${ needle }')]//ancestor::*[@name="${ selector }"]` :
@@ -101,7 +110,11 @@ class InventoryListScreen extends Base {
         return elm;
       }
 
-      Gestures.swipeUp(0.70);
+      if(scrollUp){
+        Gestures.swipeDown(0.50);
+      }else{
+        Gestures.swipeUp(0.50);
+      }
     }
   }
 }

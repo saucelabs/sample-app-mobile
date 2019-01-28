@@ -19,7 +19,7 @@ describe('Checkout: Overview', () => {
 
     // Add an item to the cart
     InventoryListScreen.waitForIsShown();
-    selectedSwagItemText = InventoryListScreen.getSwagItemText(0);
+    selectedSwagItemText = InventoryListScreen.getSwagItemLabelText(0);
     InventoryListScreen.addSwagItemToCart(0);
 
     // Open the cart

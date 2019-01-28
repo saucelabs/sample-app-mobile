@@ -28,12 +28,12 @@ describe('Inventory List Page', () => {
 
   it('should be able to sort the items', () => {
     // Check the first item is the backpack
-    expect(InventoryListScreen.getSwagItemText(0)).toContain('Sauce Labs Backpack', 'Selected item did not match');
+    expect(InventoryListScreen.getSwagItemLabelText(0)).toContain('Sauce Labs Backpack', 'Selected item did not match');
 
     ModalSelect.openSortingModal();
     ModalSelect.selectOption(SELECTORS.modalSelector.zaLabel);
 
-    expect(InventoryListScreen.getSwagItemText(0)).toContain('Test.allTheThings() T-Shirt (Red)', 'Selected item did not match');
+    expect(InventoryListScreen.getSwagItemLabelText(0)).toContain('Test.allTheThings() T-Shirt (Red)', 'Selected item did not match');
   });
 
   it('should be able to open and close the selecting modal', () => {
