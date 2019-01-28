@@ -17,7 +17,7 @@ describe('Checkout Complete', () => {
 
     // Add an item to the cart
     InventoryListScreen.waitForIsShown();
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     // Open the cart
     AppHeader.openCart();

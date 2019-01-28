@@ -62,7 +62,14 @@ class CheckoutPageOne extends Base {
     }
 
     // On smaller devices the keyboard is in front of the submit button, so hide it
-    driver.hideKeyboard();
+    // driver.hideKeyboard();
+    // The hideKeyboard is not working on real devices, so take a different approach
+    driver.touchAction({
+      action: 'tap',
+      x: 0,
+      y: -40,
+      element: this.firstName,
+    });
     Gestures.scrollDownToElement(this.continueCheckoutButton, 2);
     this.continueCheckoutButton.click();
   }
@@ -93,9 +100,16 @@ class CheckoutPageOne extends Base {
    * @return {void}
    */
   cancelCheckout() {
-    Gestures.scrollDownToElement(this.cancelButton, 2);
     // On smaller devices the keyboard is in front of the submit button, so hide it
-    driver.hideKeyboard();
+    // driver.hideKeyboard();
+    // The hideKeyboard is not working on real devices, so take a different approach
+    driver.touchAction({
+      action: 'tap',
+      x: 0,
+      y: -40,
+      element: this.firstName,
+    });
+    Gestures.scrollDownToElement(this.cancelButton, 2);
     return this.cancelButton.click();
   }
 }
