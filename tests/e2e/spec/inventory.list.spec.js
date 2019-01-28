@@ -44,21 +44,21 @@ describe('Inventory List Page', () => {
   });
 
   it('should be able to add swag to the cart', ()=>{
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
-    InventoryListScreen.addSwagItemToCart(2);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Bike Light');
 
     expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
   });
 
   it('should be able to remove swag from the cart', ()=>{
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
-    InventoryListScreen.removeSwagItemFromCart(0);
+    InventoryListScreen.removeSwagItemFromCart('Sauce Labs Backpack');
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');
   });

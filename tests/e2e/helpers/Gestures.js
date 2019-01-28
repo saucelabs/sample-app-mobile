@@ -36,11 +36,10 @@ class Gestures {
    * @param {number} maxScrolls
    * @param {number} amount
    */
-  static checkIfDisplayedWithScrollDown(element, maxScrolls, amount = 0) {
-    console.log('checkIfDisplayedWithScrollDown');
+  static scrollDownToElement(element, maxScrolls, amount = 0) {
     if ((!element.isExisting() || !element.isDisplayed()) && amount <= maxScrolls) {
-      this.swipeUp(0.85);
-      this.checkIfDisplayedWithScrollDown(element, maxScrolls, amount + 1);
+      this.swipeUp(0.70);
+      this.scrollDownToElement(element, maxScrolls, amount + 1);
     } else if (amount > maxScrolls) {
       throw new Error(`The element '${ element }' could not be found or is not visible.`);
     }
