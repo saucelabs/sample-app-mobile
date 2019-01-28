@@ -20,7 +20,7 @@ describe('Checkout: Overview', () => {
     // Add an item to the cart
     InventoryListScreen.waitForIsShown();
     selectedSwagItemText = InventoryListScreen.getSwagItemLabelText(0);
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     // Open the cart
     AppHeader.openCart();
@@ -36,10 +36,7 @@ describe('Checkout: Overview', () => {
   });
 
   it('should show the correct selected item in the overview', () => {
-    expect(selectedSwagItemText).toContain(
-      CheckoutPageTwo.getSwagItemText(0),
-      'The selected swag item is not equal.',
-    );
+    expect(CheckoutPageTwo.getSwagItemText(0)).toContain(selectedSwagItemText, 'The selected swag item is not equal.');
   });
 
   it('should be able to finish the checkout', () => {

@@ -1,6 +1,7 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import Base from './base';
 import { getTextOfElement } from '../helpers/utils';
+import Gestures from '../helpers/Gestures';
 
 const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageTwo.screen }`;
 
@@ -13,14 +14,6 @@ class CheckoutPageTwo extends Base{
     return $(SCREEN_SELECTOR);
   }
 
-  description(needle){
-    return this.swagItem(needle).$(`~test-${SELECTORS.checkoutPageTwo.item.description}`);
-  }
-
-  price(needle){
-    return this.swagItem(needle).$(`~test-${SELECTORS.checkoutPageTwo.item.price}`);
-  }
-
   get cancelButton(){
     return $(`~test-${SELECTORS.checkoutPageTwo.cancelButton}`);
   }
@@ -29,7 +22,7 @@ class CheckoutPageTwo extends Base{
     return $(`~test-${SELECTORS.checkoutPageTwo.finishButton}`);
   }
 
-  get items() {
+  get swagItems() {
     return $$(`~test-${ SELECTORS.checkoutPageTwo.item.container }`);
   }
 
@@ -42,21 +35,24 @@ class CheckoutPageTwo extends Base{
    */
   swagItem(needle) {
     if (typeof needle === 'string') {
-      return this.items.find(cartItem => getTextOfElement(cartItem).includes(needle));
+      return this.swagItems.find(cartItem => getTextOfElement(cartItem).includes(needle));
     }
 
-    return this.items[ needle ];
+    return this.swagItems[ needle ];
   }
 
   /**
    * Get the text of the cart
    *
-   * @param {number|string} needle
+   * @param {number} needle
    *
    * @return {string}
    */
   getSwagItemText(needle){
-    return `${getTextOfElement(this.description(needle))} ${getTextOfElement(this.price(needle))}`;
+    const elm = this.swagItems[ needle ].$(`~test-${ SELECTORS.cartContent.cartItem.description }`);
+    Gestures.scrollDownToElement(elm);
+
+    return getTextOfElement(elm);
   }
 
   /**
@@ -65,6 +61,8 @@ class CheckoutPageTwo extends Base{
    * @return {void}
    */
   cancelCheckout(){
+    Gestures.scrollDownToElement(this.cancelButton, 2);
+
     return this.cancelButton.click();
   }
 
@@ -74,6 +72,8 @@ class CheckoutPageTwo extends Base{
    * @return {void}
    */
   finishCheckout(){
+    Gestures.scrollDownToElement(this.finishButton, 2);
+
     return this.finishButton.click();
   }
 }

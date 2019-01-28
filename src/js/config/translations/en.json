@@ -30,7 +30,8 @@
       "itemContainer": "Item",
       "description": "Description",
       "amount": "Amount",
-      "remove": "REMOVE"
+      "remove": "REMOVE",
+      "price": "Price"
     }
   },
   "checkoutPageOne": {
