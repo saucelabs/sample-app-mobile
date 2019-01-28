@@ -20,8 +20,8 @@ describe('Inventory List Page', () => {
     expect(InventoryListScreen.swagItems.length).toBeGreaterThan(0, 'No items are shown');
   });
 
-  it('should be able to select a swag item and open the details page', () => {
-    InventoryListScreen.openSwagItemDetails('Bike Light');
+  fit('should be able to select a swag item and open the details page', () => {
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
 
     expect(InventoryItemScreen.waitForIsShown()).toEqual(true, 'The inventory item screen is not shown');
   });
