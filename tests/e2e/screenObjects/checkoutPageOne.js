@@ -1,6 +1,7 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import Base from './base';
 import { getTextOfElement } from '../helpers/utils';
+import Gestures from '../helpers/Gestures';
 
 const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageOne.screen }`;
 
@@ -62,6 +63,7 @@ class CheckoutPageOne extends Base {
 
     // On smaller devices the keyboard is in front of the submit button, so hide it
     driver.hideKeyboard();
+    Gestures.scrollDownToElement(this.continueCheckoutButton, 2);
     this.continueCheckoutButton.click();
   }
 
@@ -91,6 +93,7 @@ class CheckoutPageOne extends Base {
    * @return {void}
    */
   cancelCheckout() {
+    Gestures.scrollDownToElement(this.cancelButton, 2);
     // On smaller devices the keyboard is in front of the submit button, so hide it
     driver.hideKeyboard();
     return this.cancelButton.click();
