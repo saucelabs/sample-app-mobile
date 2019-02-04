@@ -57,15 +57,6 @@ class InventoryItemScreen extends Base {
   }
 
   /**
-   * Get the label text of the selected swag
-   *
-   * @return {string}
-   */
-  getSwagItemLabelText() {
-    return this.getSwagDescription();
-  }
-
-  /**
    * Add the item to the cart
    *
    * @return {void}

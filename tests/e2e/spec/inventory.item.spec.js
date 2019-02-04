@@ -21,7 +21,7 @@ describe('Inventory Item Page', () => {
     InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
     InventoryItemScreen.waitForIsShown();
 
-    expect(selectedSwagItemText).toContain(InventoryItemScreen.getSwagItemLabelText(), 'The details of the selected swag item was not correct');
+    expect(selectedSwagItemText).toContain(InventoryItemScreen.getSwagDescription(), 'The details of the selected swag item was not correct');
   });
 
   it('should be able to add a swag item to the cart from the details page', () => {
