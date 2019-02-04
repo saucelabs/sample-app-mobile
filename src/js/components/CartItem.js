@@ -22,6 +22,8 @@ export default class CartItem extends Component {
       this.state.itemVisible = false;
     }
 
+    this.showRemoveButton = this.props.showRemoveButton;
+
     this.removeFromCart = this.removeFromCart.bind(this);
   }
 
@@ -32,12 +34,21 @@ export default class CartItem extends Component {
 
   render() {
     if (this.state.itemVisible) {
+      const removeButton = this.showRemoveButton ? (
+        <RemoveButton
+          onPress={ this.removeFromCart }
+          title={ i18n.t('cartContent.cartItem.remove') }
+        />
+      ) : null;
+
       return (
         <View>
           <View style={ styles.item_container } { ...testProperties(i18n.t('cartContent.cartItem.itemContainer')) }>
+
             <View style={ styles.item_quantity_box } { ...testProperties(i18n.t('cartContent.cartItem.amount')) }>
               <Text style={ styles.item_quantity }>1</Text>
             </View>
+
             <View style={ styles.item_info_box } { ...testProperties(i18n.t('cartContent.cartItem.description')) }>
               <View style={ styles.item_details }>
                 <Text style={ styles.item_name }>{ this.item.name }</Text>
@@ -46,12 +57,10 @@ export default class CartItem extends Component {
               <Divider style={ [ styles.divider, styles.description_price_divider ] }/>
               <View>
                 <Text style={ styles.price_text }>${ this.item.price }</Text>
-                <RemoveButton
-                  onPress={ this.removeFromCart }
-                  title={ i18n.t('cartContent.cartItem.remove') }
-                />
+                { removeButton }
               </View>
             </View>
+
           </View>
           <Divider style={ styles.divider }/>
         </View>

@@ -50,8 +50,8 @@
     "continueButton": "CONTINUE"
   },
   "checkoutPageTwo": {
-    "header": "Checkout: Overview",
-    "screen": "Checkout: Overview",
+    "header": "CHECKOUT: OVERVIEW",
+    "screen": "CHECKOUT: OVERVIEW",
     "description": "DESCRIPTION",
     "quantity": "QTY",
     "item": {

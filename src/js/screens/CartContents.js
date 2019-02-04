@@ -34,7 +34,7 @@ export default class CartContents extends Component {
             { ...testProperties(i18n.t('cartContent.screen')) }
           >
             <View style={ styles.cart_item_container }>
-              { contents.map((item, i) => <CartItem key={ i } item={ InventoryData.ITEMS[ item ] }/>) }
+              { contents.map((item, i) => <CartItem key={ i } item={ InventoryData.ITEMS[ item ] } showRemoveButton/>) }
             </View>
             <View style={ styles.button_container }>
               <ArrowButton
