@@ -41,13 +41,13 @@
       "lastName": "Last Name is required",
       "postalCode": "Postal Code is required"
     },
-    "header": "Checkout: Your Info",
+    "header": "CHECKOUT: INFORMATION",
     "firstName": "First Name",
     "lastName": "Last Name",
     "postalCode": "Zip/Postal Code",
     "screen": "Checkout: Your Info",
     "cancelButton": "CANCEL",
-    "continueButton": "CONTINUE CHECKOUT"
+    "continueButton": "CONTINUE"
   },
   "checkoutPageTwo": {
     "header": "Checkout: Overview",

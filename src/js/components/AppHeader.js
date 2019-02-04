@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header_title: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: MUSEO_SANS_BOLD,
     color: colors.white,
   },
