@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Button, Divider, Input } from 'react-native-elements';
+import { Divider, Input } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
 import { ShoppingCart } from '../shopping-cart.js';
@@ -10,6 +10,7 @@ import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
 import { ParseText } from '../utils/parseText';
 import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from '../components/StatusBar';
+import ActionButton from '../components/ActionButton';
 
 export default class Login extends Component {
 
@@ -143,13 +144,9 @@ export default class Login extends Component {
               { ...testProperties(i18n.t('login.password')) }
             />
             { errorMessage }
-            <Button
-              buttonStyle={ styles.button_style }
-              containerStyle={ styles.button_container_style }
-              titleStyle={ styles.button_title_style }
+            <ActionButton
               onPress={ this.handleSubmit }
               title={ i18n.t('login.loginButton') }
-              { ...testProperties(i18n.t('login.loginButton')) }
             />
             <Image
               source={ require('../../img/login-bot.png') }
@@ -198,24 +195,6 @@ const styles = StyleSheet.create({
   input_container_style: {
     borderColor: colors.lightGray,
     borderBottomWidth: 3,
-  },
-  button_container_style: {
-    marginTop: 20,
-    width: '100%',
-  },
-  button_style: {
-    backgroundColor: colors.white,
-    borderColor: colors.slRed,
-    borderWidth: 3,
-    borderRadius: 0,
-    paddingBottom: 5,
-    paddingTop: 5,
-    elevation: 0,
-  },
-  button_title_style: {
-    color: colors.slRed,
-    fontSize: 18,
-    fontFamily: MUSEO_SANS_BOLD,
   },
   error_message_container: {
     marginBottom: 20,

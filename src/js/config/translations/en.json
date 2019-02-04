@@ -73,13 +73,13 @@
     "cancelButton": "CANCEL"
   },
   "checkoutCompletePage": {
-    "header": "Checkout Complete!",
-    "screen": "Checkout Complete",
+    "header": "CHECKOUT: COMPLETE!",
+    "screen": "CHECKOUT: COMPLETE!",
     "completeContainer": {
-      "header": "Thank you for your order",
+      "header": "THANK YOU FOR YOU ORDER",
       "text": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
     },
-    "goToButton": "CONTINUE SHOPPING"
+    "goToButton": "BACK HOME"
   },
   "inventoryListPage": {
     "header": "PRODUCTS",
