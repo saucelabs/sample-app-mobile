@@ -70,6 +70,16 @@
 		<string>FontAwesome5_Brands.ttf</string>
 		<string>FontAwesome5_Regular.ttf</string>
 		<string>FontAwesome5_Solid.ttf</string>
+		<string>MuseoSans_500.otf</string>
+		<string>MuseoSans_500_Italic.otf</string>
+		<string>MuseoSans_700.otf</string>
+		<string>MuseoSans_900.otf</string>
+		<string>MuseoSans-100.otf</string>
+		<string>MuseoSans-100Italic.otf</string>
+		<string>MuseoSans-300.otf</string>
+		<string>MuseoSans-300Italic.otf</string>
+		<string>MuseoSans-700Italic.otf</string>
+		<string>MuseoSans-900Italic.otf</string>
 	</array>
 </dict>
 </plist>

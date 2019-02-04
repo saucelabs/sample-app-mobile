@@ -18,7 +18,7 @@ config.capabilities = [
     // You can find more info in the TO Appium Basic Setup section
     platformName: 'iOS',
     idleTimeout: 180,
-    maxInstances: 1,
+    maxInstances: 2,
     testobject_cache_device: true,
     noReset: true,
     orientation: 'PORTRAIT',

@@ -1,7 +1,7 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import Base from './base';
-import { getTextOfElement } from '../helpers/utils';
-import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
+import { getTextOfElement, hideKeyboard } from '../helpers/utils';
+import Gestures from '../helpers/Gestures';
 
 const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageOne.screen }`;
 
@@ -62,7 +62,10 @@ class CheckoutPageOne extends Base {
     }
 
     // On smaller devices the keyboard is in front of the submit button, so hide it
-    driver.hideKeyboard();
+    hideKeyboard(this.firstName);
+    // Check if the button is visible, if not scroll to it
+    Gestures.scrollDownToElement(this.continueCheckoutButton, 2);
+    // Click on the button
     this.continueCheckoutButton.click();
   }
 
@@ -93,7 +96,8 @@ class CheckoutPageOne extends Base {
    */
   cancelCheckout() {
     // On smaller devices the keyboard is in front of the submit button, so hide it
-    driver.hideKeyboard();
+    hideKeyboard(this.firstName);
+    Gestures.scrollDownToElement(this.cancelButton, 2);
     return this.cancelButton.click();
   }
 }

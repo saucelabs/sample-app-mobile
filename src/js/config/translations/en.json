@@ -5,7 +5,10 @@
     "password": "Password",
     "screen": "Login",
     "username": "Username",
-    "loginText": "The currently accepted usernames for this application are:\n\n- standard_user\n- locked_out_user\n- problem_user\n\nAnd the password for all users is:\n\nsecret_sauce",
+    "loginText": {
+      "usernames": "The currently accepted usernames for this application are:\n\n__standard_user__\n__locked_out_user__\n__problem_user__",
+      "password": "And the password for all users is:\n\n__secret_sauce__"
+    },
     "errors": {
       "container": "Error message",
       "epicSadFace": "Epic sadface: ",
@@ -20,14 +23,15 @@
     "checkout": "CHECKOUT",
     "continueShopping": "CONTINUE SHOPPING",
     "description": "DESCRIPTION",
-    "header": "Your Cart",
+    "header": "YOUR CART",
     "quantity": "QTY",
     "screen": "Cart Content",
     "cartItem": {
       "itemContainer": "Item",
       "description": "Description",
       "amount": "Amount",
-      "remove": "REMOVE"
+      "remove": "REMOVE",
+      "price": "Price"
     }
   },
   "checkoutPageOne": {
@@ -38,17 +42,17 @@
       "lastName": "Last Name is required",
       "postalCode": "Postal Code is required"
     },
-    "header": "Checkout: Your Info",
+    "header": "CHECKOUT: INFORMATION",
     "firstName": "First Name",
     "lastName": "Last Name",
     "postalCode": "Zip/Postal Code",
     "screen": "Checkout: Your Info",
     "cancelButton": "CANCEL",
-    "continueButton": "CONTINUE CHECKOUT"
+    "continueButton": "CONTINUE"
   },
   "checkoutPageTwo": {
-    "header": "Checkout: Overview",
-    "screen": "Checkout: Overview",
+    "header": "CHECKOUT: OVERVIEW",
+    "screen": "CHECKOUT: OVERVIEW",
     "description": "DESCRIPTION",
     "quantity": "QTY",
     "item": {
@@ -70,16 +74,17 @@
     "cancelButton": "CANCEL"
   },
   "checkoutCompletePage": {
-    "header": "Checkout Complete!",
-    "screen": "Checkout Complete",
+    "header": "CHECKOUT: COMPLETE!",
+    "screen": "CHECKOUT: COMPLETE!",
     "completeContainer": {
-      "header": "Thank you for your order",
+      "header": "THANK YOU FOR YOU ORDER",
       "text": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
     },
-    "goToButton": "CONTINUE SHOPPING"
+    "goToButton": "BACK HOME"
   },
   "inventoryListPage": {
-    "screen": "Inventory list page",
+    "header": "PRODUCTS",
+    "screen": "PRODUCTS",
     "addButton": "ADD TO CART",
     "removeButton": "REMOVE",
     "itemContainer": "Item",
@@ -94,9 +99,9 @@
       "price": "√-1"
     },
     "addButton": "ADD TO CART",
-    "backButton": "<- BACK",
+    "backButton": "BACK TO PRODUCTS",
     "removeButton": "REMOVE",
-    "itemDescription": "Item description",
+    "itemDescription": "Description",
     "price": "Price"
   },
   "modalSelector": {
@@ -123,5 +128,9 @@
     "label": "Swag Labs",
     "url": "https://saucelabs.com/",
     "404Url": "https://saucelabs.com/error/404"
+  },
+  "footer": {
+    "rights": "© 2019 Sauce Labs. All Rights Reserved.",
+    "termsAndPrivacy": "Terms of Service | Privacy Policy"
   }
 }

@@ -4,6 +4,7 @@ import InventoryListScreen from '../screenObjects/inventoryList';
 import InventoryItemScreen from '../screenObjects/inventoryItem';
 import AppHeader from '../screenObjects/appHeader';
 import { LOGIN_USERS } from '../helpers/e2eConstants';
+import Gestures from '../helpers/Gestures';
 
 describe('Inventory Item Page', () => {
   beforeEach(() => {
@@ -15,16 +16,16 @@ describe('Inventory Item Page', () => {
   });
 
   it('should show the details of the selected swag', () => {
-    const selectedSwagItemText = InventoryListScreen.getSwagItemText(1);
+    const selectedSwagItemText = InventoryListScreen.getSwagItemLabelText(0);
 
-    InventoryListScreen.openSwagItemDetails(1);
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
     InventoryItemScreen.waitForIsShown();
 
-    expect(selectedSwagItemText).toContain(InventoryItemScreen.getSwagItemText(), 'The details of the selected swag item was not correct');
+    expect(selectedSwagItemText).toContain(InventoryItemScreen.getSwagDescription(), 'The details of the selected swag item was not correct');
   });
 
   it('should be able to add a swag item to the cart from the details page', () => {
-    InventoryListScreen.openSwagItemDetails(1);
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
     InventoryItemScreen.waitForIsShown();
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');
@@ -35,8 +36,10 @@ describe('Inventory Item Page', () => {
   });
 
   it('should be able to remove a swag item from the cart from the details page added in the inventory page', () => {
-    InventoryListScreen.addSwagItemToCart(1);
-    InventoryListScreen.openSwagItemDetails(1);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+    // Scroll a bit up so the item could be click correct
+    Gestures.swipeDown(0.60);
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
     InventoryItemScreen.waitForIsShown();
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
@@ -47,7 +50,7 @@ describe('Inventory Item Page', () => {
   });
 
   it('should be able to remove a swag item from the cart from the details page', () => {
-    InventoryListScreen.openSwagItemDetails(1);
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
     InventoryItemScreen.waitForIsShown();
 
     InventoryItemScreen.addSwagItemToCart();
@@ -60,7 +63,7 @@ describe('Inventory Item Page', () => {
   });
 
   it('should be able to get back from the swag details page through the back button', () => {
-    InventoryListScreen.openSwagItemDetails(1);
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
     InventoryItemScreen.waitForIsShown();
 
     InventoryItemScreen.goBackToAllSwagItems();
