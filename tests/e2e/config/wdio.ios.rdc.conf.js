@@ -7,7 +7,7 @@ const { config} = require('./wdio.rdc.shared');
 // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
 config.capabilities = [
   {
-    deviceName: 'iPhone XS',
+    deviceName: 'iPhone 8',
     // The reference to the app
     testobject_app_id: '1',
     // The api key that has a reference to the app-project in the TO cloud
