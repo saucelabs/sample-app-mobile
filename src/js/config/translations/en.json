@@ -30,7 +30,8 @@
       "itemContainer": "Item",
       "description": "Description",
       "amount": "Amount",
-      "remove": "REMOVE"
+      "remove": "REMOVE",
+      "price": "Price"
     }
   },
   "checkoutPageOne": {
@@ -100,7 +101,7 @@
     "addButton": "ADD TO CART",
     "backButton": "BACK TO PRODUCTS",
     "removeButton": "REMOVE",
-    "itemDescription": "Item description",
+    "itemDescription": "Description",
     "price": "Price"
   },
   "modalSelector": {

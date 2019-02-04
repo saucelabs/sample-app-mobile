@@ -4,7 +4,7 @@ import { BUNDLE_IDS, DEFAULT_TIMEOUT } from './e2eConstants';
  * The app is opened by Appium by default, when we start a new test
  * the app needs to be reset
  */
-export function restartApp(){
+export function restartApp() {
   if (!driver.firstAppStart) {
     driver.reset();
   }
@@ -26,11 +26,11 @@ export function getTextOfElement(element, isXpath = false) {
 
   try {
     if (driver.isAndroid) {
-      visualText = element.$$('*//android.widget.TextView').reduce((currentValue, el) => `${currentValue} ${el.getText()}`, '');
+      visualText = element.$$('*//android.widget.TextView').reduce((currentValue, el) => `${ currentValue } ${ el.getText() }`, '');
     } else {
       const iosElement = isXpath ? element.$$('*//XCUIElementTypeStaticText') : element;
-      if (isXpath){
-        visualText = element.$$('*//XCUIElementTypeStaticText').reduce((currentValue, el) => `${currentValue} ${el.getText()}`, '');
+      if (isXpath) {
+        visualText = element.$$('*//XCUIElementTypeStaticText').reduce((currentValue, el) => `${ currentValue } ${ el.getText() }`, '');
       } else {
         visualText = iosElement.getText();
       }
@@ -71,7 +71,7 @@ function getIosAppState() {
 
   const currentAppState = driver.execute('mobile: queryAppState', { bundleId: BUNDLE_IDS.IOS });
 
-  return appStates[currentAppState];
+  return appStates[ currentAppState ];
 }
 
 /**
@@ -93,17 +93,22 @@ function getCurrentActivity() {
 function openWebPageWithBrowserOnce() {
   const justOnceButton = '*//android.widget.Button[@resource-id="android:id/button_once"]';
 
-  $('*//android.widget.ListView[@resource-id="android:id/resolver_list"]').waitForDisplayed(DEFAULT_TIMEOUT);
+  try {
+    $('*//android.widget.ListView[@resource-id="android:id/resolver_list"]').waitForDisplayed(DEFAULT_TIMEOUT);
 
-  if ($(justOnceButton).isEnabled()) {
+    if ($(justOnceButton).isEnabled()) {
+      return $(justOnceButton).click();
+    }
+
+    // Chrome is most of the time the first
+    $$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]/android.widget.LinearLayout')[ 0 ].click();
+
+    driver.pause(500);
     return $(justOnceButton).click();
+  } catch (e) {
+    // It could be that it already opens to the default browser and no check screen is asked
+    return;
   }
-
-  // Chrome is most of the time the first
-  $$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]/android.widget.LinearLayout')[0].click();
-
-  driver.pause(500);
-  return $(justOnceButton).click();
 }
 
 /**
@@ -123,4 +128,34 @@ export function browserIsOpened() {
   openWebPageWithBrowserOnce();
 
   return getCurrentActivity().includes('chromium') || getCurrentActivity().includes('WebViewBrowserActivity');
+}
+
+/**
+ * Hide the keyboard, but only if it is present
+ *
+ * @param {Element} element
+ *
+ * @return {void}
+ */
+export function hideKeyboard(element) {
+  // The hideKeyboard is not working on ios devices, so take a different approach
+  if (!driver.isKeyboardShown()){
+    return;
+  }
+
+  if (driver.isIOS) {
+    return driver.touchAction({
+      action: 'tap',
+      x: 0,
+      y: -40,
+      element,
+    });
+  }
+
+  try {
+    return driver.hideKeyboard('pressKey', 'Done');
+  } catch (e) {
+    // Fallback
+    return driver.back();
+  }
 }

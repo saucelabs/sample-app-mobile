@@ -16,7 +16,7 @@ export default class Base {
     return driver.waitUntil(
       () => this.isShown(element),
       DEFAULT_TIMEOUT,
-      `The element was not shown within the default timeout of ${DEFAULT_TIMEOUT}`,
+      `The element was not shown within the default timeout of ${ DEFAULT_TIMEOUT }`,
     );
   }
 
@@ -31,7 +31,7 @@ export default class Base {
     return driver.waitUntil(
       () => !this.isShown(element),
       DEFAULT_TIMEOUT,
-      `The element was still shown within the default timeout of ${DEFAULT_TIMEOUT}`,
+      `The element was still shown within the default timeout of ${ DEFAULT_TIMEOUT }`,
     );
   }
 
@@ -48,13 +48,13 @@ export default class Base {
     try {
       const el = element || $(this.selector);
 
-      return  el.isDisplayed();
+      return el.isDisplayed();
     } catch (error) {
-      if (driver.isAndroid) {
-        return false;
-      }
+      // There looks to be an issue with WebdriverIO and handling the not existence off elements
+      // I already created an issue for that. For now we catch the error and return false to not break the test
+      return false;
 
-      throw new Error(error);
+      // throw new Error(error);
     }
   }
 }

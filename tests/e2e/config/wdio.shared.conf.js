@@ -27,12 +27,6 @@ exports.config = {
     expectationResultHandler: function (passed, assertion) {
     },
   },
-  // ====================
-  // Appium Configuration
-  // ====================
-  // Default port for Appium
-  port: 4723,
-  maxInstances: 1,
   // =====
   // Hooks
   // =====

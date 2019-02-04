@@ -17,7 +17,7 @@ describe('Checkout: Your info', () => {
 
     // Add an item to the cart
     InventoryListScreen.waitForIsShown();
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     // Open the cart
     AppHeader.openCart();
@@ -46,29 +46,20 @@ describe('Checkout: Your info', () => {
     CheckoutPageOne.submitPersonalInfo(PERSONAL_INFO.NO_FIRSTNAME);
 
     expect(CheckoutPageOne.isErrorMessageShown()).toEqual(true, 'The error message should be diplayed');
-    expect(CheckoutPageOne.getErrorMessage()).toContain(
-      `${ SELECTORS.checkoutPageOne.errors.epicSadFace }${ SELECTORS.checkoutPageOne.errors.firstName }`,
-      'The error message is not as expected',
-    );
+    expect(CheckoutPageOne.getErrorMessage()).toContain(SELECTORS.checkoutPageOne.errors.firstName, 'The error message is not as expected');
   });
 
   it('should show an error when the last name has not been entered', () => {
     CheckoutPageOne.submitPersonalInfo(PERSONAL_INFO.NO_LAST_NAME);
 
     expect(CheckoutPageOne.isErrorMessageShown()).toEqual(true, 'The error message should be diplayed');
-    expect(CheckoutPageOne.getErrorMessage()).toContain(
-      `${ SELECTORS.checkoutPageOne.errors.epicSadFace }${ SELECTORS.checkoutPageOne.errors.lastName }`,
-      'The error message is not as expected',
-    );
+    expect(CheckoutPageOne.getErrorMessage()).toContain(SELECTORS.checkoutPageOne.errors.lastName, 'The error message is not as expected');
   });
 
   it('should show an error when the postal code has not been entered', () => {
     CheckoutPageOne.submitPersonalInfo(PERSONAL_INFO.NO_POSTAL_CODE);
 
     expect(CheckoutPageOne.isErrorMessageShown()).toEqual(true, 'The error message should be diplayed');
-    expect(CheckoutPageOne.getErrorMessage()).toContain(
-      `${ SELECTORS.checkoutPageOne.errors.epicSadFace }${ SELECTORS.checkoutPageOne.errors.postalCode }`,
-      'The error message is not as expected',
-    );
+    expect(CheckoutPageOne.getErrorMessage()).toContain(SELECTORS.checkoutPageOne.errors.postalCode, 'The error message is not as expected');
   });
 });

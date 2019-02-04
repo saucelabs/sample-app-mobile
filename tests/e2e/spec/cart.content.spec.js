@@ -15,8 +15,8 @@ describe('Cart Content Page', () => {
 
     // Add some items to the cart
     InventoryListScreen.waitForIsShown();
-    InventoryListScreen.addSwagItemToCart(0);
-    InventoryListScreen.addSwagItemToCart(1);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Bike Light');
 
     // Open the cart
     AppHeader.openCart();
@@ -24,7 +24,7 @@ describe('Cart Content Page', () => {
   });
 
   it('should show 2 items in the cart', () => {
-    expect(CartContent.items.length).toEqual(2, 'The amount of items in the cart is not correct.');
+    expect(CartContent.swagItems.length).toEqual(2, 'The amount of items in the cart is not correct.');
   });
 
   it('should show the items page if continue shopping is selected', () => {
@@ -37,11 +37,11 @@ describe('Cart Content Page', () => {
   it('should update the cart if an item is removed', () => {
     expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
 
-    CartContent.removeSwagItem(1);
+    CartContent.removeSwagItem();
 
     expect(AppHeader.getCartAmount()).toContain(1, 'The amount if items in the cart is not correct.');
 
-    CartContent.removeSwagItem(0);
+    CartContent.removeSwagItem();
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'The amount if items in the cart is not correct.');
   });

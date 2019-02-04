@@ -49,14 +49,7 @@ class Menu extends Base {
    * @return {boolean}
    */
   isOpen() {
-    // For iOS we can check the visibility
-    if (driver.isIOS) {
-      return this.allItems.isDisplayed();
-    }
-
-    // For Android we need to check if one of the menu items it's x position is inside the screen,
-    // if so, the menu is open, of not it's closed
-    return driver.getElementRect(this.allItems.elementId).x > 0;
+    return this.isShown();
   }
 
   /**
@@ -65,18 +58,7 @@ class Menu extends Base {
    * @return {void}
    */
   waitUntilClosed() {
-    // For iOS we can wait until an menu item is not visible anymore
-    if (driver.isIOS) {
-      return driver.waitUntil(() => !this.allItems.isDisplayed());
-    }
-
-    // For Android we need to do some complex stuff
-    return driver.waitUntil(
-      () => !this.allItems.isExisting() || driver.getElementRect(this.allItems.elementId).x <= 0,
-      DEFAULT_TIMEOUT,
-      `The menu didn't close in the default timeout of ${ DEFAULT_TIMEOUT } milliseconds`,
-      100,
-    );
+    return driver.waitUntil(() => !this.isShown());
   }
 
   /**
@@ -85,34 +67,7 @@ class Menu extends Base {
    * @return {void}
    */
   waitUntilOpened() {
-    // For iOS we can check if a menu item is visible
-    if (driver.isIOS) {
-      return driver.waitUntil(() => this.allItems.isDisplayed(), DEFAULT_TIMEOUT);
-    }
-
-    // For Android we need to do a complex thing :(
-    let previousPosition;
-    let retryAmount = 0;
-
-    return driver.waitUntil(
-      () => {
-        const currentCoordinate = driver.getElementRect(this.allItems.elementId).x;
-
-        if ((previousPosition === currentCoordinate) && retryAmount <= 1) {
-          ++retryAmount;
-        }
-        if (retryAmount > 1) {
-          return true;
-        }
-
-        previousPosition = currentCoordinate;
-
-        return false;
-      },
-      DEFAULT_TIMEOUT,
-      `The menu didn't open in the default timeout of ${ DEFAULT_TIMEOUT } milliseconds`,
-      100,
-    );
+    return driver.waitUntil(() => this.isShown(), DEFAULT_TIMEOUT);
   }
 
   /**

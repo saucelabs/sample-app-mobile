@@ -21,19 +21,19 @@ describe('Inventory List Page', () => {
   });
 
   it('should be able to select a swag item and open the details page', () => {
-    InventoryListScreen.openSwagItemDetails('Bike Light');
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
 
     expect(InventoryItemScreen.waitForIsShown()).toEqual(true, 'The inventory item screen is not shown');
   });
 
   it('should be able to sort the items', () => {
     // Check the first item is the backpack
-    expect(InventoryListScreen.getSwagItemText(0)).toContain('Sauce Labs Backpack', 'Selected item did not match');
+    expect(InventoryListScreen.getSwagItemLabelText(0)).toContain('Sauce Labs Backpack', 'Selected item did not match');
 
     ModalSelect.openSortingModal();
     ModalSelect.selectOption(SELECTORS.modalSelector.zaLabel);
 
-    expect(InventoryListScreen.getSwagItemText(0)).toContain('Test.allTheThings() T-Shirt (Red)', 'Selected item did not match');
+    expect(InventoryListScreen.getSwagItemLabelText(0)).toContain('Test.allTheThings() T-Shirt (Red)', 'Selected item did not match');
   });
 
   it('should be able to open and close the selecting modal', () => {
@@ -44,21 +44,21 @@ describe('Inventory List Page', () => {
   });
 
   it('should be able to add swag to the cart', ()=>{
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
-    InventoryListScreen.addSwagItemToCart(2);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Bike Light');
 
     expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
   });
 
   it('should be able to remove swag from the cart', ()=>{
-    InventoryListScreen.addSwagItemToCart(0);
+    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
 
     expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
-    InventoryListScreen.removeSwagItemFromCart(0);
+    InventoryListScreen.removeSwagItemFromCart('Sauce Labs Backpack');
 
     expect(AppHeader.getCartAmount()).not.toContain(1, 'Cart amount is not correct');
   });

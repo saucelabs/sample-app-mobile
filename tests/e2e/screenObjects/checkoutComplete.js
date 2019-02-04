@@ -22,7 +22,7 @@ class CheckoutComplete extends Base{
    * The button is not visible on all screens
    */
   continueShopping(){
-    Gestures.checkIfDisplayedWithScrollDown(this.continuesShoppingButton, 4);
+    Gestures.scrollDownToElement(this.continuesShoppingButton, 4);
 
     return this.continuesShoppingButton.click();
   }

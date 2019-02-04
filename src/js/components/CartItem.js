@@ -49,13 +49,13 @@ export default class CartItem extends Component {
               <Text style={ styles.item_quantity }>1</Text>
             </View>
 
-            <View style={ styles.item_info_box } { ...testProperties(i18n.t('cartContent.cartItem.description')) }>
-              <View style={ styles.item_details }>
+            <View style={ styles.item_info_box }>
+              <View style={ styles.item_details } { ...testProperties(i18n.t('cartContent.cartItem.description')) }>
                 <Text style={ styles.item_name }>{ this.item.name }</Text>
                 <Text style={ styles.item_desc }>{ this.item.desc }</Text>
               </View>
               <Divider style={ [ styles.divider, styles.description_price_divider ] }/>
-              <View>
+              <View { ...testProperties(i18n.t('cartContent.cartItem.price')) }>
                 <Text style={ styles.price_text }>${ this.item.price }</Text>
                 { removeButton }
               </View>

@@ -1,6 +1,7 @@
 import * as SELECTORS from '../../../src/js/config/translations/en.json';
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
+import Gestures from '../helpers/Gestures';
 
 const SCREEN_SELECTOR = `~test-${ SELECTORS.cartContent.screen }`;
 
@@ -21,7 +22,7 @@ class CartContent extends Base{
     return $(`~test-${SELECTORS.cartContent.continueShopping}`);
   }
 
-  get items() {
+  get swagItems() {
     return $$(`~test-${ SELECTORS.cartContent.cartItem.itemContainer }`);
   }
 
@@ -34,10 +35,10 @@ class CartContent extends Base{
    */
   swagItem(needle) {
     if (typeof needle === 'string') {
-      return this.items.find(cartItem => getTextOfElement(cartItem).includes(needle));
+      return this.swagItems.find(cartItem => getTextOfElement(cartItem).includes(needle));
     }
 
-    return this.items[ needle ];
+    return this.swagItems[ needle ];
   }
 
   /**
@@ -52,14 +53,12 @@ class CartContent extends Base{
   }
 
   /**
-   * Remove an item from the cart
-   *
-   * @param {number|string} needle
+   * Remove the first item from the cart
    *
    * @return {void}
    */
-  removeSwagItem(needle){
-    return this.swagItem(needle).$(`~test-${SELECTORS.cartContent.cartItem.remove}`).click();
+  removeSwagItem(){
+    return this.swagItems[0].$(`~test-${SELECTORS.cartContent.cartItem.remove}`).click();
   }
 
   /**
@@ -68,6 +67,8 @@ class CartContent extends Base{
    * @return {void}
    */
   continueShopping(){
+    Gestures.scrollDownToElement(this.continueShoppingButton);
+
     return this.continueShoppingButton.click();
   }
 
@@ -77,6 +78,8 @@ class CartContent extends Base{
    * @return {void}
    */
   goToCheckout(){
+    Gestures.scrollDownToElement(this.checkoutButton);
+
     return this.checkoutButton.click();
   }
 }

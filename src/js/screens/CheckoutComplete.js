@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   ship_image: {
-    alignSelf: 'stretch',
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 30,

@@ -1,4 +1,4 @@
-const {join} = require('path');
+const { join } = require('path');
 const config = require('./wdio.shared.conf').config;
 
 // ============
@@ -21,5 +21,11 @@ config.capabilities = [
     newCommandTimeout: 240,
   },
 ];
+
+// ======
+// Appium
+// ======
+// Tell Appium which port to use
+config.port = 4723;
 
 exports.config = config;
