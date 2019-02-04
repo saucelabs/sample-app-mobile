@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Image } from 'react-native';
-import { Button, ThemeProvider } from 'react-native-elements';
+import { StyleSheet, ScrollView } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import AppHeader from '../components/AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
-import { colors } from '../utils/colors';
-import { MUSEO_SANS_BOLD } from '../config/Constants';
 import InventoryListItem from '../components/InventoryListItem';
 import Footer from '../components/Footer';
+import ArrowButton from '../components/ArrowButton';
 
 export default class InventoryItem extends Component {
   constructor(props) {
@@ -75,18 +74,10 @@ export default class InventoryItem extends Component {
         <AppHeader
           navigation={ this.props.navigation }
           component={
-            <Button
-              buttonStyle={ styles.back_button_style }
-              containerStyle={ styles.back_button_container }
-              titleStyle={ styles.back_button_title }
-              onPress={ this.goBack }
+            <ArrowButton
               title={ i18n.t('inventoryItemPage.backButton') }
-              icon={
-                <Image
-                  style={ styles.back_button_image }
-                  source={ require('../../img/arrow-left.png') }
-                /> }
-              { ...testProperties(i18n.t('inventoryItemPage.backButton')) }
+              onPress={ this.goBack }
+              noBorders
             />
           }
         >
@@ -117,24 +108,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 5,
     backgroundColor: '#FFF',
-  },
-  back_button_container: {
-    flex: 1,
-    height: 40,
-    marginTop: 14,
-  },
-  back_button_style: {
-    borderRadius: 0,
-    backgroundColor: colors.white,
-  },
-  back_button_title: {
-    color: colors.gray,
-    fontFamily: MUSEO_SANS_BOLD,
-    fontSize: 20,
-  },
-  back_button_image: {
-    position: 'absolute',
-    top: 9,
-    left: 10,
   },
 });
