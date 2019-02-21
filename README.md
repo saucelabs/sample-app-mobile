@@ -18,6 +18,8 @@ This is the Sauce Labs Sample Application which is designed to be used from iOS 
 - brew install node
 - brew install watchman
 - npm install -g react-native-cli
+- clone this repository: git clone https://github.com/saucelabs/sample-app-mobile
+- navigate to the folder that contains this repository
 - npm install
 - react-native link react-native-vector-icons
 
