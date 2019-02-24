@@ -12,6 +12,7 @@ import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from '../components/StatusBar';
 import ActionButton from '../components/ActionButton';
 import InputError from '../components/InputError';
+import ErrorMessageContainer from '../components/ErrorMessageContainer';
 
 export default class Login extends Component {
 
@@ -29,7 +30,6 @@ export default class Login extends Component {
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.dismissError = this.dismissError.bind(this);
   }
 
   async componentWillMount() {
@@ -37,8 +37,12 @@ export default class Login extends Component {
     await SyncStorage.init();
   }
 
-  dismissError() {
-    this.setState({ error: '' });
+  resetState(){
+    this.setState({
+      error: '',
+      passwordError: false,
+      usernameError: false,
+    });
   }
 
   handleUserChange(text) {
@@ -55,11 +59,7 @@ export default class Login extends Component {
 
   handleSubmit() {
     // First, clear any errors
-    this.setState({
-      error: '',
-      passwordError: false,
-      usernameError: false,
-    });
+    this.resetState();
 
     if (!this.state.username) {
       return this.setState({
@@ -83,7 +83,11 @@ export default class Login extends Component {
         return this.setState({ error: i18n.t('login.errors.lockedOut') });
       }
 
-      // If we're here, we have a username and password. Redirect after we wipe out any previous shopping cart contents
+      // If we're here, we have a username and password, reset the state, clean them
+      this.resetState();
+      this.handleUserChange('');
+      this.handlePassChange('');
+      // and redirect after we wipe out any previous shopping cart contents
       ShoppingCart.resetCart();
       this.props.navigation.navigate('InventoryList');
     } else {
@@ -112,20 +116,6 @@ export default class Login extends Component {
   }
 
   render() {
-
-    let errorMessage = (<View style={ styles.message_container }/>);
-
-    if (this.state.error !== '') {
-      errorMessage = (
-        <View
-          style={ [ styles.message_container, styles.error_message_container ] }
-          { ...testProperties(i18n.t('login.errors.container')) }
-        >
-          <Text style={ styles.error_message }>{ this.state.error }</Text>
-        </View>
-      );
-    }
-
     return (
       <ScrollView
         contentContainerStyle={ styles.scroll_container }
@@ -153,7 +143,10 @@ export default class Login extends Component {
               error={ this.state.passwordError }
               secureTextEntry={ true }
             />
-            { errorMessage }
+            <ErrorMessageContainer
+              testID={ i18n.t('login.errors.container') }
+              message={ this.state.error }
+            />
             <ActionButton
               onPress={ this.handleSubmit }
               title={ i18n.t('login.loginButton') }

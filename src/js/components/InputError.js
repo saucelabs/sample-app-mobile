@@ -29,7 +29,7 @@ export default class InputError extends Component {
             />
             : null
         }
-        placeholderTextColor={ error ? colors.slRed : '' }
+        placeholderTextColor={ error ? colors.slRed : colors.gray }
         // The default props / styling
         containerStyle={ [ styles.login_input ] }
         placeholder={ i18n.t(placeholder) }
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginLeft: 0,
+    color: colors.gray
   },
   input_error: {
     color: colors.slRed,
