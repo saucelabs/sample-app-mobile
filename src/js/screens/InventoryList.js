@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Image } from 'react-native';
+import { StyleSheet, FlatList, View, ScrollView, Image } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
 import { InventoryData } from '../data/inventory-data.js';
 import AppHeader from '../components/AppHeader.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
-import InventoryListItem from '../components/InventoryListItem';
 import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
+import InventoryListItemColumn from '../components/InventoryListItemColumn';
 
 export default class InventoryList extends Component {
   constructor(props) {
@@ -88,6 +88,8 @@ export default class InventoryList extends Component {
     });
   }
 
+  keyExtractor = item => item.name;
+
   render() {
     const sortOptions = [
       { key: 'sectionLabel', section: true, label: i18n.t('modalSelector.sectionLabel') },
@@ -133,18 +135,21 @@ export default class InventoryList extends Component {
             keyboardShouldPersistTaps="handled"
             { ...testProperties(i18n.t('inventoryListPage.screen')) }
           >
-            { this.state.inventoryList.map((item, i) => {
-              return (
-                <InventoryListItem
-                  key={ item.id }
-                  id={ item.id }
-                  image_url={ item.image_url }
-                  name={ item.name }
-                  desc={ item.desc }
-                  price={ item.price }
-                  navigation={ this.props.navigation }
-                />);
-            }) }
+            <FlatList
+              data={ this.state.inventoryList }
+              keyExtractor={ this.keyExtractor }
+              renderItem={ ({ item, index }) => <InventoryListItemColumn
+                key={ item.id }
+                id={ item.id }
+                image_url={ item.image_url }
+                name={ item.name }
+                desc={ item.desc }
+                price={ item.price }
+                navigation={ this.props.navigation }
+                index={index}
+              /> }
+              numColumns={ 2 }
+            />
             <Footer/>
           </ScrollView>
         </AppHeader>
@@ -154,7 +159,7 @@ export default class InventoryList extends Component {
 }
 
 const styles = StyleSheet.create({
-  selectorContainer:{
+  selectorContainer: {
     position: 'absolute',
     right: 10,
     top: 14,
@@ -171,7 +176,7 @@ const styles = StyleSheet.create({
     width: 40,
   },
   container: {
-    flex: 5,
+    flex: 1,
     backgroundColor: '#FFF',
   },
 });
