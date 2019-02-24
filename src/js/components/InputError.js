@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginLeft: 0,
-    color: colors.gray
+    color: colors.gray,
   },
   input_error: {
     color: colors.slRed,
