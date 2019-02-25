@@ -7,7 +7,7 @@ import AppHeader from '../components/AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
-import InventoryListItem from '../components/InventoryListItem';
+import InventoryListItemDetails from '../components/InventoryListItemDetails';
 import Footer from '../components/Footer';
 import ArrowButton from '../components/ArrowButton';
 
@@ -86,7 +86,7 @@ export default class InventoryItem extends Component {
             keyboardShouldPersistTaps="handled"
             { ...testProperties(i18n.t('inventoryItemPage.screen')) }
           >
-            <InventoryListItem
+            <InventoryListItemDetails
               key={ this.item.id }
               id={ this.item.id }
               image_url={ this.item.image_url }
@@ -94,7 +94,6 @@ export default class InventoryItem extends Component {
               desc={ this.item.desc }
               price={ this.item.price }
               navigation={ this.props.navigation }
-              disabled
             />
             <Footer/>
           </ScrollView>

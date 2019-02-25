@@ -89,7 +89,8 @@
     "removeButton": "REMOVE",
     "itemContainer": "Item",
     "itemDescription": "Description",
-    "price": "Price"
+    "price": "Price",
+    "toggle": "Toggle"
   },
   "inventoryItemPage": {
     "screen": "Inventory item page",
