@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { ThemeProvider } from 'react-native-elements';
+import { Divider, ThemeProvider } from 'react-native-elements';
 import AppHeader from '../components/AppHeader.js';
 import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, WINDOW_WIDTH } from '../config/Constants';
 import i18n from '../config/i18n';
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 35,
+    paddingBottom: 20,
   },
   complete_container: {
     paddingLeft: 10,

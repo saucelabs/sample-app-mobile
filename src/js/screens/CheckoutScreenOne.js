@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { ThemeProvider, Input, Divider } from 'react-native-elements';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { ThemeProvider, Divider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import AppHeader from '../components/AppHeader.js';
 import i18n from '../config/i18n';
@@ -9,7 +9,9 @@ import Footer from '../components/Footer';
 import { colors } from '../utils/colors';
 import ProceedButton from '../components/ProceedButton';
 import ArrowButton from '../components/ArrowButton';
-import { MUSEO_SANS_NORMAL } from '../config/Constants';
+
+import ErrorMessageContainer from '../components/ErrorMessageContainer';
+import InputError from '../components/InputError';
 
 export default class CheckoutScreenOne extends Component {
 
@@ -18,8 +20,11 @@ export default class CheckoutScreenOne extends Component {
 
     this.state = {
       firstName: '',
+      firstNameError: false,
       lastName: '',
+      lastNameError: false,
       postalCode: '',
+      postalCodeError: false,
       error: '',
     };
 
@@ -27,11 +32,15 @@ export default class CheckoutScreenOne extends Component {
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handlePostalCodeChange = this.handlePostalCodeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.dismissError = this.dismissError.bind(this);
   }
 
-  dismissError() {
-    this.setState({ error: '' });
+  resetState() {
+    this.setState({
+      error: '',
+      firstNameError: false,
+      lastNameError: false,
+      postalCodeError: false,
+    });
   }
 
   handleFirstNameChange(text) {
@@ -41,7 +50,6 @@ export default class CheckoutScreenOne extends Component {
   }
 
   handleLastNameChange(text) {
-
     var newState = {
       lastName: text,
     };
@@ -62,18 +70,27 @@ export default class CheckoutScreenOne extends Component {
 
   handleSubmit() {
     // First, clear any errors
-    this.setState({ error: '' });
+    this.resetState();
 
     if (!this.state.firstName) {
-      return this.setState({ error: i18n.t('checkoutPageOne.errors.firstName') });
+      return this.setState({
+        error: i18n.t('checkoutPageOne.errors.firstName'),
+        firstNameError: true,
+      });
     }
 
     if (!this.state.lastName) {
-      return this.setState({ error: i18n.t('checkoutPageOne.errors.lastName') });
+      return this.setState({
+        error: i18n.t('checkoutPageOne.errors.lastName'),
+        lastNameError: true,
+      });
     }
 
     if (!this.state.postalCode) {
-      return this.setState({ error: i18n.t('checkoutPageOne.errors.postalCode') });
+      return this.setState({
+        error: i18n.t('checkoutPageOne.errors.postalCode'),
+        postalCodeError: true,
+      });
     }
 
     // If we're here, we have our required info. Redirect!
@@ -81,19 +98,6 @@ export default class CheckoutScreenOne extends Component {
   }
 
   render() {
-
-    var errorMessage = (<View/>);
-
-    if (this.state.error !== '') {
-      errorMessage = (
-        <View
-          style={ styles.error_message_container }
-          { ...testProperties(i18n.t('checkoutPageOne.errors.container')) }
-        >
-          <Text style={ styles.error_message }>{ this.state.error }</Text>
-        </View>
-      );
-    }
 
     return (
       <ThemeProvider>
@@ -107,40 +111,31 @@ export default class CheckoutScreenOne extends Component {
             { ...testProperties(i18n.t('checkoutPageOne.screen')) }
           >
             <View style={ styles.checkout_container }>
-              <Input
-                containerStyle={ styles.text_input }
-                inputContainerStyle={ styles.input_container_style }
-                placeholder={ i18n.t('checkoutPageOne.firstName') }
+              <InputError
+                placeholder={ 'checkoutPageOne.firstName' }
                 value={ this.state.firstName }
                 onChangeText={ this.handleFirstNameChange }
-                shake={ true }
-                autoCorrect={ false }
-                { ...testProperties(i18n.t('checkoutPageOne.firstName')) }
+                error={ this.state.firstNameError }
               />
-              <Input
-                containerStyle={ styles.text_input }
-                inputContainerStyle={ styles.input_container_style }
-                placeholder={ i18n.t('checkoutPageOne.lastName') }
+              <Divider style={ styles.bottomMargin20 }/>
+              <InputError
+                placeholder={ 'checkoutPageOne.lastName' }
                 value={ this.state.lastName }
                 onChangeText={ this.handleLastNameChange }
-                shake={ true }
-                autoCorrect={ false }
-                { ...testProperties(i18n.t('checkoutPageOne.lastName')) }
+                error={ this.state.lastNameError }
               />
-              <Input
-                containerStyle={ styles.text_input }
-                inputContainerStyle={ styles.input_container_style }
-                placeholder={ i18n.t('checkoutPageOne.postalCode') }
+              <Divider style={ styles.bottomMargin20 }/>
+              <InputError
+                placeholder={ 'checkoutPageOne.postalCode' }
                 value={ this.state.postalCode }
                 onChangeText={ this.handlePostalCodeChange }
-                shake={ true }
-                autoCorrect={ false }
-                { ...testProperties(i18n.t('checkoutPageOne.postalCode')) }
+                error={ this.state.postalCodeError }
+              />
+              <ErrorMessageContainer
+                testID={ i18n.t('checkoutPageOne.errors.container') }
+                message={ this.state.error }
               />
             </View>
-
-            { errorMessage }
-
             <View style={ styles.button_container }>
               <Divider style={ styles.divider }/>
 
@@ -168,42 +163,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingTop: 20,
   },
-  error_message_container: {
-    marginBottom: 20,
-    marginTop: 20,
-  },
-  error_message: {
-    color: colors.slRed,
-    fontSize: 18,
-    fontFamily: MUSEO_SANS_NORMAL,
-    textAlign: 'center',
-  },
   checkout_container: {
     alignItems: 'center',
     paddingTop: 20,
     paddingRight: 40,
     paddingLeft: 40,
   },
-  text_input: {
-    fontFamily: MUSEO_SANS_NORMAL,
+  bottomMargin20: {
     marginBottom: 20,
-    width: '100%',
-  },
-  input_container_style: {
-    borderColor: colors.lightGray,
-    borderBottomWidth: 3,
   },
   divider: {
     borderColor: colors.lightGray,
     borderBottomWidth: 3,
     marginBottom: 30,
-    marginTop: 15,
+    marginTop: 3,
   },
   button_container: {
     paddingLeft: 10,
     paddingRight: 10,
     marginBottom: 25,
-    marginTop: 20,
   },
   button_divider: {
     backgroundColor: colors.white,

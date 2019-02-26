@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The background color -->
+    <item android:drawable="@color/red" />
 
-    <item>
-        <bitmap
-                android:gravity="fill"
-                android:src="@drawable/screen"/>
-    </item>
+    <!--The logo-->
+    <item
+        android:width="220dp"
+        android:height="35dp"
+        android:drawable="@mipmap/logo"
+        android:gravity="center" />
 
-</selector>
+    <!-- The bot -->
+    <item
+        android:width="320dp"
+        android:height="294dp"
+        android:drawable="@mipmap/bot"
+        android:gravity="bottom"
+        android:tileMode="disabled" />
+</layer-list>

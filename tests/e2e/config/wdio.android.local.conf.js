@@ -15,6 +15,7 @@ config.capabilities = [
     platformVersion: '8.1',
     orientation: 'PORTRAIT',
     app: join(process.cwd(), './android/app/build/outputs/apk/debug/app-debug.apk'),
+    appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
     // Read the reset strategies very well, they differ per platform, see
     // http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
     noReset: true,
