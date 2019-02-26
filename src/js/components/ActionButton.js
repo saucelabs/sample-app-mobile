@@ -28,7 +28,6 @@ export default class ActionButton extends Component {
 
 const styles = StyleSheet.create({
   button_container_style: {
-    marginTop: 20,
     width: '100%',
   },
   button_style: {
