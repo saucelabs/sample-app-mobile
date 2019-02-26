@@ -25,7 +25,6 @@ export default class SwagGridItem extends Component {
       cartButton = (
         <Button
           buttonStyle={ [ styles.button_style, styles.remove_button_style ] }
-          containerStyle={ styles.button_container_style }
           titleStyle={ [ styles.button_title_style, styles.remove_button_title_style ] }
           onPress={ removeFromCart }
           title={ i18n.t('inventoryItemPage.removeButton') }
@@ -35,7 +34,6 @@ export default class SwagGridItem extends Component {
       cartButton = (
         <Button
           buttonStyle={ styles.button_style }
-          containerStyle={ styles.button_container_style }
           titleStyle={ styles.button_title_style }
           onPress={ addToCart }
           title={ i18n.t('inventoryItemPage.addButton') }
@@ -95,10 +93,9 @@ const styles = StyleSheet.create({
   item_wrapper: {
     flex: 1,
   },
-  item_name: {
-    color: colors.slRed,
-    fontSize: 18,
-    fontFamily: MUSEO_SANS_BOLD,
+  top_container: {
+    flex: 1,
+    justifyContent: 'flex-start',
   },
   item_image: {
     flex: 1,
@@ -107,9 +104,10 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 20,
   },
-  top_container: {
-    flex: 1,
-    justifyContent: 'flex-start',
+  item_name: {
+    color: colors.slRed,
+    fontSize: 18,
+    fontFamily: MUSEO_SANS_BOLD,
   },
   bottom_container: {
     flex: 1,

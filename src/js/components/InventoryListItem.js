@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ShoppingCart } from '../shopping-cart';
 import { Credentials } from '../credentials';
 import SwagGridItem from './SwagGridItem';
+import SwagRowItem from './SwagRowItem';
 
 export default class InventoryListItem extends Component {
   constructor(props) {
@@ -73,8 +74,13 @@ export default class InventoryListItem extends Component {
           removeFromCart={ this.removeFromCart }
           navigateToItem={ this.navigateToItem }
           { ...this.props }
+        /> :
+        <SwagRowItem
+          addToCart={ this.addToCart }
+          removeFromCart={ this.removeFromCart }
+          navigateToItem={ this.navigateToItem }
+          { ...this.props }
         />
-        : null
     );
   }
 }
