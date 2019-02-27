@@ -64,7 +64,6 @@ export default class AppHeader extends Component {
   }
 }
 
-var IS_ANDROID;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
     height: 60 + (IS_IOS ? STATUS_BAR_HEIGHT : 0),
     // for iOS the elements can be behind the statusbar, that's why there is a padding
     paddingTop: IS_IOS ? STATUS_BAR_HEIGHT : 0,
-    paddingBottom: IS_ANDROID ? 10 : 0,
+    paddingBottom: IS_IOS ? 0 : 10,
   },
   secondary_header: {
     height: 65,
@@ -83,11 +82,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 10,
     paddingRight: 10,
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   header_title: {
     fontSize: 22,
     fontFamily: MUSEO_SANS_BOLD,
     color: colors.white,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
 });

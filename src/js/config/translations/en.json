@@ -88,8 +88,10 @@
     "addButton": "ADD TO CART",
     "removeButton": "REMOVE",
     "itemContainer": "Item",
-    "itemDescription": "Description",
-    "price": "Price"
+    "itemTitle": "Item title",
+    "itemDescription": "Item description",
+    "price": "Price",
+    "toggle": "Toggle"
   },
   "inventoryItemPage": {
     "screen": "Inventory item page",

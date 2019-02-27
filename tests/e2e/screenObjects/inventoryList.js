@@ -5,6 +5,8 @@ import Gestures from '../helpers/Gestures';
 
 const SCREEN_SELECTOR = `test-${ SELECTORS.inventoryListPage.screen }`;
 const SWAG_ITEM_SELECTOR = `test-${ SELECTORS.inventoryListPage.itemContainer }`;
+const TOGGLE_SELECTOR = `test-${ SELECTORS.inventoryListPage.toggle }`;
+const DESCRIPTION_SELECTOR = `test-${ SELECTORS.inventoryListPage.itemDescription }`;
 
 class InventoryListScreen extends Base {
   constructor() {
@@ -17,6 +19,10 @@ class InventoryListScreen extends Base {
 
   get swagItems() {
     return $$(`~${ SWAG_ITEM_SELECTOR }`);
+  }
+
+  get toggle() {
+    return $(`~${ TOGGLE_SELECTOR }`);
   }
 
   /**
@@ -40,7 +46,7 @@ class InventoryListScreen extends Base {
    * @return {string}
    */
   getSwagItemLabelText(needle) {
-    const elm = this.swagItems[ needle ].$(`~test-${ SELECTORS.inventoryListPage.itemDescription }`);
+    const elm = this.swagItems[ needle ].$(`~test-${ SELECTORS.inventoryListPage.itemTitle }`);
     Gestures.scrollDownToElement(elm);
 
     return getTextOfElement(elm);
@@ -85,6 +91,38 @@ class InventoryListScreen extends Base {
    */
   openSwagItemDetails(needle, scrollUp = false) {
     return this.swagItem(needle, scrollUp).click();
+  }
+
+  /**
+   * Toggle the layout
+   *
+   * @return {void}
+   */
+  toggleLayout() {
+    this.toggle.click();
+    return driver.pause(500);
+  }
+
+  /**
+   * Check if the the layout is a row layout
+   *
+   * @return {boolean}
+   */
+  isRowLayout() {
+    try {
+      return this.swagItems[ 0 ].$(`~${ DESCRIPTION_SELECTOR }`).isDisplayed();
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Check if the the layout is a grid layout
+   *
+   * @return {boolean}
+   */
+  isGridLayout() {
+    return !this.isRowLayout();
   }
 
   /**
