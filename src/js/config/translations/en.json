@@ -109,8 +109,10 @@
   "webview": {
     "header": "WEBVIEW",
     "screen": "WEBVIEW",
+    "errorContainer": "Error message",
     "placeholder": "enter a https url here...",
-    "urlError": "Please provide a correct https url"
+    "urlError": "Please provide a correct https url",
+    "go": "GO TO SITE"
   },
   "modalSelector": {
     "button": "Modal Selector Button",

@@ -4,7 +4,9 @@ import InventoryListScreen from '../screenObjects/inventoryList';
 import InventoryItemScreen from '../screenObjects/inventoryItem';
 import AppHeader from '../screenObjects/appHeader';
 import Menu from '../screenObjects/menu';
+import Webview from '../screenObjects/webview';
 import { LOGIN_USERS } from '../helpers/e2eConstants';
+
 
 describe('Menu', () => {
   beforeEach(() => {
@@ -34,6 +36,13 @@ describe('Menu', () => {
     Menu.openAllItems();
 
     expect(InventoryListScreen.isShown()).toEqual(true, 'All items page is not shown');
+  });
+
+  it('should be able to bring me to the webview page', () => {
+    Menu.open();
+    Menu.openWebview();
+
+    expect(Webview.isShown()).toEqual(true, 'Webview page is not shown');
   });
 
   it('should be able reset the app state', () => {

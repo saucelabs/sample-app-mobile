@@ -19,6 +19,10 @@ class Menu extends Base {
     return $(SCREEN_SELECTOR);
   }
 
+  get webview() {
+    return $(`~test-${ SELECTORS.menu.webview }`);
+  }
+
   get about() {
     return $(`~test-${ SELECTORS.menu.about }`);
   }
@@ -88,6 +92,17 @@ class Menu extends Base {
    */
   openAllItems() {
     this._menuClick(this.allItems);
+
+    return this.waitUntilClosed();
+  }
+
+  /**
+   * Click on the webview menu item
+   *
+   * @return {void}
+   */
+  openWebview() {
+    this._menuClick(this.webview);
 
     return this.waitUntilClosed();
   }

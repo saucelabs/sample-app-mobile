@@ -71,14 +71,14 @@ export default class WebviewSelection extends Component {
                 error={ this.state.error }
               />
               <ErrorMessageContainer
-                testID={ i18n.t('checkoutPageOne.errors.container') }
+                testID={ i18n.t('webview.errorContainer') }
                 message={ this.state.urlError }
               />
             </View>
             <View style={ [ styles.container_padding, styles.button_container ] }>
               <ActionButton
                 onPress={ this.handleSubmit }
-                title={ i18n.t('login.loginButton') }
+                title={ i18n.t('webview.go') }
               />
             </View>
             <Footer/>
