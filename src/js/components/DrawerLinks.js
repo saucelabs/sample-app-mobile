@@ -14,6 +14,7 @@ export default class DrawerLinks extends Component {
     super(props);
 
     this.handleAllItemsLink = this.handleAllItemsLink.bind(this);
+    this.handleWebviewLink = this.handleWebviewLink.bind(this);
     this.handleAboutLink = this.handleAboutLink.bind(this);
     this.handleLogoutLink = this.handleLogoutLink.bind(this);
     this.handleResetLink = this.handleResetLink.bind(this);
@@ -23,6 +24,11 @@ export default class DrawerLinks extends Component {
   handleAllItemsLink() {
     this.handleCloseMenu();
     this.props.navigation.navigate('InventoryList');
+  }
+
+  handleWebviewLink() {
+    this.handleCloseMenu();
+    this.props.navigation.navigate('WebviewSelection');
   }
 
   handleAboutLink() {
@@ -67,6 +73,13 @@ export default class DrawerLinks extends Component {
           { ...testProperties(i18n.t('menu.allItems')) }
         >
           <Text style={ styles.menu_item_text }>{ i18n.t('menu.allItems') }</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={ styles.menu_button }
+          onPress={ this.handleWebviewLink }
+          { ...testProperties(i18n.t('menu.webview')) }
+        >
+          <Text style={ styles.menu_item_text }>{ i18n.t('menu.webview') }</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={ styles.menu_button }

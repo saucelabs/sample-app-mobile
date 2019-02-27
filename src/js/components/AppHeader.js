@@ -54,7 +54,7 @@ export default class AppHeader extends Component {
           centerComponent={ <HeaderSwagLogo/> }
           rightComponent={ <CartButton navigation={ this.props.navigation }/> }
         />
-        <View style={ styles.secondary_header }>
+        <View style={ [styles.secondary_header, (!headerText && !component) ? styles.bottom_border : {}] }>
           { headerText }
           { component }
         </View>
@@ -84,6 +84,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  bottom_border: {
+    height: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray,
   },
   header_title: {
     fontSize: 22,

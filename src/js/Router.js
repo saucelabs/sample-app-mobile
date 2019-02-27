@@ -7,6 +7,8 @@ import CartContents from './screens/CartContents';
 import CheckoutScreenOne from './screens/CheckoutScreenOne';
 import CheckoutScreenTwo from './screens/CheckoutScreenTwo';
 import CheckoutComplete from './screens/CheckoutComplete';
+import WebviewSelection from './screens/WebviewSelection';
+import WebviewScreen from './screens/Webview';
 
 const Router = createStackNavigator({
     Login: { screen: Login },
@@ -16,6 +18,8 @@ const Router = createStackNavigator({
     CheckoutScreenOne: { screen: CheckoutScreenOne },
     CheckoutScreenTwo: { screen: CheckoutScreenTwo },
     CheckoutComplete: { screen: CheckoutComplete },
+    WebviewSelection: { screen: WebviewSelection },
+    WebviewScreen: { screen: WebviewScreen },
   },
   {
     headerMode: 'none',

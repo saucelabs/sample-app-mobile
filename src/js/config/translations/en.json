@@ -106,6 +106,12 @@
     "itemDescription": "Description",
     "price": "Price"
   },
+  "webview": {
+    "header": "WEBVIEW",
+    "screen": "WEBVIEW",
+    "placeholder": "enter a https url here...",
+    "urlError": "Please provide a correct https url"
+  },
   "modalSelector": {
     "button": "Modal Selector Button",
     "cancel": "Cancel",
@@ -124,7 +130,8 @@
     "allItems": "ALL ITEMS",
     "about": "ABOUT",
     "logout": "LOGOUT",
-    "reset": "RESET APP STATE"
+    "reset": "RESET APP STATE",
+    "webview": "WEBVIEW"
   },
   "appHeader": {
     "label": "Swag Labs",
