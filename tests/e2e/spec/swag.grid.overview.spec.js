@@ -7,13 +7,17 @@ import AppHeader from '../screenObjects/appHeader';
 import ModalSelect from '../screenObjects/sortingModal';
 import { LOGIN_USERS } from '../helpers/e2eConstants';
 
-describe('Inventory List Page', () => {
+describe('Swag grid overview page', () => {
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
     LoginScreen.waitForIsShown();
     LoginScreen.signIn(LOGIN_USERS.STANDARD);
     InventoryListScreen.waitForIsShown();
+  });
+
+  it('should show the grid layout by default', () => {
+    expect(InventoryListScreen.isGridLayout()).toEqual(true, 'The default layout is not the grid layout');
   });
 
   it('should contain swag', () => {
@@ -26,7 +30,19 @@ describe('Inventory List Page', () => {
     expect(InventoryItemScreen.waitForIsShown()).toEqual(true, 'The inventory item screen is not shown');
   });
 
-  it('should be able to sort the items', () => {
+  it('should be able to keep the grid layout after coming back from the swag items page', () => {
+    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
+
+    expect(InventoryItemScreen.waitForIsShown()).toEqual(true, 'The inventory item screen is not shown');
+
+    InventoryItemScreen.goBackToAllSwagItems();
+
+    expect(InventoryItemScreen.waitForIsNotShown()).toEqual(true, 'The inventory item screen is still shown');
+
+    expect(InventoryListScreen.isGridLayout()).toEqual(true, 'The layout is turned back to a row layout');
+  });
+
+  it('should be able to sort the items and keep the default layout', () => {
     // Check the first item is the backpack
     expect(InventoryListScreen.getSwagItemLabelText(0)).toContain('Sauce Labs Backpack', 'Selected item did not match');
 
@@ -34,6 +50,7 @@ describe('Inventory List Page', () => {
     ModalSelect.selectOption(SELECTORS.modalSelector.zaLabel);
 
     expect(InventoryListScreen.getSwagItemLabelText(0)).toContain('Test.allTheThings() T-Shirt (Red)', 'Selected item did not match');
+    expect(InventoryListScreen.isGridLayout()).toEqual(true, 'The layout is still a row layout');
   });
 
   it('should be able to open and close the selecting modal', () => {

@@ -19,7 +19,6 @@ exports.config = {
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
-  services: [ 'appium' ],
   framework: 'jasmine',
   reporters: [ 'spec' ],
   jasmineNodeOpts: {

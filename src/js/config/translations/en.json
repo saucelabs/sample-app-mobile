@@ -88,7 +88,8 @@
     "addButton": "ADD TO CART",
     "removeButton": "REMOVE",
     "itemContainer": "Item",
-    "itemDescription": "Description",
+    "itemTitle": "Item title",
+    "itemDescription": "Item description",
     "price": "Price",
     "toggle": "Toggle"
   },

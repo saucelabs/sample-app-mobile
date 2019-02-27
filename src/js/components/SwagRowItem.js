@@ -58,10 +58,10 @@ export default class SwagRowItem extends Component {
 
         <View style={ styles.right_container }>
           <View style={ styles.top_container }>
-            <Text style={ styles.item_name }{ ...testProperties(i18n.t('inventoryListPage.itemDescription')) }>
+            <Text style={ styles.item_name }{ ...testProperties(i18n.t('inventoryListPage.itemTitle')) }>
               { name }
             </Text>
-            <Text style={ styles.item_desc } numberOfLines={ 2 }>
+            <Text style={ styles.item_desc } numberOfLines={ 2 } { ...testProperties(i18n.t('inventoryListPage.itemDescription')) }>
               { desc }
             </Text>
           </View>
