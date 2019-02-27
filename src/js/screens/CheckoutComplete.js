@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { Divider, ThemeProvider } from 'react-native-elements';
+import { ThemeProvider } from 'react-native-elements';
 import AppHeader from '../components/AppHeader.js';
 import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, WINDOW_WIDTH } from '../config/Constants';
 import i18n from '../config/i18n';

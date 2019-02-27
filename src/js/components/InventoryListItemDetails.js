@@ -112,7 +112,7 @@ export default class InventoryListItemDetails extends Component {
             resizeMode="contain"
           />
 
-          <View { ...testProperties(i18n.t('inventoryListPage.itemDescription')) }>
+          <View { ...testProperties(i18n.t('inventoryItemPage.itemDescription')) }>
             <Text style={ styles.item_name }>{ this.state.name }</Text>
             <Text style={ styles.item_desc }>{ this.state.desc }</Text>
           </View>

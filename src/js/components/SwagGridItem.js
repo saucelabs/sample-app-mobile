@@ -61,7 +61,7 @@ export default class SwagGridItem extends Component {
 
             <Text
               style={ styles.item_name }
-              { ...testProperties(i18n.t('inventoryListPage.itemDescription')) }
+              { ...testProperties(i18n.t('inventoryListPage.itemTitle')) }
             >{ name }</Text>
           </View>
 
