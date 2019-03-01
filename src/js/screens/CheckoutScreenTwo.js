@@ -14,6 +14,7 @@ import Footer from '../components/Footer';
 import SectionHeader from '../components/SectionHeader';
 import CartItem from '../components/CartItem';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class CheckoutScreenTwo extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class CheckoutScreenTwo extends Component {
     }
 
     // Checkout complete, redirect to our order complete page
-    this.props.navigation.navigate('CheckoutComplete');
+    this.props.navigation.navigate(SCREENS.CHECKOUT_COMPLETE);
   }
 
   render() {
@@ -84,7 +85,7 @@ export default class CheckoutScreenTwo extends Component {
           <View style={ styles.button_container }>
             <ArrowButton
               title={ i18n.t('checkoutPageTwo.cancelButton') }
-              onPress={ () => this.props.navigation.navigate('InventoryList') }
+              onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
             />
             <Divider style={ styles.button_divider }/>
             <ProceedButton

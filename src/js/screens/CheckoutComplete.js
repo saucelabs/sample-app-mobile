@@ -8,6 +8,7 @@ import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
 import ActionButton from '../components/ActionButton';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class CheckoutComplete extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class CheckoutComplete extends Component {
             />
 
             <ActionButton
-              onPress={ () => this.props.navigation.navigate('InventoryList') }
+              onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
               title={ i18n.t('checkoutCompletePage.goToButton') }
             />
           </View>

@@ -10,6 +10,7 @@ import InventoryListItemDetails from '../components/InventoryListItemDetails';
 import Footer from '../components/Footer';
 import ArrowButton from '../components/ArrowButton';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class InventoryItem extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class InventoryItem extends Component {
   }
 
   goBack() {
-    this.props.navigation.navigate('InventoryList');
+    this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
   }
 
   addToCart() {

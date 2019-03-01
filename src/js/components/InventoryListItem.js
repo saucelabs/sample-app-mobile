@@ -3,6 +3,7 @@ import { ShoppingCart } from '../shopping-cart';
 import { Credentials } from '../credentials';
 import SwagGridItem from './SwagGridItem';
 import SwagRowItem from './SwagRowItem';
+import { SCREENS } from '../Router';
 
 export default class InventoryListItem extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ export default class InventoryListItem extends Component {
       itemId += 1;
     }
 
-    this.navigation.navigate('InventoryItem', { id: itemId });
+    this.navigation.navigate(SCREENS.INVENTORY_ITEM, { id: itemId });
   }
 
   render() {

@@ -8,6 +8,7 @@ import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
 import ActionButton from '../components/ActionButton';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class WebviewSelection extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class WebviewSelection extends Component {
       this.resetState();
       Keyboard.dismiss();
 
-      return this.props.navigation.navigate('WebviewScreen', { url: url });
+      return this.props.navigation.navigate(SCREENS.WEBVIEW_SCREEN, { url: url });
     } else {
       return this.setState({
         error: true,

@@ -11,6 +11,7 @@ import {
   WINDOW_WIDTH,
 } from '../config/Constants';
 import { colors } from '../utils/colors';
+import { SCREENS } from '../Router';
 
 
 export default class InventoryListItemDetails extends Component {
@@ -43,7 +44,6 @@ export default class InventoryListItemDetails extends Component {
   }
 
   addToCart() {
-
     if (Credentials.isProblemUser()) {
       // Bail out now, don't add to cart if the item ID is odd
       if (this.state.id % 2 === 1) {
@@ -56,7 +56,6 @@ export default class InventoryListItemDetails extends Component {
   }
 
   removeFromCart() {
-
     if (Credentials.isProblemUser()) {
       // Bail out now, don't remove from cart if the item ID is even
       if (this.state.id % 2 === 0) {
@@ -69,18 +68,16 @@ export default class InventoryListItemDetails extends Component {
   }
 
   navigateToItem() {
-
-    var itemId = this.state.id;
+    let itemId = this.state.id;
     if (Credentials.isProblemUser()) {
       itemId += 1;
     }
 
-    this.navigation.navigate('InventoryItem', { id: itemId });
+    this.navigation.navigate(SCREENS.INVENTORY_ITEM, { id: itemId });
   }
 
   render() {
-
-    var cartButton;
+    let cartButton;
 
     if (ShoppingCart.isItemInCart(this.state.id)) {
       cartButton = (

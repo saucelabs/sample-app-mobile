@@ -42,7 +42,7 @@ describe('Menu', () => {
     Menu.open();
     Menu.openWebview();
 
-    expect(Webview.isShown()).toEqual(true, 'Webview page is not shown');
+    expect(Webview.input.isDisplayed()).toEqual(true, 'Webview page is not shown');
   });
 
   it('should be able reset the app state', () => {

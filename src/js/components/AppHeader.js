@@ -11,32 +11,13 @@ import { STATUS_BAR_HEIGHT } from './StatusBar';
 export default class AppHeader extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      menuOpen: false,
-    };
-
-    this.openMenu = this.openMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-  }
-
-  openMenu() {
-    this.setState({
-      menuOpen: true,
-    });
-  }
-
-  closeMenu() {
-    this.setState({
-      menuOpen: false,
-    });
   }
 
   render() {
     return (
       <Header
         containerStyle={ styles.header_container }
-        leftComponent={ <MenuButton openMenuHandler={ this.openMenu }/> }
+        leftComponent={ <MenuButton navigation={ this.props.navigation }/> }
         centerComponent={ <HeaderSwagLogo/> }
         rightComponent={ <CartButton navigation={ this.props.navigation }/> }
       />

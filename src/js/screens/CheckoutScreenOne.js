@@ -11,6 +11,7 @@ import ArrowButton from '../components/ArrowButton';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class CheckoutScreenOne extends Component {
   constructor(props) {
@@ -92,7 +93,7 @@ export default class CheckoutScreenOne extends Component {
     }
 
     // If we're here, we have our required info. Redirect!
-    this.props.navigation.navigate('CheckoutScreenTwo');
+    this.props.navigation.navigate(SCREENS.CHECKOUT_SCREEN_TWO);
   }
 
   render() {
@@ -136,7 +137,7 @@ export default class CheckoutScreenOne extends Component {
 
             <ArrowButton
               title={ i18n.t('checkoutPageOne.cancelButton') }
-              onPress={ () => this.props.navigation.navigate('InventoryList') }
+              onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
             />
             <Divider style={ styles.button_divider }/>
             <ProceedButton

@@ -7,6 +7,7 @@ import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from './StatusBar';
 import { MUSEO_SANS_BOLD } from '../config/Constants';
+import { SCREENS } from '../Router';
 
 export default class DrawerLinks extends Component {
 
@@ -22,38 +23,34 @@ export default class DrawerLinks extends Component {
   }
 
   handleAllItemsLink() {
-    this.handleCloseMenu();
-    this.props.navigation.navigate('InventoryList');
+    this.props.navigation.closeDrawer();
+    this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
   }
 
   handleWebviewLink() {
-    this.handleCloseMenu();
-    this.props.navigation.navigate('WebviewSelection');
+    this.props.navigation.closeDrawer();
+    this.props.navigation.navigate(SCREENS.WEBVIEW_SELECTION);
   }
 
   handleAboutLink() {
-
-    var aboutUrl = i18n.t('appHeader.url');
-    if (Credentials.isProblemUser()) {
-      aboutUrl = i18n.t('appHeader.404Url');
-    }
+    const aboutUrl =  i18n.t(Credentials.isProblemUser() ? 'appHeader.404Url' : 'appHeader.url');
 
     this.handleCloseMenu();
     Linking.openURL(aboutUrl);
   }
 
   handleLogoutLink() {
-    this.handleCloseMenu();
-    this.props.navigation.navigate('Login');
+    this.props.navigation.closeDrawer();
+    this.props.navigation.navigate(SCREENS.LOGIN);
   }
 
   handleResetLink() {
-    this.handleCloseMenu();
+    this.props.navigation.closeDrawer();
     ShoppingCart.resetCart();
   }
 
   handleCloseMenu() {
-    this.props.closeMenu();
+    this.props.navigation.closeDrawer();
   }
 
   render() {

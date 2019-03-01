@@ -6,24 +6,14 @@ import i18n from '../config/i18n';
 export default class MenuButton extends Component {
   constructor(props) {
     super(props);
-
-    this.openMenu = this.openMenu.bind(this);
   }
 
-  openMenu() {
-    // Call a function provided by a parent component
-    if (this.props.openMenuHandler) {
-      this.props.openMenuHandler();
-    }
-  }
-
-  render () {
-
+  render() {
     return (
-      <View {...testProperties(i18n.t('menu.label'))}>
-        <TouchableOpacity onPress={this.openMenu}>
+      <View { ...testProperties(i18n.t('menu.label')) }>
+        <TouchableOpacity onPress={ () => this.props.navigation.openDrawer() }>
           <Image
-            style={styles.menu_image}
+            style={ styles.menu_image }
             resizeMode="contain"
             source={ require('../../img/menu-button.png') }
           />

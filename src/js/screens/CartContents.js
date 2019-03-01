@@ -12,6 +12,7 @@ import ArrowButton from '../components/ArrowButton';
 import ProceedButton from '../components/ProceedButton';
 import SectionHeader from '../components/SectionHeader';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class CartContents extends Component {
   constructor(props) {
@@ -36,12 +37,12 @@ export default class CartContents extends Component {
           <View style={ styles.button_container }>
             <ArrowButton
               title={ i18n.t('cartContent.continueShopping') }
-              onPress={ () => this.props.navigation.navigate('InventoryList') }
+              onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
             />
             <Divider style={ styles.button_divider }/>
             <ProceedButton
               title={ i18n.t('cartContent.checkout') }
-              onPress={ () => this.props.navigation.navigate('CheckoutScreenOne') }
+              onPress={ () => this.props.navigation.navigate(SCREENS.CHECKOUT_SCREEN_ONE) }
             />
           </View>
           <Footer/>
