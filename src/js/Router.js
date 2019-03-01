@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
+import AppHeader from './components/AppHeader';
+
+// The screens
 import Login from './screens/Login';
 import InventoryList from './screens/InventoryList';
 import InventoryItem from './screens/InventoryItem';
@@ -22,7 +25,11 @@ const Router = createStackNavigator({
     WebviewScreen: { screen: WebviewScreen },
   },
   {
-    headerMode: 'none',
+    initialRouteName: 'Login',
+    gesturesEnabled: false,
+    navigationOptions: ({ navigate, navigation }) => ({
+      header: (<AppHeader navigation={ navigation }/>),
+    }),
   });
 
 export default class NavigationContainer extends Component {

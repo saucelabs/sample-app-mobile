@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { ThemeProvider, Divider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
-import AppHeader from '../components/AppHeader.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import Footer from '../components/Footer';
 import { colors } from '../utils/colors';
 import ProceedButton from '../components/ProceedButton';
 import ArrowButton from '../components/ArrowButton';
-
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
+import SecondaryHeader from '../components/SecondaryHeader';
 
 export default class CheckoutScreenOne extends Component {
-
   constructor(props) {
     super(props);
 
@@ -101,57 +99,53 @@ export default class CheckoutScreenOne extends Component {
 
     return (
       <ThemeProvider>
-        <AppHeader
-          header={ i18n.t('checkoutPageOne.header') }
-          navigation={ this.props.navigation }
+        <SecondaryHeader header={ i18n.t('checkoutPageOne.header') }/>
+        <ScrollView
+          style={ styles.container }
+          keyboardShouldPersistTaps="handled"
+          { ...testProperties(i18n.t('checkoutPageOne.screen')) }
         >
-          <ScrollView
-            style={ styles.container }
-            keyboardShouldPersistTaps="handled"
-            { ...testProperties(i18n.t('checkoutPageOne.screen')) }
-          >
-            <View style={ styles.checkout_container }>
-              <InputError
-                placeholder={ 'checkoutPageOne.firstName' }
-                value={ this.state.firstName }
-                onChangeText={ this.handleFirstNameChange }
-                error={ this.state.firstNameError }
-              />
-              <Divider style={ styles.bottomMargin20 }/>
-              <InputError
-                placeholder={ 'checkoutPageOne.lastName' }
-                value={ this.state.lastName }
-                onChangeText={ this.handleLastNameChange }
-                error={ this.state.lastNameError }
-              />
-              <Divider style={ styles.bottomMargin20 }/>
-              <InputError
-                placeholder={ 'checkoutPageOne.postalCode' }
-                value={ this.state.postalCode }
-                onChangeText={ this.handlePostalCodeChange }
-                error={ this.state.postalCodeError }
-              />
-              <ErrorMessageContainer
-                testID={ i18n.t('checkoutPageOne.errors.container') }
-                message={ this.state.error }
-              />
-            </View>
-            <View style={ styles.button_container }>
-              <Divider style={ styles.divider }/>
+          <View style={ styles.checkout_container }>
+            <InputError
+              placeholder={ 'checkoutPageOne.firstName' }
+              value={ this.state.firstName }
+              onChangeText={ this.handleFirstNameChange }
+              error={ this.state.firstNameError }
+            />
+            <Divider style={ styles.bottomMargin20 }/>
+            <InputError
+              placeholder={ 'checkoutPageOne.lastName' }
+              value={ this.state.lastName }
+              onChangeText={ this.handleLastNameChange }
+              error={ this.state.lastNameError }
+            />
+            <Divider style={ styles.bottomMargin20 }/>
+            <InputError
+              placeholder={ 'checkoutPageOne.postalCode' }
+              value={ this.state.postalCode }
+              onChangeText={ this.handlePostalCodeChange }
+              error={ this.state.postalCodeError }
+            />
+            <ErrorMessageContainer
+              testID={ i18n.t('checkoutPageOne.errors.container') }
+              message={ this.state.error }
+            />
+          </View>
+          <View style={ styles.button_container }>
+            <Divider style={ styles.divider }/>
 
-              <ArrowButton
-                title={ i18n.t('checkoutPageOne.cancelButton') }
-                onPress={ () => this.props.navigation.navigate('InventoryList') }
-              />
-              <Divider style={ styles.button_divider }/>
-              <ProceedButton
-                title={ i18n.t('checkoutPageOne.continueButton') }
-                onPress={ this.handleSubmit }
-              />
-            </View>
-            <Footer/>
-          </ScrollView>
-        </AppHeader>
+            <ArrowButton
+              title={ i18n.t('checkoutPageOne.cancelButton') }
+              onPress={ () => this.props.navigation.navigate('InventoryList') }
+            />
+            <Divider style={ styles.button_divider }/>
+            <ProceedButton
+              title={ i18n.t('checkoutPageOne.continueButton') }
+              onPress={ this.handleSubmit }
+            />
+          </View>
+          <Footer/>
+        </ScrollView>
       </ThemeProvider>
     );
   }

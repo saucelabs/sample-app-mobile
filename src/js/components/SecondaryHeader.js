@@ -1,45 +1,23 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Header } from 'react-native-elements';
-import CartButton from './HeaderCartButton.js';
-import MenuButton from './MenuButton.js';
-import HeaderSwagLogo from './HeaderSwagLogo';
-import { IS_IOS, MUSEO_SANS_BOLD } from '../config/Constants';
+import { View, StyleSheet, Text } from 'react-native';
 import { colors } from '../utils/colors';
+import { IS_IOS, MUSEO_SANS_BOLD } from '../config/Constants';
 import { STATUS_BAR_HEIGHT } from './StatusBar';
 
-export default class AppHeader extends Component {
+export default class SecondaryHeader extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      menuOpen: false,
-    };
-
-    this.openMenu = this.openMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-  }
-
-  openMenu() {
-    this.setState({
-      menuOpen: true,
-    });
-  }
-
-  closeMenu() {
-    this.setState({
-      menuOpen: false,
-    });
   }
 
   render() {
+    const headerText = this.props.header ? <Text style={ styles.header_title }>{ this.props.header }</Text> : null;
+    const component = this.props.component || null;
+
     return (
-      <Header
-        containerStyle={ styles.header_container }
-        leftComponent={ <MenuButton openMenuHandler={ this.openMenu }/> }
-        centerComponent={ <HeaderSwagLogo/> }
-        rightComponent={ <CartButton navigation={ this.props.navigation }/> }
-      />
+      <View style={ [ styles.secondary_header, (!headerText && !component) ? styles.bottom_border : {} ] }>
+        { headerText }
+        { component }
+      </View>
     );
   }
 }

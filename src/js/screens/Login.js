@@ -15,6 +15,9 @@ import InputError from '../components/InputError';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 
 export default class Login extends Component {
+  static navigationOptions = {
+    header: null,
+  };
 
   constructor(props) {
     super(props);

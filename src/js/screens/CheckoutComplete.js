@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
-import AppHeader from '../components/AppHeader.js';
 import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, WINDOW_WIDTH } from '../config/Constants';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
 import ActionButton from '../components/ActionButton';
+import SecondaryHeader from '../components/SecondaryHeader';
 
 export default class CheckoutComplete extends Component {
   constructor(props) {
@@ -17,36 +17,32 @@ export default class CheckoutComplete extends Component {
   render() {
     return (
       <ThemeProvider>
-        <AppHeader
-          header={ i18n.t('checkoutCompletePage.header') }
-          navigation={ this.props.navigation }
+        <SecondaryHeader header={ i18n.t('checkoutCompletePage.header') }/>
+        <ScrollView
+          style={ styles.container }
+          keyboardShouldPersistTaps="handled"
+          { ...testProperties(i18n.t('checkoutCompletePage.screen')) }
         >
-          <ScrollView
-            style={ styles.container }
-            keyboardShouldPersistTaps="handled"
-            { ...testProperties(i18n.t('checkoutCompletePage.screen')) }
-          >
-            <View style={ styles.wrapper }>
+          <View style={ styles.wrapper }>
 
-              <View style={ styles.complete_container }>
-                <Text style={ styles.complete_title }>{ i18n.t('checkoutCompletePage.completeContainer.header') }</Text>
-                <Text style={ styles.complete_text }>{ i18n.t('checkoutCompletePage.completeContainer.text') }</Text>
-              </View>
-
-              <Image
-                resizeMode="contain"
-                source={ require('../../img/pony-express.png') }
-                style={ styles.ship_image }
-              />
-
-              <ActionButton
-                onPress={ () => this.props.navigation.navigate('InventoryList') }
-                title={ i18n.t('checkoutCompletePage.goToButton') }
-              />
+            <View style={ styles.complete_container }>
+              <Text style={ styles.complete_title }>{ i18n.t('checkoutCompletePage.completeContainer.header') }</Text>
+              <Text style={ styles.complete_text }>{ i18n.t('checkoutCompletePage.completeContainer.text') }</Text>
             </View>
-            <Footer/>
-          </ScrollView>
-        </AppHeader>
+
+            <Image
+              resizeMode="contain"
+              source={ require('../../img/pony-express.png') }
+              style={ styles.ship_image }
+            />
+
+            <ActionButton
+              onPress={ () => this.props.navigation.navigate('InventoryList') }
+              title={ i18n.t('checkoutCompletePage.goToButton') }
+            />
+          </View>
+          <Footer/>
+        </ScrollView>
       </ThemeProvider>
     );
   }

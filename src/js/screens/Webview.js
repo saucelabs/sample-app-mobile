@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, WebView } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
-import AppHeader from '../components/AppHeader';
 import { WINDOW_WIDTH } from '../config/Constants';
+import SecondaryHeader from '../components/SecondaryHeader';
 
 export default class WebViewScreen extends Component {
-
   renderLoading() {
     return (
       <View
@@ -23,15 +22,12 @@ export default class WebViewScreen extends Component {
   render() {
     return (
       <ThemeProvider>
-        <AppHeader
-          navigation={ this.props.navigation }
-        >
-          <WebView
-            renderLoading={ this.renderLoading }
-            source={ { uri: this.props.navigation.state.params.url } }
-            startInLoadingState
-          />
-        </AppHeader>
+        <SecondaryHeader/>
+        <WebView
+          renderLoading={ this.renderLoading }
+          source={ { uri: this.props.navigation.state.params.url } }
+          startInLoadingState
+        />
       </ThemeProvider>
     );
   }
