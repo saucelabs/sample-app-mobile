@@ -13,19 +13,19 @@ appium-doctor
 
 info AppiumDoctor Appium Doctor v.1.4.3
 info AppiumDoctor ### Diagnostic starting ###
-info AppiumDoctor  ✔ The Node.js binary was found at: /Users/wswebcreation/.nvm/versions/node/v8.9.1/bin/node
+info AppiumDoctor  ✔ The Node.js binary was found at: /Users/exampleUser/.nvm/versions/node/v8.9.1/bin/node
 info AppiumDoctor  ✔ Node version is 8.9.1
 info AppiumDoctor  ✔ Xcode is installed at: /Applications/Xcode.app/Contents/Developer
 info AppiumDoctor  ✔ Xcode Command Line Tools are installed.
 info AppiumDoctor  ✔ DevToolsSecurity is enabled.
 info AppiumDoctor  ✔ The Authorization DB is set up properly.
 info AppiumDoctor  ✔ Carthage was found at: /usr/local/bin/carthage
-info AppiumDoctor  ✔ HOME is set to: /Users/tele2
-info AppiumDoctor  ✔ ANDROID_HOME is set to: /Users/wswebcreation/Library/Android/sdk
+info AppiumDoctor  ✔ HOME is set to: /Users/exampleUser
+info AppiumDoctor  ✔ ANDROID_HOME is set to: /Users/exampleUser/Library/Android/sdk
 info AppiumDoctor  ✔ JAVA_HOME is set to: /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
-info AppiumDoctor  ✔ adb exists at: /Users/wswebcreation/Library/Android/sdk/platform-tools/adb
-info AppiumDoctor  ✔ android exists at: /Users/wswebcreation/Library/Android/sdk/tools/android
-info AppiumDoctor  ✔ emulator exists at: /Users/wswebcreation/Library/Android/sdk/tools/emulator
+info AppiumDoctor  ✔ adb exists at: /Users/exampleUser/Library/Android/sdk/platform-tools/adb
+info AppiumDoctor  ✔ android exists at: /Users/exampleUser/Library/Android/sdk/tools/android
+info AppiumDoctor  ✔ emulator exists at: /Users/exampleUser/Library/Android/sdk/tools/emulator
 info AppiumDoctor  ✔ Bin directory of $JAVA_HOME is set
 info AppiumDoctor ### Diagnostic completed, no fix needed. ###
 info AppiumDoctor
@@ -36,11 +36,11 @@ info AppiumDoctor
 When appium-doctor can, it will fix the problems for you, otherwise fix them manually. If you have some ENV issues make sure you have set them like this
 
 ```bash
-export ANDROID_HOME=/Users/wswebcreation/Library/Android/sdk
+export ANDROID_HOME=/Users/exampleUser/Library/Android/sdk
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools/adb:$ANDROID_HOME/build-tools:$JAVA_HOME/bin
 # This one is used for the `start.android.emulator` script
-export emulator=/Users/wswebcreation/Library/Android/sdk/emulator
+export emulator=/Users/exampleUser/Library/Android/sdk/emulator
 ```
 
 ## Appium
@@ -72,7 +72,7 @@ When Appium Desktop is started make sure the _Automatic Server_-tab is enabled. 
   "platformVersion": "7.1.1",
   "platformName": "Android",
   // Adjust the path to your folders
-  "app": "/Users/wswebcreation/Git/sample-app-ios/android/app/build/outputs/apk/debug/app-debug.apk",
+  "app": "/Users/exampleUser/Git/sample-app-ios/android/app/build/outputs/apk/debug/app-debug.apk",
   // this will not reinstall the app then it is already installed
   "noReset": true,
   // Needed for Android to use the right Android driver
@@ -88,7 +88,7 @@ And the following settings for iOS
   "platformVersion": "11.4",
   "platformName": "iOS",
   // Adjust the path to your folders
-  "app": "/Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app",
+  "app": "/Users/exampleUser/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app",
   // this will not reinstall the app then it is already installed
   "noReset": true
 }
