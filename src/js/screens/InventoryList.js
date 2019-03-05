@@ -3,7 +3,6 @@ import { StyleSheet, FlatList, View, ScrollView, Image, TouchableOpacity } from 
 import { ThemeProvider } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
 import { InventoryData } from '../data/inventory-data.js';
-import AppHeader from '../components/AppHeader.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
@@ -11,6 +10,7 @@ import Footer from '../components/Footer';
 import InventoryListItem from '../components/InventoryListItem';
 import toggleRow from '../../img/toggle-row.png';
 import toggleGrid from '../../img/toggle-grid.png';
+import SecondaryHeader from '../components/SecondaryHeader';
 
 export default class InventoryList extends Component {
   constructor(props) {
@@ -146,38 +146,36 @@ export default class InventoryList extends Component {
 
     return (
       <ThemeProvider>
-        <AppHeader
-          navigation={ this.props.navigation }
+        <SecondaryHeader
           header={ i18n.t('inventoryListPage.header') }
           component={ headerButtons }
+        />
+        <ScrollView
+          style={ styles.container }
+          keyboardShouldPersistTaps="handled"
+          { ...testProperties(i18n.t('inventoryListPage.screen')) }
         >
-          <ScrollView
-            style={ styles.container }
-            keyboardShouldPersistTaps="handled"
-            { ...testProperties(i18n.t('inventoryListPage.screen')) }
-          >
-            <FlatList
-              data={ this.state.inventoryList }
-              keyExtractor={ this.keyExtractor }
-              key={ (this.state.gridView) ? 1 : 0 }
-              numColumns={ this.state.gridView ? 2 : 1 }
-              renderItem={ ({ item, index }) =>
-                <InventoryListItem
-                  key={ item.id }
-                  id={ item.id }
-                  image_url={ item.image_url }
-                  name={ item.name }
-                  desc={ item.desc }
-                  price={ item.price }
-                  navigation={ this.props.navigation }
-                  index={ index }
-                  gridView={ this.state.gridView }
-                />
-              }
-            />
-            <Footer/>
-          </ScrollView>
-        </AppHeader>
+          <FlatList
+            data={ this.state.inventoryList }
+            keyExtractor={ this.keyExtractor }
+            key={ (this.state.gridView) ? 1 : 0 }
+            numColumns={ this.state.gridView ? 2 : 1 }
+            renderItem={ ({ item, index }) =>
+              <InventoryListItem
+                key={ item.id }
+                id={ item.id }
+                image_url={ item.image_url }
+                name={ item.name }
+                desc={ item.desc }
+                price={ item.price }
+                navigation={ this.props.navigation }
+                index={ index }
+                gridView={ this.state.gridView }
+              />
+            }
+          />
+          <Footer/>
+        </ScrollView>
       </ThemeProvider>
     );
   }

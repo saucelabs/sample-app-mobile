@@ -13,8 +13,12 @@ import { STATUS_BAR_HEIGHT } from '../components/StatusBar';
 import ActionButton from '../components/ActionButton';
 import InputError from '../components/InputError';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
+import { SCREENS } from '../Router';
 
 export default class Login extends Component {
+  static navigationOptions = {
+    header: null,
+  };
 
   constructor(props) {
     super(props);
@@ -89,7 +93,7 @@ export default class Login extends Component {
       this.handlePassChange('');
       // and redirect after we wipe out any previous shopping cart contents
       ShoppingCart.resetCart();
-      this.props.navigation.navigate('InventoryList');
+      this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
     } else {
       return this.setState({
         error: i18n.t('login.errors.noMatch'),

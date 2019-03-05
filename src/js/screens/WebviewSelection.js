@@ -3,11 +3,12 @@ import { Keyboard, ScrollView, StyleSheet, View } from 'react-native';
 import { testProperties } from '../config/TestProperties';
 import { ThemeProvider } from 'react-native-elements';
 import i18n from '../config/i18n';
-import AppHeader from '../components/AppHeader';
 import Footer from '../components/Footer';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
 import ActionButton from '../components/ActionButton';
+import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class WebviewSelection extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class WebviewSelection extends Component {
       this.resetState();
       Keyboard.dismiss();
 
-      return this.props.navigation.navigate('WebviewScreen', { url: url });
+      return this.props.navigation.navigate(SCREENS.WEBVIEW_SCREEN, { url: url });
     } else {
       return this.setState({
         error: true,
@@ -52,38 +53,34 @@ export default class WebviewSelection extends Component {
   render() {
     return (
       <ThemeProvider>
-        <AppHeader
-          navigation={ this.props.navigation }
-          header={ i18n.t('webview.screen') }
+        <SecondaryHeader header={ i18n.t('webview.screen') } />
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          style={ styles.container }
+          { ...testProperties(i18n.t('webview.screen')) }
         >
-          <ScrollView
-            keyboardShouldPersistTaps="handled"
-            style={ styles.container }
-            { ...testProperties(i18n.t('webview.screen')) }
-          >
-            <View style={ [ styles.webview_container, styles.container_padding ] }>
-              <InputError
-                autoCapitalize="none"
-                autoCorrect={ false }
-                placeholder={ 'webview.placeholder' }
-                value={ this.state.siteUrl }
-                onChangeText={ this.setSiteUrl }
-                error={ this.state.error }
-              />
-              <ErrorMessageContainer
-                testID={ i18n.t('webview.errorContainer') }
-                message={ this.state.urlError }
-              />
-            </View>
-            <View style={ [ styles.container_padding, styles.button_container ] }>
-              <ActionButton
-                onPress={ this.handleSubmit }
-                title={ i18n.t('webview.go') }
-              />
-            </View>
-            <Footer/>
-          </ScrollView>
-        </AppHeader>
+          <View style={ [ styles.webview_container, styles.container_padding ] }>
+            <InputError
+              autoCapitalize="none"
+              autoCorrect={ false }
+              placeholder={ 'webview.placeholder' }
+              value={ this.state.siteUrl }
+              onChangeText={ this.setSiteUrl }
+              error={ this.state.error }
+            />
+            <ErrorMessageContainer
+              testID={ i18n.t('webview.errorContainer') }
+              message={ this.state.urlError }
+            />
+          </View>
+          <View style={ [ styles.container_padding, styles.button_container ] }>
+            <ActionButton
+              onPress={ this.handleSubmit }
+              title={ i18n.t('webview.go') }
+            />
+          </View>
+          <Footer/>
+        </ScrollView>
       </ThemeProvider>
     );
   }
