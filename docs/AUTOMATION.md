@@ -192,3 +192,13 @@ Check [this](https://gist.github.com/wswebcreation/6ac27598718eb001cd208dd691db2
 
 ### Tests are extremely slow / fail very often
 It could be that the debugger is still on. Run tests without the debugger
+
+### Appium ChromeDriver error
+This app also uses a Webview. To be able to automate the Webview on Android you need to have the right version of ChromeDriver installed together with Appium.
+If you don't have the proper version of ChromeDriver on your machine (Appium will by default install the latest version on your machine during the installation of Appium) you might get an error like this.
+
+```shell
+[Pixel_8.1 Android 8.1 #0-0] unknown error: An unknown server-side error occurred while processing the command. Original error: No Chromedriver found that can automate Chrome '61.0.3163'. See https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/web/chromedriver.md for more details.
+```
+
+Please following the instructions [here](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/web/chromedriver.md) to know how to solve this issue.

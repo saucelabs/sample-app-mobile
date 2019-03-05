@@ -7,6 +7,7 @@ import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from './StatusBar';
 import { MUSEO_SANS_BOLD } from '../config/Constants';
+import { SCREENS } from '../Router';
 
 export default class DrawerLinks extends Component {
 
@@ -14,6 +15,7 @@ export default class DrawerLinks extends Component {
     super(props);
 
     this.handleAllItemsLink = this.handleAllItemsLink.bind(this);
+    this.handleWebviewLink = this.handleWebviewLink.bind(this);
     this.handleAboutLink = this.handleAboutLink.bind(this);
     this.handleLogoutLink = this.handleLogoutLink.bind(this);
     this.handleResetLink = this.handleResetLink.bind(this);
@@ -21,33 +23,34 @@ export default class DrawerLinks extends Component {
   }
 
   handleAllItemsLink() {
-    this.handleCloseMenu();
-    this.props.navigation.navigate('InventoryList');
+    this.props.navigation.closeDrawer();
+    this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
+  }
+
+  handleWebviewLink() {
+    this.props.navigation.closeDrawer();
+    this.props.navigation.navigate(SCREENS.WEBVIEW_SELECTION);
   }
 
   handleAboutLink() {
-
-    var aboutUrl = i18n.t('appHeader.url');
-    if (Credentials.isProblemUser()) {
-      aboutUrl = i18n.t('appHeader.404Url');
-    }
+    const aboutUrl =  i18n.t(Credentials.isProblemUser() ? 'appHeader.404Url' : 'appHeader.url');
 
     this.handleCloseMenu();
     Linking.openURL(aboutUrl);
   }
 
   handleLogoutLink() {
-    this.handleCloseMenu();
-    this.props.navigation.navigate('Login');
+    this.props.navigation.closeDrawer();
+    this.props.navigation.navigate(SCREENS.LOGIN);
   }
 
   handleResetLink() {
-    this.handleCloseMenu();
+    this.props.navigation.closeDrawer();
     ShoppingCart.resetCart();
   }
 
   handleCloseMenu() {
-    this.props.closeMenu();
+    this.props.navigation.closeDrawer();
   }
 
   render() {
@@ -67,6 +70,13 @@ export default class DrawerLinks extends Component {
           { ...testProperties(i18n.t('menu.allItems')) }
         >
           <Text style={ styles.menu_item_text }>{ i18n.t('menu.allItems') }</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={ styles.menu_button }
+          onPress={ this.handleWebviewLink }
+          { ...testProperties(i18n.t('menu.webview')) }
+        >
+          <Text style={ styles.menu_item_text }>{ i18n.t('menu.webview') }</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={ styles.menu_button }

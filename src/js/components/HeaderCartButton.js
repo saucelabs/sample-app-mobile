@@ -5,20 +5,12 @@ import { IS_IOS, MUSEO_SANS_NORMAL } from '../config/Constants';
 import { testProperties } from '../config/TestProperties';
 import i18n from '../config/i18n';
 import { colors } from '../utils/colors';
+import { SCREENS } from '../Router';
 
 export default class CartButton extends Component {
   constructor(props) {
     super(props);
     ShoppingCart.registerCartListener(this);
-
-    // Need to pass this in explicitly since it's a subcomponent
-    this.navigation = props.navigation;
-
-    this.navigateToShoppingCart = this.navigateToShoppingCart.bind(this);
-  }
-
-  navigateToShoppingCart() {
-    this.navigation.navigate('CartContents');
   }
 
   render() {
@@ -37,7 +29,7 @@ export default class CartButton extends Component {
 
     return (
       <View { ...testProperties(i18n.t('cart.label')) }>
-        <TouchableOpacity onPress={ this.navigateToShoppingCart }>
+        <TouchableOpacity onPress={ ()=> this.props.navigation.navigate(SCREENS.CART_CONTENTS) }>
           <Image
             style={ styles.cart_image }
             resizeMode="contain"

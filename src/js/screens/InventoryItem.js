@@ -3,13 +3,14 @@ import { StyleSheet, ScrollView } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
-import AppHeader from '../components/AppHeader.js';
 import { InventoryData } from '../data/inventory-data.js';
 import i18n from '../config/i18n';
 import { testProperties } from '../config/TestProperties';
 import InventoryListItemDetails from '../components/InventoryListItemDetails';
 import Footer from '../components/Footer';
 import ArrowButton from '../components/ArrowButton';
+import SecondaryHeader from '../components/SecondaryHeader';
+import { SCREENS } from '../Router';
 
 export default class InventoryItem extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class InventoryItem extends Component {
   }
 
   goBack() {
-    this.props.navigation.navigate('InventoryList');
+    this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
   }
 
   addToCart() {
@@ -71,8 +72,7 @@ export default class InventoryItem extends Component {
   render() {
     return (
       <ThemeProvider>
-        <AppHeader
-          navigation={ this.props.navigation }
+        <SecondaryHeader
           component={
             <ArrowButton
               title={ i18n.t('inventoryItemPage.backButton') }
@@ -80,7 +80,7 @@ export default class InventoryItem extends Component {
               noBorders
             />
           }
-        >
+        />
           <ScrollView
             style={ styles.container }
             keyboardShouldPersistTaps="handled"
@@ -97,7 +97,6 @@ export default class InventoryItem extends Component {
             />
             <Footer/>
           </ScrollView>
-        </AppHeader>
       </ThemeProvider>
     );
   }
