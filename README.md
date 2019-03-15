@@ -1,5 +1,7 @@
 # Sauce Labs Native Sample Application
 
+![saucelabs.ios](./docs/assets/ios-overview.gif) ![saucelabs.android](./docs/assets/android-overview.gif)
+
 ## Table of contents
 1. [sample-app-ios](#sample-app-ios)
 1. [sample-app-android](#sample-app-android)
