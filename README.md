@@ -1,3 +1,5 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/76f000a0-e661-478a-8fa4-3870d3ee94be/branches/master/badge)](https://appcenter.ms)
+
 # Sauce Labs Native Sample Application
 
 In this repository you will find our Sauce Labs sample-app. You can use it as a sample app for testautomation on your local machine or in our Real Device Cloud.
