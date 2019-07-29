@@ -6,7 +6,7 @@ const { config } = require('./wdio.shared.conf');
 // Determination of the the US or EU RDC cloud url will be done
 // automatically with the webdriverio service, just tell WebdriverIO
 // to or connect to the 'us', or the 'eu' region
-config.services = ['sauce'];
+config.services = config.services.concat('sauce');
 config.region = 'eu'; // For us cloud, change this to 'us'
 
 // =============================================
