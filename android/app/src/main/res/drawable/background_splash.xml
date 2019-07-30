@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The background color -->
+    <item android:drawable="@color/red" />
+
+    <!--The logo-->
+    <item
+        android:width="220dp"
+        android:height="35dp"
+        android:drawable="@mipmap/logo"
+        android:gravity="center" />
+
+    <!-- The bot -->
+    <item
+        android:width="320dp"
+        android:height="294dp"
+        android:drawable="@mipmap/bot"
+        android:gravity="bottom"
+        android:tileMode="disabled" />
+</layer-list>
