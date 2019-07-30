@@ -4,7 +4,7 @@ import { ThemeProvider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import InventoryListItemDetails from '../components/InventoryListItemDetails';
 import Footer from '../components/Footer';
@@ -22,10 +22,10 @@ export default class InventoryItem extends Component {
       this.item = InventoryData.ITEMS[ inventoryId ];
     } else {
       this.item = {
-        name: i18n.t('inventoryItemPage.itemNotFound.name'),
-        desc: i18n.t('inventoryItemPage.itemNotFound.description'),
+        name: I18n.t('inventoryItemPage.itemNotFound.name'),
+        desc: I18n.t('inventoryItemPage.itemNotFound.description'),
         image_url: require('../../img/sl-404.jpg'),
-        price: i18n.t('inventoryItemPage.itemNotFound.price'),
+        price: I18n.t('inventoryItemPage.itemNotFound.price'),
 
       };
     }
@@ -75,7 +75,7 @@ export default class InventoryItem extends Component {
         <SecondaryHeader
           component={
             <ArrowButton
-              title={ i18n.t('inventoryItemPage.backButton') }
+              title={ I18n.t('inventoryItemPage.backButton') }
               onPress={ this.goBack }
               noBorders
             />
@@ -84,7 +84,7 @@ export default class InventoryItem extends Component {
           <ScrollView
             style={ styles.container }
             keyboardShouldPersistTaps="handled"
-            { ...testProperties(i18n.t('inventoryItemPage.screen')) }
+            { ...testProperties(I18n.t('inventoryItemPage.screen')) }
           >
             <InventoryListItemDetails
               key={ this.item.id }

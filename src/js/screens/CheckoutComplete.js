@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, WINDOW_WIDTH } from '../config/Constants';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
@@ -18,17 +18,17 @@ export default class CheckoutComplete extends Component {
   render() {
     return (
       <ThemeProvider>
-        <SecondaryHeader header={ i18n.t('checkoutCompletePage.header') }/>
+        <SecondaryHeader header={ I18n.t('checkoutCompletePage.header') }/>
         <ScrollView
           style={ styles.container }
           keyboardShouldPersistTaps="handled"
-          { ...testProperties(i18n.t('checkoutCompletePage.screen')) }
+          { ...testProperties(I18n.t('checkoutCompletePage.screen')) }
         >
           <View style={ styles.wrapper }>
 
             <View style={ styles.complete_container }>
-              <Text style={ styles.complete_title }>{ i18n.t('checkoutCompletePage.completeContainer.header') }</Text>
-              <Text style={ styles.complete_text }>{ i18n.t('checkoutCompletePage.completeContainer.text') }</Text>
+              <Text style={ styles.complete_title }>{ I18n.t('checkoutCompletePage.completeContainer.header') }</Text>
+              <Text style={ styles.complete_text }>{ I18n.t('checkoutCompletePage.completeContainer.text') }</Text>
             </View>
 
             <Image
@@ -39,7 +39,7 @@ export default class CheckoutComplete extends Component {
 
             <ActionButton
               onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
-              title={ i18n.t('checkoutCompletePage.goToButton') }
+              title={ I18n.t('checkoutCompletePage.goToButton') }
             />
           </View>
           <Footer/>

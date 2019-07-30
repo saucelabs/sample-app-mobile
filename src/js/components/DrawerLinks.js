@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { Credentials } from '../credentials';
 import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ShoppingCart } from '../shopping-cart';
@@ -33,7 +33,7 @@ export default class DrawerLinks extends Component {
   }
 
   handleAboutLink() {
-    const aboutUrl =  i18n.t(Credentials.isProblemUser() ? 'appHeader.404Url' : 'appHeader.url');
+    const aboutUrl =  I18n.t(Credentials.isProblemUser() ? 'appHeader.404Url' : 'appHeader.url');
 
     this.handleCloseMenu();
     Linking.openURL(aboutUrl);
@@ -67,37 +67,37 @@ export default class DrawerLinks extends Component {
         <TouchableOpacity
           style={ styles.menu_button }
           onPress={ this.handleAllItemsLink }
-          { ...testProperties(i18n.t('menu.allItems')) }
+          { ...testProperties(I18n.t('menu.allItems')) }
         >
-          <Text style={ styles.menu_item_text }>{ i18n.t('menu.allItems') }</Text>
+          <Text style={ styles.menu_item_text }>{ I18n.t('menu.allItems') }</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={ styles.menu_button }
           onPress={ this.handleWebviewLink }
-          { ...testProperties(i18n.t('menu.webview')) }
+          { ...testProperties(I18n.t('menu.webview')) }
         >
-          <Text style={ styles.menu_item_text }>{ i18n.t('menu.webview') }</Text>
+          <Text style={ styles.menu_item_text }>{ I18n.t('menu.webview') }</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={ styles.menu_button }
           onPress={ this.handleAboutLink }
-          { ...testProperties(i18n.t('menu.about')) }
+          { ...testProperties(I18n.t('menu.about')) }
         >
-          <Text style={ styles.menu_item_text }>{ i18n.t('menu.about') }</Text>
+          <Text style={ styles.menu_item_text }>{ I18n.t('menu.about') }</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={ styles.menu_button }
           onPress={ this.handleLogoutLink }
-          { ...testProperties(i18n.t('menu.logout')) }
+          { ...testProperties(I18n.t('menu.logout')) }
         >
-          <Text style={ styles.menu_item_text }>{ i18n.t('menu.logout') }</Text>
+          <Text style={ styles.menu_item_text }>{ I18n.t('menu.logout') }</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={ styles.menu_button }
           onPress={ this.handleResetLink }
-          { ...testProperties(i18n.t('menu.reset')) }
+          { ...testProperties(I18n.t('menu.reset')) }
         >
-          <Text style={ styles.menu_item_text }>{ i18n.t('menu.reset') }</Text>
+          <Text style={ styles.menu_item_text }>{ I18n.t('menu.reset') }</Text>
         </TouchableOpacity>
       </View>
     );

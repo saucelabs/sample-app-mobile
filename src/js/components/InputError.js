@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Icon, Input } from 'react-native-elements';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { MUSEO_SANS_NORMAL } from '../config/Constants';
 import { colors } from '../utils/colors';
@@ -32,14 +32,14 @@ export default class InputError extends Component {
         placeholderTextColor={ error ? colors.slRed : colors.gray }
         // The default props / styling
         containerStyle={ [ styles.login_input ] }
-        placeholder={ i18n.t(placeholder) }
+        placeholder={ I18n.t(placeholder) }
         value={ value }
         onChangeText={ onChangeText }
         shake={ true }
         autoCapitalize="none"
         autoCorrect={ false }
         secureTextEntry={ secureTextEntry }
-        { ...testProperties(i18n.t(placeholder)) }
+        { ...testProperties(I18n.t(placeholder)) }
       />
     );
   }
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   login_input: {
     fontFamily: MUSEO_SANS_NORMAL,
     width: '100%',
+    paddingHorizontal: 0,
   },
   input_container_style: {
     borderColor: colors.lightGray,

@@ -42,7 +42,7 @@ Please check the current tests in [this](../tests/e2e/spec/)-folder to see how t
 > Try to prevent using the default actions of WebdriverIO, like `.click()`, `.isDisplayed()` and so on in the specfile itself. Add them in the [screenObjects](tests/e2e/screenObjects/) because there are some differences in how iOS and Android handle their UI-hierarchy.
 
 ### Locator strategy
-For selecting elements we use the accessibillityLabels. These labels can be used for both Android and iOS to select elements with 1 script. To make this possible the [`testProperties`](../src/js/config/translations/en.json)-methods has been made.
+For selecting elements we use the accessibillityLabels. These labels can be used for both Android and iOS to select elements with 1 script. To make this possible the [`testProperties`](../src/js/config/translations/en.js)-methods has been made.
 This method will hold all the logic to add accessibilityLabels on each needed component. 
 
 We try to use the text labels from the `en.json` as much as possible so we can easily link a change in the translation to a change in the selector without breaking the automation. 

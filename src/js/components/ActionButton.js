@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     borderColor: colors.slRed,
     borderWidth: 3,
     borderRadius: 0,
+    height: 55,
     paddingBottom: 5,
     paddingTop: 5,
     elevation: 0,

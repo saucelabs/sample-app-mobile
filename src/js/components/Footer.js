@@ -3,8 +3,10 @@ import { Image, StyleSheet, View } from 'react-native';
 import { colors } from '../utils/colors';
 import { MUSEO_SANS_NORMAL, WINDOW_WIDTH } from '../config/Constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { Text } from 'react-native-elements';
+
+Icon.loadFont();
 
 export default class Footer extends Component {
   render() {
@@ -16,8 +18,8 @@ export default class Footer extends Component {
           <Icon style={ styles.icon } name="google-plus"/>
           <Icon style={ styles.icon } name="linkedin"/>
         </View>
-        <Text style={styles.footer_text}>{i18n.t('footer.rights')}</Text>
-        <Text style={styles.footer_text}>{i18n.t('footer.termsAndPrivacy')}</Text>
+        <Text style={styles.footer_text}>{I18n.t('footer.rights')}</Text>
+        <Text style={styles.footer_text}>{I18n.t('footer.termsAndPrivacy')}</Text>
         <Image
           style={ styles.footer_image }
           resizeMode="contain"

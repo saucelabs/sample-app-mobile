@@ -1,17 +1,8 @@
 package com.swaglabsmobileapp;
 
-import android.os.Bundle;
-
 import com.facebook.react.ReactActivity;
-import org.devio.rn.splashscreen.SplashScreen;
 
 public class MainActivity extends ReactActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        SplashScreen.show(this);
-        super.onCreate(savedInstanceState);
-    }
 
     /**
      * Returns the name of the main component registered from JavaScript.

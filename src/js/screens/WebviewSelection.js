@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Keyboard, ScrollView, StyleSheet, View } from 'react-native';
 import { testProperties } from '../config/TestProperties';
 import { ThemeProvider } from 'react-native-elements';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import Footer from '../components/Footer';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
@@ -36,7 +36,7 @@ export default class WebviewSelection extends Component {
     } else {
       return this.setState({
         error: true,
-        urlError: i18n.t('webview.urlError'),
+        urlError: I18n.t('webview.urlError'),
       });
     }
   };
@@ -53,11 +53,11 @@ export default class WebviewSelection extends Component {
   render() {
     return (
       <ThemeProvider>
-        <SecondaryHeader header={ i18n.t('webview.screen') } />
+        <SecondaryHeader header={ I18n.t('webview.screen') } />
         <ScrollView
           keyboardShouldPersistTaps="handled"
           style={ styles.container }
-          { ...testProperties(i18n.t('webview.screen')) }
+          { ...testProperties(I18n.t('webview.screen')) }
         >
           <View style={ [ styles.webview_container, styles.container_padding ] }>
             <InputError
@@ -69,14 +69,14 @@ export default class WebviewSelection extends Component {
               error={ this.state.error }
             />
             <ErrorMessageContainer
-              testID={ i18n.t('webview.errorContainer') }
+              testID={ I18n.t('webview.errorContainer') }
               message={ this.state.urlError }
             />
           </View>
           <View style={ [ styles.container_padding, styles.button_container ] }>
             <ActionButton
               onPress={ this.handleSubmit }
-              title={ i18n.t('webview.go') }
+              title={ I18n.t('webview.go') }
             />
           </View>
           <Footer/>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ShoppingCart } from '../shopping-cart';
 import { Button, Divider } from 'react-native-elements';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {
@@ -27,8 +27,8 @@ export default class SwagGridItem extends Component {
           buttonStyle={ [ styles.button_style, styles.remove_button_style ] }
           titleStyle={ [ styles.button_title_style, styles.remove_button_title_style ] }
           onPress={ removeFromCart }
-          title={ i18n.t('inventoryItemPage.removeButton') }
-          { ...testProperties(i18n.t('inventoryListPage.removeButton')) }
+          title={ I18n.t('inventoryItemPage.removeButton') }
+          { ...testProperties(I18n.t('inventoryListPage.removeButton')) }
         />);
     } else {
       cartButton = (
@@ -36,8 +36,8 @@ export default class SwagGridItem extends Component {
           buttonStyle={ styles.button_style }
           titleStyle={ styles.button_title_style }
           onPress={ addToCart }
-          title={ i18n.t('inventoryItemPage.addButton') }
-          { ...testProperties(i18n.t('inventoryListPage.addButton')) }
+          title={ I18n.t('inventoryItemPage.addButton') }
+          { ...testProperties(I18n.t('inventoryListPage.addButton')) }
         />);
     }
 
@@ -45,7 +45,7 @@ export default class SwagGridItem extends Component {
       <View
         // Add a margin to the right if it is the second element, so index number will be odd
         style={ [ styles.item_container, index % 2 === 0 ? {} : styles.item_container_margin_right ] }
-        { ...testProperties(i18n.t('inventoryListPage.itemContainer')) }
+        { ...testProperties(I18n.t('inventoryListPage.itemContainer')) }
       >
         <TouchableOpacity
           onPress={ navigateToItem }
@@ -61,14 +61,14 @@ export default class SwagGridItem extends Component {
 
             <Text
               style={ styles.item_name }
-              { ...testProperties(i18n.t('inventoryListPage.itemTitle')) }
+              { ...testProperties(I18n.t('inventoryListPage.itemTitle')) }
             >{ name }</Text>
           </View>
 
           <View style={ styles.bottom_container }>
             <Divider style={ styles.divider }/>
 
-            <Text style={ styles.price_text }{ ...testProperties(i18n.t('inventoryListPage.price')) }>
+            <Text style={ styles.price_text }{ ...testProperties(I18n.t('inventoryListPage.price')) }>
               ${ price }
             </Text>
 

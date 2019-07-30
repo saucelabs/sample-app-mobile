@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import { Divider, ThemeProvider } from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import Footer from '../components/Footer';
 import CartItem from '../components/CartItem';
@@ -24,24 +24,24 @@ export default class CartContents extends Component {
 
     return (
       <ThemeProvider>
-        <SecondaryHeader header={ i18n.t('cartContent.header') }/>
+        <SecondaryHeader header={ I18n.t('cartContent.header') }/>
         <SectionHeader/>
         <ScrollView
           style={ styles.container }
           keyboardShouldPersistTaps="handled"
-          { ...testProperties(i18n.t('cartContent.screen')) }
+          { ...testProperties(I18n.t('cartContent.screen')) }
         >
           <View style={ styles.cart_item_container }>
             { contents.map((item, i) => <CartItem key={ i } item={ InventoryData.ITEMS[ item ] } showRemoveButton/>) }
           </View>
           <View style={ styles.button_container }>
             <ArrowButton
-              title={ i18n.t('cartContent.continueShopping') }
+              title={ I18n.t('cartContent.continueShopping') }
               onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
             />
             <Divider style={ styles.button_divider }/>
             <ProceedButton
-              title={ i18n.t('cartContent.checkout') }
+              title={ I18n.t('cartContent.checkout') }
               onPress={ () => this.props.navigation.navigate(SCREENS.CHECKOUT_SCREEN_ONE) }
             />
           </View>
