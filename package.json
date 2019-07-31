@@ -14,9 +14,9 @@
     "android.release": "cd android && ./gradlew assembleRelease",
     "ios.local": "./node_modules/.bin/wdio ./tests/e2e/config/wdio.ios.local.conf.js",
     "ios.rdc": "./node_modules/.bin/wdio ./tests/e2e/config/wdio.ios.rdc.conf.js",
-    "ios.clear.build": "npm run clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
+    "ios.clear.build": "yarn clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
     "ios.release": "react-native run-ios --configuration Release",
-    "ios.sim.build": "npm run ios.clear.build && npm run ios.release",
+    "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
     "postversion": "react-native-version"
   },
   "dependencies": {
@@ -37,6 +37,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/runtime": "^7.5.5",
+    "@wdio/appium-service": "^5.11.4",
     "@wdio/cli": "^5.11.10",
     "@wdio/jasmine-framework": "^5.11.0",
     "@wdio/local-runner": "^5.11.10",

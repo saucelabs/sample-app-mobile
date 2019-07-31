@@ -1,7 +1,7 @@
 import Base from './base';
-import * as SELECTORS from '../../../src/js/config/translations/en';
+import SELECTORS from '../../../src/js/config/translations/en';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
-import { getTextOfElement } from '../helpers/utils';
+import { getTextOfElement, sanitizeSelector } from '../helpers/utils';
 
 export const CONTEXT_REF = {
   NATIVE: 'native',
@@ -12,7 +12,7 @@ const DOCUMENT_READY_STATE = {
   INTERACTIVE: 'interactive',
   LOADING: 'loading',
 };
-const SCREEN_SELECTOR = `~test-${ SELECTORS.webview.screen }`;
+const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.webview.screen) }`;
 
 class Webview extends Base{
   constructor() {
@@ -20,15 +20,15 @@ class Webview extends Base{
   }
 
   get input(){
-    return $(`~test-${ SELECTORS.webview.placeholder }`);
+    return $(`~test-${ sanitizeSelector(SELECTORS.webview.placeholder) }`);
   }
 
   get go(){
-    return $(`~test-${ SELECTORS.webview.go }`);
+    return $(`~test-${ sanitizeSelector(SELECTORS.webview.go) }`);
   }
 
   get errorMessage() {
-    return $(`~test-${ SELECTORS.webview.errorContainer }`);
+    return $(`~test-${ sanitizeSelector(SELECTORS.webview.errorContainer) }`);
   }
 
   /**

@@ -1,4 +1,4 @@
-import * as SELECTORS from '../../../src/js/config/translations/en.json';
+import SELECTORS from '../../../src/js/config/translations/en';
 import { restartApp } from '../helpers/utils';
 import LoginScreen from '../screenObjects/login';
 import InventoryListScreen from '../screenObjects/inventoryList';

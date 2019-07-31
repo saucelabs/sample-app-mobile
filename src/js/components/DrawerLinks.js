@@ -11,123 +11,126 @@ import { SCREENS } from '../Router';
 
 export default class DrawerLinks extends Component {
 
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.handleAllItemsLink = this.handleAllItemsLink.bind(this);
-    this.handleWebviewLink = this.handleWebviewLink.bind(this);
-    this.handleAboutLink = this.handleAboutLink.bind(this);
-    this.handleLogoutLink = this.handleLogoutLink.bind(this);
-    this.handleResetLink = this.handleResetLink.bind(this);
-    this.handleCloseMenu = this.handleCloseMenu.bind(this);
-  }
+		this.handleAllItemsLink = this.handleAllItemsLink.bind(this);
+		this.handleWebviewLink = this.handleWebviewLink.bind(this);
+		this.handleAboutLink = this.handleAboutLink.bind(this);
+		this.handleLogoutLink = this.handleLogoutLink.bind(this);
+		this.handleResetLink = this.handleResetLink.bind(this);
+		this.handleCloseMenu = this.handleCloseMenu.bind(this);
+	}
 
-  handleAllItemsLink() {
-    this.props.navigation.closeDrawer();
-    this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
-  }
+	handleAllItemsLink() {
+		this.props.navigation.closeDrawer();
+		this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
+	}
 
-  handleWebviewLink() {
-    this.props.navigation.closeDrawer();
-    this.props.navigation.navigate(SCREENS.WEBVIEW_SELECTION);
-  }
+	handleWebviewLink() {
+		this.props.navigation.closeDrawer();
+		this.props.navigation.navigate(SCREENS.WEBVIEW_SELECTION);
+	}
 
-  handleAboutLink() {
-    const aboutUrl =  I18n.t(Credentials.isProblemUser() ? 'appHeader.404Url' : 'appHeader.url');
+	handleAboutLink() {
+		const aboutUrl = I18n.t(Credentials.isProblemUser() ? 'appHeader.404Url' : 'appHeader.url');
 
-    this.handleCloseMenu();
-    Linking.openURL(aboutUrl);
-  }
+		this.handleCloseMenu();
+		Linking.openURL(aboutUrl);
+	}
 
-  handleLogoutLink() {
-    this.props.navigation.closeDrawer();
-    this.props.navigation.navigate(SCREENS.LOGIN);
-  }
+	handleLogoutLink() {
+		this.props.navigation.closeDrawer();
+		this.props.navigation.navigate(SCREENS.LOGIN);
+	}
 
-  handleResetLink() {
-    this.props.navigation.closeDrawer();
-    ShoppingCart.resetCart();
-  }
+	handleResetLink() {
+		this.props.navigation.closeDrawer();
+		ShoppingCart.resetCart();
+	}
 
-  handleCloseMenu() {
-    this.props.navigation.closeDrawer();
-  }
+	handleCloseMenu() {
+		this.props.navigation.closeDrawer();
+	}
 
-  render() {
+	render() {
 
-    return (
-      <View style={ styles.container }>
-        <TouchableOpacity onPress={ this.handleCloseMenu }>
-          <Image
-            style={ styles.menu_close }
-            resizeMode="contain"
-            source={ require('../../img/menu-close.png') }
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={ styles.menu_button }
-          onPress={ this.handleAllItemsLink }
-          { ...testProperties(I18n.t('menu.allItems')) }
-        >
-          <Text style={ styles.menu_item_text }>{ I18n.t('menu.allItems') }</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={ styles.menu_button }
-          onPress={ this.handleWebviewLink }
-          { ...testProperties(I18n.t('menu.webview')) }
-        >
-          <Text style={ styles.menu_item_text }>{ I18n.t('menu.webview') }</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={ styles.menu_button }
-          onPress={ this.handleAboutLink }
-          { ...testProperties(I18n.t('menu.about')) }
-        >
-          <Text style={ styles.menu_item_text }>{ I18n.t('menu.about') }</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={ styles.menu_button }
-          onPress={ this.handleLogoutLink }
-          { ...testProperties(I18n.t('menu.logout')) }
-        >
-          <Text style={ styles.menu_item_text }>{ I18n.t('menu.logout') }</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={ styles.menu_button }
-          onPress={ this.handleResetLink }
-          { ...testProperties(I18n.t('menu.reset')) }
-        >
-          <Text style={ styles.menu_item_text }>{ I18n.t('menu.reset') }</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+		return (
+			<View style={ styles.container }>
+				<TouchableOpacity
+					onPress={ this.handleCloseMenu }
+					{ ...testProperties(I18n.t('menu.close')) }
+				>
+					<Image
+						style={ styles.menu_close }
+						resizeMode="contain"
+						source={ require('../../img/menu-close.png') }
+					/>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={ styles.menu_button }
+					onPress={ this.handleAllItemsLink }
+					{ ...testProperties(I18n.t('menu.allItems')) }
+				>
+					<Text style={ styles.menu_item_text }>{ I18n.t('menu.allItems') }</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={ styles.menu_button }
+					onPress={ this.handleWebviewLink }
+					{ ...testProperties(I18n.t('menu.webview')) }
+				>
+					<Text style={ styles.menu_item_text }>{ I18n.t('menu.webview') }</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={ styles.menu_button }
+					onPress={ this.handleAboutLink }
+					{ ...testProperties(I18n.t('menu.about')) }
+				>
+					<Text style={ styles.menu_item_text }>{ I18n.t('menu.about') }</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={ styles.menu_button }
+					onPress={ this.handleLogoutLink }
+					{ ...testProperties(I18n.t('menu.logout')) }
+				>
+					<Text style={ styles.menu_item_text }>{ I18n.t('menu.logout') }</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={ styles.menu_button }
+					onPress={ this.handleResetLink }
+					{ ...testProperties(I18n.t('menu.reset')) }
+				>
+					<Text style={ styles.menu_item_text }>{ I18n.t('menu.reset') }</Text>
+				</TouchableOpacity>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.white,
-    flex: 1,
-    flexDirection: 'column',
-    paddingTop: STATUS_BAR_HEIGHT,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  menu_close: {
-    alignSelf: 'flex-end',
-    height: 60,
-    width: 60,
-  },
-  menu_button: {
-    backgroundColor: colors.white,
-    margin: 10,
-    paddingBottom: 10,
-    borderBottomWidth: 3,
-    borderBottomColor: colors.gray,
-  },
-  menu_item_text: {
-    color: colors.gray,
-    fontFamily: MUSEO_SANS_BOLD,
-    fontSize: 20,
-  },
+	container: {
+		backgroundColor: colors.white,
+		flex: 1,
+		flexDirection: 'column',
+		paddingTop: STATUS_BAR_HEIGHT,
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
+	menu_close: {
+		alignSelf: 'flex-end',
+		height: 60,
+		width: 60,
+	},
+	menu_button: {
+		backgroundColor: colors.white,
+		margin: 10,
+		paddingBottom: 10,
+		borderBottomWidth: 3,
+		borderBottomColor: colors.gray,
+	},
+	menu_item_text: {
+		color: colors.gray,
+		fontFamily: MUSEO_SANS_BOLD,
+		fontSize: 20,
+	},
 });

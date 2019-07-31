@@ -1003,6 +1003,15 @@
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-12.0.12.tgz#45dd1d0638e8c8f153e87d296907659296873916"
   integrity sha512-SOhuU4wNBxhhTHxYaiG5NY4HBhDIDnJF60GU+2LqHAdKKer86//e4yg69aENCtQ04n0ovz+tq2YPME5t5yp4pw==
 
+"@wdio/appium-service@^5.11.4":
+  version "5.11.4"
+  resolved "https://registry.yarnpkg.com/@wdio/appium-service/-/appium-service-5.11.4.tgz#e91665221b9d026b9d7b65d1e23a77620825ecc7"
+  integrity sha512-n2W8nRUXKphZpTRlw6PcIgOOyUdEl9Bp3GgT/EwJXGhUfkjp+intshKIiEP/EQfLf7A6fr4CEofQu8VUFxELWw==
+  dependencies:
+    "@wdio/logger" "^5.11.0"
+    fs-extra "^8.0.1"
+    param-case "^2.1.1"
+
 "@wdio/cli@^5.11.10":
   version "5.11.10"
   resolved "https://registry.yarnpkg.com/@wdio/cli/-/cli-5.11.10.tgz#b97b072189c6989d37007bb78ba01c7595d44d8c"
@@ -5690,7 +5699,7 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-param-case@^2.1.0:
+param-case@^2.1.0, param-case@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/param-case/-/param-case-2.1.1.tgz#df94fd8cf6531ecf75e6bef9a0858fbc72be2247"
   integrity sha1-35T9jPZTHs915r75oIWPvHK+Ikc=

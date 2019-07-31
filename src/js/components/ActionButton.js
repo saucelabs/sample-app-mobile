@@ -35,9 +35,8 @@ const styles = StyleSheet.create({
     borderColor: colors.slRed,
     borderWidth: 3,
     borderRadius: 0,
-    height: 55,
-    paddingBottom: 5,
-    paddingTop: 5,
+    paddingBottom: 10,
+    paddingTop: 10,
     elevation: 0,
   },
   button_title_style: {

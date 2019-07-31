@@ -1,16 +1,16 @@
-import { restartApp } from '../helpers/utils';
-import LoginScreen from '../screenObjects/login';
-import { DEFAULT_TIMEOUT, LOGIN_USERS, PERSONAL_INFO } from '../helpers/e2eConstants';
-import InventoryListScreen from '../screenObjects/inventoryList';
-import AppHeader from '../screenObjects/appHeader';
-import ModalSelect from '../screenObjects/sortingModal';
-import InventoryItemScreen from '../screenObjects/inventoryItem';
-import CartContent from '../screenObjects/cart';
-import CheckoutPageOne from '../screenObjects/checkoutPageOne';
-import CheckoutPageTwo from '../screenObjects/checkoutPageTwo';
-import CheckoutComplete from '../screenObjects/checkoutComplete';
-import Menu from '../screenObjects/menu';
-import Webview from '../screenObjects/webview';
+import { restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
+import { DEFAULT_TIMEOUT, LOGIN_USERS, PERSONAL_INFO } from '../../helpers/e2eConstants';
+import InventoryListScreen from '../../screenObjects/inventoryList';
+import AppHeader from '../../screenObjects/appHeader';
+import ModalSelect from '../../screenObjects/sortingModal';
+import InventoryItemScreen from '../../screenObjects/inventoryItem';
+import CartContent from '../../screenObjects/cart';
+import CheckoutPageOne from '../../screenObjects/checkoutPageOne';
+import CheckoutPageTwo from '../../screenObjects/checkoutPageTwo';
+import CheckoutComplete from '../../screenObjects/checkoutComplete';
+import Menu from '../../screenObjects/menu';
+import Webview from '../../screenObjects/webview';
 
 describe('Image compare for upgrade', () => {
   beforeEach(() => {

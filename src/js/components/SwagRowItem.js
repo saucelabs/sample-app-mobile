@@ -156,9 +156,10 @@ const styles = StyleSheet.create({
     elevation: 0,
     width: 40,
     height: 40,
+    padding: 0,
   },
   button_title_style: {
-    padding: 0,
+    paddingTop:0,
     marginTop: IS_IOS ? -10 : -5,
     color: colors.slRed,
     fontSize: 42,

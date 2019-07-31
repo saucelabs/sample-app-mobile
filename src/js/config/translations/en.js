@@ -129,6 +129,7 @@ export default {
 	},
 	'menu': {
 		'label': 'Menu',
+		'close': 'Close',
 		'allItems': 'ALL ITEMS',
 		'about': 'ABOUT',
 		'logout': 'LOGOUT',

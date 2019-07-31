@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
     height: 50,
   },
   button_style: {
+    borderRadius: 0,
     backgroundColor: colors.slRed,
-    paddingBottom: 5,
-    paddingTop: 5,
+    paddingBottom: 10,
+    paddingTop: 10,
     elevation: 0,
   },
   button_title: {

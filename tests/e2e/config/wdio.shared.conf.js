@@ -7,7 +7,7 @@ exports.config = {
   // Specify Test Files
   // ==================
   specs: [
-    './tests/e2e/spec/**/*.spec.js',
+    './tests/e2e/spec/*.spec.js',
   ],
   // ===================
   // Test Configurations
@@ -23,8 +23,6 @@ exports.config = {
   reporters: [ 'spec' ],
   jasmineNodeOpts: {
     defaultTimeoutInterval: 60000,
-    expectationResultHandler: function (passed, assertion) {
-    },
   },
   services: ['native-app-compare'],
   // The options

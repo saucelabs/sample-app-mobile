@@ -5,6 +5,9 @@
 In this repository you will find our Sauce Labs sample-app. You can use it as a sample app for testautomation on your local machine or in our Real Device Cloud.
 The latest version of the iOS and Android app can be found [here](https://github.com/saucelabs/sample-app-mobile/releases)
 
+> **NOTE<br>**
+> Make sure to use yarn instead of NPM. NPM gives a lot of problems currently with React Native. How to setup yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
+
 ![saucelabs.ios](./docs/assets/ios-overview.gif) ![saucelabs.android](./docs/assets/android-overview.gif)
 
 ## Table of contents
@@ -22,24 +25,25 @@ This is the Sauce Labs Sample Application which is designed to be used from iOS 
 
 - install XCode: https://developer.apple.com/xcode/
 - install homebrew: https://brew.sh/
-- brew install node
-- brew install watchman
-- npm install -g react-native-cli
-- clone this repository: git clone https://github.com/saucelabs/sample-app-mobile
+- `brew install node`
+- `brew install yarn`
+- `brew install watchman`
+- `yarn global add react-native-cli`
+- clone this repository: `git clone https://github.com/saucelabs/sample-app-mobile`
 - navigate to the folder that contains this repository
-- npm install
-- react-native link react-native-vector-icons
+- `yarn install`
 
-- react-native run-ios
+- `react-native run-ios`
 
 ## sample-app-android
 
 Most of this comes from https://facebook.github.io/react-native/docs/getting-started.html
 
 - install homebrew: https://brew.sh/
-- brew install node
-- brew install watchman
-- npm install -g react-native-cli
+- `brew install node`
+- `brew install yarn`
+- `brew install watchman`
+- `yarn global add react-native-cli`
 - install JDK8: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 - install Android Studio: https://developer.android.com/studio/#downloads
     - Choose a "Custom" setup when prompted to select an installation type. Make sure the boxes next to all of the following are checked:
@@ -93,11 +97,11 @@ https://facebook.github.io/react-native/docs/getting-started.html
 ## Linting the code
 The linting rules were taken from the React Native project itself and can be used by running 
 
-    $ npm run lint
+    $ yarn lint
 
 Issues / warning will be shown in the console and most of them can automatically be fixed by running
 
-    $ npm run lint -- --fix
+    $ yarn lint -- --fix
 
 The linting will also be run on each `git push` and fail if there are issues.
 

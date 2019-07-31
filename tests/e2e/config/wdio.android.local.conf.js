@@ -27,6 +27,10 @@ config.capabilities = [
 // ======
 // Appium
 // ======
+config.services = config.services.concat('appium');
+config.appium = {
+  command: 'appium',
+};
 // Tell Appium which port to use
 config.port = 4723;
 
