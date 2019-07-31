@@ -46,7 +46,6 @@ module.exports = {
 		'eslint-comments',
 		'react',
 		'react-native',
-		'jest',
 	],
 	rules: {
 		// General
