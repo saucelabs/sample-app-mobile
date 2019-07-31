@@ -39,8 +39,7 @@ const StackNavigator = createStackNavigator({
     [SCREENS.WEBVIEW_SCREEN]: { screen: WebviewScreen },
   },
   {
-    initialRouteName: SCREENS.LOGIN,
-    navigationOptions: ({ navigate, navigation }) => ({
+    defaultNavigationOptions: ({ navigate, navigation }) => ({
       header: (<AppHeader navigation={ navigation }/>),
       gesturesEnabled: false,
     }),

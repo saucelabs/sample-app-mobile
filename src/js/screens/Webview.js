@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, WebView } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
+import { WebView } from 'react-native-webview';
 import { ThemeProvider } from 'react-native-elements';
 import { WINDOW_WIDTH } from '../config/Constants';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { colors } from '../utils/colors';
 
 export default class WebViewScreen extends Component {
   renderLoading() {
@@ -24,6 +26,7 @@ export default class WebViewScreen extends Component {
       <ThemeProvider>
         <SecondaryHeader/>
         <WebView
+          style={{ flex: 1 }}
           renderLoading={ this.renderLoading }
           source={ { uri: this.props.navigation.state.params.url } }
           startInLoadingState
@@ -35,11 +38,10 @@ export default class WebViewScreen extends Component {
 
 const styles = StyleSheet.create({
   loaderContainer: {
-    backgroundColor: '#fff',
-    flex: 1,
-    flexDirection: 'column',
+    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
+    ...StyleSheet.absoluteFill,
   },
   image: {
     margin: 40,
