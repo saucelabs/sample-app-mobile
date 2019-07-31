@@ -7,7 +7,7 @@ export default {
 		'username': 'Username',
 		'loginText': {
 			'usernames': 'The currently accepted usernames for this application are:\n\n__standard_user__\n__locked_out_user__\n__problem_user__',
-			'password': 'And the password for all users is:\n\n__secret_sauce__'
+			'password': 'And the password for all users is:\n\n__secret_sauce__',
 		},
 		'errors': {
 			'container': 'Error message',
@@ -15,8 +15,8 @@ export default {
 			'password': 'Password is required',
 			'lockedOut': 'Sorry, this user has been locked out.',
 			'noMatch': 'Username and password do not match any user in this service.',
-			'username': 'Username is required'
-		}
+			'username': 'Username is required',
+		},
 	},
 	'username': 'Username',
 	'cartContent': {
@@ -31,8 +31,8 @@ export default {
 			'description': 'Description',
 			'amount': 'Amount',
 			'remove': 'REMOVE',
-			'price': 'Price'
-		}
+			'price': 'Price',
+		},
 	},
 	'checkoutPageOne': {
 		'errors': {
@@ -40,7 +40,7 @@ export default {
 			'epicSadFace': 'Epic sadface: ',
 			'firstName': 'First Name is required',
 			'lastName': 'Last Name is required',
-			'postalCode': 'Postal Code is required'
+			'postalCode': 'Postal Code is required',
 		},
 		'header': 'CHECKOUT: INFORMATION',
 		'firstName': 'First Name',
@@ -48,7 +48,7 @@ export default {
 		'postalCode': 'Zip/Postal Code',
 		'screen': 'Checkout: Your Info',
 		'cancelButton': 'CANCEL',
-		'continueButton': 'CONTINUE'
+		'continueButton': 'CONTINUE',
 	},
 	'checkoutPageTwo': {
 		'header': 'CHECKOUT: OVERVIEW',
@@ -59,7 +59,7 @@ export default {
 			'container': 'Item',
 			'description': 'Description',
 			'amount': 'Amount',
-			'price': 'Price'
+			'price': 'Price',
 		},
 		'summary': {
 			'paymentLabel': 'Payment Information:',
@@ -68,19 +68,19 @@ export default {
 			'shippingText': 'FREE PONY EXPRESS DELIVERY!',
 			'itemsTotal': 'Item total: ',
 			'itemsTax': 'Tax: ',
-			'totalAmount': 'Total: '
+			'totalAmount': 'Total: ',
 		},
 		'finishButton': 'FINISH',
-		'cancelButton': 'CANCEL'
+		'cancelButton': 'CANCEL',
 	},
 	'checkoutCompletePage': {
 		'header': 'CHECKOUT: COMPLETE!',
 		'screen': 'CHECKOUT: COMPLETE!',
 		'completeContainer': {
 			'header': 'THANK YOU FOR YOU ORDER',
-			'text': 'Your order has been dispatched, and will arrive just as fast as the pony can get there!'
+			'text': 'Your order has been dispatched, and will arrive just as fast as the pony can get there!',
 		},
-		'goToButton': 'BACK HOME'
+		'goToButton': 'BACK HOME',
 	},
 	'inventoryListPage': {
 		'header': 'PRODUCTS',
@@ -91,20 +91,20 @@ export default {
 		'itemTitle': 'Item title',
 		'itemDescription': 'Item description',
 		'price': 'Price',
-		'toggle': 'Toggle'
+		'toggle': 'Toggle',
 	},
 	'inventoryItemPage': {
 		'screen': 'Inventory item page',
 		'itemNotFound': {
 			'name': 'ITEM NOT FOUND',
 			'description': 'We\'re sorry, but your call could not be completed as dialled.\nPlease check your number, and try your call again.\nIf you are in need of assistance, please dial 0 to be connected with an operator.\nThis is a recording.\n4 T 1.',
-			'price': '√-1'
+			'price': '√-1',
 		},
 		'addButton': 'ADD TO CART',
 		'backButton': 'BACK TO PRODUCTS',
 		'removeButton': 'REMOVE',
 		'itemDescription': 'Description',
-		'price': 'Price'
+		'price': 'Price',
 	},
 	'webview': {
 		'header': 'WEBVIEW',
@@ -112,7 +112,7 @@ export default {
 		'errorContainer': 'Error message',
 		'placeholder': 'enter a https url here...',
 		'urlError': 'Please provide a correct https url',
-		'go': 'GO TO SITE'
+		'go': 'GO TO SITE',
 	},
 	'modalSelector': {
 		'button': 'Modal Selector Button',
@@ -122,10 +122,10 @@ export default {
 		'azLabel': 'Name (A to Z)',
 		'zaLabel': 'Name (Z to A)',
 		'loHiLabel': 'Price (low to high)',
-		'hiLoLabel': 'Price (high to low)'
+		'hiLoLabel': 'Price (high to low)',
 	},
 	'cart': {
-		'label': 'Cart'
+		'label': 'Cart',
 	},
 	'menu': {
 		'label': 'Menu',
@@ -133,15 +133,15 @@ export default {
 		'about': 'ABOUT',
 		'logout': 'LOGOUT',
 		'reset': 'RESET APP STATE',
-		'webview': 'WEBVIEW'
+		'webview': 'WEBVIEW',
 	},
 	'appHeader': {
 		'label': 'Swag Labs',
 		'url': 'https://saucelabs.com/',
-		'404Url': 'https://saucelabs.com/error/404'
+		'404Url': 'https://saucelabs.com/error/404',
 	},
 	'footer': {
 		'rights': '© 2019 Sauce Labs. All Rights Reserved.',
-		'termsAndPrivacy': 'Terms of Service | Privacy Policy'
-	}
+		'termsAndPrivacy': 'Terms of Service | Privacy Policy',
+	},
 };
