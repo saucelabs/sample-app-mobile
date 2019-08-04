@@ -44,7 +44,7 @@ Most of this comes from https://facebook.github.io/react-native/docs/getting-sta
 - `brew install yarn`
 - `brew install watchman`
 - `yarn global add react-native-cli`
-- install JDK8: https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+- install JDK8: https://adoptopenjdk.net/
 - install Android Studio: https://developer.android.com/studio/#downloads
     - Choose a "Custom" setup when prompted to select an installation type. Make sure the boxes next to all of the following are checked:
       - Android SDK
