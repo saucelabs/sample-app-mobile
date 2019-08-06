@@ -40,7 +40,6 @@ yarn-error.log
 buck-out/
 \.buckd/
 
-
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
@@ -54,3 +53,9 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
+
+# CocoaPods
+/ios/Pods/
+
+# Extra
+.tmp

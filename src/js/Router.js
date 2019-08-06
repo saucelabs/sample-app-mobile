@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import AppHeader from './components/AppHeader';
 import { WINDOW_WIDTH } from './config/Constants';
 
@@ -40,19 +40,21 @@ const StackNavigator = createStackNavigator({
   },
   {
     initialRouteName: SCREENS.LOGIN,
-    navigationOptions: ({ navigate, navigation }) => ({
+    defaultNavigationOptions: ({ navigate, navigation }) => ({
       header: (<AppHeader navigation={ navigation }/>),
       gesturesEnabled: false,
     }),
   });
 
-const Router = createDrawerNavigator({
+const DrawerNavigator = createDrawerNavigator({
   StackNavigator: { screen: StackNavigator },
 }, {
   contentComponent: DrawerLinks,
   drawerWidth: WINDOW_WIDTH,
   gesturesEnabled: false,
 });
+
+const Router = createAppContainer(DrawerNavigator);
 
 export default class NavigationContainer extends Component {
   render() {

@@ -2,7 +2,7 @@ import LoginScreen from '../screenObjects/login';
 import InventoryListScreen from '../screenObjects/inventoryList';
 import { restartApp } from '../helpers/utils';
 import { LOGIN_USERS } from '../helpers/e2eConstants';
-import * as SELECTORS from '../../../src/js/config/translations/en.json';
+import SELECTORS from '../../../src/js/config/translations/en';
 
 describe('Login', () => {
   beforeEach(() => {

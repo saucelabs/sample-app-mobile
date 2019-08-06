@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ShoppingCart } from '../shopping-cart';
 import { Button, Divider } from 'react-native-elements';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {
@@ -28,7 +28,7 @@ export default class SwagRowItem extends Component {
           titleStyle={ [ styles.button_title_style, styles.remove_button_title_style ] }
           onPress={ removeFromCart }
           title="-"
-          { ...testProperties(i18n.t('inventoryListPage.removeButton')) }
+          { ...testProperties(I18n.t('inventoryListPage.removeButton')) }
         />);
     } else {
       cartButton = (
@@ -37,7 +37,7 @@ export default class SwagRowItem extends Component {
           titleStyle={ styles.button_title_style }
           onPress={ addToCart }
           title="+"
-          { ...testProperties(i18n.t('inventoryListPage.addButton')) }
+          { ...testProperties(I18n.t('inventoryListPage.addButton')) }
         />);
     }
 
@@ -46,7 +46,7 @@ export default class SwagRowItem extends Component {
         onPress={ navigateToItem }
         { ...MAKE_ACCESSIBLE_FOR_AUTOMATION }
         style={ styles.item_container }
-        { ...testProperties(i18n.t('inventoryListPage.itemContainer')) }
+        { ...testProperties(I18n.t('inventoryListPage.itemContainer')) }
       >
         <View style={ styles.image_container }>
           <Image
@@ -58,17 +58,17 @@ export default class SwagRowItem extends Component {
 
         <View style={ styles.right_container }>
           <View style={ styles.top_container }>
-            <Text style={ styles.item_name }{ ...testProperties(i18n.t('inventoryListPage.itemTitle')) }>
+            <Text style={ styles.item_name }{ ...testProperties(I18n.t('inventoryListPage.itemTitle')) }>
               { name }
             </Text>
-            <Text style={ styles.item_desc } numberOfLines={ 2 } { ...testProperties(i18n.t('inventoryListPage.itemDescription')) }>
+            <Text style={ styles.item_desc } numberOfLines={ 2 } { ...testProperties(I18n.t('inventoryListPage.itemDescription')) }>
               { desc }
             </Text>
           </View>
 
           <View style={ styles.bottom_container }>
             <View style={ styles.bottom_left }>
-              <Text style={ styles.price_text }{ ...testProperties(i18n.t('inventoryListPage.price')) }>
+              <Text style={ styles.price_text }{ ...testProperties(I18n.t('inventoryListPage.price')) }>
                 ${ price }
               </Text>
 
@@ -156,9 +156,10 @@ const styles = StyleSheet.create({
     elevation: 0,
     width: 40,
     height: 40,
+    padding: 0,
   },
   button_title_style: {
-    padding: 0,
+    paddingTop:0,
     marginTop: IS_IOS ? -10 : -5,
     color: colors.slRed,
     fontSize: 42,

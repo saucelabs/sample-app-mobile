@@ -5,22 +5,22 @@ import SwagLabsStatusBar from './components/StatusBar';
 import SplashScreen from 'react-native-splash-screen';
 
 export default class App extends Component {
-  componentDidMount() {
-    SplashScreen.hide();
-  }
+	componentDidMount() {
+		SplashScreen.hide();
+	}
 
-  render() {
-    return (
-      <View style={ styles.container }>
-        <SwagLabsStatusBar/>
-        <NavigationContainer/>
-      </View>
-    );
-  }
+	render() {
+		return (
+			<View style={ styles.container }>
+				<SwagLabsStatusBar/>
+				<NavigationContainer/>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+	container: {
+		flex: 1,
+	},
 });

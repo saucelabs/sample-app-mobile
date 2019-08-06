@@ -4,7 +4,7 @@ import { Divider, ThemeProvider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
 import ArrowButton from '../components/ArrowButton';
@@ -50,46 +50,46 @@ export default class CheckoutScreenTwo extends Component {
 
     return (
       <ThemeProvider>
-        <SecondaryHeader header={ i18n.t('checkoutPageTwo.header') }/>
+        <SecondaryHeader header={ I18n.t('checkoutPageTwo.header') }/>
         <SectionHeader/>
         <ScrollView
           style={ styles.container }
           keyboardShouldPersistTaps="handled"
-          { ...testProperties(i18n.t('checkoutPageTwo.screen')) }
+          { ...testProperties(I18n.t('checkoutPageTwo.screen')) }
         >
           <View style={ styles.cart_item_container }>
             { contents.map((item, i) => <CartItem key={ i } item={ InventoryData.ITEMS[ item ] }/>) }
           </View>
 
           <View style={ styles.summary_section }>
-            <Text style={ styles.summary_info_label }>{ i18n.t('checkoutPageTwo.summary.paymentLabel') }</Text>
-            <Text style={ styles.summary_value_label }>{ i18n.t('checkoutPageTwo.summary.card') }</Text>
+            <Text style={ styles.summary_info_label }>{ I18n.t('checkoutPageTwo.summary.paymentLabel') }</Text>
+            <Text style={ styles.summary_value_label }>{ I18n.t('checkoutPageTwo.summary.card') }</Text>
             <Divider style={ styles.divider }/>
           </View>
 
           <View style={ styles.summary_section }>
-            <Text style={ styles.summary_info_label }>{ i18n.t('checkoutPageTwo.summary.shippingLabel') }</Text>
-            <Text style={ styles.summary_value_label }>{ i18n.t('checkoutPageTwo.summary.shippingText') }</Text>
+            <Text style={ styles.summary_info_label }>{ I18n.t('checkoutPageTwo.summary.shippingLabel') }</Text>
+            <Text style={ styles.summary_value_label }>{ I18n.t('checkoutPageTwo.summary.shippingText') }</Text>
             <Divider style={ styles.divider }/>
           </View>
 
           <View style={ styles.summary_section }>
-            <Text style={ styles.summary_subtotal_label }>{ i18n.t('checkoutPageTwo.summary.itemsTotal') }${ orderTotal }</Text>
-            <Text style={ styles.summary_tax_label }>{ i18n.t('checkoutPageTwo.summary.itemsTax') }${ orderTax }</Text>
+            <Text style={ styles.summary_subtotal_label }>{ I18n.t('checkoutPageTwo.summary.itemsTotal') }${ orderTotal }</Text>
+            <Text style={ styles.summary_tax_label }>{ I18n.t('checkoutPageTwo.summary.itemsTax') }${ orderTax }</Text>
             <Text style={ styles.summary_total_label }>
-              { i18n.t('checkoutPageTwo.summary.totalAmount') }${ (orderTotal + parseFloat(orderTax)).toFixed(2) }
+              { I18n.t('checkoutPageTwo.summary.totalAmount') }${ (orderTotal + parseFloat(orderTax)).toFixed(2) }
             </Text>
             <Divider style={ styles.divider }/>
           </View>
 
           <View style={ styles.button_container }>
             <ArrowButton
-              title={ i18n.t('checkoutPageTwo.cancelButton') }
+              title={ I18n.t('checkoutPageTwo.cancelButton') }
               onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
             />
             <Divider style={ styles.button_divider }/>
             <ProceedButton
-              title={ i18n.t('checkoutPageTwo.finishButton') }
+              title={ I18n.t('checkoutPageTwo.finishButton') }
               onPress={ this.clearCart }
             />
           </View>

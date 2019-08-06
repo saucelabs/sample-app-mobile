@@ -3,7 +3,7 @@ import { StyleSheet, FlatList, View, ScrollView, Image, TouchableOpacity } from 
 import { ThemeProvider } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
 import { InventoryData } from '../data/inventory-data.js';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
@@ -107,32 +107,32 @@ export default class InventoryList extends Component {
 
   render() {
     const sortOptions = [
-      { key: 'sectionLabel', section: true, label: i18n.t('modalSelector.sectionLabel') },
-      { key: 'az', label: i18n.t('modalSelector.azLabel') },
-      { key: 'za', label: i18n.t('modalSelector.zaLabel') },
-      { key: 'lohi', label: i18n.t('modalSelector.loHiLabel') },
-      { key: 'hilo', label: i18n.t('modalSelector.hiLoLabel') },
+      { key: 'sectionLabel', section: true, label: I18n.t('modalSelector.sectionLabel') },
+      { key: 'az', label: I18n.t('modalSelector.azLabel') },
+      { key: 'za', label: I18n.t('modalSelector.zaLabel') },
+      { key: 'lohi', label: I18n.t('modalSelector.loHiLabel') },
+      { key: 'hilo', label: I18n.t('modalSelector.hiLoLabel') },
     ];
     const headerButtons = (
       <View style={ styles.component_container }>
         <TouchableOpacity
           style={ styles.toggle }
-          { ...testProperties(i18n.t('inventoryListPage.toggle')) }
+          { ...testProperties(I18n.t('inventoryListPage.toggle')) }
           onPress={ this.toggleState }
         >
           { this.toggleImage() }
         </TouchableOpacity>
-        <View { ...testProperties(i18n.t('modalSelector.button')) }>
+        <View { ...testProperties(I18n.t('modalSelector.button')) }>
           <ModalSelector
             data={ sortOptions }
             style={ styles.selector }
             selectTextStyle={ styles.selector_text }
             onChange={ (sortOption) => this.changeSort(sortOption.key) }
-            cancelText={ i18n.t('modalSelector.cancel') }
+            cancelText={ I18n.t('modalSelector.cancel') }
             listItemAccessible
             cancelButtonAccessible
             openButtonContainerAccessible
-            scrollViewAccessibilityLabel={ i18n.t('modalSelector.container') }
+            scrollViewAccessibilityLabel={ I18n.t('modalSelector.container') }
           >
             <Image
               style={ styles.selector_image }
@@ -147,13 +147,13 @@ export default class InventoryList extends Component {
     return (
       <ThemeProvider>
         <SecondaryHeader
-          header={ i18n.t('inventoryListPage.header') }
+          header={ I18n.t('inventoryListPage.header') }
           component={ headerButtons }
         />
         <ScrollView
           style={ styles.container }
           keyboardShouldPersistTaps="handled"
-          { ...testProperties(i18n.t('inventoryListPage.screen')) }
+          { ...testProperties(I18n.t('inventoryListPage.screen')) }
         >
           <FlatList
             data={ this.state.inventoryList }

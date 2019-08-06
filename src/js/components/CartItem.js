@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { ShoppingCart } from '../shopping-cart.js';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
@@ -37,25 +37,25 @@ export default class CartItem extends Component {
       const removeButton = this.showRemoveButton ? (
         <RemoveButton
           onPress={ this.removeFromCart }
-          title={ i18n.t('cartContent.cartItem.remove') }
+          title={ I18n.t('cartContent.cartItem.remove') }
         />
       ) : null;
 
       return (
         <View>
-          <View style={ styles.item_container } { ...testProperties(i18n.t('cartContent.cartItem.itemContainer')) }>
+          <View style={ styles.item_container } { ...testProperties(I18n.t('cartContent.cartItem.itemContainer')) }>
 
-            <View style={ styles.item_quantity_box } { ...testProperties(i18n.t('cartContent.cartItem.amount')) }>
+            <View style={ styles.item_quantity_box } { ...testProperties(I18n.t('cartContent.cartItem.amount')) }>
               <Text style={ styles.item_quantity }>1</Text>
             </View>
 
             <View style={ styles.item_info_box }>
-              <View style={ styles.item_details } { ...testProperties(i18n.t('cartContent.cartItem.description')) }>
+              <View style={ styles.item_details } { ...testProperties(I18n.t('cartContent.cartItem.description')) }>
                 <Text style={ styles.item_name }>{ this.item.name }</Text>
                 <Text style={ styles.item_desc }>{ this.item.desc }</Text>
               </View>
               <Divider style={ [ styles.divider, styles.description_price_divider ] }/>
-              <View { ...testProperties(i18n.t('cartContent.cartItem.price')) }>
+              <View { ...testProperties(I18n.t('cartContent.cartItem.price')) }>
                 <Text style={ styles.price_text }>${ this.item.price }</Text>
                 { removeButton }
               </View>

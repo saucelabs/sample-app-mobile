@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { testProperties } from '../config/TestProperties';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 
 export default class MenuButton extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class MenuButton extends Component {
 
   render() {
     return (
-      <View { ...testProperties(i18n.t('menu.label')) }>
+      <View { ...testProperties(I18n.t('menu.label')) }>
         <TouchableOpacity onPress={ () => this.props.navigation.openDrawer() }>
           <Image
             style={ styles.menu_image }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ShoppingCart } from '../shopping-cart';
 import { Credentials } from '../credentials';
 import { Button, Divider } from 'react-native-elements';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import {
@@ -86,8 +86,8 @@ export default class InventoryListItemDetails extends Component {
           containerStyle={ styles.button_container_style }
           titleStyle={ [ styles.button_title_style, styles.remove_button_title_style ] }
           onPress={ this.removeFromCart }
-          title={ i18n.t('inventoryItemPage.removeButton') }
-          { ...testProperties(i18n.t('inventoryListPage.removeButton')) }
+          title={ I18n.t('inventoryItemPage.removeButton') }
+          { ...testProperties(I18n.t('inventoryListPage.removeButton')) }
         />);
     } else {
       cartButton = (
@@ -96,20 +96,20 @@ export default class InventoryListItemDetails extends Component {
           containerStyle={ styles.button_container_style }
           titleStyle={ styles.button_title_style }
           onPress={ this.addToCart }
-          title={ i18n.t('inventoryItemPage.addButton') }
-          { ...testProperties(i18n.t('inventoryListPage.addButton')) }
+          title={ I18n.t('inventoryItemPage.addButton') }
+          { ...testProperties(I18n.t('inventoryListPage.addButton')) }
         />);
     }
 
     return (
-      <View style={ styles.item_container }{ ...testProperties(i18n.t('inventoryListPage.itemContainer')) }>
+      <View style={ styles.item_container }{ ...testProperties(I18n.t('inventoryListPage.itemContainer')) }>
           <Image
             source={ this.state.image_url }
             style={ styles.item_image }
             resizeMode="contain"
           />
 
-          <View { ...testProperties(i18n.t('inventoryItemPage.itemDescription')) }>
+          <View { ...testProperties(I18n.t('inventoryItemPage.itemDescription')) }>
             <Text style={ styles.item_name }>{ this.state.name }</Text>
             <Text style={ styles.item_desc }>{ this.state.desc }</Text>
           </View>
@@ -117,7 +117,7 @@ export default class InventoryListItemDetails extends Component {
           <Divider style={ [ styles.divider, styles.description_price_divider ] }/>
 
           <View>
-            <Text style={ styles.price_text }{ ...testProperties(i18n.t('inventoryListPage.price')) }>
+            <Text style={ styles.price_text }{ ...testProperties(I18n.t('inventoryListPage.price')) }>
               ${ this.state.price }
             </Text>
             { cartButton }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { Divider } from 'react-native-elements';
 import { colors } from '../utils/colors';
 import { MUSEO_SANS_NORMAL } from '../config/Constants';
@@ -10,8 +10,8 @@ export default class SectionHeader extends Component {
     return (
       <View style={ styles.section_header }>
         <View style={ styles.section_header_container }>
-          <Text style={ styles.section_qty }>{ i18n.t('cartContent.quantity') }</Text>
-          <Text style={ styles.section_desc }>{ i18n.t('cartContent.description') }</Text>
+          <Text style={ styles.section_qty }>{ I18n.t('cartContent.quantity') }</Text>
+          <Text style={ styles.section_desc }>{ I18n.t('cartContent.description') }</Text>
         </View>
         <Divider style={ styles.divider }/>
       </View>

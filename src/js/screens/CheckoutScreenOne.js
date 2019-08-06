@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { ThemeProvider, Divider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
-import i18n from '../config/i18n';
+import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import Footer from '../components/Footer';
 import { colors } from '../utils/colors';
@@ -73,21 +73,21 @@ export default class CheckoutScreenOne extends Component {
 
     if (!this.state.firstName) {
       return this.setState({
-        error: i18n.t('checkoutPageOne.errors.firstName'),
+        error: I18n.t('checkoutPageOne.errors.firstName'),
         firstNameError: true,
       });
     }
 
     if (!this.state.lastName) {
       return this.setState({
-        error: i18n.t('checkoutPageOne.errors.lastName'),
+        error: I18n.t('checkoutPageOne.errors.lastName'),
         lastNameError: true,
       });
     }
 
     if (!this.state.postalCode) {
       return this.setState({
-        error: i18n.t('checkoutPageOne.errors.postalCode'),
+        error: I18n.t('checkoutPageOne.errors.postalCode'),
         postalCodeError: true,
       });
     }
@@ -100,11 +100,11 @@ export default class CheckoutScreenOne extends Component {
 
     return (
       <ThemeProvider>
-        <SecondaryHeader header={ i18n.t('checkoutPageOne.header') }/>
+        <SecondaryHeader header={ I18n.t('checkoutPageOne.header') }/>
         <ScrollView
           style={ styles.container }
           keyboardShouldPersistTaps="handled"
-          { ...testProperties(i18n.t('checkoutPageOne.screen')) }
+          { ...testProperties(I18n.t('checkoutPageOne.screen')) }
         >
           <View style={ styles.checkout_container }>
             <InputError
@@ -128,7 +128,7 @@ export default class CheckoutScreenOne extends Component {
               error={ this.state.postalCodeError }
             />
             <ErrorMessageContainer
-              testID={ i18n.t('checkoutPageOne.errors.container') }
+              testID={ I18n.t('checkoutPageOne.errors.container') }
               message={ this.state.error }
             />
           </View>
@@ -136,12 +136,12 @@ export default class CheckoutScreenOne extends Component {
             <Divider style={ styles.divider }/>
 
             <ArrowButton
-              title={ i18n.t('checkoutPageOne.cancelButton') }
+              title={ I18n.t('checkoutPageOne.cancelButton') }
               onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
             />
             <Divider style={ styles.button_divider }/>
             <ProceedButton
-              title={ i18n.t('checkoutPageOne.continueButton') }
+              title={ I18n.t('checkoutPageOne.continueButton') }
               onPress={ this.handleSubmit }
             />
           </View>

@@ -36,16 +36,16 @@ export default class ArrowButton extends Component {
 
 const styles = StyleSheet.create({
   button_container: {
+    borderRadius: 0,
     flex: 1,
-    height: 50,
     borderWidth: this.noBorders ? 0 : 2,
     borderColor: this.noBorders ? 'transparent' : colors.gray,
   },
   button_style: {
     borderRadius: 0,
     backgroundColor: colors.white,
-    paddingBottom: 5,
-    paddingTop: 5,
+    paddingBottom: 10,
+    paddingTop: 10,
     elevation: 0,
   },
   button_title: {

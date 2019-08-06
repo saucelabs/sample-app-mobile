@@ -5,11 +5,11 @@ import { BUNDLE_IDS, DEFAULT_TIMEOUT } from './e2eConstants';
  * the app needs to be reset
  */
 export function restartApp() {
-  if (!driver.firstAppStart) {
-    driver.reset();
-  }
-  // Set the firstAppstart to false to say that the following test can be reset
-  driver.firstAppStart = false;
+	if (!driver.firstAppStart) {
+		driver.reset();
+	}
+	// Set the firstAppstart to false to say that the following test can be reset
+	driver.firstAppStart = false;
 }
 
 
@@ -22,24 +22,24 @@ export function restartApp() {
  * @return {string}
  */
 export function getTextOfElement(element, isXpath = false) {
-  let visualText;
+	let visualText;
 
-  try {
-    if (driver.isAndroid) {
-      visualText = element.$$('*//android.widget.TextView').reduce((currentValue, el) => `${ currentValue } ${ el.getText() }`, '');
-    } else {
-      const iosElement = isXpath ? element.$$('*//XCUIElementTypeStaticText') : element;
-      if (isXpath) {
-        visualText = element.$$('*//XCUIElementTypeStaticText').reduce((currentValue, el) => `${ currentValue } ${ el.getText() }`, '');
-      } else {
-        visualText = iosElement.getText();
-      }
-    }
-  } catch (e) {
-    visualText = element.getText();
-  }
+	try {
+		if (driver.isAndroid) {
+			visualText = element.$$('*//android.widget.TextView').reduce((currentValue, el) => `${ currentValue } ${ el.getText() }`, '');
+		} else {
+			const iosElement = isXpath ? element.$$('*//XCUIElementTypeStaticText') : element;
+			if (isXpath) {
+				visualText = element.$$('*//XCUIElementTypeStaticText').reduce((currentValue, el) => `${ currentValue } ${ el.getText() }`, '');
+			} else {
+				visualText = iosElement.getText();
+			}
+		}
+	} catch (e) {
+		visualText = element.getText();
+	}
 
-  return visualText.trim();
+	return visualText.trim();
 }
 
 /**
@@ -59,19 +59,19 @@ export function getTextOfElement(element, isXpath = false) {
  * </pre>
  */
 function getIosAppState() {
-  const appStates = {
-    0: 'The current application state cannot be determined/is unknown',
-    1: 'The application is not running',
-    2: 'The application is running in the background and is suspended',
-    3: 'The application is running in the background and is not suspended',
-    4: 'The application is running in the foreground',
-  };
-  // Wait 2 second to be sure the app is done going to the background / get the correct status
-  driver.pause(2000);
+	const appStates = {
+		0: 'The current application state cannot be determined/is unknown',
+		1: 'The application is not running',
+		2: 'The application is running in the background and is suspended',
+		3: 'The application is running in the background and is not suspended',
+		4: 'The application is running in the foreground',
+	};
+	// Wait 2 second to be sure the app is done going to the background / get the correct status
+	driver.pause(2000);
 
-  const currentAppState = driver.execute('mobile: queryAppState', { bundleId: BUNDLE_IDS.IOS });
+	const currentAppState = driver.execute('mobile: queryAppState', { bundleId: BUNDLE_IDS.IOS });
 
-  return appStates[ currentAppState ];
+	return appStates[ currentAppState ];
 }
 
 /**
@@ -80,10 +80,10 @@ function getIosAppState() {
  * @return {string}
  */
 function getCurrentActivity() {
-  // Wait 2 second to be sure the app is done going to the background / get the correct status
-  driver.pause(2000);
+	// Wait 2 second to be sure the app is done going to the background / get the correct status
+	driver.pause(2000);
 
-  return driver.getCurrentActivity();
+	return driver.getCurrentActivity();
 }
 
 
@@ -91,24 +91,24 @@ function getCurrentActivity() {
  * Open the webpage with a browser just once
  */
 function openWebPageWithBrowserOnce() {
-  const justOnceButton = '*//android.widget.Button[@resource-id="android:id/button_once"]';
+	const justOnceButton = '*//android.widget.Button[@resource-id="android:id/button_once"]';
 
-  try {
-    $('*//android.widget.ListView[@resource-id="android:id/resolver_list"]').waitForDisplayed(DEFAULT_TIMEOUT);
+	try {
+		$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]').waitForDisplayed(DEFAULT_TIMEOUT);
 
-    if ($(justOnceButton).isEnabled()) {
-      return $(justOnceButton).click();
-    }
+		if ($(justOnceButton).isEnabled()) {
+			return $(justOnceButton).click();
+		}
 
-    // Chrome is most of the time the first
-    $$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]/android.widget.LinearLayout')[ 0 ].click();
+		// Chrome is most of the time the first
+		$$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]/android.widget.LinearLayout')[ 0 ].click();
 
-    driver.pause(500);
-    return $(justOnceButton).click();
-  } catch (e) {
-    // It could be that it already opens to the default browser and no check screen is asked
-    return;
-  }
+		driver.pause(500);
+		return $(justOnceButton).click();
+	} catch (e) {
+		// It could be that it already opens to the default browser and no check screen is asked
+		return;
+	}
 }
 
 /**
@@ -119,15 +119,15 @@ function openWebPageWithBrowserOnce() {
  *            for sure that the app is put on the background and that for example chrome is opened.
  */
 export function browserIsOpened() {
-  if (driver.isIOS) {
-    const appState = getIosAppState();
+	if (driver.isIOS) {
+		const appState = getIosAppState();
 
-    return appState.includes('background') || appState.includes('not running');
-  }
-  // On Android we first need to select which browser we want to use
-  openWebPageWithBrowserOnce();
+		return appState.includes('background') || appState.includes('not running');
+	}
+	// On Android we first need to select which browser we want to use
+	openWebPageWithBrowserOnce();
 
-  return getCurrentActivity().includes('chromium') || getCurrentActivity().includes('WebViewBrowserActivity');
+	return getCurrentActivity().includes('chromium') || getCurrentActivity().includes('WebViewBrowserActivity');
 }
 
 /**
@@ -138,24 +138,36 @@ export function browserIsOpened() {
  * @return {void}
  */
 export function hideKeyboard(element) {
-  // The hideKeyboard is not working on ios devices, so take a different approach
-  if (!driver.isKeyboardShown()){
-    return;
-  }
+	// The hideKeyboard is not working on ios devices, so take a different approach
+	if (!driver.isKeyboardShown()) {
+		return;
+	}
 
-  if (driver.isIOS) {
-    return driver.touchAction({
-      action: 'tap',
-      x: 0,
-      y: -40,
-      element,
-    });
-  }
+	if (driver.isIOS) {
+		return driver.touchAction({
+			action: 'tap',
+			x: 0,
+			y: -40,
+			element,
+		});
+	}
 
-  try {
-    return driver.hideKeyboard('pressKey', 'Done');
-  } catch (e) {
-    // Fallback
-    return driver.back();
-  }
+	try {
+		return driver.hideKeyboard('pressKey', 'Done');
+	} catch (e) {
+		// Fallback
+		return driver.back();
+	}
+}
+
+/**
+ * There is  a bug in RN 0.60.0 that doesn't populate the accessibility label properly
+ * See https://github.com/facebook/react-native/issues/25581
+ *
+ * @param {string} selector
+ *
+ * @return {string}
+ */
+export function sanitizeSelector(selector) {
+	return driver.isAndroid ? `${ selector }, ` : selector;
 }
