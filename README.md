@@ -6,7 +6,20 @@ In this repository you will find our Sauce Labs sample-app. You can use it as a 
 The latest version of the iOS and Android app can be found [here](https://github.com/saucelabs/sample-app-mobile/releases)
 
 > **NOTE<br>**
-> Make sure to use yarn instead of NPM. NPM gives a lot of problems currently with React Native. How to setup yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
+> Make sure to use yarn instead of NPM. NPM gives a lot of problems currently with React Native[^1]. How to setup yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
+
+[^1] NPM gives a lot of problems currently with React Native, only from what I've seen with the migration.
+     
+     - React Natve 0.60.x now uses Pods for linking dependencies, from what I've seen with NPM is that is messes up this linking 9 out of 10 times
+     - Installing other dependencies are mostly recommended to install with yarn (not only for React Native but also with ReactJS)
+     - It costed me around a day to get everything working with NPM, but with yarn I didn't had any problems migrating to RN 0.60
+     - yarn is faster
+     - and I can go on
+     
+     This is also the reason that the `pacakge-lock.json` has been removed.
+     
+> **NOTE<br>**
+> There is currently an issue with React Native and Android which breaks the usage of accessibilityLabels on Android. The issue is that Android currently gets the a `, ` after each label, see [this issue](https://github.com/facebook/react-native/issues/25581)
 
 ![saucelabs.ios](./docs/assets/ios-overview.gif) ![saucelabs.android](./docs/assets/android-overview.gif)
 
