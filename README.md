@@ -31,6 +31,7 @@ The latest version of the iOS and Android app can be found [here](https://github
 1. [AccessibilityID's](#accessibilityids)
 1. [Testautomation](#testautomation)
 1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)
+1. [Versioning the app](#versioning-the-app)
 
 
 ## sample-app-ios
@@ -165,3 +166,6 @@ can be found [here](./docs/AUTOMATION.md).
 
 ## Building the app for the Sauce Labs Real Device Cloud (RDC)
 More information about building the app can be found [here](./docs/BUILDING.md)
+
+## Versioning the app
+More information about versioning the app can be found [here](./docs/VERSIONING.md)

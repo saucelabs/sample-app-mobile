@@ -1,6 +1,6 @@
 {
   "name": "SwagLabsMobileApp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "start": "react-native start",
@@ -17,7 +17,6 @@
     "ios.clear.build": "yarn clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
     "ios.release": "react-native run-ios --configuration Release",
     "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
-    "postversion": "react-native-version",
     "postinstall": "npx jetify"
   },
   "dependencies": {
@@ -60,7 +59,6 @@
     "jetifier": "^1.6.3",
     "metro-react-native-babel-preset": "^0.55.0",
     "react-native-clean-project": "^3.2.4",
-    "react-native-version": "^3.1.0",
     "react-test-renderer": "16.8.6",
     "wdio-native-app-compare-service": "^1.0.1"
   },
