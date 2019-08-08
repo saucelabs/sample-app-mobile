@@ -6028,6 +6028,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-biometrics@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-biometrics/-/react-native-biometrics-1.6.0.tgz#03935ebc2117e32e6e957f269f8425b4931e5e91"
+  integrity sha512-2oDBxggcQQiNWKowAHKtu+FNRIWmoRaMxV/v+/C5UCS4t4+IpqskOXh0LKgrM0jMEhr+TAhJy05UxFA69RvG4A==
+
 react-native-clean-project@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/react-native-clean-project/-/react-native-clean-project-3.2.4.tgz#55a71006eb4336dff91d0ca5ab3564d8f0db45cc"

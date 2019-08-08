@@ -4,6 +4,9 @@ export default {
 		'loginButton': 'LOGIN',
 		'password': 'Password',
 		'screen': 'Login',
+		'biometry': 'biometry',
+		'fingerprint': 'fingerprint',
+		'faceRecognition': 'face-recognition',
 		'username': 'Username',
 		'loginText': {
 			'usernames': 'The currently accepted usernames for this application are:\n\n__standard_user__\n__locked_out_user__\n__problem_user__',

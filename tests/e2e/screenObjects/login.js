@@ -22,6 +22,14 @@ class LoginScreen extends Base {
 		return $(`~test-${ sanitizeSelector(SELECTORS.login.password) }`);
 	}
 
+	get biometryButton() {
+		return $(`~test-${ sanitizeSelector(SELECTORS.login.biometry) }`);
+	}
+
+	get iosRetryBiometry() {
+		return $('~Try Again');
+	}
+
 	get loginButton() {
 		return $(`~test-${ sanitizeSelector(SELECTORS.login.loginButton) }`);
 	}
@@ -48,6 +56,26 @@ class LoginScreen extends Base {
 		}
 
 		this.loginButton.click();
+	}
+
+	/**
+	 * Submit iOS biometric login
+	 *
+	 * @param {boolean} successful
+	 *
+	 * @return {Promise<void>}
+	 */
+	submitIosBiometricLogin(successful){
+		return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
+	}
+
+	/**
+	 * Check if this is the biometric login supports FaceID
+	 *
+	 * @return {boolean}
+	 */
+	isFaceId() {
+		return $(`~test-${ SELECTORS.login.faceRecognition }`).isDisplayed();
 	}
 
 	/**

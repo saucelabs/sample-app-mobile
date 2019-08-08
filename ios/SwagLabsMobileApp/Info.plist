@@ -22,6 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>2</string>
+	<key>NSFaceIDUsageDescription</key>
+    <string>$(PRODUCT_NAME) requires FaceID access to allows you quick and secure access.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

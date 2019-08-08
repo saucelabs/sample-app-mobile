@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Biometrics from 'react-native-biometrics';
 import { Divider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
 import SyncStorage from 'sync-storage';
@@ -14,6 +15,7 @@ import ActionButton from '../components/ActionButton';
 import InputError from '../components/InputError';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import { SCREENS } from '../Router';
+import BiometryButton from '../components/BiometryButton';
 
 export default class Login extends Component {
 	static navigationOptions = {
@@ -29,16 +31,30 @@ export default class Login extends Component {
 			password: '',
 			passwordError: false,
 			error: '',
+			biometryType: null,
 		};
 
 		this.handlePassChange = this.handlePassChange.bind(this);
 		this.handleUserChange = this.handleUserChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.renderBiometryIcon = this.renderBiometryIcon.bind(this);
+		this.handleBiometryLogin = this.handleBiometryLogin.bind(this);
+		this.successfulLogin = this.successfulLogin.bind(this);
 	}
 
-	async componentWillMount() {
+	async componentDidMount() {
 		// This is the first page loaded, so init our storage here
 		await SyncStorage.init();
+
+		// Set the type of biometry so it can be used later, catch the error
+		// if it can't be determined on a specific phone
+		try {
+			this.setState({
+				biometryType: await Biometrics.isSensorAvailable(),
+			});
+		} catch (e) {
+			// Do nothing
+		}
 	}
 
 	resetState() {
@@ -87,20 +103,31 @@ export default class Login extends Component {
 				return this.setState({ error: I18n.t('login.errors.lockedOut') });
 			}
 
-			// If we're here, we have a username and password, reset the state, clean them
-			this.resetState();
-			this.handleUserChange('');
-			this.handlePassChange('');
-			// and redirect after we wipe out any previous shopping cart contents
-			ShoppingCart.resetCart();
-			this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
-		} else {
-			return this.setState({
-				error: I18n.t('login.errors.noMatch'),
-				passwordError: true,
-				usernameError: true,
-			});
+			return this.successfulLogin();
 		}
+
+		return this.setState({
+			error: I18n.t('login.errors.noMatch'),
+			passwordError: true,
+			usernameError: true,
+		});
+
+	}
+
+	async handleBiometryLogin() {
+		const loginResult = await Biometrics.createKeys('Please sign in');
+
+		return loginResult ? this.successfulLogin() : this.handleBiometryLogin();
+	}
+
+	successfulLogin() {
+		// First, clear any errors
+		this.resetState();
+		this.handleUserChange('');
+		this.handlePassChange('');
+		// and redirect after we wipe out any previous shopping cart contents
+		ShoppingCart.resetCart();
+		this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
 	}
 
 	/**
@@ -117,6 +144,17 @@ export default class Login extends Component {
 				{ text.value }
 			</Text>
 		)));
+	}
+
+	/**
+	 * Render the biometry icon if it is there
+	 *
+	 * @return {null}
+	 */
+	renderBiometryIcon() {
+		return this.state.biometryType
+			? <BiometryButton onPress={ this.handleBiometryLogin } type={ this.state.biometryType }/>
+			: null;
 	}
 
 	render() {
@@ -151,6 +189,7 @@ export default class Login extends Component {
 							testID={ I18n.t('login.errors.container') }
 							message={ this.state.error }
 						/>
+						{ this.renderBiometryIcon() }
 						<ActionButton
 							onPress={ this.handleSubmit }
 							title={ I18n.t('login.loginButton') }
