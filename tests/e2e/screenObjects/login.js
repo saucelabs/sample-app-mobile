@@ -26,6 +26,14 @@ class LoginScreen extends Base {
 		return $(`~test-${ sanitizeSelector(SELECTORS.login.biometry) }`);
 	}
 
+	get iosAllowBiometry() {
+		return $('~Don’t Allow');
+	}
+
+	get allowBiometry() {
+		return $('~OK');
+	}
+
 	get iosRetryBiometry() {
 		return $('~Try Again');
 	}
@@ -65,8 +73,24 @@ class LoginScreen extends Base {
 	 *
 	 * @return {Promise<void>}
 	 */
-	submitIosBiometricLogin(successful){
+	submitIosBiometricLogin(successful) {
+		// Check if biometric usage is  allowed
+		this.allowIosBiometricUsage();
+
 		return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
+	}
+
+	/**
+	 * Allow biometric usage on iOS if it isn't already accepted
+	 */
+	allowIosBiometricUsage(){
+		if (!driver.isBioMetricAllowed) {
+			// Wait for the alert
+			this.iosAllowBiometry.waitForDisplayed(15000);
+			this.allowBiometry.click();
+			// Set it to accept
+			driver.isBioMetricAllowed = true;
+		}
 	}
 
 	/**

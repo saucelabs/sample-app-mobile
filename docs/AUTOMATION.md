@@ -196,6 +196,12 @@ There are some test cases (success and failure) created for testing Touch / Face
 @TODO
 
 ### Run on iOS
+
+**NOTE: <br>**
+> Be aware of the usage of `autoAcceptAlerts: true,` when you run tests with Touch / Face ID.
+> Even though it will automatically close the "Do you want to allow ..." alert, it will also automatically close the alert if you want to check a negative test with
+> test where you need to verify that Touch / Face ID failed.  
+
 Running a test on a iOS simulator can be done with this command
 
 ```bash
