@@ -20,25 +20,15 @@ describe('Touch / Face ID', () => {
 
 	it('Should be able to login with a matching touch / face ID', () => {
 		LoginScreen.biometryButton.click();
-
-		// Touch / Face ID needs to be triggered differently on iOS
-		if (driver.isIOS) {
-			// Determine Face / Touch ID
-			LoginScreen.submitIosBiometricLogin(true);
-		}
+		LoginScreen.submitBiometricLogin(true);
 
 		expect(InventoryListScreen.waitForIsShown()).toEqual(true, 'Inventory List screen was not shown');
 	});
 
 	it('Should not be able to login with a non-matching touch / face ID', () => {
 		LoginScreen.biometryButton.click();
+		LoginScreen.submitBiometricLogin(false);
 
-		// Touch / Face ID needs to be triggered differently on iOS
-		if (driver.isIOS) {
-			// Determine Face / Touch ID
-			LoginScreen.submitIosBiometricLogin(false);
-		}
-
-		expect(LoginScreen.iosRetryBiometry.waitForDisplayed(15000)).toEqual(true, 'Retry is not shown');
+		expect(LoginScreen.isBiometryAlertShown()).toEqual(true, 'Retry is not shown');
 	});
 });

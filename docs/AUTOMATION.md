@@ -193,16 +193,22 @@ npm run android.rdc
 There are some test cases (success and failure) created for testing Touch / Face ID for emulators and simulators, please see below for the instructions.
 
 ### Run on Android
-@TODO
+>**NOTE: <br>**
+> You need to configure you emulator upfront to use Touch / Face ID, see [here](../README.md#enabling-touch--face-id-on-android-emulators)
+
+Running a test on an Android emulator can be done with this command
+
+```bash
+npm run android.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
+```
 
 ### Run on iOS
-
-**NOTE: <br>**
+>**NOTE: <br>**
 > Be aware of the usage of `autoAcceptAlerts: true,` when you run tests with Touch / Face ID.
 > Even though it will automatically close the "Do you want to allow ..." alert, it will also automatically close the alert if you want to check a negative test with
 > test where you need to verify that Touch / Face ID failed.  
 
-Running a test on a iOS simulator can be done with this command
+Running a test on an iOS simulator can be done with this command
 
 ```bash
 npm run ios.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js

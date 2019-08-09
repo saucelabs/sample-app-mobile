@@ -38,6 +38,10 @@ class LoginScreen extends Base {
 		return $('~Try Again');
 	}
 
+	get androidBiometryAlert() {
+		return $('*//*[@resource-id="com.swaglabsmobileapp:id/fingerprint_status"]');
+	}
+
 	get loginButton() {
 		return $(`~test-${ sanitizeSelector(SELECTORS.login.loginButton) }`);
 	}
@@ -67,6 +71,37 @@ class LoginScreen extends Base {
 	}
 
 	/**
+	 * Submit biometric login
+	 *
+	 * @param {boolean|number} successful
+	 */
+	submitBiometricLogin(successful) {
+		// Touch / Face ID needs to be triggered differently on iOS
+		if (driver.isIOS) {
+			// Determine Face / Touch ID
+			return this.submitIosBiometricLogin(successful);
+		}
+
+		return this.submitAndroidBiometricLogin(successful ? 1 : 2);
+	}
+
+	/**
+	 * Verify that the biometric login failed
+	 *
+	 * return {boolean}
+	 */
+	isBiometryAlertShown() {
+		if (driver.isIOS) {
+			return this.iosRetryBiometry.waitForDisplayed(15000);
+		}
+
+		// We need to pause here to make sure the biometric log in has been executed
+		driver.pause(1000);
+
+		return this.androidBiometryAlert.waitForDisplayed(1500);
+	}
+
+	/**
 	 * Submit iOS biometric login
 	 *
 	 * @param {boolean} successful
@@ -83,7 +118,7 @@ class LoginScreen extends Base {
 	/**
 	 * Allow biometric usage on iOS if it isn't already accepted
 	 */
-	allowIosBiometricUsage(){
+	allowIosBiometricUsage() {
 		if (!driver.isBioMetricAllowed) {
 			// Wait for the alert
 			this.iosAllowBiometry.waitForDisplayed(15000);
@@ -100,6 +135,17 @@ class LoginScreen extends Base {
 	 */
 	isFaceId() {
 		return $(`~test-${ SELECTORS.login.faceRecognition }`).isDisplayed();
+	}
+
+	/**
+	 * Submit Android biometric login
+	 *
+	 * @param {number} fingerprintId
+	 *
+	 * @return {Promise<void>}
+	 */
+	submitAndroidBiometricLogin(fingerprintId) {
+		return driver.fingerPrint(fingerprintId);
 	}
 
 	/**

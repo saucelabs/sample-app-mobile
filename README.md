@@ -176,6 +176,9 @@ To enable this on Android emulators you need to do the following (when you have 
 
 In the `Extended controls` you can also select a (non)matching Touch / Face ID when the phone is asking for it.
 
+> **NOTE:<br>**
+> Make sure you remember the fingerprint number you selected, that needs to be used to select a (non)matching finger print!
+
 ### Enabling Touch / Face ID on iOS simulators
 To enable this on iOS simulators you need to do the following (when you have a simulator that supports this):
 
