@@ -82,7 +82,7 @@ class LoginScreen extends Base {
 			return this.submitIosBiometricLogin(successful);
 		}
 
-		return this.submitAndroidBiometricLogin(successful ? 1 : 2);
+		return this.submitAndroidBiometricLogin(successful ? 1234 : 4321);
 	}
 
 	/**
@@ -92,13 +92,13 @@ class LoginScreen extends Base {
 	 */
 	isBiometryAlertShown() {
 		if (driver.isIOS) {
-			return this.iosRetryBiometry.waitForDisplayed(15000);
+			return this.iosRetryBiometry.waitForDisplayed(DEFAULT_TIMEOUT);
 		}
 
 		// We need to pause here to make sure the biometric log in has been executed
 		driver.pause(1000);
 
-		return this.androidBiometryAlert.waitForDisplayed(1500);
+		return this.androidBiometryAlert.waitForDisplayed(DEFAULT_TIMEOUT);
 	}
 
 	/**
@@ -145,6 +145,8 @@ class LoginScreen extends Base {
 	 * @return {Promise<void>}
 	 */
 	submitAndroidBiometricLogin(fingerprintId) {
+		this.androidBiometryAlert.waitForDisplayed(DEFAULT_TIMEOUT);
+
 		return driver.fingerPrint(fingerprintId);
 	}
 

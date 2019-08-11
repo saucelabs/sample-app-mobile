@@ -170,11 +170,21 @@ See [AUTOMATION.md](./docs/AUTOMATION.md) for using Touch / Face ID with automat
 To enable this on Android emulators you need to do the following (when you have an emulator that supports this):
 
 - Open an emulator
-- Go to `Settings > Security`
-- Go to `Device security > Fingerprint`
-- Follow the steps and use the `Extended controls` from the emulator to use the `Fingerprint`
+- Activate Screenlock from `Settings -> Security`
+- Go to `Fingerprint` to add new fingerprint
+- When prompt to place your finger on the scanner, emulate the fingerprint using adb command.
 
-In the `Extended controls` you can also select a (non)matching Touch / Face ID when the phone is asking for it.
+    ```bash
+    adb -e emu finger touch <finger_id>
+    
+    #Example
+    adb -e emu finger touch 1234
+    ```
+
+- You should see fingerprint detected message. That’s it. Done.
+
+> **NOTE:<br>**
+> The automation script uses `1234` as the *Fingerprint*, so when you add the fingerprint through ADB, please use `1234` 
 
 > **NOTE:<br>**
 > Make sure you remember the fingerprint number you selected, that needs to be used to select a (non)matching finger print!
