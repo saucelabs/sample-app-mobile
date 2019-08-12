@@ -29,14 +29,38 @@ export const SCREENS = {
 
 const StackNavigator = createStackNavigator({
     [SCREENS.LOGIN]: { screen: Login },
-    [SCREENS.INVENTORY_LIST]: { screen: InventoryList },
-    [SCREENS.INVENTORY_ITEM]: { screen: InventoryItem },
-    [SCREENS.CART_CONTENTS]: { screen: CartContents },
-    [SCREENS.CHECKOUT_SCREEN_ONE]: { screen: CheckoutScreenOne },
-    [SCREENS.CHECKOUT_SCREEN_TWO]: { screen: CheckoutScreenTwo },
-    [SCREENS.CHECKOUT_COMPLETE]: { screen: CheckoutComplete },
-    [SCREENS.WEBVIEW_SELECTION]: { screen: WebviewSelection },
-    [SCREENS.WEBVIEW_SCREEN]: { screen: WebviewScreen },
+    [SCREENS.INVENTORY_LIST]: {
+      screen: InventoryList ,
+      path: 'swag-overview',
+    },
+    [SCREENS.INVENTORY_ITEM]: {
+      screen: InventoryItem ,
+      path: 'swag-item/:item',
+    },
+    [SCREENS.CART_CONTENTS]: {
+      screen: CartContents ,
+      path: 'cart/:items',
+    },
+    [SCREENS.CHECKOUT_SCREEN_ONE]: {
+      screen: CheckoutScreenOne,
+      path: 'personal-info/',
+    },
+    [SCREENS.CHECKOUT_SCREEN_TWO]: {
+      screen: CheckoutScreenTwo,
+      path: 'checkout-overview/:items',
+    },
+    [SCREENS.CHECKOUT_COMPLETE]: {
+      screen: CheckoutComplete,
+      path: 'complete',
+    },
+    [SCREENS.WEBVIEW_SELECTION]: {
+      screen: WebviewSelection,
+      path: 'webview',
+    },
+    [SCREENS.WEBVIEW_SCREEN]: {
+      screen: WebviewScreen,
+      path: 'webview-selection/:url',
+    },
   },
   {
     initialRouteName: SCREENS.LOGIN,
@@ -55,11 +79,12 @@ const DrawerNavigator = createDrawerNavigator({
 });
 
 const Router = createAppContainer(DrawerNavigator);
+const prefix = 'swagLabs://';
 
 export default class NavigationContainer extends Component {
   render() {
     return (
-      <Router/>
+      <Router uriPrefix={ prefix }/>
     );
   }
 }
