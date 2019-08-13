@@ -21,6 +21,9 @@ export default class CheckoutScreenTwo extends Component {
     super(props);
 
     this.clearCart = this.clearCart.bind(this);
+
+    // If provided through deeplink, add the items to the cart
+    ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
   }
 
   clearCart() {
@@ -46,7 +49,7 @@ export default class CheckoutScreenTwo extends Component {
       }
     }
 
-    var orderTax = (orderTotal * 0.08).toFixed(2);
+    const orderTax = (orderTotal * 0.08).toFixed(2);
 
     return (
       <ThemeProvider>

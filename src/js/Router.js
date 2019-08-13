@@ -31,23 +31,23 @@ const StackNavigator = createStackNavigator({
 		[ SCREENS.LOGIN ]: { screen: Login },
 		[ SCREENS.INVENTORY_LIST ]: {
 			screen: InventoryList,
-			path: 'swag-overview',
+			path: 'swag-overview/:ids',
 		},
 		[ SCREENS.INVENTORY_ITEM ]: {
 			screen: InventoryItem,
-			path: 'swag-item/:item',
+			path: 'swag-item/:id',
 		},
 		[ SCREENS.CART_CONTENTS ]: {
 			screen: CartContents,
-			path: 'cart/:items',
+			path: 'cart/:ids',
 		},
 		[ SCREENS.CHECKOUT_SCREEN_ONE ]: {
 			screen: CheckoutScreenOne,
-			path: 'personal-info/',
+			path: 'personal-info/:ids',
 		},
 		[ SCREENS.CHECKOUT_SCREEN_TWO ]: {
 			screen: CheckoutScreenTwo,
-			path: 'checkout-overview/:items',
+			path: 'checkout-overview/:ids',
 		},
 		[ SCREENS.CHECKOUT_COMPLETE ]: {
 			screen: CheckoutComplete,
@@ -59,7 +59,6 @@ const StackNavigator = createStackNavigator({
 		},
 		[ SCREENS.WEBVIEW_SCREEN ]: {
 			screen: WebviewScreen,
-			path: 'webview-selection/:url',
 		},
 	},
 	{
