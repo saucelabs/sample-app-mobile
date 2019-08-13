@@ -50,5 +50,10 @@ exports.config = {
      * restart is not needed.
      */
     driver.firstAppStart = true;
+
+    /**
+     * Custom property that is used to determine if biometric access is already allowed.
+     */
+    driver.isBioMetricAllowed = false;
   },
 };

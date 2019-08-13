@@ -22,6 +22,26 @@ class LoginScreen extends Base {
 		return $(`~test-${ sanitizeSelector(SELECTORS.login.password) }`);
 	}
 
+	get biometryButton() {
+		return $(`~test-${ sanitizeSelector(SELECTORS.login.biometry) }`);
+	}
+
+	get iosAllowBiometry() {
+		return $('~Don’t Allow');
+	}
+
+	get allowBiometry() {
+		return $('~OK');
+	}
+
+	get iosRetryBiometry() {
+		return $('~Try Again');
+	}
+
+	get androidBiometryAlert() {
+		return $('*//*[@resource-id="com.swaglabsmobileapp:id/fingerprint_status"]');
+	}
+
 	get loginButton() {
 		return $(`~test-${ sanitizeSelector(SELECTORS.login.loginButton) }`);
 	}
@@ -48,6 +68,86 @@ class LoginScreen extends Base {
 		}
 
 		this.loginButton.click();
+	}
+
+	/**
+	 * Submit biometric login
+	 *
+	 * @param {boolean|number} successful
+	 */
+	submitBiometricLogin(successful) {
+		// Touch / Face ID needs to be triggered differently on iOS
+		if (driver.isIOS) {
+			// Determine Face / Touch ID
+			return this.submitIosBiometricLogin(successful);
+		}
+
+		return this.submitAndroidBiometricLogin(successful ? 1234 : 4321);
+	}
+
+	/**
+	 * Verify that the biometric login failed
+	 *
+	 * return {boolean}
+	 */
+	isBiometryAlertShown() {
+		if (driver.isIOS) {
+			return this.iosRetryBiometry.waitForDisplayed(DEFAULT_TIMEOUT);
+		}
+
+		// We need to pause here to make sure the biometric log in has been executed
+		driver.pause(1000);
+
+		return this.androidBiometryAlert.waitForDisplayed(DEFAULT_TIMEOUT);
+	}
+
+	/**
+	 * Submit iOS biometric login
+	 *
+	 * @param {boolean} successful
+	 *
+	 * @return {Promise<void>}
+	 */
+	submitIosBiometricLogin(successful) {
+		// Check if biometric usage is  allowed
+		this.allowIosBiometricUsage();
+
+		return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
+	}
+
+	/**
+	 * Allow biometric usage on iOS if it isn't already accepted
+	 */
+	allowIosBiometricUsage() {
+		if (!driver.isBioMetricAllowed) {
+			// Wait for the alert
+			this.iosAllowBiometry.waitForDisplayed(15000);
+			this.allowBiometry.click();
+			// Set it to accept
+			driver.isBioMetricAllowed = true;
+		}
+	}
+
+	/**
+	 * Check if this is the biometric login supports FaceID
+	 *
+	 * @return {boolean}
+	 */
+	isFaceId() {
+		return $(`~test-${ SELECTORS.login.faceRecognition }`).isDisplayed();
+	}
+
+	/**
+	 * Submit Android biometric login
+	 *
+	 * @param {number} fingerprintId
+	 *
+	 * @return {Promise<void>}
+	 */
+	submitAndroidBiometricLogin(fingerprintId) {
+		this.androidBiometryAlert.waitForDisplayed(DEFAULT_TIMEOUT);
+
+		return driver.fingerPrint(fingerprintId);
 	}
 
 	/**

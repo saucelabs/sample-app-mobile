@@ -9,6 +9,9 @@
     1. [The setup](#the-setup)
     1. [Running Android](#running-android)
     1. [Running iOS](#running-ios)
+1. [Using Touch / Face ID during automation](#using-touch--face-id-during-automation)
+    1. [Run on Android](#run-on-android)
+    1. [Run on iOS](#run-on-ios)
 1. [FAQ](#faq)
 
 # Intro
@@ -31,7 +34,7 @@ By default the following emulators and simulators are used:
 - Pixel One
 - iPhone X
 
-> **Please check [tests/e2e/config/wdio.android.local.conf.js](../tests/e2e/config/wdio.android.local.conf.js) and  [tests/e2e/config/wdio.ios.local.conf.js](../tests/e2e/config/wdio.ios.local.conf.js) for the correct names and OS versions of the emulators / simulators. They need to be equal for test execution.**
+> **Please check [tests/e2e/config/wdio.android.local.conf.js](../tests/e2e/config/wdio.android.local.conf.js) and [tests/e2e/config/wdio.ios.local.conf.js](../tests/e2e/config/wdio.ios.local.conf.js) for the correct names and OS versions of the emulators / simulators. They need to be equal for test execution.**
 
 ## Setup Appium on a local machine
 Please check [this](./APPIUM.md) document for more info about how to setup Appium on a local machine.
@@ -58,7 +61,7 @@ To run a complete testset use the following commands
 - Android: `npm run android.local`
 - iOS: `npm run ios.local`
 
-When all tests have been executed the following will be  shown in the console
+When all tests have been executed the following will be shown in the console
 
 ```bash
 [iPhone X MAC 11.4 #0-0] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/cart.content.spec.js
@@ -178,13 +181,38 @@ Change the `deviceName` to get the right device you want to use and or add the `
 
 Running the test on the Sauce Labs Real Device Cloud can be done by running the following command:
 
-```shell
-$ npm run android.rdc
+```bash
+npm run android.rdc
 ```
 
 ### Running iOS
 
 > **NOTE:** iOS tests for this app can't be run on the SL cloud because we can't create a correct build of the iOS app to run on real device, see [Building iOS](./BUILDING.md#building-ios) for more information.
+
+## Using Touch / Face ID during automation
+There are some test cases (success and failure) created for testing Touch / Face ID for emulators and simulators, please see below for the instructions.
+
+### Run on Android
+>**NOTE: <br>**
+> You need to configure you emulator upfront to use Touch / Face ID, see [here](../README.md#enabling-touch--face-id-on-android-emulators)
+
+Running a test on an Android emulator can be done with this command
+
+```bash
+npm run android.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
+```
+
+### Run on iOS
+>**NOTE: <br>**
+> Be aware of the usage of `autoAcceptAlerts: true,` when you run tests with Touch / Face ID.
+> Even though it will automatically close the "Do you want to allow ..." alert, it will also automatically close the alert if you want to check a negative test with
+> test where you need to verify that Touch / Face ID failed.  
+
+Running a test on an iOS simulator can be done with this command
+
+```bash
+npm run ios.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
+```
 
 ## FAQ
 ### `An unknown server-side error occurred while processing the command` while sending text to an iOS simulator
@@ -197,7 +225,7 @@ It could be that the debugger is still on. Run tests without the debugger
 This app also uses a Webview. To be able to automate the Webview on Android you need to have the right version of ChromeDriver installed together with Appium.
 If you don't have the proper version of ChromeDriver on your machine (Appium will by default install the latest version on your machine during the installation of Appium) you might get an error like this.
 
-```shell
+```bash
 [Pixel_8.1 Android 8.1 #0-0] unknown error: An unknown server-side error occurred while processing the command. Original error: No Chromedriver found that can automate Chrome '61.0.3163'. See https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/web/chromedriver.md for more details.
 ```
 

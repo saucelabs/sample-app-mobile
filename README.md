@@ -29,6 +29,9 @@ The latest version of the iOS and Android app can be found [here](https://github
 1. [Linting the code](#linting-the-code)
 1. [i18n internationalization](#i18n-internationalization)
 1. [AccessibilityID's](#accessibilityids)
+1. [Touch / Face ID](#touch--face-id)
+    1. [Enabling Touch / Face ID on Android emulators](#enabling-touch--face-id-on-android-emulators)
+    1. [Enabling Touch / Face ID on iOS simulators](#enabling-touch--face-id-on-ios-simulators)
 1. [Testautomation](#testautomation)
 1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)
 1. [Versioning the app](#versioning-the-app)
@@ -111,11 +114,15 @@ https://facebook.github.io/react-native/docs/getting-started.html
 ## Linting the code
 The linting rules were taken from the React Native project itself and can be used by running 
 
-    $ yarn lint
+```bash
+yarn lint
+```
 
 Issues / warning will be shown in the console and most of them can automatically be fixed by running
 
-    $ yarn lint -- --fix
+```bash
+yarn lint -- --fix
+```
 
 The linting will also be run on each `git push` and fail if there are issues.
 
@@ -153,6 +160,43 @@ For example, with a button component the following code needs to be added
 Always try to use the text that is already available in the translation-JSON-file that can be found [here](src/js/config/translations/en.json). The `testProperties`-method will make it unique by adding a prefix to it.
 
 > More information about testing with accessibilitID's can be found [here](./docs/AUTOMATION.md#writing-tests) 
+
+## Touch / Face ID
+This app supports TouchID and FaceID for Android and iOS and will only show when the phone supports and has this enabled.
+
+See [AUTOMATION.md](./docs/AUTOMATION.md) for using Touch / Face ID with automation.
+
+### Enabling Touch / Face ID on Android emulators
+To enable this on Android emulators you need to do the following (when you have an emulator that supports this):
+
+- Open an emulator
+- Activate Screenlock from `Settings -> Security`
+- Go to `Fingerprint` to add new fingerprint
+- When prompt to place your finger on the scanner, emulate the fingerprint using adb command.
+
+    ```bash
+    adb -e emu finger touch <finger_id>
+    
+    #Example
+    adb -e emu finger touch 1234
+    ```
+
+- You should see fingerprint detected message. That’s it. Done.
+
+> **NOTE:<br>**
+> The automation script uses `1234` as the *Fingerprint*, so when you add the fingerprint through ADB, please use `1234` 
+
+> **NOTE:<br>**
+> Make sure you remember the fingerprint number you selected, that needs to be used to select a (non)matching finger print!
+
+### Enabling Touch / Face ID on iOS simulators
+To enable this on iOS simulators you need to do the following (when you have a simulator that supports this):
+
+- Open a simulator
+- For Touch ID go to the Simulator menu and open `Hardware > Touch ID` and select `Enrolled`
+- For Face ID go to the Simulator menu and open `Hardware > Face ID` and select `Enrolled`
+
+In the previous mentioned menu you can also select a (non)matching Touch / Face ID when the phone is asking for it.
 
 ## Testautomation
 More information about:
