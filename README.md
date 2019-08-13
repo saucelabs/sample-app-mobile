@@ -32,6 +32,7 @@ The latest version of the iOS and Android app can be found [here](https://github
 1. [Touch / Face ID](#touch--face-id)
     1. [Enabling Touch / Face ID on Android emulators](#enabling-touch--face-id-on-android-emulators)
     1. [Enabling Touch / Face ID on iOS simulators](#enabling-touch--face-id-on-ios-simulators)
+1. [Deep linking](#deep-linking)
 1. [Testautomation](#testautomation)
 1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)
 1. [Versioning the app](#versioning-the-app)
@@ -197,6 +198,47 @@ To enable this on iOS simulators you need to do the following (when you have a s
 - For Face ID go to the Simulator menu and open `Hardware > Face ID` and select `Enrolled`
 
 In the previous mentioned menu you can also select a (non)matching Touch / Face ID when the phone is asking for it.
+
+## Deep linking
+This app supports deep linking for iOS and for Android, this means that screens can directly be opened with a deep link.
+
+The prefix deep link is `swagLabs://` and the following screens (with their arguments) can be used:
+
+- **Swag overview screen:** `swag-overview/ids` where `ids` is a string of numbers from 0-5 separated with a `,`. For example `swag-overview/0,2`. The number represents a product. 
+- **Swag details screen:** `swag-item/id` where `id` is a number from 0-5. For example `swag-item/0`   
+- **Cart screen:** `cart/ids` where `ids` is a string of numbers from 0-5 separated with a `,`. For example `cart/0,2`. The number represents a product.  
+- **Personal info screen:** `personal-info/ids` where `ids` is a string of numbers from 0-5 separated with a `,`. For example `cart/0,2`. The number represents a product.   
+- **Checkout overview screen:** `checkout-overview/ids` where `ids` is a string of numbers from 0-5 separated with a `,`. For example `cart/0,2`. The number represents a product.   
+- **Complete screen:** `complete`   
+- **Webview screen:** `webview`
+
+### Use with Android
+Open a terminal and add the following
+
+```bash
+# This will open the Checkout overview screen with 2 products in it
+adb shell am start -W -a android.intent.action.VIEW -d "swagLabs://checkout-overview/1,2"
+``` 
+
+### Use with iOS
+There are 2 ways of using deep links with iOS, through a terminal or through Safari
+
+### Terminal
+Open a terminal and add the following
+
+```bash
+# This will open the Swag overview screen with 2 products in it
+xcrun simctl openurl booted swagLabs://swag-overview/0,1
+```
+
+It will prompt a dialog asking you to open the app, select *Yes* and it will open the page
+
+#### With Safari
+Open Safari and type the following
+
+```bash
+
+``` 
 
 ## Testautomation
 More information about:
