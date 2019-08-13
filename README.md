@@ -202,7 +202,7 @@ In the previous mentioned menu you can also select a (non)matching Touch / Face 
 ## Deep linking
 This app supports deep linking for iOS and for Android, this means that screens can directly be opened with a deep link.
 
-The prefix deep link is `swagLabs://` and the following screens (with their arguments) can be used:
+The prefix deep link is `swaglabs://` and the following screens (with their arguments) can be used:
 
 - **Swag overview screen:** `swag-overview/ids` where `ids` is a string of numbers from 0-5 separated with a `,`. For example `swag-overview/0,2`. The number represents a product. 
 - **Swag details screen:** `swag-item/id` where `id` is a number from 0-5. For example `swag-item/0`   
@@ -217,7 +217,7 @@ Open a terminal and add the following
 
 ```bash
 # This will open the Checkout overview screen with 2 products in it
-adb shell am start -W -a android.intent.action.VIEW -d "swagLabs://checkout-overview/1,2"
+adb shell am start -W -a android.intent.action.VIEW -d "swaglabs://checkout-overview/1,2"
 ``` 
 
 ### Use with iOS
@@ -228,17 +228,17 @@ Open a terminal and add the following
 
 ```bash
 # This will open the Swag overview screen with 2 products in it
-xcrun simctl openurl booted swagLabs://swag-overview/0,1
+xcrun simctl openurl booted swaglabs://swag-overview/0,1
 ```
-
-It will prompt a dialog asking you to open the app, select *Yes* and it will open the page
 
 #### With Safari
 Open Safari and type the following
 
 ```bash
+swaglabs://swag-overview/0,1
+```
 
-``` 
+It will prompt a dialog asking you to open the app, select *Yes* and it will open the screen you selected.
 
 ## Testautomation
 More information about:

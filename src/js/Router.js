@@ -81,7 +81,7 @@ const DrawerNavigator = createDrawerNavigator({
 });
 
 const Router = createAppContainer(DrawerNavigator);
-const prefix = 'swagLabs://';
+const prefix = 'swaglabs://';
 
 export default class NavigationContainer extends Component {
 	render() {
