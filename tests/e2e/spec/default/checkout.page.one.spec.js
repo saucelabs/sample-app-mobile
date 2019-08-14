@@ -1,12 +1,12 @@
-import { restartApp } from '../helpers/utils';
-import LoginScreen from '../screenObjects/login';
-import InventoryListScreen from '../screenObjects/inventoryList';
-import CartContent from '../screenObjects/cart';
-import AppHeader from '../screenObjects/appHeader';
-import CheckoutPageOne from '../screenObjects/checkoutPageOne';
-import CheckoutPageTwo from '../screenObjects/checkoutPageTwo';
-import { LOGIN_USERS, PERSONAL_INFO } from '../helpers/e2eConstants';
-import SELECTORS from '../../../src/js/config/translations/en';
+import { restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
+import InventoryListScreen from '../../screenObjects/inventoryList';
+import CartContent from '../../screenObjects/cart';
+import AppHeader from '../../screenObjects/appHeader';
+import CheckoutPageOne from '../../screenObjects/checkoutPageOne';
+import CheckoutPageTwo from '../../screenObjects/checkoutPageTwo';
+import { LOGIN_USERS, PERSONAL_INFO } from '../../helpers/e2eConstants';
+import SELECTORS from '../../../../src/js/config/translations/en';
 
 describe('Checkout: Your info', () => {
   beforeEach(() => {

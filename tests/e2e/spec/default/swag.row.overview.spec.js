@@ -1,11 +1,11 @@
-import SELECTORS from '../../../src/js/config/translations/en';
-import { restartApp } from '../helpers/utils';
-import LoginScreen from '../screenObjects/login';
-import InventoryListScreen from '../screenObjects/inventoryList';
-import InventoryItemScreen from '../screenObjects/inventoryItem';
-import AppHeader from '../screenObjects/appHeader';
-import ModalSelect from '../screenObjects/sortingModal';
-import { LOGIN_USERS } from '../helpers/e2eConstants';
+import SELECTORS from '../../../../src/js/config/translations/en';
+import { restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
+import InventoryListScreen from '../../screenObjects/inventoryList';
+import InventoryItemScreen from '../../screenObjects/inventoryItem';
+import AppHeader from '../../screenObjects/appHeader';
+import ModalSelect from '../../screenObjects/sortingModal';
+import { LOGIN_USERS } from '../../helpers/e2eConstants';
 
 describe('Swag row overview page', () => {
   beforeEach(() => {

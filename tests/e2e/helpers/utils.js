@@ -171,3 +171,47 @@ export function hideKeyboard(element) {
 export function sanitizeSelector(selector) {
 	return driver.isAndroid ? `${ selector }, ` : selector;
 }
+
+/**
+ * Create a  cross platform solution for opening a deep link
+ *
+ * @param {string} url
+ */
+export function openDeepLinkUrl(url) {
+	const prefix = 'swaglabs://';
+
+	if (driver.isIOS) {
+		driver.terminateApp('org.reactjs.native.example.SwagLabsMobileApp');
+
+		driver.execute('mobile: launchApp', { bundleId: 'com.apple.mobilesafari' });
+
+		// This can be 2 different elements, or the button, or the text field
+		// checking that it is visible gives us the idea that the browser at least started
+		$('~URL').waitForDisplayed(DEFAULT_TIMEOUT);
+
+		// Use the predicate string because  the accessibility label will return 2 different types
+		// of elements making it flaky to use. With predicate string we can be more precise
+		const urlButtonSelector = 'type == \'XCUIElementTypeButton\' && name CONTAINS \'URL\'';
+		const urlFieldSelector = 'type == \'XCUIElementTypeTextField\' && name CONTAINS \'URL\'';
+		const urlButton = $(`-ios predicate string:${ urlButtonSelector }`);
+		const urlField = $(`-ios predicate string:${ urlFieldSelector }`);
+
+		// If for some reason the url button field is there click on it to trigger the text field
+		if (urlButton.isDisplayed()) {
+			urlButton.click();
+		}
+
+		// Submit the url and add a break
+		urlField.setValue(`${ prefix }${ url }\uE007`);
+
+		// Wait for the alert and accept it
+		$('~Open').waitForDisplayed(DEFAULT_TIMEOUT);
+
+		return $('~Open').click();
+	}
+
+	return driver.execute('mobile:deepLink', {
+		url: `${ prefix }${ url }`,
+		package: 'com.swaglabsmobileapp',
+	});
+}

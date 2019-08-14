@@ -1,10 +1,10 @@
-import { restartApp } from '../helpers/utils';
-import LoginScreen from '../screenObjects/login';
-import InventoryListScreen from '../screenObjects/inventoryList';
-import CartContent from '../screenObjects/cart';
-import AppHeader from '../screenObjects/appHeader';
-import CheckoutPageOne from '../screenObjects/checkoutPageOne';
-import { LOGIN_USERS } from '../helpers/e2eConstants';
+import { restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
+import InventoryListScreen from '../../screenObjects/inventoryList';
+import CartContent from '../../screenObjects/cart';
+import AppHeader from '../../screenObjects/appHeader';
+import CheckoutPageOne from '../../screenObjects/checkoutPageOne';
+import { LOGIN_USERS } from '../../helpers/e2eConstants';
 
 describe('Cart Content Page', () => {
   beforeEach(() => {
