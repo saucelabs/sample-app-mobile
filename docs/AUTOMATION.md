@@ -12,6 +12,7 @@
 1. [Using Touch / Face ID during automation](#using-touch--face-id-during-automation)
     1. [Run on Android](#run-on-android)
     1. [Run on iOS](#run-on-ios)
+1. [Deep linking](#deep-linking)
 1. [FAQ](#faq)
 
 # Intro
@@ -213,6 +214,23 @@ Running a test on an iOS simulator can be done with this command
 ```bash
 npm run ios.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
 ```
+
+## Deep linking
+To run the deep link automation script do the following:
+
+```bash
+# For Android emulator
+ npm run android.local -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+
+# For Android real device
+ npm run android.rdc -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+
+# For iOS simulator
+ npm run ios.local -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+
+# For iOS real device
+ npm run ios.rdc -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+``` 
 
 ## FAQ
 ### `An unknown server-side error occurred while processing the command` while sending text to an iOS simulator

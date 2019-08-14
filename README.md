@@ -33,6 +33,10 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [Enabling Touch / Face ID on Android emulators](#enabling-touch--face-id-on-android-emulators)
     1. [Enabling Touch / Face ID on iOS simulators](#enabling-touch--face-id-on-ios-simulators)
 1. [Deep linking](#deep-linking)
+    1. [Use with Android](#use-with-android)
+    1. [Use with iOS](#use-with-ios)
+        1. [Terminal](#terminal)
+        1. [With Safari](#with-safari)
 1. [Testautomation](#testautomation)
 1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)
 1. [Versioning the app](#versioning-the-app)
@@ -211,6 +215,8 @@ The prefix deep link is `swaglabs://` and the following screens (with their argu
 - **Checkout overview screen:** `checkout-overview/ids` where `ids` is a string of numbers from 0-5 separated with a `,`. For example `cart/0,2`. The number represents a product.   
 - **Complete screen:** `complete`   
 - **Webview screen:** `webview`
+
+For how to run the deep link automation script see [Deep Linking](./docs/AUTOMATION.md#deep-linking).
 
 ### Use with Android
 Open a terminal and add the following

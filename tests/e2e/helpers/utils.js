@@ -181,10 +181,12 @@ export function openDeepLinkUrl(url) {
 	const prefix = 'swaglabs://';
 
 	if (driver.isIOS) {
-		driver.terminateApp('org.reactjs.native.example.SwagLabsMobileApp');
+		driver.terminateApp(BUNDLE_IDS.IOS);
 
+		// Launch Safari to open the deep link
 		driver.execute('mobile: launchApp', { bundleId: 'com.apple.mobilesafari' });
 
+		// Add the deep link url in Safari in the `URL`-field
 		// This can be 2 different elements, or the button, or the text field
 		// checking that it is visible gives us the idea that the browser at least started
 		$('~URL').waitForDisplayed(DEFAULT_TIMEOUT);
@@ -210,8 +212,9 @@ export function openDeepLinkUrl(url) {
 		return $('~Open').click();
 	}
 
+	// Life is so much easier
 	return driver.execute('mobile:deepLink', {
 		url: `${ prefix }${ url }`,
-		package: 'com.swaglabsmobileapp',
+		package: BUNDLE_IDS.ANDROID,
 	});
 }
