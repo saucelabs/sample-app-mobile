@@ -1,9 +1,9 @@
 import SELECTORS from '../../../src/js/config/translations/en';
-import { getTextOfElement, sanitizeSelector } from '../helpers/utils';
+import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
 
-const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.cartContent.screen) }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.cartContent.screen }`;
 
 class CartContent extends Base {
 	constructor() {
@@ -15,15 +15,15 @@ class CartContent extends Base {
 	}
 
 	get checkoutButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.cartContent.checkout) }`);
+		return $(`~test-${ SELECTORS.cartContent.checkout }`);
 	}
 
 	get continueShoppingButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.cartContent.continueShopping) }`);
+		return $(`~test-${ SELECTORS.cartContent.continueShopping }`);
 	}
 
 	get swagItems() {
-		return $$(`~test-${ sanitizeSelector(SELECTORS.cartContent.cartItem.itemContainer) }`);
+		return $$(`~test-${ SELECTORS.cartContent.cartItem.itemContainer }`);
 	}
 
 	/**
@@ -58,7 +58,7 @@ class CartContent extends Base {
 	 * @return {void}
 	 */
 	removeSwagItem() {
-		return this.swagItems[ 0 ].$(`~test-${ sanitizeSelector(SELECTORS.cartContent.cartItem.remove) }`).click();
+		return this.swagItems[ 0 ].$(`~test-${ SELECTORS.cartContent.cartItem.remove }`).click();
 	}
 
 	/**

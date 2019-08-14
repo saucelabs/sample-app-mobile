@@ -161,18 +161,6 @@ export function hideKeyboard(element) {
 }
 
 /**
- * There is  a bug in RN 0.60.0 that doesn't populate the accessibility label properly
- * See https://github.com/facebook/react-native/issues/25581
- *
- * @param {string} selector
- *
- * @return {string}
- */
-export function sanitizeSelector(selector) {
-	return driver.isAndroid ? `${ selector }, ` : selector;
-}
-
-/**
  * Create a  cross platform solution for opening a deep link
  *
  * @param {string} url

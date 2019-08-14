@@ -1,9 +1,9 @@
 import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
-import { getTextOfElement, hideKeyboard, sanitizeSelector } from '../helpers/utils';
+import { getTextOfElement, hideKeyboard } from '../helpers/utils';
 import Gestures from '../helpers/Gestures';
 
-const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.checkoutPageOne.screen) }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageOne.screen }`;
 
 class CheckoutPageOne extends Base {
 	constructor() {
@@ -15,27 +15,27 @@ class CheckoutPageOne extends Base {
 	}
 
 	get cancelButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageOne.cancelButton) }`);
+		return $(`~test-${ SELECTORS.checkoutPageOne.cancelButton }`);
 	}
 
 	get continueCheckoutButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageOne.continueButton) }`);
+		return $(`~test-${ SELECTORS.checkoutPageOne.continueButton }`);
 	}
 
 	get firstName() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageOne.firstName) }`);
+		return $(`~test-${ SELECTORS.checkoutPageOne.firstName }`);
 	}
 
 	get lastName() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageOne.lastName) }`);
+		return $(`~test-${ SELECTORS.checkoutPageOne.lastName }`);
 	}
 
 	get postalCode() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageOne.postalCode) }`);
+		return $(`~test-${ SELECTORS.checkoutPageOne.postalCode }`);
 	}
 
 	get errorMessage() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageOne.errors.container) }`);
+		return $(`~test-${ SELECTORS.checkoutPageOne.errors.container }`);
 	}
 
 	/**

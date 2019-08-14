@@ -1,9 +1,9 @@
 import SELECTORS from '../../../src/js/config/translations/en';
-import { getTextOfElement, sanitizeSelector } from '../helpers/utils';
+import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 
-const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.login.screen) }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.login.screen }`;
 
 class LoginScreen extends Base {
 	constructor() {
@@ -15,15 +15,15 @@ class LoginScreen extends Base {
 	}
 
 	get username() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.login.username) }`);
+		return $(`~test-${ SELECTORS.login.username }`);
 	}
 
 	get password() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.login.password) }`);
+		return $(`~test-${ SELECTORS.login.password }`);
 	}
 
 	get biometryButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.login.biometry) }`);
+		return $(`~test-${ SELECTORS.login.biometry }`);
 	}
 
 	get iosAllowBiometry() {
@@ -43,11 +43,11 @@ class LoginScreen extends Base {
 	}
 
 	get loginButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.login.loginButton) }`);
+		return $(`~test-${ SELECTORS.login.loginButton }`);
 	}
 
 	get errorMessage() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.login.errors.container) }`);
+		return $(`~test-${ SELECTORS.login.errors.container }`);
 	}
 
 	/**

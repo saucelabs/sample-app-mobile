@@ -1,9 +1,9 @@
 import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
-import { getTextOfElement, sanitizeSelector } from '../helpers/utils';
+import { getTextOfElement } from '../helpers/utils';
 import Gestures from '../helpers/Gestures';
 
-const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.checkoutPageTwo.screen) }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageTwo.screen }`;
 
 class CheckoutPageTwo extends Base {
 	constructor() {
@@ -15,15 +15,15 @@ class CheckoutPageTwo extends Base {
 	}
 
 	get cancelButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageTwo.cancelButton) }`);
+		return $(`~test-${ SELECTORS.checkoutPageTwo.cancelButton }`);
 	}
 
 	get finishButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutPageTwo.finishButton) }`);
+		return $(`~test-${ SELECTORS.checkoutPageTwo.finishButton }`);
 	}
 
 	get swagItems() {
-		return $$(`~test-${ sanitizeSelector(SELECTORS.checkoutPageTwo.item.container) }`);
+		return $$(`~test-${ SELECTORS.checkoutPageTwo.item.container }`);
 	}
 
 	/**
@@ -49,7 +49,7 @@ class CheckoutPageTwo extends Base {
 	 * @return {string}
 	 */
 	getSwagItemText(needle) {
-		const elm = this.swagItems[ needle ].$(`~test-${ sanitizeSelector(SELECTORS.cartContent.cartItem.description) }`);
+		const elm = this.swagItems[ needle ].$(`~test-${ SELECTORS.cartContent.cartItem.description }`);
 		Gestures.scrollDownToElement(elm);
 
 		return getTextOfElement(elm);

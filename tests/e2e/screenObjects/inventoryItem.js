@@ -1,9 +1,9 @@
 import SELECTORS from '../../../src/js/config/translations/en';
-import { getTextOfElement, sanitizeSelector } from '../helpers/utils';
+import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
 
-const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.inventoryItemPage.screen) }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.inventoryItemPage.screen }`;
 
 class InventoryItemScreen extends Base {
 	constructor() {
@@ -15,23 +15,23 @@ class InventoryItemScreen extends Base {
 	}
 
 	get description() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.inventoryItemPage.itemDescription) }`);
+		return $(`~test-${ SELECTORS.inventoryItemPage.itemDescription }`);
 	}
 
 	get price() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.inventoryItemPage.price) }`);
+		return $(`~test-${ SELECTORS.inventoryItemPage.price }`);
 	}
 
 	get addButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.inventoryItemPage.addButton) }`);
+		return $(`~test-${ SELECTORS.inventoryItemPage.addButton }`);
 	}
 
 	get removeButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.inventoryItemPage.removeButton) }`);
+		return $(`~test-${ SELECTORS.inventoryItemPage.removeButton }`);
 	}
 
 	get goBackButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.inventoryItemPage.backButton) }`);
+		return $(`~test-${ SELECTORS.inventoryItemPage.backButton }`);
 	}
 
 	/**

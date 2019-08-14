@@ -23,7 +23,7 @@
     "@react-native-community/async-storage": "^1.6.1",
     "i18n-js": "^3.3.0",
     "react": "16.8.6",
-    "react-native": "0.60.4",
+    "react-native": "0.60.5",
     "react-native-biometrics": "^1.6.0",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.3.0",

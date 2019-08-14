@@ -1,9 +1,8 @@
 import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
-import { sanitizeSelector } from '../helpers/utils';
 
-const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.checkoutCompletePage.screen) }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutCompletePage.screen }`;
 
 class CheckoutComplete extends Base {
 	constructor() {
@@ -15,7 +14,7 @@ class CheckoutComplete extends Base {
 	}
 
 	get continuesShoppingButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.checkoutCompletePage.goToButton) }`);
+		return $(`~test-${ SELECTORS.checkoutCompletePage.goToButton }`);
 	}
 
 	/**
