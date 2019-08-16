@@ -161,7 +161,7 @@ export function hideKeyboard(element) {
 }
 
 /**
- * Create a  cross platform solution for opening a deep link
+ * Create a cross platform solution for opening a deep link
  *
  * @param {string} url
  */
@@ -169,16 +169,11 @@ export function openDeepLinkUrl(url) {
 	const prefix = 'swaglabs://';
 
 	if (driver.isIOS) {
-		driver.terminateApp(BUNDLE_IDS.IOS);
-
 		// Launch Safari to open the deep link
 		driver.execute('mobile: launchApp', { bundleId: 'com.apple.mobilesafari' });
 
 		// Add the deep link url in Safari in the `URL`-field
 		// This can be 2 different elements, or the button, or the text field
-		// checking that it is visible gives us the idea that the browser at least started
-		$('~URL').waitForDisplayed(DEFAULT_TIMEOUT);
-
 		// Use the predicate string because  the accessibility label will return 2 different types
 		// of elements making it flaky to use. With predicate string we can be more precise
 		const urlButtonSelector = 'type == \'XCUIElementTypeButton\' && name CONTAINS \'URL\'';
@@ -186,18 +181,19 @@ export function openDeepLinkUrl(url) {
 		const urlButton = $(`-ios predicate string:${ urlButtonSelector }`);
 		const urlField = $(`-ios predicate string:${ urlFieldSelector }`);
 
-		// If for some reason the url button field is there click on it to trigger the text field
-		if (urlButton.isDisplayed()) {
-			urlButton.click();
-		}
+		// Wait for the url button to appear and click on it so the text field will appear
+		urlButton.waitForDisplayed(DEFAULT_TIMEOUT);
+		urlButton.click();
 
 		// Submit the url and add a break
 		urlField.setValue(`${ prefix }${ url }\uE007`);
 
-		// Wait for the alert and accept it
-		$('~Open').waitForDisplayed(DEFAULT_TIMEOUT);
+		// Wait for the notification and accept it
+		const openSelector = 'type == \'XCUIElementTypeButton\' && name CONTAINS \'Open\'';
+		const openButton = $(`-ios predicate string:${ openSelector }`);
+		openButton.waitForDisplayed(DEFAULT_TIMEOUT);
 
-		return $('~Open').click();
+		return openButton.click();
 	}
 
 	// Life is so much easier
