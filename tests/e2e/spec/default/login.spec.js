@@ -1,8 +1,8 @@
-import LoginScreen from '../screenObjects/login';
-import InventoryListScreen from '../screenObjects/inventoryList';
-import { restartApp } from '../helpers/utils';
-import { LOGIN_USERS } from '../helpers/e2eConstants';
-import SELECTORS from '../../../src/js/config/translations/en';
+import LoginScreen from '../../screenObjects/login';
+import InventoryListScreen from '../../screenObjects/inventoryList';
+import { restartApp } from '../../helpers/utils';
+import { LOGIN_USERS } from '../../helpers/e2eConstants';
+import SELECTORS from '../../../../src/js/config/translations/en';
 
 describe('Login', () => {
   beforeEach(() => {

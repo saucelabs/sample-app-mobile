@@ -1,9 +1,8 @@
 import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
-import { sanitizeSelector } from '../helpers/utils';
 
-const SCREEN_SELECTOR = `~test-${ sanitizeSelector(SELECTORS.menu.allItems) }`;
+const SCREEN_SELECTOR = `~test-${ SELECTORS.menu.allItems }`;
 
 class Menu extends Base {
 	constructor() {
@@ -13,11 +12,11 @@ class Menu extends Base {
 	}
 
 	get button() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.menu.label) }`);
+		return $(`~test-${ SELECTORS.menu.label }`);
 	}
 
 	get closeButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.menu.close) }`);
+		return $(`~test-${ SELECTORS.menu.close }`);
 	}
 
 	get allItems() {
@@ -25,19 +24,19 @@ class Menu extends Base {
 	}
 
 	get webview() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.menu.webview) }`);
+		return $(`~test-${ SELECTORS.menu.webview }`);
 	}
 
 	get about() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.menu.about) }`);
+		return $(`~test-${ SELECTORS.menu.about }`);
 	}
 
 	get logout() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.menu.logout) }`);
+		return $(`~test-${ SELECTORS.menu.logout }`);
 	}
 
 	get resetAppState() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.menu.reset) }`);
+		return $(`~test-${ SELECTORS.menu.reset }`);
 	}
 
 	/**

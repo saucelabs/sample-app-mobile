@@ -12,6 +12,7 @@ import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { SCREENS } from '../Router';
+import { ShoppingCart } from '../shopping-cart';
 
 export default class CheckoutScreenOne extends Component {
   constructor(props) {
@@ -31,6 +32,9 @@ export default class CheckoutScreenOne extends Component {
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handlePostalCodeChange = this.handlePostalCodeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    // If provided through deeplink, add the items to the cart
+    ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
   }
 
   resetState() {
@@ -49,7 +53,7 @@ export default class CheckoutScreenOne extends Component {
   }
 
   handleLastNameChange(text) {
-    var newState = {
+    const newState = {
       lastName: text,
     };
 

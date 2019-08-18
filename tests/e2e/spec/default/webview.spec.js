@@ -1,10 +1,10 @@
-import { restartApp } from '../helpers/utils';
-import LoginScreen from '../screenObjects/login';
-import InventoryListScreen from '../screenObjects/inventoryList';
-import Menu from '../screenObjects/menu';
-import Webview, { CONTEXT_REF } from '../screenObjects/webview';
-import { LOGIN_USERS } from '../helpers/e2eConstants';
-import SELECTORS from '../../../src/js/config/translations/en';
+import { restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
+import InventoryListScreen from '../../screenObjects/inventoryList';
+import Menu from '../../screenObjects/menu';
+import Webview, { CONTEXT_REF } from '../../screenObjects/webview';
+import { LOGIN_USERS } from '../../helpers/e2eConstants';
+import SELECTORS from '../../../../src/js/config/translations/en';
 
 
 describe('Menu', () => {

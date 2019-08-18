@@ -1,9 +1,9 @@
 import SELECTORS from '../../../src/js/config/translations/en';
-import { getTextOfElement, sanitizeSelector } from '../helpers/utils';
+import { getTextOfElement } from '../helpers/utils';
 
 class AppHeader {
 	get cart() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.cart.label) }`);
+		return $(`~test-${ SELECTORS.cart.label }`);
 	}
 
 	/**

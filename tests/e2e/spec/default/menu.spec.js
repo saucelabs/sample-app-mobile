@@ -1,11 +1,11 @@
-import { browserIsOpened, restartApp } from '../helpers/utils';
-import LoginScreen from '../screenObjects/login';
-import InventoryListScreen from '../screenObjects/inventoryList';
-import InventoryItemScreen from '../screenObjects/inventoryItem';
-import AppHeader from '../screenObjects/appHeader';
-import Menu from '../screenObjects/menu';
-import Webview from '../screenObjects/webview';
-import { LOGIN_USERS } from '../helpers/e2eConstants';
+import { browserIsOpened, restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
+import InventoryListScreen from '../../screenObjects/inventoryList';
+import InventoryItemScreen from '../../screenObjects/inventoryItem';
+import AppHeader from '../../screenObjects/appHeader';
+import Menu from '../../screenObjects/menu';
+import Webview from '../../screenObjects/webview';
+import { LOGIN_USERS } from '../../helpers/e2eConstants';
 
 
 describe('Menu', () => {

@@ -15,8 +15,8 @@ export default class CartButton extends Component {
 
   render() {
 
-    var cartBadge = <View/>;
-    var cartContents = ShoppingCart.getCartContents();
+    let cartBadge = <View/>;
+    let cartContents = ShoppingCart.getCartContents();
 
     if (cartContents.length > 0) {
       cartBadge = (

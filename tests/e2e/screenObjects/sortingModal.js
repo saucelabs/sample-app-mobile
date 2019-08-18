@@ -1,8 +1,7 @@
 import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
-import { sanitizeSelector } from '../helpers/utils';
 
-const SCREEN_SELECTOR = `~${ sanitizeSelector(SELECTORS.modalSelector.container) }`;
+const SCREEN_SELECTOR = `~${ SELECTORS.modalSelector.container }`;
 
 class SortingModal extends Base {
 	constructor() {
@@ -15,13 +14,13 @@ class SortingModal extends Base {
 	}
 
 	get sortingButton() {
-		return $(`~test-${ sanitizeSelector(SELECTORS.modalSelector.button) }`);
+		return $(`~test-${ SELECTORS.modalSelector.button }`);
 	}
 
 	get cancel() {
 		const selector = driver.isIOS
 			? `~${ SELECTORS.modalSelector.cancel }`
-			: `//*[@content-desc="${ sanitizeSelector(SELECTORS.modalSelector.container) }"]/../../*[2]`;
+			: `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/../../*[2]`;
 
 		return $(selector);
 	}
@@ -36,7 +35,7 @@ class SortingModal extends Base {
 	selectOption(option) {
 		let selector;
 
-		const modalSelectorContainer = sanitizeSelector(SELECTORS.modalSelector.container);
+		const modalSelectorContainer = SELECTORS.modalSelector.container;
 
 		switch (option) {
 			case SELECTORS.modalSelector.azLabel:

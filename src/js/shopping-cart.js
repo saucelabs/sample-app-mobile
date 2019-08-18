@@ -1,80 +1,100 @@
 import SyncStorage from 'sync-storage';
+import { InventoryData } from './data/inventory-data';
 
 export class ShoppingCart {
 
-  static addItem(itemId) {
-    // pull out our current cart contents
-    var curContents = ShoppingCart.getCartContents();
+	static addDeeplinkItems(ids) {
+		const swagItems = ids.split(',').filter(String);
+		// Add them to the shopping cart
+		swagItems.forEach(id => {
+			// Parse the string and turn negative into positive
+			id = Math.abs(parseInt(id, 10));
 
-    if (curContents.indexOf(itemId) < 0) {
-      // Item's not yet present - add it now
-      curContents.push(itemId);
+			// If it's not a number go to the next string
+			if (!Number.isInteger(id)) {
+				return;
+			}
 
-      // We modified our cart, so store it now
-      ShoppingCart.setCartContents(curContents);
-    }
-  }
+			// Only add them if they are in the number of items that is allowed
+			if (id < InventoryData.ITEMS.length) {
+				this.addItem(id);
+			}
+		});
+	}
 
-  static removeItem(itemId) {
-    // pull out our current cart contents
-    var curContents = ShoppingCart.getCartContents();
-    var itemIndex = curContents.indexOf(itemId);
+	static addItem(itemId) {
+		// pull out our current cart contents
+		const curContents = ShoppingCart.getCartContents();
 
-    if (itemIndex >= 0) {
-      // Remove this item from the array
-      curContents.splice(itemIndex, 1);
+		if (curContents.indexOf(itemId) < 0) {
+			// Item's not yet present - add it now
+			curContents.push(itemId);
 
-      // We modified our cart, so store it now
-      ShoppingCart.setCartContents(curContents);
-    }
-  }
+			// We modified our cart, so store it now
+			ShoppingCart.setCartContents(curContents);
+		}
+	}
 
-  static isItemInCart(itemId) {
-    // pull out our current cart contents
-    var curContents = ShoppingCart.getCartContents();
+	static removeItem(itemId) {
+		// pull out our current cart contents
+		const curContents = ShoppingCart.getCartContents();
+		const itemIndex = curContents.indexOf(itemId);
 
-    // If the item is in the array, return true
-    return (curContents.indexOf(itemId) >= 0);
-  }
+		if (itemIndex >= 0) {
+			// Remove this item from the array
+			curContents.splice(itemIndex, 1);
 
-  static getCartContents() {
-    // pull out our current cart contents
-    var curContents = SyncStorage.get('cart-contents');
+			// We modified our cart, so store it now
+			ShoppingCart.setCartContents(curContents);
+		}
+	}
 
-    if (typeof curContents === 'string') {
-      // We have an existing cart, so deserialize it now since localStorage stores in JSON strings
-      curContents = JSON.parse(curContents);
-    } else {
-      // Make an empty list if the cart is not a string (which means it's a new cart)
-      curContents = [];
-    }
+	static isItemInCart(itemId) {
+		// pull out our current cart contents
+		const curContents = ShoppingCart.getCartContents();
 
-    return curContents;
-  }
+		// If the item is in the array, return true
+		return (curContents.indexOf(itemId) >= 0);
+	}
 
-  static setCartContents(newContents) {
-    // If we're here, we had a valid username and password.
-    // Store the username in our session storage.
-    SyncStorage.set('cart-contents', JSON.stringify(newContents));
+	static getCartContents() {
+		// pull out our current cart contents
+		let curContents = SyncStorage.get('cart-contents');
 
-    // Notify our listeners
-    ShoppingCart.LISTENERS.forEach((curListener) => {
-      curListener.forceUpdate();
-    });
-  }
+		if (typeof curContents === 'string') {
+			// We have an existing cart, so deserialize it now since localStorage stores in JSON strings
+			curContents = JSON.parse(curContents);
+		} else {
+			// Make an empty list if the cart is not a string (which means it's a new cart)
+			curContents = [];
+		}
 
-  static resetCart() {
-    SyncStorage.set('cart-contents', JSON.stringify([]));
+		return curContents;
+	}
 
-    // Notify our listeners
-    ShoppingCart.LISTENERS.forEach((curListener) => {
-      curListener.forceUpdate();
-    });
-  }
+	static setCartContents(newContents) {
+		// If we're here, we had a valid username and password.
+		// Store the username in our session storage.
+		SyncStorage.set('cart-contents', JSON.stringify(newContents));
 
-  static registerCartListener(handler) {
-    ShoppingCart.LISTENERS.push(handler);
-  }
+		// Notify our listeners
+		ShoppingCart.LISTENERS.forEach((curListener) => {
+			curListener.forceUpdate();
+		});
+	}
+
+	static resetCart() {
+		SyncStorage.set('cart-contents', JSON.stringify([]));
+
+		// Notify our listeners
+		ShoppingCart.LISTENERS.forEach((curListener) => {
+			curListener.forceUpdate();
+		});
+	}
+
+	static registerCartListener(handler) {
+		ShoppingCart.LISTENERS.push(handler);
+	}
 }
 
 ShoppingCart.LISTENERS = [];

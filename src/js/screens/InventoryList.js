@@ -11,6 +11,7 @@ import InventoryListItem from '../components/InventoryListItem';
 import toggleRow from '../../img/toggle-row.png';
 import toggleGrid from '../../img/toggle-grid.png';
 import SecondaryHeader from '../components/SecondaryHeader';
+import { ShoppingCart } from '../shopping-cart';
 
 export default class InventoryList extends Component {
   constructor(props) {
@@ -32,6 +33,9 @@ export default class InventoryList extends Component {
     this.closeMenu = this.closeMenu.bind(this);
     this.toggleState = this.toggleState.bind(this);
     this.toggleImage = this.toggleImage.bind(this);
+
+    // If provided through deeplink, add the items to the cart
+    ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
   }
 
   changeSort(sortType) {
