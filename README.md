@@ -216,6 +216,10 @@ The prefix deep link is `swaglabs://` and the following screens (with their argu
 - **Complete screen:** `complete`   
 - **Webview screen:** `webview`
 
+> **NOTE <br>**
+> The *Swag overview | Details | Cart | Personal info | Checkout overview*-screens all need id(s). The id(s) are the numbers of the products of the `InventoryData.ITEMS` in [this](src/js/data/inventory-data.js) file.
+> The files are in an `array` and an `array` starts counting from `0`. This means that if you need the first product, you  need to provide the id `0` and if you need to the last product you need to provide the  id `5`.
+
 For how to run the deep link automation script see [Deep Linking](./docs/AUTOMATION.md#deep-linking).
 
 ### Use with Android

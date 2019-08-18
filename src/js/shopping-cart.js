@@ -7,7 +7,13 @@ export class ShoppingCart {
 		const swagItems = ids.split(',').filter(String);
 		// Add them to the shopping cart
 		swagItems.forEach(id => {
-			id = parseInt(id, 10);
+			// Parse the string and turn negative into positive
+			id = Math.abs(parseInt(id, 10));
+
+			// If it's not a number go to the next string
+			if (!Number.isInteger(id)) {
+				return;
+			}
 
 			// Only add them if they are in the number of items that is allowed
 			if (id < InventoryData.ITEMS.length) {
