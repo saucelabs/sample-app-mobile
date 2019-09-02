@@ -17,9 +17,7 @@ import WebviewScreen from './screens/Webview';
 import DrawerLinks from './components/DrawerLinks';
 
 export function handleQuickActionsNavigation (navigation){
-	DeviceEventEmitter.addListener('quickActionShortcut', data => {
-		return navigation.replace(data.userInfo.url);
-	});
+	DeviceEventEmitter.addListener('quickActionShortcut', data => navigation.replace(data.userInfo.url));
 }
 
 export const SCREENS = {
