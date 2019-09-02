@@ -47,7 +47,6 @@ export default class InputError extends Component {
 
 const styles = StyleSheet.create({
   login_input: {
-    fontFamily: MUSEO_SANS_NORMAL,
     width: '100%',
     paddingHorizontal: 0,
   },
@@ -59,6 +58,7 @@ const styles = StyleSheet.create({
     borderColor: colors.slRed,
   },
   input: {
+    fontFamily: MUSEO_SANS_NORMAL,
     marginLeft: 0,
     color: colors.gray,
   },

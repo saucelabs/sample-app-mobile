@@ -37,6 +37,7 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [Use with iOS](#use-with-ios)
         1. [Terminal](#terminal)
         1. [With Safari](#with-safari)
+1. [3D Touch / Force touch](#3d-touch---force-touch)
 1. [Testautomation](#testautomation)
 1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)
 1. [Versioning the app](#versioning-the-app)
@@ -249,6 +250,11 @@ swaglabs://swag-overview/0,1
 ```
 
 It will prompt a dialog asking you to open the app, select *Yes* and it will open the screen you selected.
+
+## 3D Touch - Force Touch
+This app also supports 3D Touch - Force Touch for devices that support that. When you installed the app and press on the icon you can see 2 options popping up
+
+![3D Touch - Force Touch](./docs/assets/3D-touch.jpg) 
 
 ## Testautomation
 More information about:

@@ -8,11 +8,15 @@ import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
 import ActionButton from '../components/ActionButton';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { SCREENS } from '../Router';
+import { handleQuickActionsNavigation, SCREENS } from '../Router';
 
 export default class CheckoutComplete extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    handleQuickActionsNavigation(this.props.navigation);
   }
 
   render() {

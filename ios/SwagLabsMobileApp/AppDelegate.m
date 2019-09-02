@@ -10,6 +10,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RNQuickActionManager.h"
 
 @implementation AppDelegate
 
@@ -45,4 +46,9 @@
   return [RCTLinkingManager application:application openURL:url
                       sourceApplication:sourceApplication annotation:annotation];
 }
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL succeeded)) completionHandler {
+  [RNQuickActionManager onQuickActionPress:shortcutItem completionHandler:completionHandler];
+}
+
 @end

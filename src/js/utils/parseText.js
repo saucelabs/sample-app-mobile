@@ -7,16 +7,17 @@ const STRONG_REGEX = /(__)(.*?)\1/g;
  *
  * @param {string} text
  *
- * @return {{bold: boolean, value: string}[]}
+ * @return {{bold: boolean, value: string, id: number}[]}
  */
 export const ParseText = (text) => {
-  const strongRegExp = new RegExp(STRONG_REGEX);
+	const strongRegExp = new RegExp(STRONG_REGEX);
 
-  return text
-    .split(SPLIT_REGEX)
-    .filter(value => value.length)
-    .map((value) => ({
-      value: value.replace(STRONG_REGEX, '$2'),
-      bold: strongRegExp.test(value),
-    }));
+	return text
+		.split(SPLIT_REGEX)
+		.filter(value => value.length)
+		.map((value, index) => ({
+			id: index,
+			value: value.replace(STRONG_REGEX, '$2'),
+			bold: strongRegExp.test(value),
+		}));
 };

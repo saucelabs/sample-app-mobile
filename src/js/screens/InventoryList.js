@@ -12,6 +12,7 @@ import toggleRow from '../../img/toggle-row.png';
 import toggleGrid from '../../img/toggle-grid.png';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { ShoppingCart } from '../shopping-cart';
+import { handleQuickActionsNavigation } from '../Router';
 
 export default class InventoryList extends Component {
   constructor(props) {
@@ -36,6 +37,10 @@ export default class InventoryList extends Component {
 
     // If provided through deeplink, add the items to the cart
     ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
+  }
+
+  componentDidMount() {
+    handleQuickActionsNavigation(this.props.navigation);
   }
 
   changeSort(sortType) {

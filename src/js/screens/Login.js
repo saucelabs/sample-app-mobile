@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { DeviceEventEmitter, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Biometrics from 'react-native-biometrics';
 import { Divider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
@@ -14,7 +14,7 @@ import { STATUS_BAR_HEIGHT } from '../components/StatusBar';
 import ActionButton from '../components/ActionButton';
 import InputError from '../components/InputError';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
-import { SCREENS } from '../Router';
+import { handleQuickActionsNavigation, SCREENS } from '../Router';
 import BiometryButton from '../components/BiometryButton';
 
 export default class Login extends Component {
@@ -55,6 +55,8 @@ export default class Login extends Component {
 		} catch (e) {
 			// Do nothing
 		}
+
+		handleQuickActionsNavigation(this.props.navigation);
 	}
 
 	resetState() {
@@ -140,7 +142,7 @@ export default class Login extends Component {
 	 */
 	parseNormalBoldText(string) {
 		return (ParseText(string).map(text => (
-			<Text style={ [ text.bold ? styles.text_bold : {} ] }>
+			<Text style={ [ text.bold ? styles.text_bold : {} ] } key={ text.id }>
 				{ text.value }
 			</Text>
 		)));

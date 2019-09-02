@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import AppHeader from './components/AppHeader';
 import { WINDOW_WIDTH } from './config/Constants';
+import { DeviceEventEmitter } from 'react-native';
 
 // The screens
 import Login from './screens/Login';
@@ -14,6 +15,12 @@ import CheckoutComplete from './screens/CheckoutComplete';
 import WebviewSelection from './screens/WebviewSelection';
 import WebviewScreen from './screens/Webview';
 import DrawerLinks from './components/DrawerLinks';
+
+export function handleQuickActionsNavigation (navigation){
+	DeviceEventEmitter.addListener('quickActionShortcut', data => {
+		return navigation.replace(data.userInfo.url);
+	});
+}
 
 export const SCREENS = {
 	LOGIN: 'Login',

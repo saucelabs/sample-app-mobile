@@ -14,7 +14,7 @@ import Footer from '../components/Footer';
 import SectionHeader from '../components/SectionHeader';
 import CartItem from '../components/CartItem';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { SCREENS } from '../Router';
+import { handleQuickActionsNavigation, SCREENS } from '../Router';
 
 export default class CheckoutScreenTwo extends Component {
   constructor(props) {
@@ -24,6 +24,10 @@ export default class CheckoutScreenTwo extends Component {
 
     // If provided through deeplink, add the items to the cart
     ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
+  }
+
+  componentDidMount() {
+    handleQuickActionsNavigation(this.props.navigation);
   }
 
   clearCart() {
