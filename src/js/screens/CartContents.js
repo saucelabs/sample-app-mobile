@@ -12,7 +12,8 @@ import ArrowButton from '../components/ArrowButton';
 import ProceedButton from '../components/ProceedButton';
 import SectionHeader from '../components/SectionHeader';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { handleQuickActionsNavigation, SCREENS } from '../Router';
+import { SCREENS } from '../config/Constants';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class CartContents extends Component {
 	constructor(props) {

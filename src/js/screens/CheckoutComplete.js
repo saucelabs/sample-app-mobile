@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
-import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, WINDOW_WIDTH } from '../config/Constants';
+import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, SCREENS, WINDOW_WIDTH } from '../config/Constants';
 import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import Footer from '../components/Footer';
 import ActionButton from '../components/ActionButton';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { handleQuickActionsNavigation, SCREENS } from '../Router';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class CheckoutComplete extends Component {
   constructor(props) {

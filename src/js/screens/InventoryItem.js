@@ -10,7 +10,8 @@ import InventoryListItemDetails from '../components/InventoryListItemDetails';
 import Footer from '../components/Footer';
 import ArrowButton from '../components/ArrowButton';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { handleQuickActionsNavigation, SCREENS } from '../Router';
+import { SCREENS } from '../config/Constants';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class InventoryItem extends Component {
   constructor(props) {

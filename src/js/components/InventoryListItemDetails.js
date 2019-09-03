@@ -6,12 +6,12 @@ import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import {
-  MUSEO_SANS_BOLD,
-  MUSEO_SANS_NORMAL,
-  WINDOW_WIDTH,
+	MUSEO_SANS_BOLD,
+	MUSEO_SANS_NORMAL,
+  SCREENS,
+	WINDOW_WIDTH,
 } from '../config/Constants';
 import { colors } from '../utils/colors';
-import { SCREENS } from '../Router';
 
 
 export default class InventoryListItemDetails extends Component {

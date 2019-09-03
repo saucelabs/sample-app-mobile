@@ -12,7 +12,7 @@ import toggleRow from '../../img/toggle-row.png';
 import toggleGrid from '../../img/toggle-grid.png';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { ShoppingCart } from '../shopping-cart';
-import { handleQuickActionsNavigation } from '../Router';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class InventoryList extends Component {
   constructor(props) {

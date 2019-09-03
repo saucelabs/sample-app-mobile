@@ -7,15 +7,15 @@ import SyncStorage from 'sync-storage';
 import { ShoppingCart } from '../shopping-cart.js';
 import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
-import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
+import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, SCREENS } from '../config/Constants';
 import { ParseText } from '../utils/parseText';
 import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from '../components/StatusBar';
 import ActionButton from '../components/ActionButton';
 import InputError from '../components/InputError';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
-import { handleQuickActionsNavigation, SCREENS } from '../Router';
 import BiometryButton from '../components/BiometryButton';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class Login extends Component {
 	static navigationOptions = {

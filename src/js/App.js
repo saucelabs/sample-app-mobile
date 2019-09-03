@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import NavigationContainer, { SCREENS } from './Router';
+import NavigationContainer from './Router';
 import SwagLabsStatusBar from './components/StatusBar';
 import SplashScreen from 'react-native-splash-screen';
 import QuickActions from 'react-native-quick-actions';
-import { IS_IOS } from './config/Constants';
+import { IS_IOS, SCREENS } from './config/Constants';
 
 QuickActions.setShortcutItems([
 	{

@@ -6,7 +6,7 @@ import { ShoppingCart } from '../shopping-cart.js';
 import { InventoryData } from '../data/inventory-data.js';
 import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
-import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL } from '../config/Constants';
+import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, SCREENS } from '../config/Constants';
 import ArrowButton from '../components/ArrowButton';
 import ProceedButton from '../components/ProceedButton';
 import { colors } from '../utils/colors';
@@ -14,7 +14,7 @@ import Footer from '../components/Footer';
 import SectionHeader from '../components/SectionHeader';
 import CartItem from '../components/CartItem';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { handleQuickActionsNavigation, SCREENS } from '../Router';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class CheckoutScreenTwo extends Component {
   constructor(props) {

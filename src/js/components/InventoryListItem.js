@@ -3,7 +3,7 @@ import { ShoppingCart } from '../shopping-cart';
 import { Credentials } from '../credentials';
 import SwagGridItem from './SwagGridItem';
 import SwagRowItem from './SwagRowItem';
-import { SCREENS } from '../Router';
+import { SCREENS } from '../config/Constants';
 
 export default class InventoryListItem extends Component {
   constructor(props) {
