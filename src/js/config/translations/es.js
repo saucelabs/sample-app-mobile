@@ -43,12 +43,12 @@ export default {
 			'epicSadFace': 'Epic sadface: ',
 			'firstName': 'Nombre es requerido',
 			'lastName': 'Apellido es requerido',
-			'postalCode': 'Codigo postal es requerido',
+			'postalCode': 'Código postal es requerido',
 		},
 		'header': 'CHECKOUT: INFORMACIÓN',
 		'firstName': 'Nombre',
 		'lastName': 'Apellido',
-		'postalCode': 'Codigo postal',
+		'postalCode': 'Código postal',
 		'screen': 'Checkout: Tu información',
 		'cancelButton': 'CANCELAR',
 		'continueButton': 'CONTINUAR',
@@ -67,7 +67,7 @@ export default {
 		'summary': {
 			'paymentLabel': 'Información de pago:',
 			'card': 'SauceCard #31337',
-			'shippingLabel': 'Información de envio:',
+			'shippingLabel': 'Información de envío:',
 			'shippingText': 'SERVICIO A DOMICILIO GRATUITO!',
 			'itemsTotal': 'Subtotal: ',
 			'itemsTax': 'I.V.A.: ',
@@ -146,7 +146,7 @@ export default {
 	},
 	'footer': {
 		'rights': '© 2019 Sauce Labs. Todos los derechos reservados.',
-		'termsAndPrivacy': 'Terminos de servicio | Acuerdo de Privacidad',
+		'termsAndPrivacy': 'Términos de servicio | Acuerdo de Privacidad',
 	},
 	'products': {
 		'backpack': {
