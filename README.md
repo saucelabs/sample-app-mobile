@@ -17,9 +17,6 @@ The latest version of the iOS and Android app can be found [here](https://github
      - and I can go on
      
      This is also the reason that the `pacakge-lock.json` has been removed.
-     
-> **NOTE<br>**
-> There is currently an issue with React Native and Android which breaks the usage of accessibilityLabels on Android. The issue is that Android currently gets the a `, ` after each label, see [this issue](https://github.com/facebook/react-native/issues/25581)
 
 ![saucelabs.ios](./docs/assets/ios-overview.gif) ![saucelabs.android](./docs/assets/android-overview.gif)
 
