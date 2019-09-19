@@ -252,9 +252,23 @@ swaglabs://swag-overview/0,1
 It will prompt a dialog asking you to open the app, select *Yes* and it will open the screen you selected.
 
 ## 3D Touch - Force Touch
-This app also supports 3D Touch - Force Touch for devices that support that. When you installed the app and press on the icon you can see 2 options popping up
+This app also supports 3D Touch - Force Touch for devices that support that. 
+
+> **NOTE 1:**<br>
+>This app works with a dynamic *quick action menu*. This means that the 3D Touch - Force Touch menu will only be enabled when the app has been opened. 
+>When that happens the JavaScript engine in React Native will add quick action items to the iOS and Android source code so the next time the app is opened it has
+>those items.
+
+> **NOTE 2:**<br>
+>Due to a bug in the module we are using for the 3D Touch - Force Touch the quick actions also only work when the app is in the background.
+>Then it can listen to the selected quick action event and get data from it so it will open the right screen.<br>
+>The scope of this app is not to test **IF** the quick actions work for this app, the scope is to see how to **automate** 3D Touch / Force Touch
+
+When you installed the app manually you first need to open the app and close to be able to press on the icon to see the 2 options popping up.
+This will happens automatically during automation because the app will be opened by Appium by default and you need to close it to test the quick action menu. 
 
 ![3D Touch - Force Touch](./docs/assets/3D-touch.jpg) 
+
 
 ## Testautomation
 More information about:
