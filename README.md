@@ -38,8 +38,9 @@ The latest version of the iOS and Android app can be found [here](https://github
         1. [Terminal](#terminal)
         1. [With Safari](#with-safari)
 1. [3D Touch / Force touch](#3d-touch---force-touch)
+1. [Different languages](#different-languages)
 1. [Testautomation](#testautomation)
-1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)
+1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)x
 1. [Versioning the app](#versioning-the-app)
 
 
@@ -268,6 +269,15 @@ When you installed the app manually you first need to open the app and close to 
 This will happens automatically during automation because the app will be opened by Appium by default and you need to close it to test the quick action menu. 
 
 ![3D Touch - Force Touch](./docs/assets/3D-touch.jpg) 
+
+## Different languages
+This app supports 3 different languages and will automatically check the language of the device to set the right language. The supported languages are:
+
+- English
+- Spanish
+- Dutch
+
+For the automation of the different languages see [here](./docs/AUTOMATION.md#different-languages)
 
 ## Testautomation
 More information about:

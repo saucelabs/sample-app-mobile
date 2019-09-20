@@ -1,4 +1,5 @@
 const { join } = require('path');
+const { argv } = require('yargs');
 const { config } = require('./wdio.shared.conf');
 
 // ============
@@ -20,6 +21,7 @@ config.capabilities = [
 		noReset: true,
 		newCommandTimeout: 240,
 		maxInstances: 1,
+		language: argv.language || 'en',
 	},
 ];
 
