@@ -1,41 +1,42 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
 import { getTextOfElement, hideKeyboard } from '../helpers/utils';
 import Gestures from '../helpers/Gestures';
 
-const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutPageOne.screen }`;
-
 class CheckoutPageOne extends Base {
 	constructor() {
-		super(SCREEN_SELECTOR);
+		super(`~test-${ driver.selectors.checkoutPageOne.screen }`);
+	}
+
+	get SELECTORS(){
+		return driver.selectors;
 	}
 
 	get screen() {
-		return $(SCREEN_SELECTOR);
+		return $(`~test-${ this.SELECTORS.checkoutPageOne.screen }`);
 	}
 
 	get cancelButton() {
-		return $(`~test-${ SELECTORS.checkoutPageOne.cancelButton }`);
+		return $(`~test-${ this.SELECTORS.checkoutPageOne.cancelButton }`);
 	}
 
 	get continueCheckoutButton() {
-		return $(`~test-${ SELECTORS.checkoutPageOne.continueButton }`);
+		return $(`~test-${ this.SELECTORS.checkoutPageOne.continueButton }`);
 	}
 
 	get firstName() {
-		return $(`~test-${ SELECTORS.checkoutPageOne.firstName }`);
+		return $(`~test-${ this.SELECTORS.checkoutPageOne.firstName }`);
 	}
 
 	get lastName() {
-		return $(`~test-${ SELECTORS.checkoutPageOne.lastName }`);
+		return $(`~test-${ this.SELECTORS.checkoutPageOne.lastName }`);
 	}
 
 	get postalCode() {
-		return $(`~test-${ SELECTORS.checkoutPageOne.postalCode }`);
+		return $(`~test-${ this.SELECTORS.checkoutPageOne.postalCode }`);
 	}
 
 	get errorMessage() {
-		return $(`~test-${ SELECTORS.checkoutPageOne.errors.container }`);
+		return $(`~test-${ this.SELECTORS.checkoutPageOne.errors.container }`);
 	}
 
 	/**

@@ -12,18 +12,23 @@ import ArrowButton from '../components/ArrowButton';
 import ProceedButton from '../components/ProceedButton';
 import SectionHeader from '../components/SectionHeader';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { SCREENS } from '../Router';
+import { SCREENS } from '../config/Constants';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class CartContents extends Component {
 	constructor(props) {
 		super(props);
 
 		// If provided through deeplink, add the items to the cart
-    ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
+		ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
+	}
+
+	componentDidMount() {
+		handleQuickActionsNavigation(this.props.navigation);
 	}
 
 	render() {
-    const contents = ShoppingCart.getCartContents();
+		const contents = ShoppingCart.getCartContents();
 
 		return (
 			<ThemeProvider>

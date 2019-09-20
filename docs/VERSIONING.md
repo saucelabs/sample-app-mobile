@@ -41,7 +41,8 @@ To this
 <string>{current value + 1}</string>
 ```
 
-Open the following file [`ios/SwagLabsMobileApp.xcodeproj/project.pbxproj`](../ios/SwagLabsMobileApp.xcodeproj/project.pbxproj) and change all `CURRENT_PROJECT_VERSION = 1;` to `CURRENT_PROJECT_VERSION = {current value + 1};`
+Open the following file [`ios/SwagLabsMobileApp.xcodeproj/project.pbxproj`](../ios/SwagLabsMobileApp.xcodeproj/project.pbxproj) 
+and change all `CURRENT_PROJECT_VERSION = 1;` to `CURRENT_PROJECT_VERSION = {current value + 1};`
 
 ## Versioning Android
 Open the following file [`android/app/build.gradle`](../android/app/build.gradle) and change this code

@@ -1,3 +1,4 @@
+const { argv } = require('yargs');
 const { config } = require('./wdio.rdc.shared');
 
 // ============
@@ -7,7 +8,7 @@ const { config } = require('./wdio.rdc.shared');
 // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
 config.capabilities = [
   {
-    deviceName: 'Google_Pixel_3_real',
+    deviceName: 'Google Pixel 3*',
     automationName: 'UiAutomator2',
     // The api key that has a reference to the app-project in the TO cloud
     testobject_api_key: process.env.SAUCE_RDC_EU_ACCESS_KEY_ANDROID,
@@ -22,6 +23,8 @@ config.capabilities = [
     noReset: true,
     orientation: 'PORTRAIT',
     newCommandTimeout: 180,
+    language: argv.language || 'en',
+    locale: argv.language || 'en',
   },
 ];
 

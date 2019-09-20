@@ -1,26 +1,27 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
-
-const SCREEN_SELECTOR = `~${ SELECTORS.modalSelector.container }`;
 
 class SortingModal extends Base {
 	constructor() {
-		super(SCREEN_SELECTOR);
+		super(`~${ driver.selectors.modalSelector.container }`);
+	}
+
+	get SELECTORS(){
+		return driver.selectors;
 	}
 
 	get screen() {
 		// Can only get the modal based on the second option
-		return $(SCREEN_SELECTOR);
+		return $(`~${ this.SELECTORS.modalSelector.container }`);
 	}
 
 	get sortingButton() {
-		return $(`~test-${ SELECTORS.modalSelector.button }`);
+		return $(`~test-${ this.SELECTORS.modalSelector.button }`);
 	}
 
 	get cancel() {
 		const selector = driver.isIOS
-			? `~${ SELECTORS.modalSelector.cancel }`
-			: `//*[@content-desc="${ SELECTORS.modalSelector.container }"]/../../*[2]`;
+			? `~${ this.SELECTORS.modalSelector.cancel }`
+			: `//*[@content-desc="${ this.SELECTORS.modalSelector.container }"]/../../*[2]`;
 
 		return $(selector);
 	}
@@ -35,20 +36,20 @@ class SortingModal extends Base {
 	selectOption(option) {
 		let selector;
 
-		const modalSelectorContainer = SELECTORS.modalSelector.container;
+		const modalSelectorContainer = this.SELECTORS.modalSelector.container;
 
 		switch (option) {
-			case SELECTORS.modalSelector.azLabel:
-				selector = driver.isIOS ? `~${ SELECTORS.modalSelector.azLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[2]`;
+			case this.SELECTORS.modalSelector.azLabel:
+				selector = driver.isIOS ? `~${ this.SELECTORS.modalSelector.azLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[2]`;
 				break;
-			case SELECTORS.modalSelector.zaLabel:
-				selector = driver.isIOS ? `~${ SELECTORS.modalSelector.zaLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[3]`;
+			case this.SELECTORS.modalSelector.zaLabel:
+				selector = driver.isIOS ? `~${ this.SELECTORS.modalSelector.zaLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[3]`;
 				break;
-			case SELECTORS.modalSelector.loHiLabel:
-				selector = driver.isIOS ? `~${ SELECTORS.modalSelector.loHiLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[4]`;
+			case this.SELECTORS.modalSelector.loHiLabel:
+				selector = driver.isIOS ? `~${ this.SELECTORS.modalSelector.loHiLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[4]`;
 				break;
-			case SELECTORS.modalSelector.hiLoLabel:
-				selector = driver.isIOS ? `~${ SELECTORS.modalSelector.hiLoLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[5]`;
+			case this.SELECTORS.modalSelector.hiLoLabel:
+				selector = driver.isIOS ? `~${ this.SELECTORS.modalSelector.hiLoLabel }` : `//*[@content-desc="${ modalSelectorContainer }"]/*/android.view.ViewGroup[5]`;
 				break;
 			default:
 				throw new Error(`The option '${ option }' is not valid`);

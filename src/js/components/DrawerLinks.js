@@ -6,8 +6,7 @@ import { ShoppingCart } from '../shopping-cart';
 import { testProperties } from '../config/TestProperties';
 import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from './StatusBar';
-import { MUSEO_SANS_BOLD } from '../config/Constants';
-import { SCREENS } from '../Router';
+import { MUSEO_SANS_BOLD, SCREENS } from '../config/Constants';
 
 export default class DrawerLinks extends Component {
 

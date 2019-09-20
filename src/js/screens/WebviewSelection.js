@@ -8,7 +8,8 @@ import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
 import ActionButton from '../components/ActionButton';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { SCREENS } from '../Router';
+import { SCREENS } from '../config/Constants';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class WebviewSelection extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ export default class WebviewSelection extends Component {
       error: false,
       urlError: '',
     };
+  }
+
+  componentDidMount() {
+    handleQuickActionsNavigation(this.props.navigation);
   }
 
   addHttps = (url) => {

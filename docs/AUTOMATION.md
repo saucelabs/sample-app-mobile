@@ -13,6 +13,8 @@
     1. [Run on Android](#run-on-android)
     1. [Run on iOS](#run-on-ios)
 1. [Deep linking](#deep-linking)
+1. [3D Touch / Force Touch](#3d-touch--force-touch)
+1. [Different languages](#different-languages)
 1. [FAQ](#faq)
 
 # Intro
@@ -59,8 +61,8 @@ We try to use the text labels from the `en.json` as much as possible so we can e
 
 To run a complete testset use the following commands
 
-- Android: `npm run android.local`
-- iOS: `npm run ios.local`
+- Android: `yarn android.local`
+- iOS: `yarn ios.local`
 
 When all tests have been executed the following will be shown in the console
 
@@ -183,7 +185,7 @@ Change the `deviceName` to get the right device you want to use and or add the `
 Running the test on the Sauce Labs Real Device Cloud can be done by running the following command:
 
 ```bash
-npm run android.rdc
+yarn android.rdc
 ```
 
 ### Running iOS
@@ -200,7 +202,7 @@ There are some test cases (success and failure) created for testing Touch / Face
 Running a test on an Android emulator can be done with this command
 
 ```bash
-npm run android.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
+yarn android.local --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
 ```
 
 ### Run on iOS
@@ -212,7 +214,7 @@ npm run android.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
 Running a test on an iOS simulator can be done with this command
 
 ```bash
-npm run ios.local -- --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
+yarn ios.local --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
 ```
 
 ## Deep linking
@@ -220,17 +222,65 @@ To run the deep link automation script do the following:
 
 ```bash
 # For Android emulator
- npm run android.local -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+ yarn android.local --spec=tests/e2e/spec/extra/deep.link.spec.js
 
 # For Android real device
- npm run android.rdc -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+ yarn android.rdc --spec=tests/e2e/spec/extra/deep.link.spec.js
 
 # For iOS simulator
- npm run ios.local -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+ yarn ios.local --spec=tests/e2e/spec/extra/deep.link.spec.js
 
 # For iOS real device
- npm run ios.rdc -- --spec=tests/e2e/spec/extra/deep.link.spec.js
+ yarn ios.rdc --spec=tests/e2e/spec/extra/deep.link.spec.js
 ``` 
+
+## 3D Touch / Force Touch
+To run the deep link automation script do the following:
+
+```bash
+# For Android emulator
+ yarn android.local --spec=tests/e2e/spec/extra/force.touch.spec.js
+
+# For Android real device
+ yarn android.rdc --spec=tests/e2e/spec/extra/force.touch.spec.js
+
+# For iOS simulator
+ yarn ios.local --spec=tests/e2e/spec/extra/force.touch.spec.js
+
+# For iOS real device
+ yarn ios.rdc --spec=tests/e2e/spec/extra/force.touch.spec.js
+```
+
+> **NOTE:**<br>
+> When running on Android you need to be sure you have a Google Pixel to make this work due to the script where the app is closed
+> and the menu button is clicked. This selector should be the same. Secondly the app needs to be in the view otherwise the script will not work.  
+
+## Different languages
+To test the different languages with Appium you only need to provide one of the following language codes through the command line
+
+- **English:** `en` (default)
+- **Spanish:** `es`
+- **Dutch:** `nl`
+
+You can do it like this
+
+```bash
+# For Android emulator
+ yarn android.local --language=es
+
+# For Android real device
+ yarn android.rdc --language=nl
+
+# For iOS simulator
+ yarn ios.local --language=en
+
+# For iOS real device
+ yarn ios.rdc --language=es
+```
+
+The tests are smart enough to detect which language selector they need to use to interact with the elements.
+If you really want to see how this is set up please take a look at the [wdio.shared.conf.js](../tests/e2e/config/wdio.shared.conf.js)
+in the `before`-hook at the `driver.selectors` property. Then check for example the [Login](../tests/e2e/screenObjects/login.js)-page object to see the implementation.
 
 ## FAQ
 ### `An unknown server-side error occurred while processing the command` while sending text to an iOS simulator

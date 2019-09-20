@@ -11,8 +11,9 @@ import ArrowButton from '../components/ArrowButton';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import InputError from '../components/InputError';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { SCREENS } from '../Router';
 import { ShoppingCart } from '../shopping-cart';
+import { SCREENS } from '../config/Constants';
+import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class CheckoutScreenOne extends Component {
   constructor(props) {
@@ -35,6 +36,10 @@ export default class CheckoutScreenOne extends Component {
 
     // If provided through deeplink, add the items to the cart
     ShoppingCart.addDeeplinkItems(this.props.navigation.getParam('ids', ''));
+  }
+
+  componentDidMount() {
+    handleQuickActionsNavigation(this.props.navigation);
   }
 
   resetState() {

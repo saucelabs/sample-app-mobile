@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import AppHeader from './components/AppHeader';
-import { WINDOW_WIDTH } from './config/Constants';
-
+import { SCREENS, WINDOW_WIDTH } from './config/Constants';
 // The screens
 import Login from './screens/Login';
 import InventoryList from './screens/InventoryList';
@@ -14,18 +13,6 @@ import CheckoutComplete from './screens/CheckoutComplete';
 import WebviewSelection from './screens/WebviewSelection';
 import WebviewScreen from './screens/Webview';
 import DrawerLinks from './components/DrawerLinks';
-
-export const SCREENS = {
-	LOGIN: 'Login',
-	INVENTORY_LIST: 'InventoryList',
-	INVENTORY_ITEM: 'InventoryItem',
-	CART_CONTENTS: 'CartContents',
-	CHECKOUT_SCREEN_ONE: 'CheckoutScreenOne',
-	CHECKOUT_SCREEN_TWO: 'CheckoutScreenTwo',
-	CHECKOUT_COMPLETE: 'CheckoutComplete',
-	WEBVIEW_SELECTION: 'WebviewSelection',
-	WEBVIEW_SCREEN: 'WebviewScreen',
-};
 
 const StackNavigator = createStackNavigator({
 		[ SCREENS.LOGIN ]: { screen: Login },

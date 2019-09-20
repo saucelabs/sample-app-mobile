@@ -1,9 +1,12 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import { getTextOfElement } from '../helpers/utils';
 
 class AppHeader {
+	get SELECTORS(){
+		return driver.selectors;
+	}
+
 	get cart() {
-		return $(`~test-${ SELECTORS.cart.label }`);
+		return $(`~test-${ this.SELECTORS.cart.label }`);
 	}
 
 	/**

@@ -1,29 +1,30 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 
-const SCREEN_SELECTOR = `~test-${ SELECTORS.login.screen }`;
-
 class LoginScreen extends Base {
 	constructor() {
-		super(SCREEN_SELECTOR);
+		super(`~test-${ driver.selectors.login.screen }`);
+	}
+
+	get SELECTORS(){
+		return driver.selectors;
 	}
 
 	get screen() {
-		return $(SCREEN_SELECTOR);
+		return $(`~test-${ this.SELECTORS.login.screen }`);
 	}
 
 	get username() {
-		return $(`~test-${ SELECTORS.login.username }`);
+		return $(`~test-${ this.SELECTORS.login.username }`);
 	}
 
 	get password() {
-		return $(`~test-${ SELECTORS.login.password }`);
+		return $(`~test-${ this.SELECTORS.login.password }`);
 	}
 
 	get biometryButton() {
-		return $(`~test-${ SELECTORS.login.biometry }`);
+		return $(`~test-${ this.SELECTORS.login.biometry }`);
 	}
 
 	get iosAllowBiometry() {
@@ -43,11 +44,11 @@ class LoginScreen extends Base {
 	}
 
 	get loginButton() {
-		return $(`~test-${ SELECTORS.login.loginButton }`);
+		return $(`~test-${ this.SELECTORS.login.loginButton }`);
 	}
 
 	get errorMessage() {
-		return $(`~test-${ SELECTORS.login.errors.container }`);
+		return $(`~test-${ this.SELECTORS.login.errors.container }`);
 	}
 
 	/**
@@ -110,7 +111,9 @@ class LoginScreen extends Base {
 	 */
 	submitIosBiometricLogin(successful) {
 		// Check if biometric usage is  allowed
-		this.allowIosBiometricUsage();
+		if (!driver.config.services.includes('sauce')) {
+			this.allowIosBiometricUsage();
+		}
 
 		return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
 	}
@@ -134,7 +137,7 @@ class LoginScreen extends Base {
 	 * @return {boolean}
 	 */
 	isFaceId() {
-		return $(`~test-${ SELECTORS.login.faceRecognition }`).isDisplayed();
+		return $(`~test-${ this.SELECTORS.login.faceRecognition }`).isDisplayed();
 	}
 
 	/**

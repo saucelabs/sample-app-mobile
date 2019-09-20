@@ -131,8 +131,8 @@ android {
         applicationId "com.swaglabsmobileapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "2.1.0"
+        versionCode 4
+        versionName "2.2.0"
     }
     splits {
         abi {
@@ -196,6 +196,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-quick-actions')
     implementation project(':react-native-biometrics')
     implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
