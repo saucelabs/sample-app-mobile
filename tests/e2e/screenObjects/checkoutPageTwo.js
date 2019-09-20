@@ -62,7 +62,7 @@ class CheckoutPageTwo extends Base {
 	 * @return {void}
 	 */
 	cancelCheckout() {
-		Gestures.scrollDownToElement(this.cancelButton, 2);
+		Gestures.scrollDownToElement(this.cancelButton);
 
 		return this.cancelButton.click();
 	}
@@ -73,7 +73,7 @@ class CheckoutPageTwo extends Base {
 	 * @return {void}
 	 */
 	finishCheckout() {
-		Gestures.scrollDownToElement(this.finishButton, 2);
+		Gestures.scrollDownToElement(this.finishButton);
 
 		return this.finishButton.click();
 	}

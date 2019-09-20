@@ -1,11 +1,9 @@
-import { restartApp } from '../../helpers/utils';
+import { openDeepLinkUrl, restartApp } from '../../helpers/utils';
 import LoginScreen from '../../screenObjects/login';
 import InventoryListScreen from '../../screenObjects/inventoryList';
-import CartContent from '../../screenObjects/cart';
-import AppHeader from '../../screenObjects/appHeader';
 import CheckoutPageOne from '../../screenObjects/checkoutPageOne';
 import CheckoutPageTwo from '../../screenObjects/checkoutPageTwo';
-import { LOGIN_USERS, PERSONAL_INFO } from '../../helpers/e2eConstants';
+import { PERSONAL_INFO } from '../../helpers/e2eConstants';
 
 describe('Checkout: Your info', () => {
 	const SELECTORS = driver.selectors;
@@ -14,18 +12,7 @@ describe('Checkout: Your info', () => {
 		// Restart the app before each session, only not for the first session
 		restartApp();
 		LoginScreen.waitForIsShown();
-		LoginScreen.signIn(LOGIN_USERS.STANDARD);
-
-		// Add an item to the cart
-		InventoryListScreen.waitForIsShown();
-		InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
-
-		// Open the cart
-		AppHeader.openCart();
-		CartContent.waitForIsShown();
-
-		// Go to checkout page one
-		CartContent.goToCheckout();
+		openDeepLinkUrl('personal-info/0,1,2');
 		CheckoutPageOne.waitForIsShown();
 	});
 

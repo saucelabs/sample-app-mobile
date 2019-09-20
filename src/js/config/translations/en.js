@@ -111,7 +111,7 @@ export default {
 	},
 	'webview': {
 		'header': 'WEBVIEW',
-		'screen': 'WEBVIEW',
+		'screen': 'WEBVIEW SELECTION',
 		'errorContainer': 'Error message',
 		'placeholder': 'enter a https url here...',
 		'urlError': 'Please provide a correct https url',

@@ -1,9 +1,6 @@
-import { restartApp } from '../../helpers/utils';
+import { openDeepLinkUrl, restartApp } from '../../helpers/utils';
 import LoginScreen from '../../screenObjects/login';
-import InventoryListScreen from '../../screenObjects/inventoryList';
-import Menu from '../../screenObjects/menu';
 import Webview, { CONTEXT_REF } from '../../screenObjects/webview';
-import { LOGIN_USERS } from '../../helpers/e2eConstants';
 
 describe('Menu', () => {
 	const SELECTORS = driver.selectors;
@@ -12,10 +9,8 @@ describe('Menu', () => {
 		// Restart the app before each session, only not for the first session
 		restartApp();
 		LoginScreen.waitForIsShown();
-		LoginScreen.signIn(LOGIN_USERS.STANDARD);
-		InventoryListScreen.waitForIsShown();
-		Menu.open();
-		Menu.openWebview();
+		openDeepLinkUrl('webview');
+		Webview.waitForIsShown();
 	});
 
 	it('should be able to see the error message when an incorrect url is being entered', () => {

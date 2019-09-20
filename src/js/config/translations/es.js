@@ -111,7 +111,7 @@ export default {
 	},
 	'webview': {
 		'header': 'WEBVIEW',
-		'screen': 'WEBVIEW',
+		'screen': 'WEBVIEW SELECCIÓN',
 		'errorContainer': 'Error',
 		'placeholder': 'Ingrese un URL...',
 		'urlError': 'Por favor ingrese un URL valido.',

@@ -1,7 +1,6 @@
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
-import SELECTORS from '../../../src/js/config/translations/en';
 
 class InventoryItemScreen extends Base {
 	constructor() {

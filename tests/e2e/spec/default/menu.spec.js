@@ -1,12 +1,10 @@
-import { browserIsOpened, restartApp } from '../../helpers/utils';
+import { browserIsOpened, openDeepLinkUrl, restartApp } from '../../helpers/utils';
 import LoginScreen from '../../screenObjects/login';
 import InventoryListScreen from '../../screenObjects/inventoryList';
 import InventoryItemScreen from '../../screenObjects/inventoryItem';
 import AppHeader from '../../screenObjects/appHeader';
 import Menu from '../../screenObjects/menu';
 import Webview from '../../screenObjects/webview';
-import { LOGIN_USERS } from '../../helpers/e2eConstants';
-
 
 describe('Menu', () => {
   const SELECTORS = driver.selectors;
@@ -15,7 +13,7 @@ describe('Menu', () => {
     // Restart the app before each session, only not for the first session
     restartApp();
     LoginScreen.waitForIsShown();
-    LoginScreen.signIn(LOGIN_USERS.STANDARD);
+    openDeepLinkUrl('swag-overview/0');
     InventoryListScreen.waitForIsShown();
   });
 
@@ -48,8 +46,6 @@ describe('Menu', () => {
   });
 
   it('should be able reset the app state', () => {
-    InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
-
     expect(AppHeader.getCartAmount()).toContain('1', 'The cart amount is not correct.');
 
     Menu.open();
