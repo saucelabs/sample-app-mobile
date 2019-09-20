@@ -1,20 +1,21 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
 
-const SCREEN_SELECTOR = `~test-${ SELECTORS.checkoutCompletePage.screen }`;
-
 class CheckoutComplete extends Base {
 	constructor() {
-		super(SCREEN_SELECTOR);
+		super(`~test-${ driver.selectors.checkoutCompletePage.screen }`);
+	}
+
+	get SELECTORS() {
+		return driver.selectors;
 	}
 
 	get screen() {
-		return $(SCREEN_SELECTOR);
+		return $(`~test-${ this.SELECTORS.checkoutCompletePage.screen }`);
 	}
 
 	get continuesShoppingButton() {
-		return $(`~test-${ SELECTORS.checkoutCompletePage.goToButton }`);
+		return $(`~test-${ this.SELECTORS.checkoutCompletePage.goToButton }`);
 	}
 
 	/**

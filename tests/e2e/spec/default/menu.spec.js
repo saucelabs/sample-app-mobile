@@ -9,6 +9,8 @@ import { LOGIN_USERS } from '../../helpers/e2eConstants';
 
 
 describe('Menu', () => {
+  const SELECTORS = driver.selectors;
+
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
@@ -30,7 +32,7 @@ describe('Menu', () => {
   });
 
   it('should be able to bring me to the all items page', () => {
-    InventoryListScreen.openSwagItemDetails('Sauce Labs Backpack');
+    InventoryListScreen.openSwagItemDetails(SELECTORS.products.backpack.name);
     InventoryItemScreen.waitForIsShown();
     Menu.open();
     Menu.openAllItems();
@@ -46,7 +48,7 @@ describe('Menu', () => {
   });
 
   it('should be able reset the app state', () => {
-    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+    InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
     expect(AppHeader.getCartAmount()).toContain('1', 'The cart amount is not correct.');
 

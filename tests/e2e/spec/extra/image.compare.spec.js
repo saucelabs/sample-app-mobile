@@ -13,6 +13,8 @@ import Menu from '../../screenObjects/menu';
 import Webview from '../../screenObjects/webview';
 
 describe('Image compare for upgrade', () => {
+  const SELECTORS = driver.selectors;
+
   beforeEach(() => {
     restartApp();
     LoginScreen.waitForIsShown();
@@ -49,7 +51,7 @@ describe('Image compare for upgrade', () => {
       });
 
       it('should able to compare a screenshot of the swag list grid screen with 1 product', () => {
-        InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+        InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
         expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
         expect(driver.compareScreen('SwagList-grid-02-add-product').misMatchPercentage).toEqual(0);
@@ -62,7 +64,7 @@ describe('Image compare for upgrade', () => {
       });
 
       it('should able to compare a screenshot of the swag details', () => {
-        const swagItemLabel = 'Sauce Labs Backpack';
+        const swagItemLabel = SELECTORS.products.backpack.name;
 
         InventoryListScreen.openSwagItemDetails(swagItemLabel);
         InventoryItemScreen.waitForIsShown();
@@ -86,7 +88,7 @@ describe('Image compare for upgrade', () => {
       it('should able to compare a screenshot of the swag list row screen with 1 product', () => {
         expect(InventoryListScreen.isRowLayout()).toEqual(false, 'The layout is already a row layout');
         InventoryListScreen.toggleLayout();
-        InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+        InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
         // Wait 2 seconds for the scrollbar to be gone
         driver.pause(2000);
 
@@ -97,7 +99,7 @@ describe('Image compare for upgrade', () => {
 
     describe('Swag cart screen', () => {
       it('should able to compare a screenshot of the cart screen', () => {
-        InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+        InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
         expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
@@ -112,7 +114,7 @@ describe('Image compare for upgrade', () => {
 
     describe('Checkout - information', () => {
       it('should able to compare a screenshot of the checkout information screen', () => {
-        InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+        InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
         expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
@@ -127,7 +129,7 @@ describe('Image compare for upgrade', () => {
       });
 
       it('should able to compare a screenshot of the checkout information error screen', () => {
-        InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+        InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
         expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
@@ -144,7 +146,7 @@ describe('Image compare for upgrade', () => {
 
     describe('Checkout - overview', () => {
       it('should able to compare a screenshot of the checkout overview screen', () => {
-        InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+        InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
         expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 
@@ -163,7 +165,7 @@ describe('Image compare for upgrade', () => {
 
     describe('Finish', () => {
       it('should able to compare a screenshot of the finish screen', () => {
-        InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+        InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
         expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
 

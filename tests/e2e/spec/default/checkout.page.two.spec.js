@@ -11,6 +11,8 @@ import { LOGIN_USERS, PERSONAL_INFO } from '../../helpers/e2eConstants';
 let selectedSwagItemText;
 
 describe('Checkout: Overview', () => {
+  const SELECTORS = driver.selectors;
+
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
@@ -20,7 +22,7 @@ describe('Checkout: Overview', () => {
     // Add an item to the cart
     InventoryListScreen.waitForIsShown();
     selectedSwagItemText = InventoryListScreen.getSwagItemLabelText(0);
-    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+    InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
 
     // Open the cart
     AppHeader.openCart();

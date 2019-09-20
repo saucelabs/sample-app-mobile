@@ -1,37 +1,39 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
-
-const SCREEN_SELECTOR = `~test-${ SELECTORS.inventoryItemPage.screen }`;
+import SELECTORS from '../../../src/js/config/translations/en';
 
 class InventoryItemScreen extends Base {
 	constructor() {
-		super(SCREEN_SELECTOR);
+		super(`~test-${ driver.selectors.inventoryItemPage.screen }`);
+	}
+
+	get SELECTORS(){
+		return driver.selectors;
 	}
 
 	get screen() {
-		return $(SCREEN_SELECTOR);
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.screen }`);
 	}
 
 	get description() {
-		return $(`~test-${ SELECTORS.inventoryItemPage.itemDescription }`);
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.itemDescription }`);
 	}
 
 	get price() {
-		return $(`~test-${ SELECTORS.inventoryItemPage.price }`);
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.price }`);
 	}
 
 	get addButton() {
-		return $(`~test-${ SELECTORS.inventoryItemPage.addButton }`);
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.addButton }`);
 	}
 
 	get removeButton() {
-		return $(`~test-${ SELECTORS.inventoryItemPage.removeButton }`);
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.removeButton }`);
 	}
 
 	get goBackButton() {
-		return $(`~test-${ SELECTORS.inventoryItemPage.backButton }`);
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.backButton }`);
 	}
 
 	/**
@@ -66,7 +68,7 @@ class InventoryItemScreen extends Base {
 		this.addButton.click();
 
 		// There is a little delay in adding the item to the cart :(
-		return driver.pause(100);
+		return driver.pause(250);
 	}
 
 	/**
@@ -79,7 +81,7 @@ class InventoryItemScreen extends Base {
 		this.removeButton.click();
 
 		// There is a little delay in removing the item to the cart :(
-		return driver.pause(100);
+		return driver.pause(250);
 	}
 
 	/**

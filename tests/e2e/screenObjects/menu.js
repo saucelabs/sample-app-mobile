@@ -1,42 +1,43 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import Base from './base';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
-
-const SCREEN_SELECTOR = `~test-${ SELECTORS.menu.allItems }`;
 
 class Menu extends Base {
 	constructor() {
 		// The `all items` is used for that because there is no other way to determine that
 		// the menu container
-		super(SCREEN_SELECTOR);
+		super(`~test-${ driver.selectors.menu.allItems }`);
+	}
+
+	get SELECTORS(){
+		return driver.selectors;
 	}
 
 	get button() {
-		return $(`~test-${ SELECTORS.menu.label }`);
+		return $(`~test-${ this.SELECTORS.menu.label }`);
 	}
 
 	get closeButton() {
-		return $(`~test-${ SELECTORS.menu.close }`);
+		return $(`~test-${ this.SELECTORS.menu.close }`);
 	}
 
 	get allItems() {
-		return $(SCREEN_SELECTOR);
+		return $(`~test-${ this.SELECTORS.menu.allItems }`);
 	}
 
 	get webview() {
-		return $(`~test-${ SELECTORS.menu.webview }`);
+		return $(`~test-${ this.SELECTORS.menu.webview }`);
 	}
 
 	get about() {
-		return $(`~test-${ SELECTORS.menu.about }`);
+		return $(`~test-${ this.SELECTORS.menu.about }`);
 	}
 
 	get logout() {
-		return $(`~test-${ SELECTORS.menu.logout }`);
+		return $(`~test-${ this.SELECTORS.menu.logout }`);
 	}
 
 	get resetAppState() {
-		return $(`~test-${ SELECTORS.menu.reset }`);
+		return $(`~test-${ this.SELECTORS.menu.reset }`);
 	}
 
 	/**

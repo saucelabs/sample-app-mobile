@@ -1,5 +1,4 @@
 import Base from './base';
-import SELECTORS from '../../../src/js/config/translations/en';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 import { getTextOfElement } from '../helpers/utils';
 
@@ -12,23 +11,26 @@ const DOCUMENT_READY_STATE = {
 	INTERACTIVE: 'interactive',
 	LOADING: 'loading',
 };
-const SCREEN_SELECTOR = `~test-${ SELECTORS.webview.screen }`;
 
 class Webview extends Base {
 	constructor() {
-		super(SCREEN_SELECTOR);
+		super(`~test-${ driver.selectors.webview.screen }`);
+	}
+
+	get SELECTORS() {
+		return driver.selectors;
 	}
 
 	get input() {
-		return $(`~test-${ SELECTORS.webview.placeholder }`);
+		return $(`~test-${ this.SELECTORS.webview.placeholder }`);
 	}
 
 	get go() {
-		return $(`~test-${ SELECTORS.webview.go }`);
+		return $(`~test-${ this.SELECTORS.webview.go }`);
 	}
 
 	get errorMessage() {
-		return $(`~test-${ SELECTORS.webview.errorContainer }`);
+		return $(`~test-${ this.SELECTORS.webview.errorContainer }`);
 	}
 
 	/**
@@ -76,7 +78,11 @@ class Webview extends Base {
 	 */
 	waitForDocumentFullyLoaded() {
 		driver.waitUntil(
-			() => driver.execute(() => document.readyState) === DOCUMENT_READY_STATE.COMPLETE,
+			() => {
+				const webview = driver.execute(() => ({ state: document.readyState, title: document.title }));
+
+				return webview.state === DOCUMENT_READY_STATE.COMPLETE && webview.title !== '';
+			},
 			15000,
 			'Website not loaded',
 			100,

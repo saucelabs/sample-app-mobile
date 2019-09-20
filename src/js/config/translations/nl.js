@@ -155,7 +155,7 @@ export default {
 			price: 29.99,
 		},
 		'bikeLight': {
-			name: 'Sauce Labs Fiets licht',
+			name: 'Sauce Labs Fiets Licht',
 			desc: 'Een rood licht is niet de gewenste status tijdens het testen, maar het helpt zeker als u \'s nachts op uw fiets rijdt. Waterbestendig met 3 verlichtingsmodi, inclusief 1 AAA-batterij.',
 			price: 9.99,
 		},

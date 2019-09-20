@@ -1,28 +1,26 @@
-import SELECTORS from '../../../src/js/config/translations/en';
 import { getTextOfElement } from '../helpers/utils';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
 
-const SCREEN_SELECTOR = `test-${ SELECTORS.inventoryListPage.screen }`;
-const SWAG_ITEM_SELECTOR = `test-${ SELECTORS.inventoryListPage.itemContainer }`;
-const TOGGLE_SELECTOR = `test-${ SELECTORS.inventoryListPage.toggle }`;
-const DESCRIPTION_SELECTOR = `test-${ SELECTORS.inventoryListPage.itemDescription }`;
-
 class InventoryListScreen extends Base {
 	constructor() {
-		super(`~${ SCREEN_SELECTOR }`);
+		super(`~test-${ driver.selectors.inventoryListPage.screen }`);
+	}
+
+	get SELECTORS() {
+		return driver.selectors;
 	}
 
 	get screen() {
-		return $(`~${ SCREEN_SELECTOR }`);
+		return $(`~test-${ this.SELECTORS.inventoryListPage.screen }`);
 	}
 
 	get swagItems() {
-		return $$(`~${ SWAG_ITEM_SELECTOR }`);
+		return $$(`~test-${ this.SELECTORS.inventoryListPage.itemContainer }`);
 	}
 
 	get toggle() {
-		return $(`~${ TOGGLE_SELECTOR }`);
+		return $(`~test-${ this.SELECTORS.inventoryListPage.toggle }`);
 	}
 
 	/**
@@ -35,7 +33,7 @@ class InventoryListScreen extends Base {
 	 * @return the selected swagItem
 	 */
 	swagItem(needle, scrollUp = false) {
-		return this.findParentElementByText(SWAG_ITEM_SELECTOR, needle, scrollUp);
+		return this.findParentElementByText(`test-${ this.SELECTORS.inventoryListPage.itemContainer }`, needle, scrollUp);
 	}
 
 	/**
@@ -46,7 +44,7 @@ class InventoryListScreen extends Base {
 	 * @return {string}
 	 */
 	getSwagItemLabelText(needle) {
-		const elm = this.swagItems[ needle ].$(`~test-${ SELECTORS.inventoryListPage.itemTitle }`);
+		const elm = this.swagItems[ needle ].$(`~test-${ this.SELECTORS.inventoryListPage.itemTitle }`);
 		Gestures.scrollDownToElement(elm);
 
 		return getTextOfElement(elm);
@@ -61,9 +59,12 @@ class InventoryListScreen extends Base {
 	 */
 	addSwagItemToCart(needle) {
 		const swagItem = this.swagItem(needle);
-		Gestures.scrollDownToElement(swagItem.$(`~test-${ SELECTORS.inventoryListPage.addButton }`), 10);
+		Gestures.scrollDownToElement(swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`), 10);
 
-		return swagItem.$(`~test-${ SELECTORS.inventoryListPage.addButton }`).click();
+		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`).click();
+
+		// there is a small delay in adding items in the cart
+		return driver.pause(250);
 	}
 
 	/**
@@ -75,9 +76,12 @@ class InventoryListScreen extends Base {
 	 */
 	removeSwagItemFromCart(needle) {
 		const swagItem = this.swagItem(needle);
-		Gestures.scrollDownToElement(swagItem.$(`~test-${ SELECTORS.inventoryListPage.removeButton }`), 10);
+		Gestures.scrollDownToElement(swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`), 10);
 
-		return swagItem.$(`~test-${ SELECTORS.inventoryListPage.removeButton }`).click();
+		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`).click();
+
+		// there is a small delay in adding items in the cart
+		return driver.pause(250);
 	}
 
 	/**
@@ -110,7 +114,7 @@ class InventoryListScreen extends Base {
 	 */
 	isRowLayout() {
 		try {
-			return this.swagItems[ 0 ].$(`~${ DESCRIPTION_SELECTOR }`).isDisplayed();
+			return this.swagItems[ 0 ].$(`~${ `test-${ this.SELECTORS.inventoryListPage.itemDescription }` }`).isDisplayed();
 		} catch (e) {
 			return false;
 		}
@@ -139,10 +143,12 @@ class InventoryListScreen extends Base {
 	 */
 	findParentElementByText(selector, needle, scrollUp = false, maxScrolls = 10) {
 		for (let i = 0; i < maxScrolls; i++) {
-			// const iosSelector = `-ios class chain:**/XCUIElementTypeOther[\`name CONTAINS "${ SELECTORS.inventoryListPage.itemContainer
-			// }"\`]/**/XCUIElementTypeOther[\`name CONTAINS "${ needle }" AND name CONTAINS "${ SELECTORS.inventoryItemPage.addButton
-			// }"\`]/**/XCUIElementTypeOther[\`name == "test-${ SELECTORS.inventoryItemPage.addButton }"\`]`;
-			const iosSelector = `-ios class chain:**/XCUIElementTypeOther[\`name CONTAINS "${ SELECTORS.inventoryListPage.itemContainer }"\`]/**/XCUIElementTypeOther[\`name CONTAINS "${ needle }" AND name CONTAINS "${ SELECTORS.inventoryItemPage.addButton }"\`]`;
+			const classChain = '-ios class chain:';
+			const iosItemQuery = `name CONTAINS "${ this.SELECTORS.inventoryListPage.itemContainer }"`;
+			const iosNeedleQuery = `name CONTAINS "${ needle }"`;
+			const iosButtonTextQuery = `name CONTAINS "${ this.SELECTORS.inventoryItemPage.addButton }" OR name CONTAINS "${ this.SELECTORS.inventoryItemPage.removeButton }"`;
+			const iosSignQuery = 'name CONTAINS "+" OR name CONTAINS "-"';
+			const iosSelector = `${ classChain }**/XCUIElementTypeOther[\`${ iosItemQuery }\`]/**/XCUIElementTypeOther[\`${iosNeedleQuery} AND (${iosButtonTextQuery} OR ${iosSignQuery})\`]`;
 			const androidSelector = `//android.widget.TextView[contains(@text,'${ needle }')]//ancestor::*[@content-desc='${ selector }']`;
 			const elm = $(driver.isIOS ? iosSelector : androidSelector);
 

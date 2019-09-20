@@ -7,6 +7,8 @@ import CheckoutPageOne from '../../screenObjects/checkoutPageOne';
 import { LOGIN_USERS } from '../../helpers/e2eConstants';
 
 describe('Cart Content Page', () => {
+  const SELECTORS = driver.selectors;
+
   beforeEach(() => {
     // Restart the app before each session, only not for the first session
     restartApp();
@@ -15,8 +17,8 @@ describe('Cart Content Page', () => {
 
     // Add some items to the cart
     InventoryListScreen.waitForIsShown();
-    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
-    InventoryListScreen.addSwagItemToCart('Sauce Labs Bike Light');
+    InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
+    InventoryListScreen.addSwagItemToCart(SELECTORS.products.bikeLight.name);
 
     // Open the cart
     AppHeader.openCart();

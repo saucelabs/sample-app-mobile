@@ -9,39 +9,41 @@ import CheckoutComplete from '../../screenObjects/checkoutComplete';
 import { LOGIN_USERS, PERSONAL_INFO } from '../../helpers/e2eConstants';
 
 describe('Checkout Complete', () => {
-  beforeEach(() => {
-    // Restart the app before each session, only not for the first session
-    restartApp();
-    LoginScreen.waitForIsShown();
-    LoginScreen.signIn(LOGIN_USERS.STANDARD);
+	const SELECTORS = driver.selectors;
 
-    // Add an item to the cart
-    InventoryListScreen.waitForIsShown();
-    InventoryListScreen.addSwagItemToCart('Sauce Labs Backpack');
+	beforeEach(() => {
+		// Restart the app before each session, only not for the first session
+		restartApp();
+		LoginScreen.waitForIsShown();
+		LoginScreen.signIn(LOGIN_USERS.STANDARD);
 
-    // Open the cart
-    AppHeader.openCart();
-    CartContent.waitForIsShown();
+		// Add an item to the cart
+		InventoryListScreen.waitForIsShown();
+		InventoryListScreen.addSwagItemToCart(SELECTORS.products.bikeLight.name);
 
-    // Go to checkout page one
-    CartContent.goToCheckout();
-    CheckoutPageOne.waitForIsShown();
+		// Open the cart
+		AppHeader.openCart();
+		CartContent.waitForIsShown();
 
-    // Submit the personal info
-    CheckoutPageOne.submitPersonalInfo(PERSONAL_INFO.STANDARD);
-    CheckoutPageTwo.waitForIsShown();
+		// Go to checkout page one
+		CartContent.goToCheckout();
+		CheckoutPageOne.waitForIsShown();
 
-    // Finish the checkout
-    CheckoutPageTwo.finishCheckout();
-    CheckoutComplete.waitForIsShown();
-  });
+		// Submit the personal info
+		CheckoutPageOne.submitPersonalInfo(PERSONAL_INFO.STANDARD);
+		CheckoutPageTwo.waitForIsShown();
 
-  it('should be able to finish the checkout by going back to the inventory list', () => {
-    expect(AppHeader.getCartAmount()).not.toContain('1', 'Chart is not empty');
+		// Finish the checkout
+		CheckoutPageTwo.finishCheckout();
+		CheckoutComplete.waitForIsShown();
+	});
 
-    CheckoutComplete.continueShopping();
-    InventoryListScreen.waitForIsShown();
+	it('should be able to finish the checkout by going back to the inventory list', () => {
+		expect(AppHeader.getCartAmount()).not.toContain('1', 'Chart is not empty');
 
-    expect(CheckoutComplete.isShown()).toEqual(false, 'The Checkout: Overview screen is still visible.');
-  });
+		CheckoutComplete.continueShopping();
+		InventoryListScreen.waitForIsShown();
+
+		expect(CheckoutComplete.isShown()).toEqual(false, 'The Checkout: Overview screen is still visible.');
+	});
 });
