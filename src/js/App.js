@@ -14,7 +14,7 @@ QuickActions.setShortcutItems([
 		// iOS provides a default set of icons, see
 		// https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/system-icons/#home-screen-quick-action-icons
 		// For Android we need to provide custom icons which need to be lowercase
-		icon: IS_IOS ? 'Bookmark': 'bookmark',
+		icon: IS_IOS ? 'Bookmark' : 'bookmark',
 		userInfo: {
 			url: SCREENS.INVENTORY_LIST,
 		},
@@ -23,7 +23,7 @@ QuickActions.setShortcutItems([
 		type: 'webview',
 		title: 'Open Webview',
 		subtitle: 'Open the webview',
-		icon: IS_IOS ? 'Home': 'home',
+		icon: IS_IOS ? 'Home' : 'home',
 		userInfo: {
 			url: SCREENS.WEBVIEW_SELECTION,
 		},

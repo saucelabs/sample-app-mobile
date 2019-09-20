@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DeviceEventEmitter, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Biometrics from 'react-native-biometrics';
 import { Divider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
