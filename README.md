@@ -269,7 +269,6 @@ This will happens automatically during automation because the app will be opened
 
 ![3D Touch - Force Touch](./docs/assets/3D-touch.jpg) 
 
-
 ## Testautomation
 More information about:
 

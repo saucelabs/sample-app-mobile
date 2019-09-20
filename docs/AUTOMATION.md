@@ -13,6 +13,7 @@
     1. [Run on Android](#run-on-android)
     1. [Run on iOS](#run-on-ios)
 1. [Deep linking](#deep-linking)
+1. [3D Touch / Force Touch](#3d-touch--force-touch)
 1. [FAQ](#faq)
 
 # Intro
@@ -231,6 +232,27 @@ To run the deep link automation script do the following:
 # For iOS real device
  npm run ios.rdc -- --spec=tests/e2e/spec/extra/deep.link.spec.js
 ``` 
+
+## 3D Touch / Force Touch
+To run the deep link automation script do the following:
+
+```bash
+# For Android emulator
+ npm run android.local -- --spec=tests/e2e/spec/extra/force.touch.spec.js
+
+# For Android real device
+ npm run android.rdc -- --spec=tests/e2e/spec/extra/force.touch.spec.js
+
+# For iOS simulator
+ npm run ios.local -- --spec=tests/e2e/spec/extra/force.touch.spec.js
+
+# For iOS real device
+ npm run ios.rdc -- --spec=tests/e2e/spec/extra/force.touch.spec.js
+```
+
+> **NOTE:**<br>
+> When running on Android you need to be sure you have a Google Pixel to make this work due to the script where the app is closed
+> and the menu button is clicked. This selector should be the same. Secondly the app needs to be in the view otherwise the script will not work.  
 
 ## FAQ
 ### `An unknown server-side error occurred while processing the command` while sending text to an iOS simulator
