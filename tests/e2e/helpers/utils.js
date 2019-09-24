@@ -182,8 +182,11 @@ export function openDeepLinkUrl(url) {
 		const urlField = $(`-ios predicate string:${ urlFieldSelector }`);
 
 		// Wait for the url button to appear and click on it so the text field will appear
-		urlButton.waitForDisplayed(DEFAULT_TIMEOUT);
-		urlButton.click();
+		// iOS 13 now has the keyboard open by default because the URL field has focus when opening the Safari browser
+		if(!driver.isKeyboardShown()) {
+			urlButton.waitForDisplayed(DEFAULT_TIMEOUT);
+			urlButton.click();
+		}
 
 		// Submit the url and add a break
 		urlField.setValue(`${ prefix }${ url }\uE007`);
