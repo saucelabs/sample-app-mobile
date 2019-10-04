@@ -45,7 +45,6 @@ describe('Test 3D Touch', () => {
 					action: 'press',
 					options: {
 						element: $('~Swag Labs Mobile App').elementId,
-						pressure: 1,
 					},
 				},
 				{
