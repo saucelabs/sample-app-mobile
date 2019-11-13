@@ -171,6 +171,11 @@ This app supports TouchID and FaceID for Android and iOS and will only show when
 See [AUTOMATION.md](./docs/AUTOMATION.md) for using Touch / Face ID with automation.
 
 ### Enabling Touch / Face ID on Android emulators
+>**NOTE:**<br>
+>The implementation of Touch/FaceID in this application supports the user’s biometrics based on the **insecure** store of the device. It is **not** using the **keystore** which normally should be used when implementing Touch/FaceID and secure login.
+> The reason for this is that Sauce Labs is not mocking the keystore on a real device for supporting Touch/FaceID due to **security reasons**.<br/>
+> Testing Touch/FaceID which is using the **keystore** on our real devices is therefore **not** supported.
+
 To enable this on Android emulators you need to do the following (when you have an emulator that supports this):
 
 - Open an emulator
