@@ -117,7 +117,7 @@ export default class Login extends Component {
 	}
 
 	async handleBiometryLogin() {
-		const loginResult = await Biometrics.createKeys('Please sign in');
+		const loginResult = await Biometrics.simplePrompt('Please sign in');
 
 		return loginResult ? this.successfulLogin() : this.handleBiometryLogin();
 	}
