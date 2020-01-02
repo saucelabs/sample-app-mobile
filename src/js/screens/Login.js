@@ -50,7 +50,7 @@ export default class Login extends Component {
 		// if it can't be determined on a specific phone
 		try {
 			this.setState({
-				biometryType: await Biometrics.isSensorAvailable(),
+				biometryType: (await Biometrics.isSensorAvailable()).available,
 			});
 		} catch (e) {
 			// Do nothing
@@ -117,9 +117,13 @@ export default class Login extends Component {
 	}
 
 	async handleBiometryLogin() {
-		const loginResult = await Biometrics.simplePrompt('Please sign in');
+		// Using object destructuring here will automatically call the `handleBiometryLogin`
+		const loginResult = await Biometrics.simplePrompt({
+			promptMessage: 'Please sign in',
+			cancelButtonText: 'Cancel',
+		});
 
-		return loginResult ? this.successfulLogin() : this.handleBiometryLogin();
+		return loginResult.success ? this.successfulLogin() : this.handleBiometryLogin();
 	}
 
 	successfulLogin() {

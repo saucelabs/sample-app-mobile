@@ -36,7 +36,6 @@ target 'SwagLabsMobileApp' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
-  pod 'react-native-biometrics', :path => '../node_modules/react-native-biometrics'
 
   pod 'RNQuickAction', :path => '../node_modules/react-native-quick-actions'
 

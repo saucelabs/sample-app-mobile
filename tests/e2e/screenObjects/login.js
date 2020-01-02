@@ -40,7 +40,7 @@ class LoginScreen extends Base {
 	}
 
 	get androidBiometryAlert() {
-		return $('*//*[@resource-id="com.swaglabsmobileapp:id/fingerprint_status"]');
+		return $('*//*[@resource-id="com.swaglabsmobileapp:id/fingerprint_icon"]');
 	}
 
 	get loginButton() {
