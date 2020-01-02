@@ -37,7 +37,10 @@
     "sync-storage": "^0.4.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
     "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/register": "^7.7.7",
     "@babel/runtime": "^7.6.2",
     "@wdio/appium-service": "^5.11.4",
     "@wdio/cli": "^5.11.10",

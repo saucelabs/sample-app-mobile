@@ -10,9 +10,9 @@ const { config } = require('./wdio.shared.conf');
 config.capabilities = [
 	{
 		// The defaults you need to have in your config
-		deviceName: 'iPhone X',
+		deviceName: 'iPhone 11',
 		platformName: 'iOS',
-		platformVersion: '12.2',
+		platformVersion: '13.3',
 		orientation: 'PORTRAIT',
 		// The path to the app
 		app: join(process.cwd(), './ios/build/SwagLabsMobileApp/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app'),
