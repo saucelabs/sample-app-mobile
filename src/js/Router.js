@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createStackNavigator } from 'react-navigation-stack';
 import AppHeader from './components/AppHeader';
 import { SCREENS, WINDOW_WIDTH } from './config/Constants';
 // The screens
@@ -49,10 +51,12 @@ const StackNavigator = createStackNavigator({
 		},
 	},
 	{
+		headerMode: 'screen',
+		animationEnabled: false,
 		initialRouteName: SCREENS.LOGIN,
 		defaultNavigationOptions: ({ navigate, navigation }) => ({
-			header: (<AppHeader navigation={ navigation }/>),
-			gesturesEnabled: false,
+			header: () => <AppHeader navigation={ navigation }/>,
+			gestureEnabled: false,
 		}),
 	});
 

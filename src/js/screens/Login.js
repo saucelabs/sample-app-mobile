@@ -19,7 +19,7 @@ import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 
 export default class Login extends Component {
 	static navigationOptions = {
-		header: null,
+		headerShown: false,
 	};
 
 	constructor(props) {

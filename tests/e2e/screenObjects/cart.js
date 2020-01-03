@@ -15,15 +15,15 @@ class CartContent extends Base {
 	}
 
 	get checkoutButton() {
-		return $(`~test-${ this.SELECTORS.cartContent.checkout }`);
+		return this.screen.$(`~test-${ this.SELECTORS.cartContent.checkout }`);
 	}
 
 	get continueShoppingButton() {
-		return $(`~test-${ this.SELECTORS.cartContent.continueShopping }`);
+		return this.screen.$(`~test-${ this.SELECTORS.cartContent.continueShopping }`);
 	}
 
 	get swagItems() {
-		return $$(`~test-${ this.SELECTORS.cartContent.cartItem.itemContainer }`);
+		return this.screen.$$(`~test-${ this.SELECTORS.cartContent.cartItem.itemContainer }`);
 	}
 
 	/**
