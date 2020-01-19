@@ -136,6 +136,7 @@ export default {
 		'allItems': 'TODOS LOS ARTICULOS',
 		'about': 'NOSOTROS',
 		'logout': 'CERRAR SESION',
+		'qrCode': 'QR CODE',
 		'reset': 'RESET APP STATE',
 		'webview': 'WEBVIEW',
 	},

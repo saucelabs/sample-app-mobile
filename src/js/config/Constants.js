@@ -27,4 +27,5 @@ export const SCREENS = {
 	CHECKOUT_COMPLETE: 'CheckoutComplete',
 	WEBVIEW_SELECTION: 'WebviewSelection',
 	WEBVIEW_SCREEN: 'WebviewScreen',
+	QR_CODE_SCANNER_SCREEN: 'QrCodeScanner',
 };
