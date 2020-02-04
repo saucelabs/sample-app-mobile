@@ -202,7 +202,7 @@ There are some test cases (success and failure) created for testing Touch / Face
 Running a test on an Android emulator can be done with this command
 
 ```bash
-yarn android.local --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
+yarn android.local --spec=tests/e2e/spec/extra/touch.face.id.spec.js
 ```
 
 ### Run on iOS
@@ -214,7 +214,7 @@ yarn android.local --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
 Running a test on an iOS simulator can be done with this command
 
 ```bash
-yarn ios.local --spec=tests/e2e/spec/biometric/touch.face.id.spec.js
+yarn ios.local --spec=tests/e2e/spec/extra/touch.face.id.spec.js
 ```
 
 ## Deep linking
