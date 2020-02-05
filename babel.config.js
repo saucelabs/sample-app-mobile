@@ -6,5 +6,6 @@ module.exports = {
 				node: 10,
 			},
 		} ],
+		'module:react-native-dotenv',
 	],
 };

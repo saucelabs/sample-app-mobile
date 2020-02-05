@@ -59,7 +59,8 @@ const StackNavigator = createStackNavigator({
 		},
 	},
 	{
-		initialRouteName: SCREENS.LOGIN,
+		// initialRouteName: SCREENS.LOGIN,
+		initialRouteName: SCREENS.GEO_LOCATION_SCREEN,
 		defaultNavigationOptions: ({ navigate, navigation }) => ({
 			header: (<AppHeader navigation={ navigation }/>),
 			gesturesEnabled: false,
