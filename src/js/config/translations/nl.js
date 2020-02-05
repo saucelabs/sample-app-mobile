@@ -138,7 +138,12 @@ export default {
 		'logout': 'UITLOGGEN',
 		'reset': 'RESET APP STATE',
 		'qrCode': 'QR CODE SCANNER',
+		'geoLocation': 'GEO LOCATION',
 		'webview': 'WEBVIEW',
+	},
+	'geoLocation':{
+		'header': 'GEO LOCATION',
+		'screen': 'GEO LOCATION',
 	},
 	'appHeader': {
 		'label': 'Swag Labs',

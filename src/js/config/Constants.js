@@ -28,4 +28,5 @@ export const SCREENS = {
 	WEBVIEW_SELECTION: 'WebviewSelection',
 	WEBVIEW_SCREEN: 'WebviewScreen',
 	QR_CODE_SCANNER_SCREEN: 'QrCodeScanner',
+	GEO_LOCATION_SCREEN: 'GeoLocation',
 };
