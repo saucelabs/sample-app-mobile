@@ -14,7 +14,7 @@ export default class QrCodeScanner extends Component {
 	onSuccess = (e) => {
 		Linking
 			.openURL(e.data)
-			.catch(err => console.error('An error occured', err));
+			.catch(err => alert('An error occurred', err));
 	};
 
 	render() {

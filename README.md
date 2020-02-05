@@ -36,6 +36,7 @@ The latest version of the iOS and Android app can be found [here](https://github
         1. [With Safari](#with-safari)
 1. [3D Touch / Force touch](#3d-touch---force-touch)
 1. [Different languages](#different-languages)
+1. [QR code scanner](#qr-code-scanner)
 1. [Testautomation](#testautomation)
 1. [Building the app for the Sauce Labs Real Device Cloud (RDC)](#building-the-app-for-the-sauce-labs-real-device-cloud-rdc)x
 1. [Versioning the app](#versioning-the-app)
@@ -280,6 +281,13 @@ This app supports 3 different languages and will automatically check the languag
 - Dutch
 
 For the automation of the different languages see [here](./docs/AUTOMATION.md#different-languages)
+
+## QR code scanner
+This app now also has a QR code scanner. You can find it in the menu under the option "QR CODE SCANNER".
+This page opens the camera (you first need to allow the app to use the camera) which can be used to scan a QR Code.
+If the QR code holds an URL it will automatically open it in a browser. The following image can be used to demo this option.
+
+![QR Code](./docs/assets/qr-code.png)
 
 ## Testautomation
 More information about:
