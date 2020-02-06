@@ -13,10 +13,11 @@ import { testProperties } from '../config/TestProperties';
 import Footer from '../components/Footer';
 import { IS_IOS, MUSEO_SANS_BOLD, PLATFORM_VERSION } from '../config/Constants';
 
-// const WEATHER_API_KEY = '475fd1ff0c76940fc6fe2b9243c2a726';
-
 class GeoLocation extends Component {
+	watchId = null;
+
 	state = {
+		isLoading: false,
 		longitude: null,
 		latitude: null,
 		country: 'Trying to determine country...',
@@ -57,27 +58,27 @@ class GeoLocation extends Component {
 		return false;
 	};
 
-	getLocation = async () => {
+	async getLocation() {
 		const hasLocationPermission = await this.hasLocationPermission();
-
 		if (!hasLocationPermission) {
 			return;
 		}
 
-		this.setState(this.state, () => {
-			Geolocation.getCurrentPosition(
+		this.setState({ isLoading: true }, () => {
+			this.watchId = Geolocation.watchPosition(
 				(position) => {
 					const { latitude, longitude } = position.coords;
 
-					this.setState({ longitude, latitude });
+					this.setState({
+						latitude,
+						longitude,
+						isLoading: false,
+					});
 
-					return this.fetchWeather(latitude, longitude);
+					this.fetchWeather(latitude, longitude);
 				},
 				(error) => {
-					this.setState({
-						longitude: 'Longitude could not be determined',
-						latitude: 'Latitude could not be determined',
-					});
+					console.log(error);
 				},
 				{
 					enableHighAccuracy: true,
@@ -88,6 +89,18 @@ class GeoLocation extends Component {
 				},
 			);
 		});
+	}
+
+	removeLocationUpdates = () => {
+		if (this.watchId !== null) {
+			Geolocation.clearWatch(this.watchId);
+
+			this.setState({
+				latitude: null,
+				longitude: null,
+				isLoading: false,
+			});
+		}
 	};
 
 	fetchWeather = async (lat = 35, lon = 139) => {
@@ -105,7 +118,7 @@ class GeoLocation extends Component {
 	};
 
 	render() {
-		const { country, latitude, longitude } = this.state;
+		const { country, latitude, isLoading, longitude } = this.state;
 
 		return (
 			<ThemeProvider>
@@ -115,16 +128,19 @@ class GeoLocation extends Component {
 					{ ...testProperties(I18n.t('geoLocation.screen')) }
 				>
 					<View style={ [ styles.text_container, styles.container_padding ] }>
-						<NavigationEvents onWillFocus={ () => this.getLocation() }/>
+						<NavigationEvents
+							onWillFocus={ () => this.getLocation() }
+							onDidBlur={ () => this.removeLocationUpdates() }
+						/>
 						<Text style={ styles.text }>
 							Below you will find the latitude, longitude and (if we can determine) also the country code of these coordinates.
 							You can use Appium to change the latitude and longitude and verify the county code if needed.
 						</Text>
 						<Text style={ styles.label }>Latitude:</Text>
-						<Text style={ styles.text }>{ latitude }</Text>
+						<Text style={ styles.text }>{ isLoading ? 'Determining position...' : latitude }</Text>
 						<Text style={ styles.label }>Longitude:</Text>
-						<Text style={ styles.text }>{ longitude }</Text>
-						<Text style={ styles.label }>Countrycode:</Text>
+						<Text style={ styles.text }>{ isLoading ? 'Determining position...' : longitude }</Text>
+						<Text style={ styles.label }>Country code:</Text>
 						<Text style={ styles.text }>{ country }</Text>
 					</View>
 					<Footer/>
