@@ -113,7 +113,7 @@ Make sure you have an Android emulator running or a device connected and have
 set up your Android development environment:
 https://facebook.github.io/react-native/docs/getting-started.html
 ```
-- In a shell, in the project root `./sample-app-ios` run: `react-native run-android`
+- In a shell, in the project root `./sample-app-mobile` run: `react-native run-android`
 
 ## Linting the code
 The linting rules were taken from the React Native project itself and can be used by running 
