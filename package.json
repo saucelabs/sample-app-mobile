@@ -17,12 +17,10 @@
     "ios.clear.build": "yarn clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
     "ios.release": "react-native run-ios --configuration Release",
     "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
-    "postinstall": "npx jetify && yarn create.env",
-    "create.env": "echo \"WEATHER_API_KEY=\\\"$WEATHER_API_KEY\\\"\" > .env"
+    "postinstall": "npx jetify"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
-    "axios": "^0.19.2",
     "i18n-js": "^3.5.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
@@ -70,7 +68,6 @@
     "jetifier": "^1.6.5",
     "metro-react-native-babel-preset": "^0.57.0",
     "react-native-clean-project": "^3.3.0",
-    "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.9.0",
     "wdio-native-app-compare-service": "^1.0.1",
     "yargs": "^15.0.2"

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { PermissionsAndroid, ScrollView, StyleSheet, Text, ToastAndroid, View } from 'react-native';
 import { NavigationEvents, withNavigationFocus } from 'react-navigation';
 import Geolocation from 'react-native-geolocation-service';
-import axios from 'axios';
 import { ThemeProvider } from 'react-native-elements';
-import { WEATHER_API_KEY } from 'react-native-dotenv';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { colors } from '../utils/colors';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
@@ -20,7 +18,6 @@ class GeoLocation extends Component {
 		isLoading: false,
 		longitude: null,
 		latitude: null,
-		country: 'Trying to determine country...',
 	};
 
 	componentDidMount() {
@@ -60,6 +57,7 @@ class GeoLocation extends Component {
 
 	async getLocation() {
 		const hasLocationPermission = await this.hasLocationPermission();
+
 		if (!hasLocationPermission) {
 			return;
 		}
@@ -74,8 +72,6 @@ class GeoLocation extends Component {
 						longitude,
 						isLoading: false,
 					});
-
-					this.fetchWeather(latitude, longitude);
 				},
 				(error) => {
 					console.log(error);
@@ -103,22 +99,8 @@ class GeoLocation extends Component {
 		}
 	};
 
-	fetchWeather = async (lat = 35, lon = 139) => {
-		try {
-			const weatherData = await axios(
-				`http://api.openweathermap.org/data/2.5/weather?lat=${ lat }&lon=${ lon }&APPID=${ WEATHER_API_KEY }&units=metric`,
-			);
-
-			this.setState({
-				country: weatherData ? weatherData.data.sys.country : 'Could not be determined',
-			});
-		} catch (e) {
-			console.log('error = ', e);
-		}
-	};
-
 	render() {
-		const { country, latitude, isLoading, longitude } = this.state;
+		const { latitude, isLoading, longitude } = this.state;
 
 		return (
 			<ThemeProvider>
@@ -133,15 +115,13 @@ class GeoLocation extends Component {
 							onDidBlur={ () => this.removeLocationUpdates() }
 						/>
 						<Text style={ styles.text }>
-							Below you will find the latitude, longitude and (if we can determine) also the country code of these coordinates.
-							You can use Appium to change the latitude and longitude and verify the county code if needed.
+							Below you will find the latitude and longitude.
+							You can use Appium to change the latitude and longitude and verify them.
 						</Text>
 						<Text style={ styles.label }>Latitude:</Text>
 						<Text style={ styles.text }>{ isLoading ? 'Determining position...' : latitude }</Text>
 						<Text style={ styles.label }>Longitude:</Text>
 						<Text style={ styles.text }>{ isLoading ? 'Determining position...' : longitude }</Text>
-						<Text style={ styles.label }>Country code:</Text>
-						<Text style={ styles.text }>{ country }</Text>
 					</View>
 					<Footer/>
 				</ScrollView>
