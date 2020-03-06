@@ -21,6 +21,7 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [Different languages](#different-languages)
 1. [Contributing to the app](#contributing-to-the-app)
 1. [Test-automation](#test-automation)
+1. [FAQ](faq)
  
 ## Functionalities
 
@@ -152,3 +153,23 @@ More information about:
 - how to run tests in the cloud
 
 can be found [here](./docs/AUTOMATION.md).
+
+## FAQ
+### Downloaded iOS apps shows 'App is damaged and can't be opened. You should move it to the trash.' after manually install
+You can get this warning when you have OSX Catalina or higher and try to install the app manually.
+
+![Catalina warning](./docs/assets/catalina-warning.jpg) 
+
+This has to do with the new security settings in Catalina. 
+
+> This will not bother you when you install the app through Appium and or Appium desktop.
+
+You can fix this with the following steps before dragging the app to the simulator:
+
+1. Unzip the app
+1. Open a terminal and go to the folder where the app is located
+1. Execute the following command from the command line
+    
+        sudo xattr -rd com.apple.quarantine {name-of-the-unzipped-app}.app
+        
+1. After typing your password the app has been modified and you can drag an drop it manually to the simulator
