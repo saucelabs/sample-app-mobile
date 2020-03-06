@@ -21,7 +21,7 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [Different languages](#different-languages)
 1. [Contributing to the app](#contributing-to-the-app)
 1. [Test-automation](#test-automation)
-1. [FAQ](faq)
+1. [FAQ](#faq)
  
 ## Functionalities
 
