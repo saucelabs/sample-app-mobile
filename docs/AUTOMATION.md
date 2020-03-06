@@ -4,7 +4,7 @@
 1. [Intro](#intro)
 1. [Setup Appium on a local machine](#setup-appium-on-a-local-machine)
 1. [Writing tests](#writing tests)
-1. [Running tests on a local machine](#running-tests-on-a-local-machine)
+1. [Running tests on a local machine with a simulator/emulator release](#running-tests-on-a-local-machine-with-a-simulatoremulator-release)
 1. [Running tests on the Sauce Labs Real Device Cloud](#running-tests-on-the-sauce-labs-real-device-cloud)
     1. [The setup](#the-setup)
     1. [Running Android](#running-android)
@@ -17,7 +17,7 @@
 1. [Different languages](#different-languages)
 1. [FAQ](#faq)
 
-# Intro
+## Intro
 Tests are run with:
 
 * [webdriver.io](http://webdriver.io/): This is the testrunner that will orchestrate the tests between different devices
@@ -37,7 +37,7 @@ By default the following emulators and simulators are used:
 - Pixel One
 - iPhone X
 
-> **Please check [tests/e2e/config/wdio.android.local.conf.js](../tests/e2e/config/wdio.android.local.conf.js) and [tests/e2e/config/wdio.ios.local.conf.js](../tests/e2e/config/wdio.ios.local.conf.js) for the correct names and OS versions of the emulators / simulators. They need to be equal for test execution.**
+> **Please check [tests/e2e/config/wdio.android.local.dev.conf.js](../tests/e2e/config/wdio.android.local.dev.conf.js) and [tests/e2e/config/wdio.ios.local.dev.conf.js](../tests/e2e/config/wdio.ios.local.dev.conf.js) for the correct names and OS versions of the emulators / simulators. They need to be equal for test execution.**
 
 ## Setup Appium on a local machine
 Please check [this](./APPIUM.md) document for more info about how to setup Appium on a local machine.
@@ -53,16 +53,14 @@ This method will hold all the logic to add accessibilityLabels on each needed co
 
 We try to use the text labels from the `en.json` as much as possible so we can easily link a change in the translation to a change in the selector without breaking the automation. 
 
-
-## Running tests on a local machine
-> Because local automation will be ran against a build connected with the packager/metro builder, adjusting code during test execution is not wise. It will reflect immediately in the app which may cause breaking the tests.
-
-> Android and iOS tests can't be run in parallel on a local machine with this setup, you need to create a local grid to be able to do that.
+## Running tests on a local machine with a simulator/emulator release
+Download an Android emulator or iOS simulator build from the release page of this project which can be found [here](https://github.com/saucelabs/sample-app-mobile/releases)
+and store them in the [`apps`](../apps/)-folder. Then adjust the name of the `app` to the downloaded version in the [Android](../tests/e2e/config/wdio.android.local.emu.conf.js)-config or [iOS](../tests/e2e/config/wdio.ios.local.sim.conf.js)-config files.
 
 To run a complete testset use the following commands
 
-- Android: `yarn android.local`
-- iOS: `yarn ios.local`
+- Android: `yarn android.local.emu`
+- iOS: `yarn ios.local.sim`
 
 When all tests have been executed the following will be shown in the console
 
@@ -164,15 +162,15 @@ Time:            🕙  460.00s
 This project setup also has a setup for running the tests on the Real Device Cloud of Sauce LAbs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that.
 
 ### The setup
-This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](tests/e2e/config/wdio.shared.conf.js) where all the basics (like the testframework and so on) are defined. On top of that a [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js) is created that holds the RDC specific configuration for both iOS and Android.
+This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js) is created that holds the RDC specific configuration for both iOS and Android.
 
-Depending on where the tests need to be run (US/EU-cloud), the correct url of the cloud need to be selected. Change this piece of code in the [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js)-file to select or the US or the EU cloud.
+Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js)-file to select or the US or the EU cloud.
 
 ```js
-// For using the EU RDC cloud, just remove the comments and comment the US url
-config.hostname = 'eu1.appium.testobject.com';
-// For using the US RDC cloud
-// config.hostname = 'us1.appium.testobject.com';
+// For using the EU RDC cloud, just use `eu` like below
+config.region = 'eu';
+// For using the US RDC cloud, just use `us` like below
+config.region = 'us';
 ```
 
 ### Running Android
@@ -189,8 +187,17 @@ yarn android.rdc
 ```
 
 ### Running iOS
+To be able to run the iOS tests on the Sauce Labs cloud please check the [`wdio.android.ios.conf.js`](tests/e2e/config/wdio.ios.rdc.conf.js)-file. There the configuration for 1 iOS device can be found.
 
-> **NOTE:** iOS tests for this app can't be run on the SL cloud because we can't create a correct build of the iOS app to run on real device, see [Building iOS](./BUILDING.md#building-ios) for more information.
+Change the `deviceName` to get the right device you want to use and or add the `platformVersion` to get a specific iOS version. More information about setting up the correct device can be found on [Appium Testing on Real Devices](https://wiki.saucelabs.com/display/DOCS/Appium+Testing+on+Real+Devices) or on the Sauce Labs cloud under `/appium/basic/instructions`
+
+> **NOTE:** Make sure the `testobject_api_key` of the correct iOS project, that has been created in the Sauce Labs Real Device Cloud, has been added to the environment variables and is called `SAUCE_RDC_EU_ACCESS_KEY_IOS`.    
+
+Running the test on the Sauce Labs Real Device Cloud can be done by running the following command:
+
+```bash
+yarn ios.rdc
+```
 
 ## Using Touch / Face ID during automation
 There are some test cases (success and failure) created for testing Touch / Face ID for emulators and simulators, please see below for the instructions.
