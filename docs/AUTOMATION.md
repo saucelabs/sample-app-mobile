@@ -3,7 +3,7 @@
 ## Table of contents
 1. [Intro](#intro)
 1. [Setup Appium on a local machine](#setup-appium-on-a-local-machine)
-1. [Writing tests](#writing tests)
+1. [Writing tests](#writing-tests)
 1. [Running tests on a local machine with a simulator/emulator release](#running-tests-on-a-local-machine-with-a-simulatoremulator-release)
 1. [Running tests on the Sauce Labs Real Device Cloud](#running-tests-on-the-sauce-labs-real-device-cloud)
     1. [The setup](#the-setup)
