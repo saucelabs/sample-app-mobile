@@ -12,7 +12,7 @@ config.capabilities = [
 		// The defaults you need to have in your config
 		deviceName: 'iPhone 11',
 		platformName: 'iOS',
-		platformVersion: '13.3',
+		platformVersion: '13.4',
 		orientation: 'PORTRAIT',
 		// The path to the app
 		app: join(process.cwd(), './apps/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.1.1.zip'),

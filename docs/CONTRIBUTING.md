@@ -41,6 +41,17 @@ Most of this comes from https://facebook.github.io/react-native/docs/getting-sta
 - `yarn install`
 - `react-native run-ios`
 
+> **NOTE:**<br/>
+> When you build the app you might get warnings or errors like this
+> ```log
+> error React Native CLI uses autolinking for native dependencies, but the following modules are linked manually: 
+>    - react-native-quick-actions (to unlink run: "react-native unlink react-native-quick-actions")
+>    - react-native-webview (to unlink run: "react-native unlink react-native-webview")
+>  This is likely happening when upgrading React Native from below 0.60 to 0.60 or above. Going forward, you can unlink this dependency via "react-native unlink <dependency>" and it will be included in your app automatically. If a library isn't compatible with autolinking, disregard this message and notify the library maintainers.
+>  Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md
+> ```
+> Then you have nothing to worry about. This is normal ;-) 
+
 ## Set up Android environment
 
 Most of this comes from https://facebook.github.io/react-native/docs/getting-started.html
@@ -99,6 +110,17 @@ set up your Android development environment:
 https://facebook.github.io/react-native/docs/getting-started.html
 ```
 - In a shell, in the project root `./sample-app-mobile` run: `react-native run-android`
+
+> **NOTE:**<br/>
+> When you build the app you might get warnings or errors like this
+> ```log
+> error React Native CLI uses autolinking for native dependencies, but the following modules are linked manually: 
+>    - react-native-quick-actions (to unlink run: "react-native unlink react-native-quick-actions")
+>    - react-native-webview (to unlink run: "react-native unlink react-native-webview")
+>  This is likely happening when upgrading React Native from below 0.60 to 0.60 or above. Going forward, you can unlink this dependency via "react-native unlink <dependency>" and it will be included in your app automatically. If a library isn't compatible with autolinking, disregard this message and notify the library maintainers.
+>  Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md
+> ```
+> Then you have nothing to worry about. This is normal ;-)
 
 ## Linting the code
 The linting rules were taken from the React Native project itself and can be used by running 

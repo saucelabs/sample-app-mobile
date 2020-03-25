@@ -12,7 +12,7 @@ config.capabilities = [
 		// The defaults you need to have in your config
 		deviceName: 'iPhone 11',
 		platformName: 'iOS',
-		platformVersion: '13.3',
+		platformVersion: '13.4',
 		orientation: 'PORTRAIT',
 		// The path to the app
 		app: join(process.cwd(), './ios/build/SwagLabsMobileApp/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app'),
