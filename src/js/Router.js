@@ -12,6 +12,7 @@ import CheckoutScreenTwo from './screens/CheckoutScreenTwo';
 import CheckoutComplete from './screens/CheckoutComplete';
 import WebviewSelection from './screens/WebviewSelection';
 import WebviewScreen from './screens/Webview';
+import QrCodeScanner from './screens/QrCodeScanner';
 import DrawerLinks from './components/DrawerLinks';
 
 const StackNavigator = createStackNavigator({
@@ -46,6 +47,10 @@ const StackNavigator = createStackNavigator({
 		},
 		[ SCREENS.WEBVIEW_SCREEN ]: {
 			screen: WebviewScreen,
+		},
+		[ SCREENS.QR_CODE_SCANNER_SCREEN ]: {
+			screen: QrCodeScanner,
+			path: 'qr-code',
 		},
 	},
 	{

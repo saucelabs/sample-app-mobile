@@ -19,6 +19,7 @@ export default class DrawerLinks extends Component {
 		this.handleLogoutLink = this.handleLogoutLink.bind(this);
 		this.handleResetLink = this.handleResetLink.bind(this);
 		this.handleCloseMenu = this.handleCloseMenu.bind(this);
+		this.handleQrCodeLink = this.handleQrCodeLink.bind(this);
 	}
 
 	handleAllItemsLink() {
@@ -29,6 +30,11 @@ export default class DrawerLinks extends Component {
 	handleWebviewLink() {
 		this.props.navigation.closeDrawer();
 		this.props.navigation.navigate(SCREENS.WEBVIEW_SELECTION);
+	}
+
+	handleQrCodeLink() {
+		this.props.navigation.closeDrawer();
+		this.props.navigation.navigate(SCREENS.QR_CODE_SCANNER_SCREEN);
 	}
 
 	handleAboutLink() {
@@ -79,6 +85,13 @@ export default class DrawerLinks extends Component {
 					{ ...testProperties(I18n.t('menu.webview')) }
 				>
 					<Text style={ styles.menu_item_text }>{ I18n.t('menu.webview') }</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={ styles.menu_button }
+					onPress={ this.handleQrCodeLink }
+					{ ...testProperties(I18n.t('menu.qrCode')) }
+				>
+					<Text style={ styles.menu_item_text }>{ I18n.t('menu.qrCode') }</Text>
 				</TouchableOpacity>
 				<TouchableOpacity
 					style={ styles.menu_button }

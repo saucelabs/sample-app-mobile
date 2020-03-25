@@ -137,6 +137,7 @@ export default {
 		'about': 'ABOUT',
 		'logout': 'LOGOUT',
 		'reset': 'RESET APP STATE',
+		'qrCode': 'QR CODE SCANNER',
 		'webview': 'WEBVIEW',
 	},
 	'appHeader': {

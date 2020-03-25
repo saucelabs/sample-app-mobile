@@ -36,8 +36,10 @@ target 'SwagLabsMobileApp' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
-
   pod 'RNQuickAction', :path => '../node_modules/react-native-quick-actions'
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
 
   target 'SwagLabsMobileAppTests' do
     inherit! :search_paths
