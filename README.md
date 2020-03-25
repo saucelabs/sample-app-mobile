@@ -143,7 +143,11 @@ This app supports 3 different languages and will automatically check the languag
 For the automation of the different languages see [here](./docs/AUTOMATION.md#different-languages)
 
 ### QR code scanner
-This app now also has a QR code scanner. You can find it in the menu under the option "QR CODE SCANNER".
+This app now also has a QR code scanner. 
+
+![QR Code Scanner](./docs/assets/qr-code.gif) 
+
+You can find it in the menu under the option "QR CODE SCANNER".
 This page opens the camera (you first need to allow the app to use the camera) which can be used to scan a QR Code.
 If the QR code holds an URL it will automatically open it in a browser. The following image can be used to demo this option.
 
