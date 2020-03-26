@@ -138,6 +138,7 @@ export default {
 		'logout': 'CERRAR SESION',
 		'qrCode': 'QR CODE ESCÁNER',
 		'reset': 'RESET APP STATE',
+		'draw': 'DIBUJAR LINEAS',
 		'webview': 'WEBVIEW',
 	},
 	'appHeader': {

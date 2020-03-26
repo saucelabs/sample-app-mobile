@@ -14,6 +14,7 @@ import WebviewSelection from './screens/WebviewSelection';
 import WebviewScreen from './screens/Webview';
 import QrCodeScanner from './screens/QrCodeScanner';
 import DrawerLinks from './components/DrawerLinks';
+import Draw from './screens/Drawing';
 
 const StackNavigator = createStackNavigator({
 		[ SCREENS.LOGIN ]: { screen: Login },
@@ -51,6 +52,10 @@ const StackNavigator = createStackNavigator({
 		[ SCREENS.QR_CODE_SCANNER_SCREEN ]: {
 			screen: QrCodeScanner,
 			path: 'qr-code',
+		},
+		[ SCREENS.DRAW ]: {
+			screen: Draw,
+			path: 'drawing',
 		},
 	},
 	{

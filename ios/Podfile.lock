@@ -196,7 +196,7 @@ PODS:
     - React
   - react-native-splash-screen (3.2.0):
     - React
-  - react-native-webview (8.0.2):
+  - react-native-webview (8.2.1):
     - React
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
@@ -386,7 +386,7 @@ SPEC CHECKSUMS:
   react-native-biometrics: e092e67ab766de7ad97f572fa4973e226a0e4c6b
   react-native-camera: 1ba3e7f2375a6b44ae09ce9be70268e0b225bc10
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-webview: 99bdfd6c189772b0f15494f728430c23b18b93e4
+  react-native-webview: 160ac8d6bb974e2933f2de6bb7464a8e934ff31d
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72

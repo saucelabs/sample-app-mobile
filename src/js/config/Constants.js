@@ -19,6 +19,7 @@ export const MUSEO_SANS_NORMAL = IS_IOS ? 'MuseoSans-500' : 'MuseoSans_500';
 export const MUSEO_SANS_BOLD = IS_IOS ? 'MuseoSans-700' : 'MuseoSans_700';
 export const SCREENS = {
 	LOGIN: 'Login',
+	DRAW: 'Draw',
 	INVENTORY_LIST: 'InventoryList',
 	INVENTORY_ITEM: 'InventoryItem',
 	CART_CONTENTS: 'CartContents',
