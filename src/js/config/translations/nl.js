@@ -117,6 +117,10 @@ export default {
 		'urlError': 'Vul een correcte https url in',
 		'go': 'GA NAAR DE WEBSITE',
 	},
+	'draw': {
+		'clear': 'Legen',
+		'screen': 'LIJNEN TEKENEN',
+	},
 	'modalSelector': {
 		'button': 'Modal Selector knop',
 		'cancel': 'Annuleren',

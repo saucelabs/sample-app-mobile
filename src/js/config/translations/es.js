@@ -117,6 +117,10 @@ export default {
 		'urlError': 'Por favor ingrese un URL valido.',
 		'go': 'IR A SITIO',
 	},
+	'draw': {
+		'clear': 'Claro',
+		'screen': 'DIBUJAR LINEAS',
+	},
 	'modalSelector': {
 		'button': 'Modal Selector Button',
 		'cancel': 'Cancel',

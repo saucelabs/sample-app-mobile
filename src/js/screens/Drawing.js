@@ -5,6 +5,8 @@ import Signature from 'react-native-signature-canvas';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 import { JsHtmlPage } from '../config/DrawHtmlPage';
+import { testProperties } from '../config/TestProperties';
+import I18n from '../config/I18n';
 
 export default class Draw extends Component {
 	constructor(props) {
@@ -26,11 +28,13 @@ export default class Draw extends Component {
 		return (
 			<ThemeProvider>
 				<SecondaryHeader/>
-				<View style={ styles.container }>
+				<View
+					style={ styles.container }
+					{ ...testProperties(I18n.t('draw.screen')) }
+				>
 					<Signature
 						onEmpty={ this.handleEmpty }
-						clearText="Clear"
-						confirmText="Save"
+						clearText={ I18n.t('draw.clear') }
 						customHtml={ JsHtmlPage }
 					/>
 				</View>
