@@ -23,6 +23,11 @@ Detox still has some *limitations* in comparison to Appium when you do a 1-on-1 
 Please follow [Step 1: Install dependencies](https://github.com/wix/Detox/blob/master/docs/Introduction.GettingStarted.md#step-1-install-dependencies) to set up Detox on your local machine.
 The rest of the steps are already implemented in this project
 
+## Build the app
+Detox uses a special build of the app to be able to test it, in order to do this you need to run this command
+
+    detox build
+
 ## Running tests
 Run tests by using this command
 
