@@ -23,24 +23,28 @@ describe('Login', () => {
 
 
   it('should not be able to login with a locked user', async () => {
+    await expect(LoginScreen.errorMessage).toBeNotVisible();
     await LoginScreen.signIn(LOGIN_USERS.LOCKED);
 
     jestExpect(await getText(LoginScreen.errorMessage)).toEqual('Sorry, this user has been locked out.');
   });
 
   it('should show an error when no username is provided', async () => {
+    await expect(LoginScreen.errorMessage).toBeNotVisible();
     await LoginScreen.signIn(LOGIN_USERS.NO_USER_DETAILS);
 
     jestExpect(await getText(LoginScreen.errorMessage)).toEqual('Username is required');
   });
 
   it('should show an error when no password is provided', async () => {
+    await expect(LoginScreen.errorMessage).toBeNotVisible();
     await LoginScreen.signIn(LOGIN_USERS.NO_PASSWORD);
 
     jestExpect(await getText(LoginScreen.errorMessage)).toEqual('Password is required');
   });
 
   it('should show an error when no match is found', async () => {
+    await expect(LoginScreen.errorMessage).toBeNotVisible();
     await LoginScreen.signIn(LOGIN_USERS.NO_MATCH);
 
     jestExpect(await getText(LoginScreen.errorMessage)).toEqual('Username and password do not match any user in this service.');
