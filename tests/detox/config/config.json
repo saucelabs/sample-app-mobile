@@ -1,0 +1,7 @@
+{
+    "rootDir": "../../../",
+    "setupFilesAfterEnv": ["./tests/detox/helpers/init.js"],
+    "testEnvironment": "node",
+    "reporters": ["detox/runners/jest/streamlineReporter"],
+    "verbose": true
+}

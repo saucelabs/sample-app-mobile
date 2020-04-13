@@ -56,6 +56,8 @@
     "@wdio/sync": "^5.17.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
+    "detox": "^16.1.1",
+    "detox-getprops": "^0.1.1",
     "eslint": "^6.5.1",
     "eslint-config-fb-strict": "^24.3.0",
     "eslint-config-fbjs": "^3.1.0",
@@ -77,5 +79,20 @@
     "hooks": {
       "pre-push": "yarn lint"
     }
+  },
+  "detox": {
+    "runner-config": "tests/detox/config/config.json",
+    "specs": "tests/detox/specs/",
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/SwagLabsMobileApp/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app",
+        "build": "xcodebuild -workspace ios/SwagLabsMobileApp.xcworkspace -scheme SwagLabsMobileApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "device": {
+          "type": "iPhone 11 Pro"
+        }
+      }
+    },
+    "test-runner": "jest"
   }
 }

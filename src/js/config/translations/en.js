@@ -17,7 +17,7 @@ export default {
 			'epicSadFace': 'Epic sadface: ',
 			'password': 'Password is required',
 			'lockedOut': 'Sorry, this user has been locked out.',
-			'noMatch': 'Username and password do not match any user in this service.',
+				'noMatch': 'Username and password do not match any user in this service.',
 			'username': 'Username is required',
 		},
 	},
