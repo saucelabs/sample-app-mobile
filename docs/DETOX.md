@@ -26,9 +26,21 @@ The rest of the steps are already implemented in this project
 ## Build the app
 Detox uses a special build of the app to be able to test it, in order to do this you need to run this command
 
-    detox build
+For iOS run 
+    
+    detox build -c ios.sim.debug
+
+For Android run
+
+    detox build -c android.emu.debug
 
 ## Running tests
 Run tests by using this command
 
-    detox test
+For iOS
+    
+    detox test -c ios.sim.debug
+    
+For Android, make sure the emulator is not started yet, Detox needs to start it. Then run
+
+    detox test -c android.emu.debug

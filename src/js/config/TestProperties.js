@@ -13,9 +13,19 @@ import { IS_IOS, TEST_PREFIX } from './Constants';
 export function testProperties(id, disableAccessible = false) {
 	const disableAccessibility = disableAccessible ? { accessible: false } : {};
 
-  if (IS_IOS) {
-    return { ...disableAccessibility, testID: TEST_PREFIX + id };
-  }
+	if (IS_IOS) {
+		return {
+			...disableAccessibility,
+			// This translates to an accessibilityLabel for iOS so Appium can use it
+			// but it also works for Detox
+			testID: TEST_PREFIX + id,
+		};
+	}
 
-	return { ...disableAccessibility, accessibilityLabel: TEST_PREFIX + id };
+	return {
+		...disableAccessibility,
+		accessibilityLabel: TEST_PREFIX + id,
+		// For Detox
+		testID: TEST_PREFIX + id,
+	};
 }
