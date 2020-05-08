@@ -117,6 +117,11 @@ export default {
 		'urlError': 'Vul een correcte https url in',
 		'go': 'GA NAAR DE WEBSITE',
 	},
+	'qrCodeScanner': {
+		'screen': 'QR CODE SCANNER SCREEN',
+		'lineOne': 'Scan een QR Code welke een website url bevat.',
+		'lineTwo': 'De url wordt geopend in de default browser.',
+	},
 	'modalSelector': {
 		'button': 'Modal Selector knop',
 		'cancel': 'Annuleren',

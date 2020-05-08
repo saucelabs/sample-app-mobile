@@ -117,6 +117,11 @@ export default {
 		'urlError': 'Por favor ingrese un URL valido.',
 		'go': 'IR A SITIO',
 	},
+	'qrCodeScanner': {
+		'screen': 'QR CODE SCANNER SCREEN',
+		'lineOne': 'Escanee un código QR que contenga una url.',
+		'lineTwo': 'Se abrirá en el navegador predeterminado.',
+	},
 	'modalSelector': {
 		'button': 'Modal Selector Button',
 		'cancel': 'Cancel',

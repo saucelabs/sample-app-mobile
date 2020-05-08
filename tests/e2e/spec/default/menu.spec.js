@@ -4,6 +4,7 @@ import InventoryListScreen from '../../screenObjects/inventoryList';
 import InventoryItemScreen from '../../screenObjects/inventoryItem';
 import AppHeader from '../../screenObjects/appHeader';
 import Menu from '../../screenObjects/menu';
+import QrCodeScreen from '../../screenObjects/qrCodeScreen';
 import Webview from '../../screenObjects/webview';
 
 describe('Menu', () => {
@@ -43,6 +44,13 @@ describe('Menu', () => {
     Menu.openWebview();
 
     expect(Webview.input.isDisplayed()).toEqual(true, 'Webview page is not shown');
+  });
+
+  it('should be able to bring me to qr code scanner page', () => {
+    Menu.open();
+    Menu.openQrCodeScanner();
+
+    expect(QrCodeScreen.waitForIsShown()).toEqual(true, 'Webview page is not shown');
   });
 
   it('should be able reset the app state', () => {

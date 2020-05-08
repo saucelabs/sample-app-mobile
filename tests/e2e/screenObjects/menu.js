@@ -32,6 +32,10 @@ class Menu extends Base {
 		return $(`~test-${ this.SELECTORS.menu.about }`);
 	}
 
+	get qrCodeScanner() {
+		return $(`~test-${ this.SELECTORS.menu.qrCode }`);
+	}
+
 	get logout() {
 		return $(`~test-${ this.SELECTORS.menu.logout }`);
 	}
@@ -112,6 +116,17 @@ class Menu extends Base {
 	 */
 	openWebview() {
 		this._menuClick(this.webview);
+
+		return this.waitUntilClosed();
+	}
+
+	/**
+	 * Click on the qr code scanner menu item
+	 *
+	 * @return {void}
+	 */
+	openQrCodeScanner() {
+		this._menuClick(this.qrCodeScanner);
 
 		return this.waitUntilClosed();
 	}

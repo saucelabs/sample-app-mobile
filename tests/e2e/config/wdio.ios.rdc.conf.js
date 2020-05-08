@@ -22,6 +22,9 @@ config.capabilities = [
     orientation: 'PORTRAIT',
     newCommandTimeout: 180,
     language: argv.language || 'en',
+    appiumVersion: '1.17.0',
+    sauceLabsImageInjectionEnabled: argv.imageInjection || false,
+    autoAcceptAlerts:true,
   },
 ];
 

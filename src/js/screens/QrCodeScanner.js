@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Linking, StyleSheet, Text, View } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { ThemeProvider } from 'react-native-elements';
+import I18n from '../config/I18n';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { colors } from '../utils/colors';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
+import { testProperties } from '../config/TestProperties';
 
 export default class QrCodeScanner extends Component {
 	componentDidMount() {
@@ -28,9 +30,12 @@ export default class QrCodeScanner extends Component {
 					markerStyle={ styles.slMarker }
 					topViewStyle={ styles.contentContainer }
 					topContent={
-						<View style={ styles.bottomTextContainer }>
-							<Text style={ styles.bottomText }>Scan a QR Code that contains a url.</Text>
-							<Text style={ styles.bottomText }>It will be opened in the default browser.</Text>
+						<View
+							style={ styles.bottomTextContainer }
+							{ ...testProperties(I18n.t('qrCodeScanner.screen')) }
+						>
+							<Text style={ styles.bottomText }>{ I18n.t('qrCodeScanner.lineOne') }</Text>
+							<Text style={ styles.bottomText }>{ I18n.t('qrCodeScanner.lineTwo') }</Text>
 						</View>
 					}
 					bottomViewStyle={ styles.contentContainer }
