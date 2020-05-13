@@ -45,7 +45,7 @@ Please check [this](./APPIUM.md) document for more info about how to setup Appiu
 ## Writing tests
 Please check the current tests in [this](../tests/e2e/spec/)-folder to see how the tests are being created. More information about the methods that WebdriverIO supports check [this](https://webdriver.io/docs/api.html) site.
 
-> Try to prevent using the default actions of WebdriverIO, like `.click()`, `.isDisplayed()` and so on in the specfile itself. Add them in the [screenObjects](tests/e2e/screenObjects/) because there are some differences in how iOS and Android handle their UI-hierarchy.
+> Try to prevent using the default actions of WebdriverIO, like `.click()`, `.isDisplayed()` and so on in the specfile itself. Add them in the [screenObjects](../tests/e2e/screenObjects/) because there are some differences in how iOS and Android handle their UI-hierarchy.
 
 ### Locator strategy
 For selecting elements we use the accessibillityLabels. These labels can be used for both Android and iOS to select elements with 1 script. To make this possible the [`testProperties`](../src/js/config/translations/en.js)-methods has been made.
@@ -162,9 +162,9 @@ Time:            🕙  460.00s
 This project setup also has a setup for running the tests on the Real Device Cloud of Sauce LAbs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that.
 
 ### The setup
-This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js) is created that holds the RDC specific configuration for both iOS and Android.
+This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.rdc.shared.js`](../tests/e2e/config/wdio.rdc.shared.js) is created that holds the RDC specific configuration for both iOS and Android.
 
-Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.rdc.shared.js`](tests/e2e/config/wdio.rdc.shared.js)-file to select or the US or the EU cloud.
+Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.rdc.shared.js`](../tests/e2e/config/wdio.rdc.shared.js)-file to select or the US or the EU cloud.
 
 ```js
 // For using the EU RDC cloud, just use `eu` like below
@@ -174,7 +174,7 @@ config.region = 'us';
 ```
 
 ### Running Android
-To be able to run the Android tests on the Sauce Labs cloud please check the [`wdio.android.rdc.conf.js`](tests/e2e/config/wdio.android.rdc.conf.js)-file. There the configuration for 1 Android device can be found.
+To be able to run the Android tests on the Sauce Labs cloud please check the [`wdio.android.rdc.conf.js`](../tests/e2e/config/wdio.android.rdc.conf.js)-file. There the configuration for 1 Android device can be found.
 
 Change the `deviceName` to get the right device you want to use and or add the `platformVersion` to get a specific Android version. More information about setting up the correct device can be found on [Appium Testing on Real Devices](https://wiki.saucelabs.com/display/DOCS/Appium+Testing+on+Real+Devices) or on the Sauce Labs cloud under `/appium/basic/instructions`
 
@@ -187,7 +187,7 @@ yarn android.rdc
 ```
 
 ### Running iOS
-To be able to run the iOS tests on the Sauce Labs cloud please check the [`wdio.android.ios.conf.js`](tests/e2e/config/wdio.ios.rdc.conf.js)-file. There the configuration for 1 iOS device can be found.
+To be able to run the iOS tests on the Sauce Labs cloud please check the [`wdio.android.ios.conf.js`](../tests/e2e/config/wdio.ios.rdc.conf.js)-file. There the configuration for 1 iOS device can be found.
 
 Change the `deviceName` to get the right device you want to use and or add the `platformVersion` to get a specific iOS version. More information about setting up the correct device can be found on [Appium Testing on Real Devices](https://wiki.saucelabs.com/display/DOCS/Appium+Testing+on+Real+Devices) or on the Sauce Labs cloud under `/appium/basic/instructions`
 
