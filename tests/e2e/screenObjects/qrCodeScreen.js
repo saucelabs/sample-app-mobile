@@ -27,7 +27,7 @@ class QrCodeScreen extends Base {
 
 	acceptCameraAccess(){
 		try {
-			this.acceptCameraButton.waitForDisplayed(DEFAULT_TIMEOUT);
+			this.acceptCameraButton.waitForExist(DEFAULT_TIMEOUT);
 			this.acceptCameraButton.click();
 		} catch (e) {
 			// Do nothing, the alert was not shown
