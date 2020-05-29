@@ -113,9 +113,11 @@ class LoginScreen extends Base {
 		// Check if biometric usage is  allowed
 		if (!driver.config.services.includes('sauce')) {
 			this.allowIosBiometricUsage();
+			
+			return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
 		}
-
-		return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
+		
+		return driver.touchId(successful);
 	}
 
 	/**
