@@ -61,6 +61,7 @@ Most of this comes from https://facebook.github.io/react-native/docs/getting-sta
 - `brew install yarn`
 - `brew install watchman`
 - `yarn global add react-native-cli`
+- In a shell, in the project root `./sample-app-mobile` run: `yarn install`
 - install JDK8: https://adoptopenjdk.net/
 - install Android Studio: https://developer.android.com/studio/#downloads
     - Choose a "Custom" setup when prompted to select an installation type. Make sure the boxes next to all of the following are checked:
