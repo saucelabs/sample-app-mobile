@@ -83,7 +83,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 ```
-- Open ./sample-app-ios/android as a project in Android Studio
+- Open ./sample-app-mobile/android as a project in Android Studio
 - Under the 'Tools' menu, choose AVD Manager
 - Click the 'Create Virtual Device' button
 - Choose a device definition (e.g. Pixel 2) and click 'Next'
