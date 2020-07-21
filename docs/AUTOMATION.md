@@ -54,7 +54,7 @@ This method will hold all the logic to add accessibilityLabels on each needed co
 We try to use the text labels from the `en.json` as much as possible so we can easily link a change in the translation to a change in the selector without breaking the automation. 
 
 ## Running tests on a local machine with a simulator/emulator release
-Download an Android emulator or iOS simulator build from the release page of this project which can be found [here](https://github.com/saucelabs/sample-app-mobile/releases)
+Download an Android emulator or iOS simulator build from [here](https://github.com/saucelabs/sample-app-mobile/releases)
 and store them in the [`apps`](../apps/)-folder. Then adjust the name of the `app` to the downloaded version in the [Android](../tests/e2e/config/wdio.android.local.emu.conf.js)-config or [iOS](../tests/e2e/config/wdio.ios.local.sim.conf.js)-config files.
 
 To run a complete testset use the following commands
