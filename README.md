@@ -157,14 +157,12 @@ If the QR code holds an URL it will automatically open it in a browser. The foll
 If you want to contribute to the app and add new functionalities, please check the documentation [here](./docs/CONTRIBUTING.md).
 
 ## Test-automation
-More information about:
+[Here](./docs/AUTOMATION.md) you will find more information about:
 
 - how to setup Appium
 - how to write tests
 - how to run tests on a local machine
 - how to run tests in the cloud
-
-can be found [here](./docs/AUTOMATION.md).
 
 ## FAQ
 ### Downloaded iOS apps shows 'App is damaged and can't be opened. You should move it to the trash.' after manually install
