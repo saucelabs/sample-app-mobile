@@ -5,7 +5,7 @@ APP_NAME=""
 BUILD_NAME=""
 
 # Set the correct app name based on the platform
-if [[ -z "$APPCENTER_XCODE_PROJECT" ]]; then
+if [[ "$APPCENTER_XCODE_PROJECT" ]]; then
     APP_NAME="iOS.SauceLabs.Mobile.Sample.app.ipa"
     BUILD_NAME="SwagLabsMobileApp.ipa"
 else
