@@ -165,7 +165,9 @@ Time:            🕙  460.00s
 ## Running tests on the Sauce Labs EMUSIM Cloud
 This project setup also has a setup for running the tests on the emulator and simulator Cloud of Sauce Labs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that or download a version from the [versions](https://github.com/saucelabs/sample-app-mobile/releases) page.
 
-You first need to upload your app to the Sauce Labs storage, this can be found [here](https://wiki.saucelabs.com/display/DOCS/Application+Storage).
+You first need to upload your app to the Sauce Labs storage, this can be found [here](https://wiki.saucelabs.com/display/DOCS/Application+Storage). A curl script for Mac or Linux can be found [here](../scripts/push_apps_to_storage.sh) that will automatically upload the created or downloaded version from the [apps](./apps)-folder.
+
+> **NOTE: Adjust the name of the downloaded app in the script to upload the correct app.**
 
 ### The setup for EMUSIM
 This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.emusim.shared.js`](../tests/e2e/config/wdio.emusim.shared.js) is created that holds the EMUSIM specific configuration for both iOS and Android.
