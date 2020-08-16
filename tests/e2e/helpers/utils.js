@@ -94,7 +94,7 @@ function openWebPageWithBrowserOnce() {
 	const justOnceButton = '*//android.widget.Button[@resource-id="android:id/button_once"]';
 
 	try {
-		$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]').waitForDisplayed(DEFAULT_TIMEOUT);
+		$('*//android.widget.ListView[@resource-id="android:id/resolver_list"]').waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
 		if ($(justOnceButton).isEnabled()) {
 			return $(justOnceButton).click();
@@ -184,7 +184,7 @@ export function openDeepLinkUrl(url) {
 		// Wait for the url button to appear and click on it so the text field will appear
 		// iOS 13 now has the keyboard open by default because the URL field has focus when opening the Safari browser
 		if (!driver.isKeyboardShown()) {
-			urlButton.waitForDisplayed(DEFAULT_TIMEOUT);
+			urlButton.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 			urlButton.click();
 		}
 
@@ -194,7 +194,7 @@ export function openDeepLinkUrl(url) {
 		// Wait for the notification and accept it
 		const openSelector = 'type == \'XCUIElementTypeButton\' && name CONTAINS \'Open\'';
 		const openButton = $(`-ios predicate string:${ openSelector }`);
-		openButton.waitForDisplayed(DEFAULT_TIMEOUT);
+		openButton.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
 		return openButton.click();
 	}

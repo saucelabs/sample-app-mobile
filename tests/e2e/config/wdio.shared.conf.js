@@ -24,18 +24,19 @@ exports.config = {
 	jasmineNodeOpts: {
 		defaultTimeoutInterval: 120000,
 	},
-	services: [ 'native-app-compare' ],
-	// The options
-	nativeAppCompare: {
-		baselineFolder: 'tests/e2e/image-baseline',
-		screenshotPath: '.tmp/image-compare',
-		imageNameFormat: '{tag}-{deviceName}-{platformName}-{platformVersion}',
-		autoSaveBaseline: true,
-		blockOutStatusBar: true,
-		blockOutIphoneXBottomBar: true,
-		blockOutNavigationBar: true,
-		savePerDevice: true,
-	},
+	services: [ [
+		'native-app-compare',
+		{
+			baselineFolder: 'tests/e2e/image-baseline',
+			screenshotPath: '.tmp/image-compare',
+			imageNameFormat: '{tag}-{deviceName}-{platformName}-{platformVersion}',
+			autoSaveBaseline: true,
+			blockOutStatusBar: true,
+			blockOutIphoneXBottomBar: true,
+			blockOutNavigationBar: true,
+			savePerDevice: true,
+		},
+	] ],
 	// =====
 	// Hooks
 	// =====

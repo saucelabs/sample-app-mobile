@@ -1,6 +1,6 @@
 const { join } = require('path');
 const { argv } = require('yargs');
-const config = require('./wdio.shared.conf').config;
+const { config } = require('./wdio.appium.local.shared');
 
 // ============
 // Capabilities
@@ -26,15 +26,5 @@ config.capabilities = [
 		locale: argv.language || 'en',
 	},
 ];
-
-// ======
-// Appium
-// ======
-config.services = config.services.concat('appium');
-config.appium = {
-	command: 'appium',
-};
-// Tell Appium which port to use
-config.port = 4723;
 
 exports.config = config;

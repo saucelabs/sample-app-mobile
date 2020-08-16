@@ -8,7 +8,7 @@ describe('Test 3D Touch', () => {
 
 		if (driver.isIOS) {
 			// Check Dock is shown
-			$('~Dock').waitForDisplayed(DEFAULT_TIMEOUT);
+			$('~Dock').waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
 			// Open the 3D touch menu with a force touch
 			driver.touchPerform([
@@ -29,7 +29,8 @@ describe('Test 3D Touch', () => {
 			]);
 
 			// Verify the 3D menu is opened
-			expect($('~Open Swag Items, Open the Swag Items').waitForDisplayed(15000)).toEqual(true, '3D Touch menu did not open');
+			expect($('~Open Swag Items, Open the Swag Items').waitForDisplayed({ timeout: DEFAULT_TIMEOUT }))
+				.toEqual(true, '3D Touch menu did not open');
 
 			$('~Open Swag Items, Open the Swag Items').click();
 		} else {
@@ -37,7 +38,7 @@ describe('Test 3D Touch', () => {
 			$('~Apps list').click();
 
 			// Check if the app is there
-			$('~Swag Labs Mobile App').waitForDisplayed(DEFAULT_TIMEOUT);
+			$('~Swag Labs Mobile App').waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
 			// Open the 3D touch menu with a force touch
 			driver.touchPerform([
@@ -57,7 +58,7 @@ describe('Test 3D Touch', () => {
 			]);
 
 			// Wait for the menu to open and click on it
-			$('~Open Swag Items').waitForDisplayed(DEFAULT_TIMEOUT);
+			$('~Open Swag Items').waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 			$('~Open Swag Items').click();
 		}
 

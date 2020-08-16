@@ -5,6 +5,10 @@
 1. [Setup Appium on a local machine](#setup-appium-on-a-local-machine)
 1. [Writing tests](#writing-tests)
 1. [Running tests on a local machine with a simulator/emulator release](#running-tests-on-a-local-machine-with-a-simulatoremulator-release)
+1. [Running tests on the Sauce Labs Emulator/simulator Cloud](#running-tests-on-the-sauce-labs-emulator-simulator-cloud)
+    1. [The setup](#the-setup-for-emusim)
+    1. [Running Android](#running-an-android-emulator)
+    1. [Running iOS](#running-an-ios-simulator)
 1. [Running tests on the Sauce Labs Real Device Cloud](#running-tests-on-the-sauce-labs-real-device-cloud)
     1. [The setup](#the-setup)
     1. [Running Android](#running-android)
@@ -158,8 +162,47 @@ Test Suites:     8 passed, 8 total (100% completed)
 Time:            🕙  460.00s
 ```
 
+## Running tests on the Sauce Labs EMUSIM Cloud
+This project setup also has a setup for running the tests on the emulator and simulator Cloud of Sauce Labs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that or download a version from the [versions](https://github.com/saucelabs/sample-app-mobile/releases) page.
+
+You first need to upload your app to the Sauce Labs storage, this can be found [here](https://wiki.saucelabs.com/display/DOCS/Application+Storage).
+
+### The setup for EMUSIM
+This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.emusim.shared.js`](../tests/e2e/config/wdio.emusim.shared.js) is created that holds the EMUSIM specific configuration for both iOS and Android.
+
+Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.emusim.shared.js`](../tests/e2e/config/wdio.emusim.shared.js)-file to select or the US or the EU cloud.
+
+```js
+// For using the EU RDC cloud, just use `eu` like below
+config.region = 'eu';
+// For using the US RDC cloud, just use `us` like below
+config.region = 'us';
+```
+
+### Running an Android emulator
+To be able to run the Android tests on the Sauce Labs cloud please check the [`wdio.android.sauce.emu.conf.js`](../tests/e2e/config/wdio.android.sauce.emu.conf.js)-file. There the configuration for 1 Android device can be found.
+
+Change the `deviceName` to get the right device you want to use and or add the `platformVersion` to get a specific Android version. More information about setting up the correct device can be found on [Sauce Labs Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
+
+Running the test on the Sauce Labs EMUSIM Cloud can be done by running the following command:
+
+```bash
+yarn android.sauce.emu
+```
+
+### Running an iOS simulator
+To be able to run the iOS tests on the Sauce Labs cloud please check the [`wdio.ios.sauce.sim.conf.js`](../tests/e2e/config/wdio.ios.sauce.sim.conf.js)-file. There the configuration for 1 iOS device can be found.
+
+Change the `deviceName` to get the right device you want to use and or add the `platformVersion` to get a specific iOS version. More information about setting up the correct device can be found on [Sauce Labs Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/)
+
+Running the test on the Sauce Labs Real Device Cloud can be done by running the following command:
+
+```bash
+yarn ios.sauce.sim
+```
+
 ## Running tests on the Sauce Labs Real Device Cloud
-This project setup also has a setup for running the tests on the Real Device Cloud of Sauce LAbs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that.
+This project setup also has a setup for running the tests on the Real Device Cloud of Sauce Labs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that or download a version from the [versions](https://github.com/saucelabs/sample-app-mobile/releases) page.
 
 ### The setup
 This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.rdc.shared.js`](../tests/e2e/config/wdio.rdc.shared.js) is created that holds the RDC specific configuration for both iOS and Android.

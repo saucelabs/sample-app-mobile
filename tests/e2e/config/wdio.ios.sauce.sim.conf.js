@@ -1,6 +1,5 @@
-const { join } = require('path');
 const { argv } = require('yargs');
-const { config } = require('./wdio.appium.local.shared');
+const { config } = require('./wdio.emusim.shared');
 
 // ============
 // Capabilities
@@ -10,20 +9,18 @@ const { config } = require('./wdio.appium.local.shared');
 config.capabilities = [
 	{
 		// The defaults you need to have in your config
-		automationName: 'UiAutomator2',
-		deviceName: 'Pixel_8.1',
-		platformName: 'Android',
-		platformVersion: '8.1',
+		deviceName: 'iPhone XS Simulator',
+		platformName: 'iOS',
+		platformVersion: '13.4',
 		orientation: 'PORTRAIT',
-		app: join(process.cwd(), './android/app/build/outputs/apk/debug/app-debug.apk'),
-		appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
+		// This is the app-id you get back when you upload the app to the Sauce Storage
+		app: 'storage:91e5468a-6145-43d0-9d3f-451d5ba75353',
+		build: 'iOS Sample App Simulator tests',
 		// Read the reset strategies very well, they differ per platform, see
 		// http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
 		noReset: true,
 		newCommandTimeout: 240,
-		maxInstances: 1,
 		language: argv.language || 'en',
-		locale: argv.language || 'en',
 	},
 ];
 

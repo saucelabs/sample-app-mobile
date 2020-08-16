@@ -1,6 +1,6 @@
 const { join } = require('path');
 const { argv } = require('yargs');
-const { config } = require('./wdio.shared.conf');
+const { config } = require('./wdio.appium.local.shared');
 
 // ============
 // Capabilities
@@ -12,7 +12,7 @@ config.capabilities = [
 		// The defaults you need to have in your config
 		deviceName: 'iPhone 11',
 		platformName: 'iOS',
-		platformVersion: '13.4',
+		platformVersion: '13.6',
 		orientation: 'PORTRAIT',
 		// The path to the app
 		app: join(process.cwd(), './apps/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.1.1.zip'),
@@ -24,15 +24,5 @@ config.capabilities = [
 		language: argv.language || 'en',
 	},
 ];
-
-// ======
-// Appium
-// ======
-config.services = config.services.concat('appium');
-config.appium = {
-	command: 'appium',
-};
-// Tell Appium which port to use
-config.port = 4723;
 
 exports.config = config;
