@@ -21,11 +21,13 @@
     "ios.clear.build": "yarn clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
     "ios.release": "react-native run-ios --configuration Release",
     "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
-    "postinstall": "npx jetify"
+    "postinstall": "npx jetify & patch-package"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
     "i18n-js": "^3.5.1",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-biometrics": "^2.1.2",

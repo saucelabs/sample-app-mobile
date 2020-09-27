@@ -74,12 +74,22 @@ export default class InventoryListItem extends Component {
           addToCart={ this.addToCart }
           removeFromCart={ this.removeFromCart }
           navigateToItem={ this.navigateToItem }
+          disableScroll={this.props.disableScroll}
+          enableDrag={this.props.enableDrag}
+          draggable={this.props.draggable}
+          dropZoneValues={this.props.dropZoneValues}
+          setDropZoneValues={this.props.setDropZoneValues}
           { ...this.props }
         /> :
         <SwagRowItem
           addToCart={ this.addToCart }
           removeFromCart={ this.removeFromCart }
           navigateToItem={ this.navigateToItem }
+          disableScroll={this.props.disableScroll}
+          enableDrag={this.props.enableDrag}
+          draggable={this.props.draggable}
+          dropZoneValues={this.props.dropZoneValues}
+          setDropZoneValues={this.props.setDropZoneValues}
           { ...this.props }
         />
     );
