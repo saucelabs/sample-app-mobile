@@ -11,7 +11,7 @@ export default class SwagLabsStatusBar extends Component {
     if (IS_IOS) {
       return (
         <View style={ styles.status_bar }>
-          <StatusBar barStyle='dark-content' translucent={ false }/>
+          <StatusBar barStyle="dark-content" translucent={ false }/>
         </View>
       );
     }

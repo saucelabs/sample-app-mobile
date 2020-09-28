@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ShoppingCart } from '../shopping-cart';
 import { Button, Divider } from 'react-native-elements';
 import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
-import { Animated, PanResponder, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {
 	MAKE_ACCESSIBLE_FOR_AUTOMATION,
 	MUSEO_SANS_BOLD,
@@ -15,119 +15,6 @@ import { colors } from '../utils/colors';
 export default class SwagGridItem extends Component {
 	constructor(props) {
 		super(props);
-	}
-
-	// https://github.com/facebook/react-native/blob/0.61-stable/RNTester/js/examples/PanResponder/PanResponderExample.js
-	_handleStartShouldSetPanResponder = (
-		event,
-		gestureState,
-	) => {
-		// Should we become active when the user presses down on the circle?
-		// return true;
-		return this.props.draggable;
-	};
-
-	_handleMoveShouldSetPanResponder = (
-		event,
-		gestureState,
-	) => {
-		// Should we become active when the user moves a touch over the circle?
-		// return true;
-		return this.props.draggable;
-	};
-
-	_handlePanResponderGrant = (
-		event,
-		gestureState,
-	) => {
-		this.props.disableScroll();
-		this._listItemStyles.style.opacity = 1;
-		this._listItemStyles.style.zIndex = 9999;
-		this._listItemStyles.style.borderWidth = 2;
-		this._listItemStyles.style.borderStyle = 'dashed';
-		this._listItemStyles.style.borderColor = colors.slRed;
-		this._listItemStyles.style.padding = 10;
-		this._updateNativeStyles();
-	};
-
-	_handlePanResponderMove = (event, gestureState) => {
-		this.props.setDropZoneValues();
-		this._listItemStyles.style.left = this._previousLeft + gestureState.dx;
-		this._listItemStyles.style.top = this._previousTop + gestureState.dy;
-		this._updateNativeStyles();
-	};
-
-	_handlePanResponderEnd = (event, gestureState) => {
-		if (this._isDropZone(gestureState, this.props.dropZoneValues)) {
-			this.props.addToCart();
-		}
-
-		this._unHighlight();
-		this._previousLeft = 0;
-		this._previousTop = 0;
-		this._listItemStyles.style.left = 0;
-		this._listItemStyles.style.top = 0;
-		this._listItemStyles.style.zIndex = 1;
-		this._listItemStyles.style.borderWidth = 0;
-		this._listItemStyles.style.borderColor = colors.white;
-		this._listItemStyles.style.padding = 0;
-		this._updateNativeStyles();
-		this.props.disableScroll();
-		this.props.enableDrag(false);
-	};
-
-	_isDropZone = (gesture, dropZoneValues) => {
-		const dz = dropZoneValues;
-
-		return (
-			gesture.moveY > dz.top &&
-			gesture.moveY < dz.bottom &&
-			gesture.moveX > dz.left &&
-			gesture.moveX < dz.right
-		);
-	};
-
-	_panResponder = PanResponder.create({
-		onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
-		onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
-		onPanResponderGrant: this._handlePanResponderGrant,
-		onPanResponderMove: this._handlePanResponderMove,
-		onPanResponderRelease: this._handlePanResponderEnd,
-		onPanResponderTerminate: this._handlePanResponderEnd,
-	});
-
-	_previousLeft = 0;
-	_previousTop = 0;
-	_listItemStyles = { style: {} };
-	_zIndex = 1;
-	listItem = null;
-
-	UNSAFE_componentWillMount() {
-		this._previousLeft = 0;
-		this._previousTop = 0;
-		this._listItemStyles = {
-			style: {
-				left: this._previousLeft,
-				top: this._previousTop,
-				zIndex: this.zIndex,
-			},
-		};
-	}
-
-	componentDidMount() {
-		this._updateNativeStyles();
-	}
-
-	_highlight() {
-		this._updateNativeStyles();
-	}
-
-	_unHighlight() {
-		this._updateNativeStyles();
-	}
-
-	_updateNativeStyles() {
-		this.listItem && this.listItem.setNativeProps(this._listItemStyles);
 	}
 
 	render() {
@@ -163,10 +50,8 @@ export default class SwagGridItem extends Component {
 					this.props.draggable ? { opacity: 0.5 } : {},
 				] }
 				{ ...testProperties(I18n.t('inventoryListPage.itemContainer')) }
-				ref={ listItem => {
-					this.listItem = listItem;
-				} }
-				{ ...this._panResponder.panHandlers }
+				ref={ this.props.listItem }
+				{ ...this.props.panResponder.panHandlers }
 			>
 				<TouchableOpacity
 					onPress={ navigateToItem }
