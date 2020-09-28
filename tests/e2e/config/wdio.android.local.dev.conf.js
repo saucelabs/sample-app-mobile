@@ -11,9 +11,9 @@ config.capabilities = [
 	{
 		// The defaults you need to have in your config
 		automationName: 'UiAutomator2',
-		deviceName: 'Pixel_8.1',
+		deviceName: 'Pixel_3_10.0',
 		platformName: 'Android',
-		platformVersion: '8.1',
+		platformVersion: '10.0',
 		orientation: 'PORTRAIT',
 		app: join(process.cwd(), './android/app/build/outputs/apk/debug/app-debug.apk'),
 		appWaitActivity: 'com.swaglabsmobileapp.MainActivity',

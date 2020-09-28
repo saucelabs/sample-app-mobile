@@ -88,6 +88,7 @@ export default {
 	'inventoryListPage': {
 		'header': 'PRODUKTEN',
 		'screen': 'PRODUKTEN',
+		'dropZone': 'Winkelwagen drop zone',
 		'addButton': 'VOEG TOE',
 		'removeButton': 'VERWIJDEREN',
 		'itemContainer': 'Product',

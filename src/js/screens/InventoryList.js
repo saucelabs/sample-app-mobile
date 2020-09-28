@@ -187,20 +187,22 @@ export default class InventoryList extends Component {
 
 		return (
 			<ThemeProvider>
-				{ !this.state.drag && (
-					<SecondaryHeader
-						header={ I18n.t('inventoryListPage.header') }
-						component={ headerButtons }
-						fixed
-					/>
-				) }
-				{ this.state.drag && (
-					<View style={ { zIndex: 1 } } ref={ dropZone => this.dropZone = dropZone }>
-						<View style={ styles.dragCartContainer }>
-							<Text style={ styles.dragCartText }>Drag here to add to cart!</Text>
+				<View {...testProperties(I18n.t('inventoryListPage.dropZone'))}>
+					{ !this.state.drag && (
+						<SecondaryHeader
+							header={ I18n.t('inventoryListPage.header') }
+							component={ headerButtons }
+							// fixed
+						/>
+					) }
+					{ this.state.drag && (
+						<View style={ { zIndex: 1 } } ref={ dropZone => this.dropZone = dropZone }>
+							<View style={ styles.dragCartContainer }>
+								<Text style={ styles.dragCartText }>Drag here to add to cart!</Text>
+							</View>
 						</View>
-					</View>
-				) }
+					) }
+				</View>
 				<ScrollView
 					style={ [ styles.scrollContainer, this.state.drag ? styles.dragScrollContainer : {} ] }
 					keyboardShouldPersistTaps="handled"
@@ -231,7 +233,7 @@ export default class InventoryList extends Component {
 								setDropZoneValues={ this.setDropZoneValues }
 							/>
 						}
-						style={ { paddingTop: 65 } }
+						style={ [this.state.drag ? styles.activeDragFlatList : styles.inActiveDragFlatList] }
 					/>
 					<Footer/>
 				</ScrollView>
@@ -287,5 +289,11 @@ const styles = StyleSheet.create({
 		color: colors.slRed,
 		fontSize: 22,
 		fontFamily: MUSEO_SANS_NORMAL,
+	},
+	inActiveDragFlatList: {
+		paddingTop: 0,
+	},
+	activeDragFlatList: {
+		paddingTop: 65,
 	},
 });

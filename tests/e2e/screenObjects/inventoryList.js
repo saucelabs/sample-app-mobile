@@ -68,6 +68,59 @@ class InventoryListScreen extends Base {
 	}
 
 	/**
+	 * Drag a swag items to the cart
+	 *
+	 * @param {string} needle
+	 *
+	 * @return {void}
+	 */
+	dragSwagItemToCart(needle) {
+		const swagItem = this.swagItem(needle);
+		Gestures.scrollDownToElement(swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`), 10);
+
+		const dropZoneRec = driver.getElementRect($(`~test-${this.SELECTORS.inventoryListPage.dropZone}`).elementId);
+		const dragElementRec = driver.getElementRect(swagItem.elementId);
+
+		// See http://appium.io/docs/en/commands/interactions/actions/#actions
+		driver.performActions([{
+			type: 'pointer',
+			id: 'finger1',
+			parameters: {pointerType: 'touch'},
+			actions: [
+				// Pick the center of the draggable element
+				{
+					type: 'pointerMove',
+					duration: 0,
+					x: dragElementRec.x + dragElementRec.width / 2,
+					y: dragElementRec.y + dragElementRec.height / 2,
+				},
+				{type: 'pointerDown', button: 0},
+				{type: 'pause', duration: 2000},
+				// Move it to the center of the drop zone
+				// @todo: stupid that we need to have this extra move and wait
+				{
+					type: 'pointerMove',
+					duration: 0,
+					x: dragElementRec.x + dragElementRec.width / 2,
+					y: dragElementRec.y + dragElementRec.height / 2,
+				},
+				{type: 'pause', duration: 2000},
+				{
+					type: 'pointerMove',
+					duration: 250,
+					x: dropZoneRec.x + dropZoneRec.width / 2,
+					y: dropZoneRec.y + dropZoneRec.height / 2,
+				},
+				{type: 'pointerUp', button: 0},
+			],
+		}]);
+
+
+		// there is a small delay in adding items in the cart
+		return driver.pause(250);
+	}
+
+	/**
 	 * Remove a swag items from the cart
 	 *
 	 * @param {string} needle
