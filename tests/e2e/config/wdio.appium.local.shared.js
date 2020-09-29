@@ -10,7 +10,7 @@ config.services = config.services.concat([ [
 		args: {
 			// This will let us automatically download the needed ChromeDriver
 			relaxedSecurity: true,
-		}
+		},
 	},
 ] ]);
 

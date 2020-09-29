@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ShoppingCart } from '../shopping-cart';
 import { Button, Divider } from 'react-native-elements';
 import I18n from '../config/I18n';
@@ -51,11 +52,9 @@ export default class SwagGridItem extends Component {
 				] }
 				{ ...testProperties(I18n.t('inventoryListPage.itemContainer')) }
 				ref={ this.props.listItem }
-				{ ...this.props.panResponder.panHandlers }
 			>
 				<TouchableOpacity
 					onPress={ navigateToItem }
-					onLongPress={ () => this.props.enableDrag(true) }
 					{ ...MAKE_ACCESSIBLE_FOR_AUTOMATION }
 					style={ styles.item_wrapper }
 				>
@@ -79,6 +78,18 @@ export default class SwagGridItem extends Component {
 							${ price }
 						</Text>
 
+						{ !ShoppingCart.isItemInCart(id) && (
+							<View
+								style={ styles.dragIconContainer }
+								{ ...this.props.panResponder.panHandlers }
+								{ ...testProperties(I18n.t('inventoryListPage.dragHandle')) }
+							>
+								<Icon
+									style={ styles.icon }
+									name="drag"
+								/>
+							</View>) }
+
 						{ cartButton }
 					</View>
 				</TouchableOpacity>
@@ -91,13 +102,17 @@ const styles = StyleSheet.create({
 	item_container: {
 		backgroundColor: colors.white,
 		flex: 1,
-		marginBottom: 20,
-		marginTop: 20,
-		marginLeft: 20,
+		marginBottom: 10,
+		marginTop: 10,
+		marginLeft: 10,
+		padding: 10,
+		borderWidth: 2,
+		borderStyle: 'dashed',
+		borderColor: colors.white,
 		zIndex: 1,
 	},
 	item_container_margin_right: {
-		marginRight: 20,
+		marginRight: 8,
 	},
 	item_wrapper: {
 		flex: 1,
@@ -154,5 +169,18 @@ const styles = StyleSheet.create({
 	},
 	remove_button_title_style: {
 		color: colors.gray,
+	},
+	dragIconContainer: {
+		height: 48,
+		position: 'absolute',
+		bottom: 0,
+		left: -2,
+		zIndex: 4,
+		justifyContent: 'center',
+
+	},
+	icon: {
+		color: colors.slRed,
+		fontSize: 26,
 	},
 });

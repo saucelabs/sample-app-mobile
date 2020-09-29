@@ -85,9 +85,7 @@ export default class InventoryListItem extends Component {
 		this.listItemStyles.style.left = 0;
 		this.listItemStyles.style.top = 0;
 		this.listItemStyles.style.zIndex = 1;
-		this.listItemStyles.style.borderWidth = 0;
 		this.listItemStyles.style.borderColor = colors.white;
-		this.listItemStyles.style.padding = 0;
 		this.updateNativeStyles();
 		this.props.disableScroll();
 		this.props.enableDrag(false);
@@ -104,19 +102,18 @@ export default class InventoryListItem extends Component {
 		);
 	};
 
+	// https://www.youtube.com/watch?v=tsM3N_7bNcE
 	panResponder = PanResponder.create({
-		// Should we become active when the user presses down
-		onStartShouldSetPanResponder: () => this.props.draggable,
-		// Should we become active when the user moves a touch
-		onMoveShouldSetPanResponder: () => this.props.draggable,
+		onStartShouldSetPanResponder: ()=> true,
+		onStartShouldSetPanResponderCapture: ()=> true,
+		onMoveShouldSetPanResponder: ()=> true,
+		onMoveShouldSetPanResponderCapture: ()=> true,
 		onPanResponderGrant: () => {
+			this.props.enableDrag(true);
 			this.props.disableScroll();
 			this.listItemStyles.style.opacity = 1;
 			this.listItemStyles.style.zIndex = 9999;
-			this.listItemStyles.style.borderWidth = 2;
-			this.listItemStyles.style.borderStyle = 'dashed';
 			this.listItemStyles.style.borderColor = colors.slRed;
-			this.listItemStyles.style.padding = 10;
 			this.updateNativeStyles();
 		},
 		onPanResponderMove: (event, gestureState) => {
@@ -160,7 +157,6 @@ export default class InventoryListItem extends Component {
 					removeFromCart={ this.removeFromCart }
 					navigateToItem={ this.navigateToItem }
 					disableScroll={ this.props.disableScroll }
-					enableDrag={ this.props.enableDrag }
 					draggable={ this.props.draggable }
 					dropZoneValues={ this.props.dropZoneValues }
 					setDropZoneValues={ this.props.setDropZoneValues }
@@ -173,7 +169,6 @@ export default class InventoryListItem extends Component {
 					removeFromCart={ this.removeFromCart }
 					navigateToItem={ this.navigateToItem }
 					disableScroll={ this.props.disableScroll }
-					enableDrag={ this.props.enableDrag }
 					draggable={ this.props.draggable }
 					dropZoneValues={ this.props.dropZoneValues }
 					setDropZoneValues={ this.props.setDropZoneValues }

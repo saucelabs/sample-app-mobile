@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, View, ScrollView, Image, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, View, Image, Text, TouchableOpacity } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
 import { InventoryData } from '../data/inventory-data.js';
@@ -134,16 +134,16 @@ export default class InventoryList extends Component {
 	keyExtractor = item => item.name;
 
 	setDropZoneValues = () => {
-		this.dropZone.measure((x, y, width, height, pageX, pageY) => {
-			this.setState({
-				dropZoneValues: {
-					bottom: pageY + 65,
-					left: pageX,
-					right: pageX + width,
-					top: pageY,
-				},
+			this.dropZone.measure((x, y, width, height, pageX, pageY) => {
+				this.setState({
+					dropZoneValues: {
+						bottom: pageY + 65,
+						left: pageX,
+						right: pageX + width,
+						top: pageY,
+					},
+				});
 			});
-		});
 	};
 
 	render() {
@@ -187,56 +187,54 @@ export default class InventoryList extends Component {
 
 		return (
 			<ThemeProvider>
-				<View {...testProperties(I18n.t('inventoryListPage.dropZone'))}>
+				<View { ...testProperties(I18n.t('inventoryListPage.dropZone')) } ref={ dropZone => this.dropZone = dropZone }>
 					{ !this.state.drag && (
 						<SecondaryHeader
 							header={ I18n.t('inventoryListPage.header') }
 							component={ headerButtons }
-							// fixed
 						/>
 					) }
 					{ this.state.drag && (
-						<View style={ { zIndex: 1 } } ref={ dropZone => this.dropZone = dropZone }>
+						<View style={ { zIndex: 1 } }>
 							<View style={ styles.dragCartContainer }>
 								<Text style={ styles.dragCartText }>Drag here to add to cart!</Text>
 							</View>
 						</View>
 					) }
 				</View>
-				<ScrollView
-					style={ [ styles.scrollContainer, this.state.drag ? styles.dragScrollContainer : {} ] }
+				<FlatList
+					data={ this.state.inventoryList }
+					keyExtractor={ this.keyExtractor }
+					key={ (this.state.gridView) ? 1 : 0 }
+					numColumns={ this.state.gridView ? 2 : 1 }
+					scrollEnabled={ this.state.scrollEnabled }
+					renderItem={ ({ item, index }) =>
+						<InventoryListItem
+							key={ item.id }
+							id={ item.id }
+							image_url={ item.image_url }
+							name={ item.name }
+							desc={ item.desc }
+							price={ item.price }
+							navigation={ this.props.navigation }
+							index={ index }
+							gridView={ this.state.gridView }
+							disableScroll={ this.scrollEnabled }
+							enableDrag={ this.dragEnabled }
+							draggable={ this.state.drag }
+							dropZoneValues={ this.state.dropZoneValues }
+							setDropZoneValues={ this.setDropZoneValues }
+						/>
+					}
+					style={ [
+						styles.scrollContainer,
+						this.state.drag ? styles.dragScrollContainer : {},
+						this.state.drag ? styles.activeDragFlatList : styles.inActiveDragFlatList,
+					] }
 					keyboardShouldPersistTaps="handled"
 					{ ...testProperties(I18n.t('inventoryListPage.screen')) }
-					scrollEnabled={ this.state.scrollEnabled }
-				>
-					<FlatList
-						data={ this.state.inventoryList }
-						keyExtractor={ this.keyExtractor }
-						key={ (this.state.gridView) ? 1 : 0 }
-						numColumns={ this.state.gridView ? 2 : 1 }
-						scrollEnabled={ this.state.scrollEnabled }
-						renderItem={ ({ item, index }) =>
-							<InventoryListItem
-								key={ item.id }
-								id={ item.id }
-								image_url={ item.image_url }
-								name={ item.name }
-								desc={ item.desc }
-								price={ item.price }
-								navigation={ this.props.navigation }
-								index={ index }
-								gridView={ this.state.gridView }
-								disableScroll={ this.scrollEnabled }
-								enableDrag={ this.dragEnabled }
-								draggable={ this.state.drag }
-								dropZoneValues={this.state.dropZoneValues}
-								setDropZoneValues={ this.setDropZoneValues }
-							/>
-						}
-						style={ [this.state.drag ? styles.activeDragFlatList : styles.inActiveDragFlatList] }
-					/>
-					<Footer/>
-				</ScrollView>
+					ListFooterComponent={ <Footer/> }
+				/>
 			</ThemeProvider>
 		);
 	}

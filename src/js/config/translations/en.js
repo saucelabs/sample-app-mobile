@@ -94,6 +94,7 @@ export default {
 		'itemContainer': 'Item',
 		'itemTitle': 'Item title',
 		'itemDescription': 'Item description',
+		'dragHandle': 'Drag Handle',
 		'price': 'Price',
 		'toggle': 'Toggle',
 	},

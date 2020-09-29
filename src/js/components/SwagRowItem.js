@@ -11,6 +11,7 @@ import {
 	MUSEO_SANS_NORMAL,
 } from '../config/Constants';
 import { colors } from '../utils/colors';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class SwagRowItem extends Component {
 	constructor(props) {
@@ -45,11 +46,9 @@ export default class SwagRowItem extends Component {
 			<Animated.View
 				style={ [ styles.animatedContainer, this.props.draggable ? { opacity: 0.5 } : {} ] }
 				ref={ this.props.listItem }
-				{ ...this.props.panResponder.panHandlers }
 			>
 				<TouchableOpacity
 					onPress={ navigateToItem }
-					onLongPress={ () => this.props.enableDrag(true) }
 					{ ...MAKE_ACCESSIBLE_FOR_AUTOMATION }
 					style={ styles.item_container }
 					{ ...testProperties(I18n.t('inventoryListPage.itemContainer')) }
@@ -80,6 +79,18 @@ export default class SwagRowItem extends Component {
 
 								<Divider style={ styles.divider }/>
 							</View>
+							{ !ShoppingCart.isItemInCart(id) && (
+								<View
+									style={ styles.dragIconContainer }
+									{ ...this.props.panResponder.panHandlers }
+									{ ...testProperties(I18n.t('inventoryListPage.dragHandle')) }
+								>
+									<Icon
+										style={ styles.icon }
+										name="drag"
+									/>
+								</View>
+							) }
 							<View style={ styles.bottom_right }>
 								{ cartButton }
 							</View>
@@ -94,11 +105,14 @@ export default class SwagRowItem extends Component {
 const styles = StyleSheet.create({
 	animatedContainer: {
 		backgroundColor: colors.white,
+		borderWidth: 2,
+		borderStyle: 'dashed',
+		borderColor: colors.white,
 	},
 	item_container: {
 		flex: 1,
 		minHeight: 124,
-		margin: 10,
+		margin: 8,
 		flexDirection: 'row',
 		alignItems: 'flex-start',
 		justifyContent: 'flex-end',
@@ -164,7 +178,7 @@ const styles = StyleSheet.create({
 		borderWidth: 3,
 		borderRadius: 0,
 		elevation: 0,
-		width: 40,
+		width: 55,
 		height: 40,
 		padding: 0,
 	},
@@ -174,11 +188,27 @@ const styles = StyleSheet.create({
 		color: colors.slRed,
 		fontSize: 42,
 		fontFamily: MUSEO_SANS_NORMAL,
+		marginLeft: 15,
 	},
 	remove_button_style: {
 		borderColor: colors.gray,
+		width: 40,
 	},
 	remove_button_title_style: {
 		color: colors.gray,
+		marginLeft: 0,
+	},
+	dragIconContainer: {
+		height: 40,
+		position: 'absolute',
+		bottom: 0,
+		right: 28,
+		zIndex: 4,
+		justifyContent: 'center',
+
+	},
+	icon: {
+		color: colors.slRed,
+		fontSize: 26,
 	},
 });
