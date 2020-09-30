@@ -157,7 +157,7 @@ If the QR code holds an URL it will automatically open it in a browser. The foll
 ![QR Code](./docs/assets/qr-code.png)
 
 ### Gestures
-This app also support different Gestures which can be found below, more will follow.
+This app also support different Gestures which can be found below.
 
 #### Drag and Drop
 The swag overview page supports to drag and drop swag items to the cart. All *Add to cart*-buttons have a drag handle which you can use
