@@ -88,11 +88,13 @@ export default {
 	'inventoryListPage': {
 		'header': 'PRODUCTS',
 		'screen': 'PRODUCTS',
+		'dropZone': 'Cart drop zone',
 		'addButton': 'ADD TO CART',
 		'removeButton': 'REMOVE',
 		'itemContainer': 'Item',
 		'itemTitle': 'Item title',
 		'itemDescription': 'Item description',
+		'dragHandle': 'Drag Handle',
 		'price': 'Price',
 		'toggle': 'Toggle',
 	},

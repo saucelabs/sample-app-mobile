@@ -88,6 +88,7 @@ export default {
 	'inventoryListPage': {
 		'header': 'PRODUCTOS',
 		'screen': 'PRODUCTOS',
+		'dropZone': 'Zona de caída del carrito de compras',
 		'addButton': 'AÑADIR A CARRITO',
 		'removeButton': 'REMOVER',
 		'itemContainer': 'Articulo',

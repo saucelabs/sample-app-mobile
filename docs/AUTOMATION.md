@@ -38,7 +38,7 @@ For installation instructions check [here](#setup-appium-on-a-local-machine).
 
 By default the following emulators and simulators are used:
 
-- Pixel One
+- Pixel Three
 - iPhone X
 
 > **Please check [tests/e2e/config/wdio.android.local.dev.conf.js](../tests/e2e/config/wdio.android.local.dev.conf.js) and [tests/e2e/config/wdio.ios.local.dev.conf.js](../tests/e2e/config/wdio.ios.local.dev.conf.js) for the correct names and OS versions of the emulators / simulators. They need to be equal for test execution.**

@@ -68,6 +68,23 @@ class InventoryListScreen extends Base {
 	}
 
 	/**
+	 * Drag a swag items to the cart
+	 *
+	 * @param {string} needle
+	 *
+	 * @return {void}
+	 */
+	dragSwagItemToCart(needle) {
+		const swagItemDragHandle = this.swagItem(needle).$(`~test-${ this.SELECTORS.inventoryListPage.dragHandle }`);
+		Gestures.scrollDownToElement(swagItemDragHandle, 10);
+
+		Gestures.dragAndDrop(swagItemDragHandle, $(`~test-${ this.SELECTORS.inventoryListPage.dropZone }`));
+
+		// there is a small delay in adding items in the cart
+		return driver.pause(250);
+	}
+
+	/**
 	 * Remove a swag items from the cart
 	 *
 	 * @param {string} needle
@@ -148,7 +165,7 @@ class InventoryListScreen extends Base {
 			const iosNeedleQuery = `name CONTAINS "${ needle }"`;
 			const iosButtonTextQuery = `name CONTAINS "${ this.SELECTORS.inventoryItemPage.addButton }" OR name CONTAINS "${ this.SELECTORS.inventoryItemPage.removeButton }"`;
 			const iosSignQuery = 'name CONTAINS "+" OR name CONTAINS "-"';
-			const iosSelector = `${ classChain }**/XCUIElementTypeOther[\`${ iosItemQuery }\`]/**/XCUIElementTypeOther[\`${iosNeedleQuery} AND (${iosButtonTextQuery} OR ${iosSignQuery})\`]`;
+			const iosSelector = `${ classChain }**/XCUIElementTypeOther[\`${ iosItemQuery }\`]/**/XCUIElementTypeOther[\`${ iosNeedleQuery } AND (${ iosButtonTextQuery } OR ${ iosSignQuery })\`]`;
 			const androidSelector = `//android.widget.TextView[contains(@text,'${ needle }')]//ancestor::*[@content-desc='${ selector }']`;
 			const elm = $(driver.isIOS ? iosSelector : androidSelector);
 

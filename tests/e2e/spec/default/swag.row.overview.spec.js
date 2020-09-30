@@ -81,6 +81,17 @@ describe('Swag row overview page', () => {
 		expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
 	});
 
+	it('should be able to drag swag to the cart', () => {
+		InventoryListScreen.toggleLayout();
+		InventoryListScreen.dragSwagItemToCart(SELECTORS.products.backpack.name);
+
+		expect(AppHeader.getCartAmount()).toContain(1, 'Cart amount is not correct');
+
+		InventoryListScreen.dragSwagItemToCart(SELECTORS.products.bikeLight.name);
+
+		expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
+	});
+
 	it('should be able to remove swag from the cart', () => {
 		InventoryListScreen.toggleLayout();
 		InventoryListScreen.addSwagItemToCart(SELECTORS.products.backpack.name);
