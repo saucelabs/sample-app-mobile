@@ -59,11 +59,17 @@ export default class SwagGridItem extends Component {
 					style={ styles.item_wrapper }
 				>
 					<View style={ styles.top_container }>
-						<Image
-							source={ image_url }
-							style={ styles.item_image }
-							resizeMode="contain"
-						/>
+						<View>
+							<Image
+								source={ image_url }
+								style={ styles.item_image }
+								resizeMode="contain"
+							/>
+							<Icon
+								style={ styles.tapIcon }
+								name="gesture-tap"
+							/>
+						</View>
 
 						<Text
 							style={ styles.item_name }
@@ -182,5 +188,13 @@ const styles = StyleSheet.create({
 	icon: {
 		color: colors.slRed,
 		fontSize: 26,
+	},
+	tapIcon: {
+		color: colors.slRed,
+		fontSize: 18,
+		position: 'absolute',
+		bottom: 30,
+		right: 0,
+		zIndex: 6,
 	},
 });

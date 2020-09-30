@@ -59,6 +59,10 @@ export default class SwagRowItem extends Component {
 							style={ styles.item_image }
 							resizeMode="contain"
 						/>
+						<Icon
+							style={ styles.tapIcon }
+							name="gesture-tap"
+						/>
 					</View>
 
 					<View style={ styles.right_container }>
@@ -210,5 +214,13 @@ const styles = StyleSheet.create({
 	icon: {
 		color: colors.slRed,
 		fontSize: 26,
+	},
+	tapIcon: {
+		color: colors.slRed,
+		fontSize: 18,
+		position: 'absolute',
+		bottom: 5,
+		right: 15,
+		zIndex: 6,
 	},
 });

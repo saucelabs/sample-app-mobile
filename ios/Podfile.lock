@@ -243,7 +243,9 @@ PODS:
     - React
   - RNQuickAction (0.3.13):
     - React
-  - RNVectorIcons (6.6.0):
+  - RNReanimated (1.13.1):
+    - React
+  - RNVectorIcons (7.1.0):
     - React
   - Yoga (1.14.0)
 
@@ -285,6 +287,7 @@ DEPENDENCIES:
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNQuickAction (from `../node_modules/react-native-quick-actions`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -361,6 +364,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions"
   RNQuickAction:
     :path: "../node_modules/react-native-quick-actions"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -402,7 +407,8 @@ SPEC CHECKSUMS:
   RNLocalize: 07eb7a91d10021cdf59d80061ebf3adb8a5b5688
   RNPermissions: 2f74237e97b08beda01e914301e12524ddddf5b8
   RNQuickAction: 6d404a869dc872cde841ad3147416a670d13fa93
-  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
+  RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
 PODFILE CHECKSUM: 3a25b58a53c04c09cbaa5aa156a21d7415f2f614

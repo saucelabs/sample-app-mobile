@@ -31,6 +31,7 @@ export default {
 		'screen': 'Cart Content',
 		'cartItem': {
 			'itemContainer': 'Item',
+			'imageContainer': 'Image Container',
 			'description': 'Description',
 			'amount': 'Amount',
 			'remove': 'REMOVE',
