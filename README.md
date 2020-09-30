@@ -22,6 +22,7 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [QR code scanner](#qr-code-scanner)
     1. [Gestures](#gestures)
         1. [Drag and Drop](#drag-and-drop)
+        1. [Pinch and Zoom](#pinch-zoom)
 1. [Contributing to the app](#contributing-to-the-app)
 1. [Test-automation](#test-automation)
 1. [FAQ](#faq)
@@ -164,6 +165,11 @@ to drag the items into the cart. When you press the handle and start dragging it
 the *drop zone* the swag item will be added to the cart. 
 
 ![saucelabs.ios](./docs/assets/drag-and-drop.gif)
+
+#### Pinch and Zoom
+The swag details page supports to pinch and zoom the swag item image. Check the gif on how to use it.
+
+![saucelabs.ios](./docs/assets/pinch-zoom.gif)
 
 ## Contributing to the app
 If you want to contribute to the app and add new functionalities, please check the documentation [here](./docs/CONTRIBUTING.md).
