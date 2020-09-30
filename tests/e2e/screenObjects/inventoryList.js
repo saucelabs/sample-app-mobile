@@ -78,42 +78,7 @@ class InventoryListScreen extends Base {
 		const swagItemDragHandle = this.swagItem(needle).$(`~test-${ this.SELECTORS.inventoryListPage.dragHandle }`);
 		Gestures.scrollDownToElement(swagItemDragHandle, 10);
 
-		const dropZoneRec = driver.getElementRect($(`~test-${ this.SELECTORS.inventoryListPage.dropZone }`).elementId);
-		const dragElementRec = driver.getElementRect(swagItemDragHandle.elementId);
-
-		// See http://appium.io/docs/en/commands/interactions/actions/#actions
-		driver.performActions([ {
-			type: 'pointer',
-			id: 'finger1',
-			parameters: { pointerType: 'touch' },
-			actions: [
-				// Pick the center of the draggable element
-				{
-					type: 'pointerMove',
-					duration: 0,
-					x: dragElementRec.x + dragElementRec.width / 2,
-					y: dragElementRec.y + dragElementRec.height / 2,
-				},
-				{ type: 'pointerDown', button: 0 },
-				{ type: 'pause', duration: 250 },
-				// Finger moves a small amount very quickly to trigger the event
-				{
-					type: 'pointerMove',
-					duration: 1,
-					x: dragElementRec.x + dragElementRec.width / 2,
-					y: dragElementRec.y + dragElementRec.height / 2 - 10,
-				},
-				{ type: 'pause', duration: 100 },
-				// Move it to the center of the drop zone
-				{
-					type: 'pointerMove',
-					duration: 250,
-					x: dropZoneRec.x + dropZoneRec.width / 2,
-					y: dropZoneRec.y + dropZoneRec.height / 2,
-				},
-				{ type: 'pointerUp', button: 0 },
-			],
-		} ]);
+		Gestures.dragAndDrop(swagItemDragHandle, $(`~test-${ this.SELECTORS.inventoryListPage.dropZone }`));
 
 		// there is a small delay in adding items in the cart
 		return driver.pause(250);
