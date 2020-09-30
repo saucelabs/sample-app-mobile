@@ -96,11 +96,11 @@ export default class InventoryListItemDetails extends Component {
 		return (
 			<View
 				style={ styles.item_container }
-				{ ...testProperties(I18n.t('inventoryListPage.itemContainer')) }
+				{ ...testProperties(I18n.t('inventoryItemPage.screen')) }
 			>
 				<View
 					style={styles.imageContainer}
-					{ ...testProperties(I18n.t('inventoryListPage.imageContainer')) }
+					{ ...testProperties(I18n.t('inventoryItemPage.imageContainer')) }
 				>
 					<PinchGestureHandler onGestureEvent={ this.handlePinch }>
 						<Animated.Image

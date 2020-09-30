@@ -73,4 +73,16 @@ describe('Swag Item Page', () => {
 
 		expect(InventoryItemScreen.isShown()).toEqual(false, 'The swag items details page should not be visible');
 	});
+
+	it('should be able to zoom into the image of the selected swag item on the details page', () => {
+		const swagItemLabel = SELECTORS.products.backpack.name;
+
+		InventoryListScreen.openSwagItemDetails(swagItemLabel);
+		InventoryItemScreen.waitForIsShown();
+
+		Gestures.PinchAndZoom(InventoryItemScreen.imageContainer, 'zoom');
+
+		// For demo purpose, we can't verify properly if the zoom / pinch worked
+		driver.pause(5000);
+	});
 });

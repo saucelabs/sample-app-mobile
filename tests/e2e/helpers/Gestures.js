@@ -225,6 +225,67 @@ class Gestures {
       ],
     } ]);
   }
+
+  /**
+   * Pinch or zoom an element (pinch doesn't work on Android with this method yet)
+   *
+   * @param {Element} element
+   */
+  static PinchAndZoom(element, gesture = 'zoom'){
+    const isZoom = gesture.toLowerCase() === 'zoom';
+    const {x, y, width, height} = driver.getElementRect(element.elementId);
+    const centerX = x + width / 2;
+    const centerY = y + height / 2;
+    // iOS seems to respond 'heavier' on a position change, so make it way smaller
+    const xPosition = driver.isIOS ? 10 : width / 2;
+    const finger1 = {
+      start: {type: 'pointerMove', duration: 0, x: centerX, y: centerY},
+      end: {type: 'pointerMove', duration: 250, x: centerX - xPosition, y: centerY},
+    };
+    const finger2 = {
+      start: {type: 'pointerMove', duration: 0, x: centerX, y: centerY},
+      end: {type: 'pointerMove', duration: 250, x: centerX + xPosition, y: centerY},
+    };
+
+    driver.performActions([
+      // First finger
+      {
+        type: 'pointer',
+        id: 'finger1',
+        parameters: {pointerType: 'touch'},
+        actions: [
+          // move finger into start position
+          isZoom ? finger1.start : finger1.end,
+          // finger comes down into contact with screen
+          {type: 'pointerDown', button: 0},
+          // pause for a little bit
+          {type: 'pause', duration: 100},
+          // finger moves to end position
+          isZoom ? finger1.end : finger1.start,
+          // finger lets up, off the screen
+          {type: 'pointerUp', button: 0},
+        ],
+      },
+      // Second finger
+      {
+        type: 'pointer',
+        id: 'finger2',
+        parameters: {pointerType: 'touch'},
+        actions: [
+          // move finger into start position
+          isZoom ? finger2.start : finger2.end,
+          // finger comes down into contact with screen
+          {type: 'pointerDown', button: 0},
+          // pause for a little bit
+          {type: 'pause', duration: 100},
+          // finger moves to end position
+          isZoom ? finger2.end : finger2.start,
+          // finger lets up, off the screen
+          {type: 'pointerUp', button: 0},
+        ],
+      },
+    ]);
+  }
 }
 
 export default Gestures;
