@@ -20,6 +20,8 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [3D Touch / Force touch](#3d-touch---force-touch)
     1. [Different languages](#different-languages)
     1. [QR code scanner](#qr-code-scanner)
+    1. [Gestures](#gestures)
+        1. [Drag and Drop](#drag-and-drop)
 1. [Contributing to the app](#contributing-to-the-app)
 1. [Test-automation](#test-automation)
 1. [FAQ](#faq)
@@ -152,6 +154,16 @@ This page opens the camera (you first need to allow the app to use the camera) w
 If the QR code holds an URL it will automatically open it in a browser. The following image can be used to demo this option.
 
 ![QR Code](./docs/assets/qr-code.png)
+
+### Gestures
+This app also support different Gestures which can be found below, more will follow.
+
+#### Drag and Drop
+The swag overview page supports to drag and drop swag items to the cart. All *Add to cart*-buttons have a drag handle which you can use
+to drag the items into the cart. When you press the handle and start dragging it a *drop zone* will appear. When you release the swag item into
+the *drop zone* the swag item will be added to the cart. 
+
+![saucelabs.ios](./docs/assets/drag-and-drop.gif)
 
 ## Contributing to the app
 If you want to contribute to the app and add new functionalities, please check the documentation [here](./docs/CONTRIBUTING.md).
