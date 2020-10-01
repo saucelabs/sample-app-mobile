@@ -1,11 +1,11 @@
 const { config } = require('./wdio.shared.conf');
 
-// ============================
-// Sauce EMUSIM specific config
-// ============================
+// =====================
+// Sauce specific config
+// =====================
 config.user = process.env.SAUCE_USERNAME;
 config.key = process.env.SAUCE_ACCESS_KEY;
-// Determination of the the US or EU EMUSIM cloud url will be done
+// Determination of the US or EU cloud url will be done
 // automatically with the webdriverio service, just tell WebdriverIO
 // to or connect to the 'us', or the 'eu' region
 config.services = config.services.concat('sauce');
