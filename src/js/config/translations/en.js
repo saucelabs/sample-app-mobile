@@ -105,6 +105,7 @@ export default {
 			'description': 'We\'re sorry, but your call could not be completed as dialled.\nPlease check your number, and try your call again.\nIf you are in need of assistance, please dial 0 to be connected with an operator.\nThis is a recording.\n4 T 1.',
 			'price': '√-1',
 		},
+		'imageContainer': 'Image Container',
 		'addButton': 'ADD TO CART',
 		'backButton': 'BACK TO PRODUCTS',
 		'removeButton': 'REMOVE',
