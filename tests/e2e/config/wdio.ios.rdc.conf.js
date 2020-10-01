@@ -1,5 +1,5 @@
 const { argv } = require('yargs');
-const { config } = require('./wdio.rdc.shared');
+const { config } = require('./wdio.sauce.shared');
 
 // ============
 // Capabilities
@@ -8,21 +8,23 @@ const { config } = require('./wdio.rdc.shared');
 // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
 config.capabilities = [
   {
-    deviceName: 'iPhone XS*',
-    // The api key that has a reference to the app-project in the TO cloud
-    testobject_api_key: process.env.SAUCE_RDC_EU_ACCESS_KEY_IOS,
-    // The name of the test for in the cloud
-    testobject_test_name: 'sample-app-mobile',
-    // Some default settings
-    // You can find more info in the TO Appium Basic Setup section
+    deviceName: 'iPhone ([678]|X.*)',
     platformName: 'iOS',
+    app: 'storage:filename=iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.4.0.ipa',
     idleTimeout: 180,
-    testobject_cache_device: true,
+    cacheId: new Date().getTime(),
     noReset: true,
     orientation: 'PORTRAIT',
     newCommandTimeout: 180,
     language: argv.language || 'en',
+    build: 'sample-app-mobile',
+    name: 'Sample App Test Name',
   },
 ];
+
+// =============================================
+// Max instances of the same device in the cloud
+// =============================================
+config.maxInstances = 5;
 
 exports.config = config;

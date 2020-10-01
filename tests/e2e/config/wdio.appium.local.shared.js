@@ -7,6 +7,10 @@ config.services = config.services.concat([ [
 	'appium',
 	{
 		command: 'appium',
+		args: {
+			// This will let us automatically download the needed ChromeDriver
+			relaxedSecurity: true,
+		},
 	},
 ] ]);
 

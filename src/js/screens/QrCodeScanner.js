@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Linking, StyleSheet, Text, View } from 'react-native';
+import { Alert, Linking, StyleSheet, Text, View } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { ThemeProvider } from 'react-native-elements';
 import SecondaryHeader from '../components/SecondaryHeader';
@@ -12,9 +12,18 @@ export default class QrCodeScanner extends Component {
 	}
 
 	onSuccess = (e) => {
-		Linking
-			.openURL(e.data)
-			.catch(err => alert('An error occurred', err));
+		const url = e.data;
+		const validHttp = url.match(/^(https?):\/\//);
+		const validWww = url.match(/^(www.)/);
+
+		if (validHttp || validWww) {
+			const newUrl = `${ validWww ? 'https://' : '' }${ url }`;
+			Linking
+				.openURL(newUrl)
+				.catch(err => Alert.alert('An error occurred', err));
+		} else {
+			Alert.alert(`'${ url }' is not a valid url`);
+		}
 	};
 
 	render() {

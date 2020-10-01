@@ -55,6 +55,18 @@ describe('Cart Content Page', () => {
 		expect(AppHeader.getCartAmount()).not.toContain(1, 'The amount if items in the cart is not correct.');
 	});
 
+	it('should update the cart if an item is removed by swiping', () => {
+    openDeepLinkUrl('cart/0,1');
+    CartContent.waitForIsShown();
+
+		expect(AppHeader.getCartAmount()).toContain(2, 'Cart amount is not correct');
+
+		CartContent.swipeToOpenDeleteButton();
+		CartContent.deleteSwagItem();
+
+		expect(AppHeader.getCartAmount()).toContain(1, 'The amount if items in the cart is not correct.');
+	});
+
 	it('should open the checkout page one page if checkout is clicked', () => {
     openDeepLinkUrl('cart/0,1');
     CartContent.waitForIsShown();

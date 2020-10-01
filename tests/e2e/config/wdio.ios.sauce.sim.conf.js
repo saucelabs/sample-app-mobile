@@ -1,5 +1,5 @@
 const { argv } = require('yargs');
-const { config } = require('./wdio.emusim.shared');
+const { config } = require('./wdio.sauce.shared');
 
 // ============
 // Capabilities

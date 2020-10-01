@@ -38,7 +38,7 @@ For installation instructions check [here](#setup-appium-on-a-local-machine).
 
 By default the following emulators and simulators are used:
 
-- Pixel One
+- Pixel Three
 - iPhone X
 
 > **Please check [tests/e2e/config/wdio.android.local.dev.conf.js](../tests/e2e/config/wdio.android.local.dev.conf.js) and [tests/e2e/config/wdio.ios.local.dev.conf.js](../tests/e2e/config/wdio.ios.local.dev.conf.js) for the correct names and OS versions of the emulators / simulators. They need to be equal for test execution.**
@@ -170,9 +170,9 @@ You first need to upload your app to the Sauce Labs storage, this can be found [
 > **NOTE: Adjust the name of the downloaded app in the script to upload the correct app.**
 
 ### The setup for EMUSIM
-This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.emusim.shared.js`](../tests/e2e/config/wdio.emusim.shared.js) is created that holds the EMUSIM specific configuration for both iOS and Android.
+This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.sauce.shared.js`](../tests/e2e/config/wdio.sauce.shared.js) is created that holds the EMUSIM specific configuration for both iOS and Android.
 
-Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.emusim.shared.js`](../tests/e2e/config/wdio.emusim.shared.js)-file to select or the US or the EU cloud.
+Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.sauce.shared.js`](../tests/e2e/config/wdio.sauce.shared.js)-file to select or the US or the EU cloud.
 
 ```js
 // For using the EU RDC cloud, just use `eu` like below
@@ -207,9 +207,9 @@ yarn ios.sauce.sim
 This project setup also has a setup for running the tests on the Real Device Cloud of Sauce Labs. To be able to do this there first needs to be a build of the app that can run on real devices, see [Building the app](./BUILDING.md) for more information on how to do that or download a version from the [versions](https://github.com/saucelabs/sample-app-mobile/releases) page.
 
 ### The setup
-This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.rdc.shared.js`](../tests/e2e/config/wdio.rdc.shared.js) is created that holds the RDC specific configuration for both iOS and Android.
+This setup uses the WebdriverIO basics from the [`wdio.shared.conf.js`](../tests/e2e/config/wdio.shared.conf.js) where all the basics (like the test framework and so on) are defined. On top of that a [`wdio.sauce.shared.js`](../tests/e2e/config/wdio.sauce.shared.js) is created that holds the RDC specific configuration for both iOS and Android.
 
-Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.rdc.shared.js`](../tests/e2e/config/wdio.rdc.shared.js)-file to select or the US or the EU cloud.
+Depending on where the tests need to be run (US/EU-cloud), the correct region of the cloud need to be selected. Change this piece of code in the [`wdio.sauce.shared.js`](../tests/e2e/config/wdio.sauce.shared.js)-file to select or the US or the EU cloud.
 
 ```js
 // For using the EU RDC cloud, just use `eu` like below

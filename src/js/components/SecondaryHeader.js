@@ -14,7 +14,11 @@ export default class SecondaryHeader extends Component {
     const component = this.props.component || null;
 
     return (
-      <View style={ [ styles.secondary_header, (!headerText && !component) ? styles.bottom_border : {} ] }>
+			<View style={ [
+				styles.secondary_header,
+				(!headerText && !component) ? styles.bottom_border : {},
+				this.props.fixed ? styles.fixed : {},
+			] }>
         { headerText }
         { component }
       </View>
@@ -40,6 +44,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+	fixed: {
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		width: '100%',
+    zIndex: 2,
+	},
   bottom_border: {
     height: 0,
     borderBottomWidth: 1,

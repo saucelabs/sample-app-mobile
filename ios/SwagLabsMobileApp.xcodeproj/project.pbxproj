@@ -790,7 +790,7 @@
 			baseConfigurationReference = 0C5BDB74CFDBF4E80A7C5913 /* Pods-SwagLabsMobileApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2ZQ6NMUD9U;
 				INFOPLIST_FILE = SwagLabsMobileApp/Info.plist;
@@ -812,7 +812,7 @@
 			baseConfigurationReference = EE4945281AA2278ED763F2A4 /* Pods-SwagLabsMobileApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2ZQ6NMUD9U;
 				INFOPLIST_FILE = SwagLabsMobileApp/Info.plist;

@@ -15,6 +15,10 @@ class InventoryItemScreen extends Base {
 		return $(`~test-${ this.SELECTORS.inventoryItemPage.screen }`);
 	}
 
+	get imageContainer() {
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.imageContainer }`);
+	}
+
 	get description() {
 		return $(`~test-${ this.SELECTORS.inventoryItemPage.itemDescription }`);
 	}

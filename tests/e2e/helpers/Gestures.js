@@ -179,6 +179,145 @@ class Gestures {
       y: y * percentage,
     };
   }
+
+  /**
+   * Drag an element from position A to B
+   *
+   * @param {Element} draggableElement
+   * @param {Element} dropZoneElement
+   */
+  static dragAndDrop(draggableElement, dropZoneElement){
+    // Get the dropzone and the draggable element rectangles
+    const dropZoneRec = driver.getElementRect(dropZoneElement.elementId);
+    const dragElementRec = driver.getElementRect(draggableElement.elementId);
+
+    // See http://appium.io/docs/en/commands/interactions/actions/#actions
+    driver.performActions([ {
+      type: 'pointer',
+      id: 'finger1',
+      parameters: { pointerType: 'touch' },
+      actions: [
+        // Pick the center of the draggable element
+        {
+          type: 'pointerMove',
+          duration: 0,
+          x: dragElementRec.x + dragElementRec.width / 2,
+          y: dragElementRec.y + dragElementRec.height / 2,
+        },
+        { type: 'pointerDown', button: 0 },
+        { type: 'pause', duration: 250 },
+        // Finger moves a small amount very quickly to trigger the event
+        {
+          type: 'pointerMove',
+          duration: 1,
+          x: dragElementRec.x + dragElementRec.width / 2,
+          y: dragElementRec.y + dragElementRec.height / 2 - 10,
+        },
+        { type: 'pause', duration: 100 },
+        // Move it to the center of the drop zone
+        {
+          type: 'pointerMove',
+          duration: 250,
+          x: dropZoneRec.x + dropZoneRec.width / 2,
+          y: dropZoneRec.y + dropZoneRec.height / 2,
+        },
+        { type: 'pointerUp', button: 0 },
+      ],
+    } ]);
+  }
+
+  /**
+   * Pinch or zoom an element (pinch doesn't work on Android with this method yet)
+   *
+   * @param {Element} element
+   * @param {string} gesture Possible values are `zoom|pinch`
+   */
+  static pinchAndZoom(element, gesture = 'zoom'){
+    const isZoom = gesture.toLowerCase() === 'zoom';
+    const {x, y, width, height} = driver.getElementRect(element.elementId);
+    const centerX = x + width / 2;
+    const centerY = y + height / 2;
+    // iOS seems to respond 'heavier' on a position change, so make it way smaller
+    const xPosition = driver.isIOS ? 10 : width / 2;
+    const finger1 = {
+      start: {type: 'pointerMove', duration: 0, x: centerX, y: centerY},
+      end: {type: 'pointerMove', duration: 250, x: centerX - xPosition, y: centerY},
+    };
+    const finger2 = {
+      start: {type: 'pointerMove', duration: 0, x: centerX, y: centerY},
+      end: {type: 'pointerMove', duration: 250, x: centerX + xPosition, y: centerY},
+    };
+
+    driver.performActions([
+      // First finger
+      {
+        type: 'pointer',
+        id: 'finger1',
+        parameters: {pointerType: 'touch'},
+        actions: [
+          // move finger into start position
+          isZoom ? finger1.start : finger1.end,
+          // finger comes down into contact with screen
+          {type: 'pointerDown', button: 0},
+          // pause for a little bit
+          {type: 'pause', duration: 100},
+          // finger moves to end position
+          isZoom ? finger1.end : finger1.start,
+          // finger lets up, off the screen
+          {type: 'pointerUp', button: 0},
+        ],
+      },
+      // Second finger
+      {
+        type: 'pointer',
+        id: 'finger2',
+        parameters: {pointerType: 'touch'},
+        actions: [
+          // move finger into start position
+          isZoom ? finger2.start : finger2.end,
+          // finger comes down into contact with screen
+          {type: 'pointerDown', button: 0},
+          // pause for a little bit
+          {type: 'pause', duration: 100},
+          // finger moves to end position
+          isZoom ? finger2.end : finger2.start,
+          // finger lets up, off the screen
+          {type: 'pointerUp', button: 0},
+        ],
+      },
+    ]);
+  }
+
+  /**
+   * Pinch or zoom an element (pinch doesn't work on Android with this method yet)
+   *
+   * @param {Element} element
+   */
+  static swipeItemLeft(element){
+    const {x, y, width, height} = driver.getElementRect(element.elementId);
+    const centerX = x + width / 2;
+    const centerY = y + height / 2;
+
+    driver.performActions([
+      {
+        type: 'pointer',
+        id: 'finger1',
+        parameters: {pointerType: 'touch'},
+        actions: [
+          // move finger into start position
+          {type: 'pointerMove', duration: 0, x: centerX, y: centerY},
+          // finger comes down into contact with screen
+          {type: 'pointerDown', button: 0},
+          // pause for a little bit
+          {type: 'pause', duration: 100},
+          // finger moves to end position
+          {type: 'pointerMove', duration: 250, x: centerX - width / 4, y: centerY},
+          // finger lets up, off the screen
+          {type: 'pointerUp', button: 0},
+        ],
+      },
+    ]);
+  }
 }
 
 export default Gestures;
