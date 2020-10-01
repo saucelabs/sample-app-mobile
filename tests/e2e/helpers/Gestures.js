@@ -230,8 +230,9 @@ class Gestures {
    * Pinch or zoom an element (pinch doesn't work on Android with this method yet)
    *
    * @param {Element} element
+   * @param {string} gesture Possible values are `zoom|pinch`
    */
-  static PinchAndZoom(element, gesture = 'zoom'){
+  static pinchAndZoom(element, gesture = 'zoom'){
     const isZoom = gesture.toLowerCase() === 'zoom';
     const {x, y, width, height} = driver.getElementRect(element.elementId);
     const centerX = x + width / 2;
@@ -280,6 +281,37 @@ class Gestures {
           {type: 'pause', duration: 100},
           // finger moves to end position
           isZoom ? finger2.end : finger2.start,
+          // finger lets up, off the screen
+          {type: 'pointerUp', button: 0},
+        ],
+      },
+    ]);
+  }
+
+  /**
+   * Pinch or zoom an element (pinch doesn't work on Android with this method yet)
+   *
+   * @param {Element} element
+   */
+  static swipeItemLeft(element){
+    const {x, y, width, height} = driver.getElementRect(element.elementId);
+    const centerX = x + width / 2;
+    const centerY = y + height / 2;
+
+    driver.performActions([
+      {
+        type: 'pointer',
+        id: 'finger1',
+        parameters: {pointerType: 'touch'},
+        actions: [
+          // move finger into start position
+          {type: 'pointerMove', duration: 0, x: centerX, y: centerY},
+          // finger comes down into contact with screen
+          {type: 'pointerDown', button: 0},
+          // pause for a little bit
+          {type: 'pause', duration: 100},
+          // finger moves to end position
+          {type: 'pointerMove', duration: 250, x: centerX - width / 4, y: centerY},
           // finger lets up, off the screen
           {type: 'pointerUp', button: 0},
         ],
