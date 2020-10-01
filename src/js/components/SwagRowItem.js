@@ -44,7 +44,7 @@ export default class SwagRowItem extends Component {
 
 		return (
 			<Animated.View
-				style={ [ styles.animatedContainer, this.props.draggable ? { opacity: 0.5 } : {} ] }
+				style={ [ styles.animatedContainer, this.props.draggable ? styles.transparentItem : {} ] }
 				ref={ this.props.listItem }
 			>
 				<TouchableOpacity
@@ -222,5 +222,8 @@ const styles = StyleSheet.create({
 		bottom: 5,
 		right: 15,
 		zIndex: 6,
+	},
+	transparentItem: {
+		opacity: 0.5,
 	},
 });

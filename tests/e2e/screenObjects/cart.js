@@ -62,6 +62,25 @@ class CartContent extends Base {
 	}
 
 	/**
+	 * Delete the first item from the cart
+	 *
+	 * @return {void}
+	 */
+	deleteSwagItem() {
+		return $(`~test-${ this.SELECTORS.cartContent.cartItem.delete }`).click();
+	}
+
+	/**
+	 * Open the delete option with a swipe to left
+	 */
+	swipeToOpenDeleteButton() {
+		Gestures.swipeItemLeft(this.swagItems[ 0 ]);
+
+		// Wait for the animation
+		return driver.pause(500);
+	}
+
+	/**
 	 * Continue shopping
 	 *
 	 * @return {void}

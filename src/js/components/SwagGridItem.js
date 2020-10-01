@@ -48,7 +48,7 @@ export default class SwagGridItem extends Component {
 				style={ [
 					styles.item_container,
 					index % 2 === 0 ? {} : styles.item_container_margin_right,
-					this.props.draggable ? { opacity: 0.5 } : {},
+					this.props.draggable ? styles.transparentItem : {},
 				] }
 				{ ...testProperties(I18n.t('inventoryListPage.itemContainer')) }
 				ref={ this.props.listItem }
@@ -196,5 +196,8 @@ const styles = StyleSheet.create({
 		bottom: 30,
 		right: 0,
 		zIndex: 6,
+	},
+	transparentItem: {
+		opacity: 0.5,
 	},
 });

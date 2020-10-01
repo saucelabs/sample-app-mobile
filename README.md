@@ -23,6 +23,7 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [Gestures](#gestures)
         1. [Drag and Drop](#drag-and-drop)
         1. [Pinch and Zoom](#pinch-zoom)
+        1. [Swiping](#swiping)
 1. [Contributing to the app](#contributing-to-the-app)
 1. [Test-automation](#test-automation)
 1. [FAQ](#faq)
@@ -170,6 +171,11 @@ the *drop zone* the swag item will be added to the cart.
 The swag details page supports to pinch and zoom the swag item image. Check the gif on how to use it.
 
 ![saucelabs.ios](./docs/assets/pinch-zoom.gif)
+
+#### Swiping
+The cart contents page supports to remove an item from the cart by swiping it to the left. Check the gif on how to use it.
+
+![saucelabs.ios](./docs/assets/swipe-left.gif)
 
 ## Contributing to the app
 If you want to contribute to the app and add new functionalities, please check the documentation [here](./docs/CONTRIBUTING.md).

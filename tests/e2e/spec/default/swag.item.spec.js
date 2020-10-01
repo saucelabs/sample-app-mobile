@@ -80,7 +80,7 @@ describe('Swag Item Page', () => {
 		InventoryListScreen.openSwagItemDetails(swagItemLabel);
 		InventoryItemScreen.waitForIsShown();
 
-		Gestures.PinchAndZoom(InventoryItemScreen.imageContainer, 'zoom');
+		Gestures.pinchAndZoom(InventoryItemScreen.imageContainer, 'zoom');
 
 		// For demo purpose, we can't verify properly if the zoom / pinch worked
 		driver.pause(5000);

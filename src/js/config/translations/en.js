@@ -34,6 +34,7 @@ export default {
 			'description': 'Description',
 			'amount': 'Amount',
 			'remove': 'REMOVE',
+			'delete': 'Delete',
 			'price': 'Price',
 		},
 	},

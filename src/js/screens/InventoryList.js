@@ -134,16 +134,16 @@ export default class InventoryList extends Component {
 	keyExtractor = item => item.name;
 
 	setDropZoneValues = () => {
-			this.dropZone.measure((x, y, width, height, pageX, pageY) => {
-				this.setState({
-					dropZoneValues: {
-						bottom: pageY + 65,
-						left: pageX,
-						right: pageX + width,
-						top: pageY,
-					},
-				});
+		this.dropZone.measure((x, y, width, height, pageX, pageY) => {
+			this.setState({
+				dropZoneValues: {
+					bottom: pageY + 65,
+					left: pageX,
+					right: pageX + width,
+					top: pageY,
+				},
 			});
+		});
 	};
 
 	render() {
@@ -187,7 +187,7 @@ export default class InventoryList extends Component {
 
 		return (
 			<ThemeProvider>
-				<View { ...testProperties(I18n.t('inventoryListPage.dropZone')) } ref={ dropZone => this.dropZone = dropZone }>
+				<View { ...testProperties(I18n.t('inventoryListPage.dropZone')) } ref={ dropZone => {this.dropZone = dropZone;} }>
 					{ !this.state.drag && (
 						<SecondaryHeader
 							header={ I18n.t('inventoryListPage.header') }
@@ -195,10 +195,8 @@ export default class InventoryList extends Component {
 						/>
 					) }
 					{ this.state.drag && (
-						<View style={ { zIndex: 1 } }>
-							<View style={ styles.dragCartContainer }>
-								<Text style={ styles.dragCartText }>Drag here to add to cart!</Text>
-							</View>
+						<View style={ styles.dragCartContainer }>
+							<Text style={ styles.dragCartText }>Drag here to add to cart!</Text>
 						</View>
 					) }
 				</View>
