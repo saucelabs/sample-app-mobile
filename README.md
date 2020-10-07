@@ -3,7 +3,8 @@
 # Sauce Labs Native Sample Application
 
 In this repository you will find our Sauce Labs sample-app. You can use it as a sample app for testautomation on your local machine or in our Real Device Cloud.
-The latest version of the iOS and Android app can be found [here](https://github.com/saucelabs/sample-app-mobile/releases)
+The latest version of the iOS and Android app can be found [here](https://github.com/saucelabs/sample-app-mobile/releases).\
+There are serveral user accounts for this app that will trigger different stages in the app. If you swipe down on the login page you will see them together with the password.
 
 ![saucelabs.ios](./docs/assets/ios-overview.gif) ![saucelabs.android](./docs/assets/android-overview.gif)
 
