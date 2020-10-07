@@ -45,7 +45,7 @@ class InventoryListScreen extends Base {
 	 */
 	getSwagItemLabelText(needle) {
 		const elm = this.swagItems[ needle ].$(`~test-${ this.SELECTORS.inventoryListPage.itemTitle }`);
-		Gestures.scrollDownToElement(elm);
+		Gestures.scrollToElement({ element: elm, swipeDirection: 'up' });
 
 		return getTextOfElement(elm);
 	}
@@ -59,7 +59,11 @@ class InventoryListScreen extends Base {
 	 */
 	addSwagItemToCart(needle) {
 		const swagItem = this.swagItem(needle);
-		Gestures.scrollDownToElement(swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`), 10);
+		Gestures.scrollToElement({
+			element: swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`),
+			maxScrolls: 10,
+			swipeDirection: 'up',
+		});
 
 		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`).click();
 
@@ -76,7 +80,11 @@ class InventoryListScreen extends Base {
 	 */
 	dragSwagItemToCart(needle) {
 		const swagItemDragHandle = this.swagItem(needle).$(`~test-${ this.SELECTORS.inventoryListPage.dragHandle }`);
-		Gestures.scrollDownToElement(swagItemDragHandle, 10);
+		Gestures.scrollToElement({
+			element: swagItemDragHandle,
+			maxScrolls: 10,
+			swipeDirection: 'up',
+		});
 
 		Gestures.dragAndDrop(swagItemDragHandle, $(`~test-${ this.SELECTORS.inventoryListPage.dropZone }`));
 
@@ -93,7 +101,11 @@ class InventoryListScreen extends Base {
 	 */
 	removeSwagItemFromCart(needle) {
 		const swagItem = this.swagItem(needle);
-		Gestures.scrollDownToElement(swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`), 10);
+		Gestures.scrollToElement({
+			element: swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`),
+			maxScrolls: 10,
+			swipeDirection: 'up',
+		});
 
 		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`).click();
 

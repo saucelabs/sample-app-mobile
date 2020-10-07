@@ -9,8 +9,12 @@ export default {
 		'faceRecognition': 'face-recognition',
 		'username': 'Gebruikersnaam',
 		'loginText': {
-			'usernames': 'De huidige geaccepteerde gebruikersnamen voor deze applicatie zijn:\n\n__standard_user__\n__locked_out_user__\n__problem_user__',
-			'password': 'En het wachtwoord voor iedere gebruiker is:\n\n__secret_sauce__',
+			'usernamesText': 'De huidige geaccepteerde gebruikersnamen voor deze applicatie zijn (druk om automatisch te vullen):',
+			'standard': 'standard_user',
+			'locked': 'locked_out_user',
+			'problem': 'problem_user',
+			'passwordText': 'En het wachtwoord voor iedere gebruiker is:',
+			'password': 'secret_sauce',
 		},
 		'errors': {
 			'container': 'Error bericht',
@@ -34,6 +38,7 @@ export default {
 			'description': 'Omschrijving',
 			'amount': 'Aantal',
 			'remove': 'VERWIJDEREN',
+			'delete': 'Delete',
 			'price': 'Prijs',
 		},
 	},
@@ -94,6 +99,7 @@ export default {
 		'itemContainer': 'Product',
 		'itemTitle': 'Produkt titel',
 		'itemDescription': 'Produkt beschrijving',
+		'dragHandle': 'Drag Handle',
 		'price': 'Prijs',
 		'toggle': 'Toggle',
 	},
@@ -104,6 +110,7 @@ export default {
 			'description': 'Het spijt ons, maar wij kunnen uw order niet in ontvangst nemen vanwege een technische storing.',
 			'price': '√-1',
 		},
+		'imageContainer': 'Image Container',
 		'addButton': 'VOEG TOE',
 		'backButton': 'TERUG NAAR PRODUKTEN',
 		'removeButton': 'VERWIJDEREN',
@@ -147,7 +154,7 @@ export default {
 		'404Url': 'https://saucelabs.com/error/404',
 	},
 	'footer': {
-		'rights': '© 2019 Sauce Labs. Alle rechten voorbehouden.',
+		'rights': 'Sauce Labs. Alle rechten voorbehouden.',
 		'termsAndPrivacy': 'Voorwaarden | Privacy Policy',
 	},
 	'products': {

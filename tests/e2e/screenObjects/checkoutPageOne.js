@@ -7,7 +7,7 @@ class CheckoutPageOne extends Base {
 		super(`~test-${ driver.selectors.checkoutPageOne.screen }`);
 	}
 
-	get SELECTORS(){
+	get SELECTORS() {
 		return driver.selectors;
 	}
 
@@ -65,7 +65,11 @@ class CheckoutPageOne extends Base {
 		// On smaller devices the keyboard is in front of the submit button, so hide it
 		hideKeyboard(this.firstName);
 		// Check if the button is visible, if not scroll to it
-		Gestures.scrollDownToElement(this.continueCheckoutButton, 2);
+		Gestures.scrollToElement({
+			element: this.continueCheckoutButton,
+			maxScrolls: 2,
+			swipeDirection: 'up',
+		});
 		// Click on the button
 		this.continueCheckoutButton.click();
 	}
@@ -98,7 +102,11 @@ class CheckoutPageOne extends Base {
 	cancelCheckout() {
 		// On smaller devices the keyboard is in front of the submit button, so hide it
 		hideKeyboard(this.firstName);
-		Gestures.scrollDownToElement(this.cancelButton, 2);
+		Gestures.scrollToElement({
+			element: this.cancelButton,
+			maxScrolls: 2,
+			swipeDirection: 'up',
+		});
 		return this.cancelButton.click();
 	}
 }

@@ -2,6 +2,7 @@ import LoginScreen from '../../screenObjects/login';
 import InventoryListScreen from '../../screenObjects/inventoryList';
 import { restartApp } from '../../helpers/utils';
 import { LOGIN_USERS } from '../../helpers/e2eConstants';
+import Gestures from '../../helpers/Gestures';
 
 describe('Login', () => {
   const SELECTORS = driver.selectors;
@@ -40,5 +41,15 @@ describe('Login', () => {
     LoginScreen.signIn(LOGIN_USERS.NO_MATCH);
 
     expect(LoginScreen.getErrorMessage()).toContain(SELECTORS.login.errors.noMatch, 'The error message is not as expected');
+  });
+
+  it('should be able to login with auto filling standard user data', () => {
+    Gestures.scrollToElement({element: LoginScreen.standardUser, swipeDirection: 'up' });
+    LoginScreen.standardUser.click();
+    Gestures.scrollToElement({element: LoginScreen.loginButton, swipeDirection: 'down' });
+    LoginScreen.signIn();
+    InventoryListScreen.waitForIsShown();
+
+    expect(InventoryListScreen.isShown()).toEqual(true, 'Inventory List screen was not shown');
   });
 });

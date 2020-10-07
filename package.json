@@ -21,7 +21,7 @@
     "ios.clear.build": "yarn clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
     "ios.release": "react-native run-ios --configuration Release",
     "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
-    "postinstall": "npx jetify & patch-package"
+    "postinstall": "npx jetify && cd ios && pod install && cd .."
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
