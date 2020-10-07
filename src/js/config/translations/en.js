@@ -9,8 +9,12 @@ export default {
 		'faceRecognition': 'face-recognition',
 		'username': 'Username',
 		'loginText': {
-			'usernames': 'The currently accepted usernames for this application are:\n\n__standard_user__\n__locked_out_user__\n__problem_user__',
-			'password': 'And the password for all users is:\n\n__secret_sauce__',
+			'usernamesText': 'The currently accepted usernames for this application are (tap to autofill):',
+			'standard': 'standard_user',
+			'locked': 'locked_out_user',
+			'problem': 'problem_user',
+			'passwordText': 'And the password for all users is:',
+			'password': 'secret_sauce',
 		},
 		'errors': {
 			'container': 'Error message',
@@ -150,7 +154,7 @@ export default {
 		'404Url': 'https://saucelabs.com/error/404',
 	},
 	'footer': {
-		'rights': '© 2019 Sauce Labs. All Rights Reserved.',
+		'rights': 'Sauce Labs. All Rights Reserved.',
 		'termsAndPrivacy': 'Terms of Service | Privacy Policy',
 	},
 	'products': {

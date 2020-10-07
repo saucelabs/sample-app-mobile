@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Biometrics from 'react-native-biometrics';
 import { Divider } from 'react-native-elements';
 import { Credentials } from '../credentials.js';
@@ -8,7 +8,6 @@ import { ShoppingCart } from '../shopping-cart.js';
 import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import { MUSEO_SANS_BOLD, MUSEO_SANS_NORMAL, SCREENS } from '../config/Constants';
-import { ParseText } from '../utils/parseText';
 import { colors } from '../utils/colors';
 import { STATUS_BAR_HEIGHT } from '../components/StatusBar';
 import ActionButton from '../components/ActionButton';
@@ -40,6 +39,7 @@ export default class Login extends Component {
 		this.renderBiometryIcon = this.renderBiometryIcon.bind(this);
 		this.handleBiometryLogin = this.handleBiometryLogin.bind(this);
 		this.successfulLogin = this.successfulLogin.bind(this);
+		this.autoFillLoginDataButton = this.autoFillLoginDataButton.bind(this);
 	}
 
 	async componentDidMount() {
@@ -140,16 +140,30 @@ export default class Login extends Component {
 	 * Parse a string that holds a `__text__` markdown and transform it into a
 	 * string with bolds or normal text components
 	 *
-	 * @param {string} string
+	 * @param {string} username
+	 * @param {string} password
 	 *
 	 * @return {*[]}
 	 */
-	parseNormalBoldText(string) {
-		return (ParseText(string).map(text => (
-			<Text style={ [ text.bold ? styles.text_bold : {} ] } key={ text.id }>
-				{ text.value }
-			</Text>
-		)));
+	autoFillLoginDataButton(username, password) {
+		return (
+			<TouchableOpacity
+				onPress={ () => {
+					this.setState({
+						username,
+						password,
+						error: '',
+						passwordError: false,
+						usernameError: false,
+					});
+				} }
+				{ ...testProperties(username) }
+			>
+				<Text style={ [ styles.login_info, styles.text_bold ] }>
+					{ username }
+				</Text>
+			</TouchableOpacity>
+		);
 	}
 
 	/**
@@ -164,6 +178,8 @@ export default class Login extends Component {
 	}
 
 	render() {
+		const password = I18n.t('login.loginText.password');
+
 		return (
 			<ScrollView
 				contentContainerStyle={ styles.scroll_container }
@@ -207,13 +223,23 @@ export default class Login extends Component {
 						/>
 					</View>
 					<View style={ styles.login_info_container }>
-						<Text style={ styles.login_info }>
-							{ this.parseNormalBoldText(I18n.t('login.loginText.usernames')) }
-						</Text>
+						<View>
+							<Text style={ [ styles.login_info, styles.bottomMargin20 ] }>
+								{ I18n.t('login.loginText.usernamesText') }
+							</Text>
+							{ this.autoFillLoginDataButton(I18n.t('login.loginText.standard'), password) }
+							{ this.autoFillLoginDataButton(I18n.t('login.loginText.locked'), password) }
+							{ this.autoFillLoginDataButton(I18n.t('login.loginText.problem'), password) }
+						</View>
 						<Divider style={ styles.divider }/>
-						<Text style={ styles.login_info }>
-							{ this.parseNormalBoldText(I18n.t('login.loginText.password')) }
-						</Text>
+						<View>
+							<Text style={ [styles.login_info, styles.bottomMargin20] }>
+								{ I18n.t('login.loginText.passwordText') }
+							</Text>
+							<Text style={ [styles.login_info, styles.text_bold] }>
+								{ I18n.t('login.loginText.password') }
+							</Text>
+						</View>
 					</View>
 				</View>
 			</ScrollView>

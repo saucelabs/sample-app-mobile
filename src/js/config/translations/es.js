@@ -9,8 +9,12 @@ export default {
 		'faceRecognition': 'face-recognition',
 		'username': 'Usuario',
 		'loginText': {
-			'usernames': 'Los usuarios aceptados para esta aplicación son:\n\n__standard_user__\n__locked_out_user__\n__problem_user__',
-			'password': 'Y la contraseña para todos los usuarios es:\n\n__secret_sauce__',
+			'usernamesText': 'Los usuarios aceptados para esta aplicación son (toque para autocompletar):',
+			'standard': 'standard_user',
+			'locked': 'locked_out_user',
+			'problem': 'problem_user',
+			'passwordText': 'Y la contraseña para todos los usuarios es:',
+			'password': 'secret_sauce',
 		},
 		'errors': {
 			'container': 'Error',
@@ -34,6 +38,7 @@ export default {
 			'description': 'Descripción',
 			'amount': 'Cantidad',
 			'remove': 'REMOVER',
+			'delete': 'Delete',
 			'price': 'Precio',
 		},
 	},
@@ -94,6 +99,7 @@ export default {
 		'itemContainer': 'Articulo',
 		'itemTitle': 'Titulo de articulo',
 		'itemDescription': 'Descripción de articulo',
+		'dragHandle': 'Drag Handle',
 		'price': 'Precio',
 		'toggle': 'Alternar',
 	},
@@ -104,6 +110,7 @@ export default {
 			'description': 'Lo sentimos, la llamada no pudo ser completada como ha sido completada.\nPor favor rectifique su numero y trate de nuevo.\nSi necesita asistencia, marque 0 para ser conectado con la operadora.\nEsto es una grabación.\n4 T 1.',
 			'price': '√-1',
 		},
+		'imageContainer': 'Image Container',
 		'addButton': 'AÑADIR A CARRITO',
 		'backButton': 'REGRESO A PRODUCTOS',
 		'removeButton': 'REMOVER',
@@ -147,7 +154,7 @@ export default {
 		'404Url': 'https://saucelabs.com/error/404',
 	},
 	'footer': {
-		'rights': '© 2019 Sauce Labs. Todos los derechos reservados.',
+		'rights': 'Sauce Labs. Todos los derechos reservados.',
 		'termsAndPrivacy': 'Términos de servicio | Acuerdo de Privacidad',
 	},
 	'products': {

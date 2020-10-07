@@ -6,7 +6,8 @@ class CartContent extends Base {
 	constructor() {
 		super(`~test-${ driver.selectors.cartContent.screen }`);
 	}
-	get SELECTORS(){
+
+	get SELECTORS() {
 		return driver.selectors;
 	}
 
@@ -86,7 +87,7 @@ class CartContent extends Base {
 	 * @return {void}
 	 */
 	continueShopping() {
-		Gestures.scrollDownToElement(this.continueShoppingButton);
+		Gestures.scrollToElement({element: this.continueShoppingButton, swipeDirection: 'up' });
 
 		return this.continueShoppingButton.click();
 	}
@@ -97,7 +98,7 @@ class CartContent extends Base {
 	 * @return {void}
 	 */
 	goToCheckout() {
-		Gestures.scrollDownToElement(this.checkoutButton);
+		Gestures.scrollToElement({ element: this.checkoutButton, swipeDirection: 'up' });
 
 		return this.checkoutButton.click();
 	}

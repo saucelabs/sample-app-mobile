@@ -7,7 +7,7 @@ class LoginScreen extends Base {
 		super(`~test-${ driver.selectors.login.screen }`);
 	}
 
-	get SELECTORS(){
+	get SELECTORS() {
 		return driver.selectors;
 	}
 
@@ -51,6 +51,18 @@ class LoginScreen extends Base {
 		return $(`~test-${ this.SELECTORS.login.errors.container }`);
 	}
 
+	get standardUser() {
+		return $(`~test-${ this.SELECTORS.login.loginText.standard }`);
+	}
+
+	get lockedUser() {
+		return $(`~test-${ this.SELECTORS.login.loginText.locked }`);
+	}
+
+	get problemUser() {
+		return $(`~test-${ this.SELECTORS.login.loginText.problem }`);
+	}
+
 	/**
 	 * Sign in
 	 *
@@ -58,13 +70,13 @@ class LoginScreen extends Base {
 	 * @param {string} userDetails.username
 	 * @param {string} userDetails.password
 	 */
-	signIn(userDetails) {
+	signIn(userDetails = {}) {
 		const { password, username } = userDetails;
 
-		if (username !== '') {
+		if (username && username !== '') {
 			this.username.addValue(username);
 		}
-		if (password !== '') {
+		if (password && password !== '') {
 			this.password.addValue(password);
 		}
 
