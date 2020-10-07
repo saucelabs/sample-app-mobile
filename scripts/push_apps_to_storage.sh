@@ -21,7 +21,7 @@ curl \
   -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY"  \
   'https://api.us-west-1.saucelabs.com/v1/storage/upload'
 curl \
-  -F "payload=@../apps/iOS.Simulator.SauceLabs.Mobile.Sample.app.$VERSION.ipa" \
+  -F "payload=@../apps/iOS.RealDevice.SauceLabs.Mobile.Sample.app.$VERSION.ipa" \
   -F name=sample-app-ios.ipa \
   -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY"  \
   'https://api.us-west-1.saucelabs.com/v1/storage/upload'
@@ -40,7 +40,7 @@ curl \
   -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY"  \
   'https://api.eu-central-1.saucelabs.com/v1/storage/upload'
 curl \
-  -F "payload=@../apps/iOS.Simulator.SauceLabs.Mobile.Sample.app.$VERSION.ipa" \
+  -F "payload=@../apps/iOS.RealDevice.SauceLabs.Mobile.Sample.app.$VERSION.ipa" \
   -F name=sample-app-ios.ipa \
   -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY"  \
   'https://api.eu-central-1.saucelabs.com/v1/storage/upload'
