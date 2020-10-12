@@ -26,6 +26,7 @@ If you tap on them they will auto fill the login data.
         1. [Drag and Drop](#drag-and-drop)
         1. [Pinch and Zoom](#pinch-zoom)
         1. [Swiping](#swiping)
+    1. [Geo Location](#geo-location)
 1. [Contributing to the app](#contributing-to-the-app)
 1. [Test-automation](#test-automation)
 1. [FAQ](#faq)
@@ -178,6 +179,12 @@ The swag details page supports to pinch and zoom the swag item image. Check the 
 The cart contents page supports to remove an item from the cart by swiping it to the left. Check the gif on how to use it.
 
 ![saucelabs.ios](./docs/assets/swipe-left.gif)
+
+### Geo Location
+This app now also support testing changing the Geo Location. The app will pick up changes when the location is mocked, see this [test](./tests/e2e/spec/default/geo.location.spec.js)
+for more information. 
+
+![saucelabs.ios](./docs/assets/geo-location.gif)
 
 ## Contributing to the app
 If you want to contribute to the app and add new functionalities, please check the documentation [here](./docs/CONTRIBUTING.md).
