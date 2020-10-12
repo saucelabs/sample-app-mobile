@@ -151,7 +151,7 @@ export default {
 	},
 	'geoLocation':{
 		'header': 'GEO LOCATION',
-		'screen': 'GEO LOCATION',
+		'screen': 'GEO LOCATION-SCREEN',
 		'text': 'Hieronder vind je de breedte- en lengtegraad. Deze kun je met Appium wijzigen, zie',
 		'appiumLink': 'http://appium.io/docs/en/commands/session/geolocation/set-geolocation/',
 		'this':' deze ',

@@ -128,7 +128,7 @@ class GeoLocation extends Component {
 				{
 					enableHighAccuracy: true,
 					distanceFilter: 0,
-					interval: 5000,
+					interval: 2000,
 					fastestInterval: 500,
 				},
 			);

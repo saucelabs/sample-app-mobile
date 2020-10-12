@@ -151,7 +151,7 @@ export default {
 	},
 	'geoLocation':{
 		'header': 'UBICACIÓN GEOGRÁFICA',
-		'screen': 'UBICACIÓN GEOGRÁFICA',
+		'screen': 'UBICACIÓN GEOGRÁFICA-SCREEN',
 		'text': 'A continuación encontrará la latitud y la longitud. Puedes usar Appium para cambiarlas con',
 		'appiumLink': 'http://appium.io/docs/en/commands/session/geolocation/set-geolocation/',
 		'this':' esta ',

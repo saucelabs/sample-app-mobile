@@ -23,6 +23,7 @@ exports.config = {
 	reporters: [ 'spec' ],
 	jasmineNodeOpts: {
 		defaultTimeoutInterval: 120000,
+		helpers: [require.resolve('@babel/register')],
 	},
 	services: [ [
 		'native-app-compare',
@@ -40,10 +41,6 @@ exports.config = {
 	// =====
 	// Hooks
 	// =====
-	beforeSession: (config, capabilities, specs) => {
-		// Use Babel to compile the code before running all tests
-		require('@babel/register');
-	},
 	before: () => {
 		/**
 		 * Custom property that is used to determine if the app is already launched for the first time
