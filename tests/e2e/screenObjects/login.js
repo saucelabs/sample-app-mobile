@@ -7,7 +7,7 @@ class LoginScreen extends Base {
 		super(`~test-${ driver.selectors.login.screen }`);
 	}
 
-	get SELECTORS(){
+	get SELECTORS() {
 		return driver.selectors;
 	}
 
@@ -51,6 +51,18 @@ class LoginScreen extends Base {
 		return $(`~test-${ this.SELECTORS.login.errors.container }`);
 	}
 
+	get standardUser() {
+		return $(`~test-${ this.SELECTORS.login.loginText.standard }`);
+	}
+
+	get lockedUser() {
+		return $(`~test-${ this.SELECTORS.login.loginText.locked }`);
+	}
+
+	get problemUser() {
+		return $(`~test-${ this.SELECTORS.login.loginText.problem }`);
+	}
+
 	/**
 	 * Sign in
 	 *
@@ -58,13 +70,13 @@ class LoginScreen extends Base {
 	 * @param {string} userDetails.username
 	 * @param {string} userDetails.password
 	 */
-	signIn(userDetails) {
+	signIn(userDetails = {}) {
 		const { password, username } = userDetails;
 
-		if (username !== '') {
+		if (username && username !== '') {
 			this.username.addValue(username);
 		}
-		if (password !== '') {
+		if (password && password !== '') {
 			this.password.addValue(password);
 		}
 
@@ -93,13 +105,13 @@ class LoginScreen extends Base {
 	 */
 	isBiometryAlertShown() {
 		if (driver.isIOS) {
-			return this.iosRetryBiometry.waitForDisplayed(DEFAULT_TIMEOUT);
+			return this.iosRetryBiometry.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 		}
 
 		// We need to pause here to make sure the biometric log in has been executed
 		driver.pause(1000);
 
-		return this.androidBiometryAlert.waitForDisplayed(DEFAULT_TIMEOUT);
+		return this.androidBiometryAlert.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 	}
 
 	/**
@@ -113,9 +125,11 @@ class LoginScreen extends Base {
 		// Check if biometric usage is  allowed
 		if (!driver.config.services.includes('sauce')) {
 			this.allowIosBiometricUsage();
+
+			return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
 		}
 
-		return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
+		return driver.touchId(successful);
 	}
 
 	/**
@@ -124,7 +138,7 @@ class LoginScreen extends Base {
 	allowIosBiometricUsage() {
 		if (!driver.isBioMetricAllowed) {
 			// Wait for the alert
-			this.iosAllowBiometry.waitForDisplayed(15000);
+			this.iosAllowBiometry.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 			this.allowBiometry.click();
 			// Set it to accept
 			driver.isBioMetricAllowed = true;
@@ -148,7 +162,7 @@ class LoginScreen extends Base {
 	 * @return {Promise<void>}
 	 */
 	submitAndroidBiometricLogin(fingerprintId) {
-		this.androidBiometryAlert.waitForDisplayed(DEFAULT_TIMEOUT);
+		this.androidBiometryAlert.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
 		return driver.fingerPrint(fingerprintId);
 	}
@@ -159,7 +173,7 @@ class LoginScreen extends Base {
 	 * @return {string}
 	 */
 	getErrorMessage() {
-		this.errorMessage.waitForDisplayed(DEFAULT_TIMEOUT);
+		this.errorMessage.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
 		return getTextOfElement(this.errorMessage);
 	}

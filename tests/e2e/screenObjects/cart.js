@@ -6,7 +6,8 @@ class CartContent extends Base {
 	constructor() {
 		super(`~test-${ driver.selectors.cartContent.screen }`);
 	}
-	get SELECTORS(){
+
+	get SELECTORS() {
 		return driver.selectors;
 	}
 
@@ -62,12 +63,31 @@ class CartContent extends Base {
 	}
 
 	/**
+	 * Delete the first item from the cart
+	 *
+	 * @return {void}
+	 */
+	deleteSwagItem() {
+		return $(`~test-${ this.SELECTORS.cartContent.cartItem.delete }`).click();
+	}
+
+	/**
+	 * Open the delete option with a swipe to left
+	 */
+	swipeToOpenDeleteButton() {
+		Gestures.swipeItemLeft(this.swagItems[ 0 ]);
+
+		// Wait for the animation
+		return driver.pause(500);
+	}
+
+	/**
 	 * Continue shopping
 	 *
 	 * @return {void}
 	 */
 	continueShopping() {
-		Gestures.scrollDownToElement(this.continueShoppingButton);
+		Gestures.scrollToElement({element: this.continueShoppingButton, swipeDirection: 'up' });
 
 		return this.continueShoppingButton.click();
 	}
@@ -78,7 +98,7 @@ class CartContent extends Base {
 	 * @return {void}
 	 */
 	goToCheckout() {
-		Gestures.scrollDownToElement(this.checkoutButton);
+		Gestures.scrollToElement({ element: this.checkoutButton, swipeDirection: 'up' });
 
 		return this.checkoutButton.click();
 	}

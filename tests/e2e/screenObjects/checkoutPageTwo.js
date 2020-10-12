@@ -51,7 +51,7 @@ class CheckoutPageTwo extends Base {
 	 */
 	getSwagItemText(needle) {
 		const elm = this.swagItems[ needle ].$(`~test-${ this.SELECTORS.cartContent.cartItem.description }`);
-		Gestures.scrollDownToElement(elm);
+		Gestures.scrollToElement({ element: elm, swipeDirection: 'up' });
 
 		return getTextOfElement(elm);
 	}
@@ -62,7 +62,7 @@ class CheckoutPageTwo extends Base {
 	 * @return {void}
 	 */
 	cancelCheckout() {
-		Gestures.scrollDownToElement(this.cancelButton);
+		Gestures.scrollToElement({ element: this.cancelButton, swipeDirection: 'up' });
 
 		return this.cancelButton.click();
 	}
@@ -73,7 +73,7 @@ class CheckoutPageTwo extends Base {
 	 * @return {void}
 	 */
 	finishCheckout() {
-		Gestures.scrollDownToElement(this.finishButton);
+		Gestures.scrollToElement({ element: this.finishButton, swipeDirection: 'up' });
 
 		return this.finishButton.click();
 	}

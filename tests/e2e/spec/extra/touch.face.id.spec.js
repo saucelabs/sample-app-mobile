@@ -14,7 +14,7 @@ describe('Touch / Face ID', () => {
 			// restart the app
 			restartApp();
 			// Wait for the button to be shown
-			LoginScreen.biometryButton.waitForDisplayed(45000);
+			LoginScreen.biometryButton.waitForDisplayed({ timeout: 45000 });
 		}
 	});
 

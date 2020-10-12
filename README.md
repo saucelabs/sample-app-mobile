@@ -3,7 +3,9 @@
 # Sauce Labs Native Sample Application
 
 In this repository you will find our Sauce Labs sample-app. You can use it as a sample app for testautomation on your local machine or in our Real Device Cloud.
-The latest version of the iOS and Android app can be found [here](https://github.com/saucelabs/sample-app-mobile/releases)
+The latest version of the iOS and Android app can be found [here](https://github.com/saucelabs/sample-app-mobile/releases).\
+There are several user accounts for this app that will trigger different stages in the app. If you swipe down on the login page you will see them together with the password. 
+If you tap on them they will auto fill the login data.
 
 ![saucelabs.ios](./docs/assets/ios-overview.gif) ![saucelabs.android](./docs/assets/android-overview.gif)
 
@@ -20,8 +22,13 @@ The latest version of the iOS and Android app can be found [here](https://github
     1. [3D Touch / Force touch](#3d-touch---force-touch)
     1. [Different languages](#different-languages)
     1. [QR code scanner](#qr-code-scanner)
+    1. [Gestures](#gestures)
+        1. [Drag and Drop](#drag-and-drop)
+        1. [Pinch and Zoom](#pinch-zoom)
+        1. [Swiping](#swiping)
 1. [Contributing to the app](#contributing-to-the-app)
 1. [Test-automation](#test-automation)
+1. [FAQ](#faq)
  
 ## Functionalities
 
@@ -142,21 +149,63 @@ This app supports 3 different languages and will automatically check the languag
 For the automation of the different languages see [here](./docs/AUTOMATION.md#different-languages)
 
 ### QR code scanner
-This app now also has a QR code scanner. You can find it in the menu under the option "QR CODE SCANNER".
+This app now also has a QR code scanner. 
+
+![QR Code Scanner](./docs/assets/qr-code.gif) 
+
+You can find it in the menu under the option "QR CODE SCANNER".
 This page opens the camera (you first need to allow the app to use the camera) which can be used to scan a QR Code.
 If the QR code holds an URL it will automatically open it in a browser. The following image can be used to demo this option.
 
 ![QR Code](./docs/assets/qr-code.png)
 
+### Gestures
+This app also support different Gestures which can be found below.
+
+#### Drag and Drop
+The swag overview page supports to drag and drop swag items to the cart. All *Add to cart*-buttons have a drag handle which you can use
+to drag the items into the cart. When you press the handle and start dragging it a *drop zone* will appear. When you release the swag item into
+the *drop zone* the swag item will be added to the cart. 
+
+![saucelabs.ios](./docs/assets/drag-and-drop.gif)
+
+#### Pinch and Zoom
+The swag details page supports to pinch and zoom the swag item image. Check the gif on how to use it.
+
+![saucelabs.ios](./docs/assets/pinch-zoom.gif)
+
+#### Swiping
+The cart contents page supports to remove an item from the cart by swiping it to the left. Check the gif on how to use it.
+
+![saucelabs.ios](./docs/assets/swipe-left.gif)
+
 ## Contributing to the app
 If you want to contribute to the app and add new functionalities, please check the documentation [here](./docs/CONTRIBUTING.md).
 
 ## Test-automation
-More information about:
+[Here](./docs/AUTOMATION.md) you will find more information about:
 
 - how to setup Appium
 - how to write tests
 - how to run tests on a local machine
 - how to run tests in the cloud
 
-can be found [here](./docs/AUTOMATION.md).
+## FAQ
+### Downloaded iOS apps shows 'App is damaged and can't be opened. You should move it to the trash.' after manually install
+You can get this warning when you have OSX Catalina or higher and try to install the app manually.
+
+![Catalina warning](./docs/assets/catalina-warning.jpg) 
+
+This has to do with the new security settings in Catalina. 
+
+> This will not bother you when you install the app through Appium and or Appium desktop.
+
+You can fix this with the following steps before dragging the app to the simulator:
+
+1. Unzip the app
+1. Open a terminal and go to the folder where the app is located
+1. Execute the following command from the command line
+    
+        sudo xattr -rd com.apple.quarantine {name-of-the-unzipped-app}.app
+        
+1. After typing your password the app has been modified and you can drag an drop it manually to the simulator

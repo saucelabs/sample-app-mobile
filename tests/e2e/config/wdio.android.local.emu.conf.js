@@ -1,6 +1,6 @@
 const { join } = require('path');
 const { argv } = require('yargs');
-const config = require('./wdio.shared.conf').config;
+const { config } = require('./wdio.appium.local.shared');
 
 // ============
 // Capabilities
@@ -11,9 +11,9 @@ config.capabilities = [
 	{
 		// The defaults you need to have in your config
 		automationName: 'UiAutomator2',
-		deviceName: 'Pixel_8.1',
+		deviceName: 'Pixel_3_10.0',
 		platformName: 'Android',
-		platformVersion: '8.1',
+		platformVersion: '10.0',
 		orientation: 'PORTRAIT',
 		app: join(process.cwd(), './apps/Android.SauceLabs.Mobile.Sample.app.2.2.1.apk'),
 		appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
@@ -26,15 +26,5 @@ config.capabilities = [
 		locale: argv.language || 'en',
 	},
 ];
-
-// ======
-// Appium
-// ======
-config.services = config.services.concat('appium');
-config.appium = {
-	command: 'appium',
-};
-// Tell Appium which port to use
-config.port = 4723;
 
 exports.config = config;

@@ -30,7 +30,7 @@ describe('Image compare for upgrade', () => {
 
     it('should able to compare a screenshot of the error login screen', () => {
       LoginScreen.signIn({ username: 1, password: 1 });
-      LoginScreen.errorMessage.waitForDisplayed(DEFAULT_TIMEOUT);
+      LoginScreen.errorMessage.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
       expect(driver.compareScreen('Login-02-error').misMatchPercentage).toEqual(0);
     });

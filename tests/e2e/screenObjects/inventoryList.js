@@ -45,7 +45,7 @@ class InventoryListScreen extends Base {
 	 */
 	getSwagItemLabelText(needle) {
 		const elm = this.swagItems[ needle ].$(`~test-${ this.SELECTORS.inventoryListPage.itemTitle }`);
-		Gestures.scrollDownToElement(elm);
+		Gestures.scrollToElement({ element: elm, swipeDirection: 'up' });
 
 		return getTextOfElement(elm);
 	}
@@ -59,9 +59,34 @@ class InventoryListScreen extends Base {
 	 */
 	addSwagItemToCart(needle) {
 		const swagItem = this.swagItem(needle);
-		Gestures.scrollDownToElement(swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`), 10);
+		Gestures.scrollToElement({
+			element: swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`),
+			maxScrolls: 10,
+			swipeDirection: 'up',
+		});
 
 		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`).click();
+
+		// there is a small delay in adding items in the cart
+		return driver.pause(250);
+	}
+
+	/**
+	 * Drag a swag items to the cart
+	 *
+	 * @param {string} needle
+	 *
+	 * @return {void}
+	 */
+	dragSwagItemToCart(needle) {
+		const swagItemDragHandle = this.swagItem(needle).$(`~test-${ this.SELECTORS.inventoryListPage.dragHandle }`);
+		Gestures.scrollToElement({
+			element: swagItemDragHandle,
+			maxScrolls: 10,
+			swipeDirection: 'up',
+		});
+
+		Gestures.dragAndDrop(swagItemDragHandle, $(`~test-${ this.SELECTORS.inventoryListPage.dropZone }`));
 
 		// there is a small delay in adding items in the cart
 		return driver.pause(250);
@@ -76,7 +101,11 @@ class InventoryListScreen extends Base {
 	 */
 	removeSwagItemFromCart(needle) {
 		const swagItem = this.swagItem(needle);
-		Gestures.scrollDownToElement(swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`), 10);
+		Gestures.scrollToElement({
+			element: swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`),
+			maxScrolls: 10,
+			swipeDirection: 'up',
+		});
 
 		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`).click();
 
@@ -148,7 +177,7 @@ class InventoryListScreen extends Base {
 			const iosNeedleQuery = `name CONTAINS "${ needle }"`;
 			const iosButtonTextQuery = `name CONTAINS "${ this.SELECTORS.inventoryItemPage.addButton }" OR name CONTAINS "${ this.SELECTORS.inventoryItemPage.removeButton }"`;
 			const iosSignQuery = 'name CONTAINS "+" OR name CONTAINS "-"';
-			const iosSelector = `${ classChain }**/XCUIElementTypeOther[\`${ iosItemQuery }\`]/**/XCUIElementTypeOther[\`${iosNeedleQuery} AND (${iosButtonTextQuery} OR ${iosSignQuery})\`]`;
+			const iosSelector = `${ classChain }**/XCUIElementTypeOther[\`${ iosItemQuery }\`]/**/XCUIElementTypeOther[\`${ iosNeedleQuery } AND (${ iosButtonTextQuery } OR ${ iosSignQuery })\`]`;
 			const androidSelector = `//android.widget.TextView[contains(@text,'${ needle }')]//ancestor::*[@content-desc='${ selector }']`;
 			const elm = $(driver.isIOS ? iosSelector : androidSelector);
 

@@ -7,12 +7,16 @@ class InventoryItemScreen extends Base {
 		super(`~test-${ driver.selectors.inventoryItemPage.screen }`);
 	}
 
-	get SELECTORS(){
+	get SELECTORS() {
 		return driver.selectors;
 	}
 
 	get screen() {
 		return $(`~test-${ this.SELECTORS.inventoryItemPage.screen }`);
+	}
+
+	get imageContainer() {
+		return $(`~test-${ this.SELECTORS.inventoryItemPage.imageContainer }`);
 	}
 
 	get description() {
@@ -41,7 +45,11 @@ class InventoryItemScreen extends Base {
 	 * @return {string}
 	 */
 	getSwagDescription() {
-		Gestures.scrollDownToElement(this.description, 4);
+		Gestures.scrollToElement({
+			element: this.description,
+			maxScrolls: 4,
+			swipeDirection: 'up',
+		});
 
 		return getTextOfElement(this.description);
 	}
@@ -52,7 +60,11 @@ class InventoryItemScreen extends Base {
 	 * @return {string}
 	 */
 	getSwagPrice() {
-		Gestures.scrollDownToElement(this.price, 4);
+		Gestures.scrollToElement({
+			element: this.price,
+			maxScrolls: 4,
+			swipeDirection: 'up',
+		});
 
 		return getTextOfElement(this.price);
 	}
@@ -63,7 +75,11 @@ class InventoryItemScreen extends Base {
 	 * @return {void}
 	 */
 	addSwagItemToCart() {
-		Gestures.scrollDownToElement(this.addButton, 4);
+		Gestures.scrollToElement({
+			element: this.addButton,
+			maxScrolls: 4,
+			swipeDirection: 'up',
+		});
 		this.addButton.click();
 
 		// There is a little delay in adding the item to the cart :(
@@ -76,7 +92,11 @@ class InventoryItemScreen extends Base {
 	 * @return {void}
 	 */
 	removeSwagItemFromCart() {
-		Gestures.scrollDownToElement(this.removeButton, 4);
+		Gestures.scrollToElement({
+			element: this.removeButton,
+			maxScrolls: 4,
+			swipeDirection: 'up',
+		});
 		this.removeButton.click();
 
 		// There is a little delay in removing the item to the cart :(

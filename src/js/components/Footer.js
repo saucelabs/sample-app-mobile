@@ -18,7 +18,7 @@ export default class Footer extends Component {
           <Icon style={ styles.icon } name="google-plus"/>
           <Icon style={ styles.icon } name="linkedin"/>
         </View>
-        <Text style={styles.footer_text}>{I18n.t('footer.rights')}</Text>
+        <Text style={styles.footer_text}>© { (new Date()).getFullYear() } {I18n.t('footer.rights')}</Text>
         <Text style={styles.footer_text}>{I18n.t('footer.termsAndPrivacy')}</Text>
         <Image
           style={ styles.footer_image }
