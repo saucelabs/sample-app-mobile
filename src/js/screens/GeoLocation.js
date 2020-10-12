@@ -138,6 +138,7 @@ class GeoLocation extends Component {
 	removeLocationUpdates = () => {
 		if (this.watchId !== null) {
 			Geolocation.clearWatch(this.watchId);
+			Geolocation.stopObserving();
 			this.watchId = null;
 		}
 	};
