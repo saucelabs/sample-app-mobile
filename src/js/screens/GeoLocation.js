@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PermissionsAndroid, ScrollView, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { Alert, Linking, PermissionsAndroid, ScrollView, StyleSheet, Text, ToastAndroid, View } from 'react-native';
 import { NavigationEvents, withNavigationFocus } from 'react-navigation';
 import Geolocation from 'react-native-geolocation-service';
 import { ThemeProvider } from 'react-native-elements';
@@ -12,21 +12,60 @@ import Footer from '../components/Footer';
 import { IS_IOS, MUSEO_SANS_BOLD, PLATFORM_VERSION } from '../config/Constants';
 
 class GeoLocation extends Component {
+	componentDidMount() {
+		handleQuickActionsNavigation(this.props.navigation);
+		this.getLocationUpdates();
+	}
+
 	watchId = null;
 
 	state = {
 		isLoading: false,
-		longitude: null,
 		latitude: null,
+		longitude: null,
 	};
 
-	componentDidMount() {
-		handleQuickActionsNavigation(this.props.navigation);
-		this.getLocation();
+	componentWillUnmount() {
+		this.removeLocationUpdates();
 	}
 
+	hasLocationPermissionIOS = async () => {
+		const openSetting = () => {
+			Linking.openSettings().catch(() => {
+				Alert.alert(I18n.t('geoLocation.errorSettings'));
+			});
+		};
+		const status = await Geolocation.requestAuthorization('whenInUse');
+
+		if (status === 'granted') {
+			return true;
+		}
+
+		if (status === 'denied') {
+			Alert.alert(I18n.t('geoLocation.locationPermission'));
+		}
+
+		if (status === 'disabled') {
+			Alert.alert(
+				I18n.t('geoLocation.enableLocation'),
+				'',
+				[
+					{ text: I18n.t('geoLocation.toSettings'), onPress: openSetting },
+					{ text: I18n.t('geoLocation.dontUse'), onPress: () => {} },
+				],
+			);
+		}
+
+		return false;
+	};
+
 	hasLocationPermission = async () => {
-		if (IS_IOS || PLATFORM_VERSION < 23) {
+		if (IS_IOS) {
+			const hasPermission = await this.hasLocationPermissionIOS();
+			return hasPermission;
+		}
+
+		if (!IS_IOS && PLATFORM_VERSION < 23) {
 			return true;
 		}
 
@@ -47,15 +86,21 @@ class GeoLocation extends Component {
 		}
 
 		if (status === PermissionsAndroid.RESULTS.DENIED) {
-			ToastAndroid.show('Location permission denied by user.', ToastAndroid.LONG);
+			ToastAndroid.show(
+				I18n.t('geoLocation.deniedByUser'),
+				ToastAndroid.LONG,
+			);
 		} else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-			ToastAndroid.show('Location permission revoked by user.', ToastAndroid.LONG);
+			ToastAndroid.show(
+				I18n.t('geoLocation.deniedByUser'),
+				ToastAndroid.LONG,
+			);
 		}
 
 		return false;
 	};
 
-	async getLocation() {
+	getLocationUpdates = async () => {
 		const hasLocationPermission = await this.hasLocationPermission();
 
 		if (!hasLocationPermission) {
@@ -65,42 +110,40 @@ class GeoLocation extends Component {
 		this.setState({ isLoading: true }, () => {
 			this.watchId = Geolocation.watchPosition(
 				(position) => {
-					const { latitude, longitude } = position.coords;
+					const { latitude: currentLatitude, longitude: currentLongitude } = position.coords;
+					const { latitude, longitude } = this.state;
+					const isLoading = !(latitude === currentLatitude && longitude === currentLongitude);
 
 					this.setState({
-						latitude,
-						longitude,
-						isLoading: false,
+						latitude: currentLatitude,
+						longitude: currentLongitude,
+						isLoading,
 					});
+					console.log(position);
 				},
 				(error) => {
+					this.setState({ isLoading: false });
 					console.log(error);
 				},
 				{
 					enableHighAccuracy: true,
-					timeout: 15000,
-					maximumAge: 10000,
-					distanceFilter: 50,
-					forceRequestLocation: true,
+					distanceFilter: 0,
+					interval: 5000,
+					fastestInterval: 500,
 				},
 			);
 		});
-	}
+	};
 
 	removeLocationUpdates = () => {
 		if (this.watchId !== null) {
 			Geolocation.clearWatch(this.watchId);
-
-			this.setState({
-				latitude: null,
-				longitude: null,
-				isLoading: false,
-			});
+			this.watchId = null;
 		}
 	};
 
 	render() {
-		const { latitude, isLoading, longitude } = this.state;
+		const { latitude,longitude, isLoading } = this.state;
 
 		return (
 			<ThemeProvider>
@@ -111,17 +154,34 @@ class GeoLocation extends Component {
 				>
 					<View style={ [ styles.text_container, styles.container_padding ] }>
 						<NavigationEvents
-							onWillFocus={ () => this.getLocation() }
+							onWillFocus={ () => this.getLocationUpdates() }
 							onDidBlur={ () => this.removeLocationUpdates() }
 						/>
 						<Text style={ styles.text }>
-							Below you will find the latitude and longitude.
-							You can use Appium to change the latitude and longitude and verify them.
+							{ I18n.t('geoLocation.text') }
+							<Text
+								style={ styles.link }
+								onPress={ () => Linking.openURL(I18n.t('geoLocation.appiumLink')) }
+							>
+								{ I18n.t('geoLocation.this') }
+							</Text>
+							{ I18n.t('geoLocation.link') }
+						</Text>
+						<Text style={ styles.text }>
+							{ I18n.t('geoLocation.determinePosition') }
 						</Text>
 						<Text style={ styles.label }>Latitude:</Text>
-						<Text style={ styles.text }>{ isLoading ? 'Determining position...' : latitude }</Text>
+						<Text
+							style={ styles.text } { ...testProperties(I18n.t('geoLocation.latitude')) }
+						>
+							{ isLoading ? I18n.t('geoLocation.position') : latitude }
+						</Text>
 						<Text style={ styles.label }>Longitude:</Text>
-						<Text style={ styles.text }>{ isLoading ? 'Determining position...' : longitude }</Text>
+						<Text
+							style={ styles.text } { ...testProperties(I18n.t('geoLocation.longitude')) }
+						>
+							{ isLoading ? I18n.t('geoLocation.position') : longitude }
+						</Text>
 					</View>
 					<Footer/>
 				</ScrollView>
@@ -149,6 +209,9 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontFamily: MUSEO_SANS_BOLD,
 		marginTop: 10,
+	},
+	link: {
+		color: colors.slRed,
 	},
 	text: {
 		fontSize: 16,
