@@ -20,6 +20,7 @@ class GeoLocation extends Component {
 	watchId = null;
 
 	state = {
+		positionStable: true,
 		isLoading: false,
 		latitude: null,
 		longitude: null,
@@ -112,17 +113,22 @@ class GeoLocation extends Component {
 				(position) => {
 					const { latitude: currentLatitude, longitude: currentLongitude } = position.coords;
 					const { latitude, longitude } = this.state;
-					const isLoading = !(latitude === currentLatitude && longitude === currentLongitude);
+					// First time determining should be stable, afterwards the stable checking should be done
+					const positionStable = (latitude === null || longitude === null)
+						|| (latitude === currentLatitude && longitude === currentLongitude);
 
 					this.setState({
 						latitude: currentLatitude,
 						longitude: currentLongitude,
-						isLoading,
+						positionStable,
+						isLoading: false,
 					});
-					console.log(position);
 				},
 				(error) => {
-					this.setState({ isLoading: false });
+					this.setState({
+						isLoading: false,
+						positionStable: true,
+					});
 					console.log(error);
 				},
 				{
@@ -144,7 +150,7 @@ class GeoLocation extends Component {
 	};
 
 	render() {
-		const { latitude,longitude, isLoading } = this.state;
+		const { latitude, longitude, isLoading, positionStable } = this.state;
 
 		return (
 			<ThemeProvider>
@@ -171,18 +177,26 @@ class GeoLocation extends Component {
 						<Text style={ styles.text }>
 							{ I18n.t('geoLocation.determinePosition') }
 						</Text>
-						<Text style={ styles.label }>Latitude:</Text>
+						<Text style={ [ styles.marginTop, styles.label ] }>Latitude:</Text>
 						<Text
 							style={ styles.text } { ...testProperties(I18n.t('geoLocation.latitude')) }
 						>
 							{ isLoading ? I18n.t('geoLocation.position') : latitude }
 						</Text>
-						<Text style={ styles.label }>Longitude:</Text>
+						<Text style={ [ styles.marginTop, styles.label ] }>Longitude:</Text>
 						<Text
 							style={ styles.text } { ...testProperties(I18n.t('geoLocation.longitude')) }
 						>
 							{ isLoading ? I18n.t('geoLocation.position') : longitude }
 						</Text>
+						{ !isLoading && (
+							<Text
+								style={ [ styles.marginTop, styles.text, styles.italic ] }
+								{ ...testProperties(I18n.t('geoLocation.stable')) }
+							>
+								{ I18n.t(`geoLocation.${ positionStable ? 'stablePosition' : 'unstablePosition' }`) }
+							</Text>
+						) }
 					</View>
 					<Footer/>
 				</ScrollView>
@@ -209,15 +223,20 @@ const styles = StyleSheet.create({
 		color: colors.slRed,
 		fontSize: 18,
 		fontFamily: MUSEO_SANS_BOLD,
-		marginTop: 10,
 	},
 	link: {
 		color: colors.slRed,
+	},
+	marginTop: {
+		marginTop: 10,
 	},
 	text: {
 		fontSize: 16,
 		color: colors.gray,
 		textAlign: 'center',
+	},
+	italic: {
+		fontStyle: 'italic',
 	},
 });
 

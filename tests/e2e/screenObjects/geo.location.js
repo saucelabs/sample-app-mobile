@@ -27,21 +27,20 @@ class GeoLocation extends Base {
 	 * @param {number} longitude
 	 * @param {number} latitude
 	 */
-	setLocation({longitude, latitude}){
-		driver.setGeoLocation({longitude, latitude});
+	setLocation({ longitude, latitude }) {
+		driver.setGeoLocation({ longitude, latitude });
 	}
 
 	/**
-	 * Wait until the position is shown
+	 * Wait until the position is stable
 	 */
-	waitUntilPositionShown(){
-		driver.waitUntil(()=>{
-			const latitude = this.latitudeValue.getText();
-			const longitude = this.longitudeValue.getText();
-			const positionText = this.SELECTORS.geoLocation.position;
+	waitUntilPositionStable() {
+		driver.waitUntil(() => {
+			const stableElement = $(`~test-${ this.SELECTORS.geoLocation.stable }`);
+			const stableText = this.SELECTORS.geoLocation.stablePosition;
 
-			return latitude !== positionText && longitude !== positionText;
-		}, 60000);
+			return stableElement.isDisplayed() && stableElement.getText() === stableText;
+		}, { timeout: 60000 });
 	}
 
 	/**
@@ -49,7 +48,7 @@ class GeoLocation extends Base {
 	 *
 	 * @returns {number}
 	 */
-	getLatitudeValue(){
+	getLatitudeValue() {
 		return Number(this.latitudeValue.getText());
 	}
 
@@ -58,7 +57,7 @@ class GeoLocation extends Base {
 	 *
 	 * @returns {number}
 	 */
-	getLongitudeValue(){
+	getLongitudeValue() {
 		return Number(this.longitudeValue.getText());
 	}
 }

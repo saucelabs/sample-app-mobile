@@ -22,7 +22,7 @@ describe('Geo Location Page', () => {
 		driver.pause(1000);
 
 		// Wait until the position is shown
-		GeoLocation.waitUntilPositionShown();
+		GeoLocation.waitUntilPositionStable();
 
 		expect(GeoLocation.getLongitudeValue()).toBe(longitude, 'Incorrect longitude');
 		expect(GeoLocation.getLatitudeValue()).toBe(latitude, 'Incorrect latitude');
