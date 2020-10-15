@@ -22,6 +22,7 @@ config.capabilities = [
 		// Read the reset strategies very well, they differ per platform, see
 		// http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
 		noReset: true,
+		autoGrantPermissions: true,
 		newCommandTimeout: 240,
 		language: argv.language || 'en',
 		locale: argv.language || 'en',

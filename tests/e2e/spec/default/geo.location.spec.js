@@ -10,8 +10,10 @@ describe('Geo Location Page', () => {
 	});
 
 	it('should be able to set and validate the geo location with Appium', () => {
+		// 1. Set the new location
 		// Appium for Android (v1.19.0 and lower) is cutting the data to 5 chars
-		// see https://github.com/appium/io.appium.settings/blob/master/app/src/main/java/io/appium/settings/receivers/LocationInfoReceiver.java#L48
+		// see
+		// https://github.com/appium/io.appium.settings/blob/master/app/src/main/java/io/appium/settings/receivers/LocationInfoReceiver.java#L48
 		// const longitude = 52.5003197;
 		// const latitude = 13.4514209;
 		const longitude = 52.50032;
@@ -21,8 +23,11 @@ describe('Geo Location Page', () => {
 		// Give the GPS some time to process the new data
 		driver.pause(1000);
 
-		// Wait until the position is shown
-		GeoLocation.waitUntilPositionStable();
+		// Wait until the position has changed
+		GeoLocation.waitUntilPositionChanged(
+			longitude,
+			latitude,
+		);
 
 		expect(GeoLocation.getLongitudeValue()).toBe(longitude, 'Incorrect longitude');
 		expect(GeoLocation.getLatitudeValue()).toBe(latitude, 'Incorrect latitude');

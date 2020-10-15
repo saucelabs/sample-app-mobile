@@ -16,6 +16,7 @@ config.capabilities = [
     idleTimeout: 180,
     cacheId: new Date().getTime(),
     noReset: true,
+    autoGrantPermissions: true,
     orientation: 'PORTRAIT',
     newCommandTimeout: 180,
     language: argv.language || 'en',

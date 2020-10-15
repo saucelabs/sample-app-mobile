@@ -32,15 +32,22 @@ class GeoLocation extends Base {
 	}
 
 	/**
-	 * Wait until the position is stable
+	 * Wait until the position changed
+	 *
+	 * @param {number} longitude
+	 * @param {number} latitude
 	 */
-	waitUntilPositionStable() {
+	waitUntilPositionChanged(longitude, latitude) {
 		driver.waitUntil(() => {
-			const stableElement = $(`~test-${ this.SELECTORS.geoLocation.stable }`);
-			const stableText = this.SELECTORS.geoLocation.stablePosition;
+			const currentLongitude = this.getLongitudeValue();
+			const currentLatitude = this.getLatitudeValue();
 
-			return stableElement.isDisplayed() && stableElement.getText() === stableText;
-		}, { timeout: 60000 });
+			return currentLongitude === longitude && currentLatitude === latitude;
+		}, {
+			// Android can take some time
+			timeout: driver.isIOS ? 60000 : 120000,
+			timeoutMsg: 'The position did not change in time!',
+		});
 	}
 
 	/**

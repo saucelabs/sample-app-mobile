@@ -20,7 +20,6 @@ class GeoLocation extends Component {
 	watchId = null;
 
 	state = {
-		positionStable: true,
 		isLoading: false,
 		latitude: null,
 		longitude: null,
@@ -111,23 +110,17 @@ class GeoLocation extends Component {
 		this.setState({ isLoading: true }, () => {
 			this.watchId = Geolocation.watchPosition(
 				(position) => {
-					const { latitude: currentLatitude, longitude: currentLongitude } = position.coords;
-					const { latitude, longitude } = this.state;
-					// First time determining should be stable, afterwards the stable checking should be done
-					const positionStable = (latitude === null || longitude === null)
-						|| (latitude === currentLatitude && longitude === currentLongitude);
+					const { latitude, longitude } = position.coords;
 
 					this.setState({
-						latitude: currentLatitude,
-						longitude: currentLongitude,
-						positionStable,
+						latitude,
+						longitude,
 						isLoading: false,
 					});
 				},
 				(error) => {
 					this.setState({
 						isLoading: false,
-						positionStable: true,
 					});
 					console.log(error);
 				},
@@ -150,7 +143,7 @@ class GeoLocation extends Component {
 	};
 
 	render() {
-		const { latitude, longitude, isLoading, positionStable } = this.state;
+		const { latitude, longitude, isLoading } = this.state;
 
 		return (
 			<ThemeProvider>
@@ -189,14 +182,6 @@ class GeoLocation extends Component {
 						>
 							{ isLoading ? I18n.t('geoLocation.position') : longitude }
 						</Text>
-						{ !isLoading && (
-							<Text
-								style={ [ styles.marginTop, styles.text, styles.italic ] }
-								{ ...testProperties(I18n.t('geoLocation.stable')) }
-							>
-								{ I18n.t(`geoLocation.${ positionStable ? 'stablePosition' : 'unstablePosition' }`) }
-							</Text>
-						) }
 					</View>
 					<Footer/>
 				</ScrollView>
