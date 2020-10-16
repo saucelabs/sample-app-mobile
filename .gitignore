@@ -59,4 +59,6 @@ buck-out/
 
 # Extra
 .tmp
+.env
 apps/
+*.log

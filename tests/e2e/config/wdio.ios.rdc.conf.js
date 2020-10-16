@@ -13,6 +13,7 @@ config.capabilities = [
     app: 'storage:filename=iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.4.0.ipa',
     idleTimeout: 180,
     cacheId: new Date().getTime(),
+    autoAcceptAlerts: true,
     noReset: true,
     orientation: 'PORTRAIT',
     newCommandTimeout: 180,

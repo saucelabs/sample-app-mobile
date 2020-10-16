@@ -3,6 +3,7 @@ import { Dimensions, Platform } from 'react-native';
 export const TEST_PREFIX = 'test-';
 export const MAKE_ACCESSIBLE_FOR_AUTOMATION = { accessible: false };
 export const IS_IOS = Platform.OS === 'ios';
+export const PLATFORM_VERSION = Platform.Version;
 export const {
   width: WINDOW_WIDTH,
   height: WINDOW_HEIGHT,
@@ -28,4 +29,5 @@ export const SCREENS = {
 	WEBVIEW_SELECTION: 'WebviewSelection',
 	WEBVIEW_SCREEN: 'WebviewScreen',
 	QR_CODE_SCANNER_SCREEN: 'QrCodeScanner',
+	GEO_LOCATION_SCREEN: 'GeoLocation',
 };
