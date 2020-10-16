@@ -21,6 +21,7 @@ export default class DrawerLinks extends Component {
 		this.handleCloseMenu = this.handleCloseMenu.bind(this);
 		this.handleQrCodeLink = this.handleQrCodeLink.bind(this);
 		this.handleGeoLocationLink = this.handleGeoLocationLink.bind(this);
+		this.handleDrawingLink = this.handleDrawingLink.bind(this);
 	}
 
 	handleAllItemsLink() {
@@ -41,6 +42,11 @@ export default class DrawerLinks extends Component {
 	handleGeoLocationLink() {
 		this.props.navigation.closeDrawer();
 		this.props.navigation.navigate(SCREENS.GEO_LOCATION_SCREEN);
+	}
+
+	handleDrawingLink() {
+		this.props.navigation.closeDrawer();
+		this.props.navigation.navigate(SCREENS.DRAWING);
 	}
 
 	handleAboutLink() {
@@ -105,6 +111,13 @@ export default class DrawerLinks extends Component {
 					{ ...testProperties(I18n.t('menu.geoLocation')) }
 				>
 					<Text style={ styles.menu_item_text }>{ I18n.t('menu.geoLocation') }</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={ styles.menu_button }
+					onPress={ this.handleDrawingLink }
+					{ ...testProperties(I18n.t('menu.drawing')) }
+				>
+					<Text style={ styles.menu_item_text }>{ I18n.t('menu.drawing') }</Text>
 				</TouchableOpacity>
 				<TouchableOpacity
 					style={ styles.menu_button }

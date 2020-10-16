@@ -15,6 +15,7 @@ import WebviewScreen from './screens/Webview';
 import QrCodeScanner from './screens/QrCodeScanner';
 import DrawerLinks from './components/DrawerLinks';
 import GeoLocation from './screens/GeoLocation';
+import Drawing from './screens/Drawing';
 
 const StackNavigator = createStackNavigator({
 		[ SCREENS.LOGIN ]: { screen: Login },
@@ -56,6 +57,10 @@ const StackNavigator = createStackNavigator({
 		[ SCREENS.GEO_LOCATION_SCREEN ]: {
 			screen: GeoLocation,
 			path: 'geo-location',
+		},
+		[ SCREENS.DRAWING ]: {
+			screen: Drawing,
+			path: 'drawing',
 		},
 	},
 	{

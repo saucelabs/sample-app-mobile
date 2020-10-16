@@ -7476,6 +7476,13 @@ react-native-safe-area-view@^0.14.1:
   dependencies:
     debounce "^1.2.0"
 
+react-native-signature-canvas@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature-canvas/-/react-native-signature-canvas-3.2.0.tgz#2255f1b254c1d265382c605da272eb31ceefc042"
+  integrity sha512-tViA4aQO/jt2clbOpjrghMSTWXFh7U/vBdjgdNaVWtWhC664MbZ6OBsKHwvgmRPA4DvnA0PykET1/2ChCV039A==
+  dependencies:
+    react-native-webview "^10.3.2"
+
 react-native-splash-screen@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
@@ -7507,10 +7514,10 @@ react-native-vector-icons@^7.1.0:
     prop-types "^15.7.2"
     yargs "^15.0.2"
 
-react-native-webview@^8.0.2:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-8.0.2.tgz#1afac4cd859ab24141490e105d1a27e18e3984a9"
-  integrity sha512-Higfj0CCPM9N76S3rQsKHKS8Rw5QA7h7UENrREmMarEN/2saZJ+ko0aIVYOlEJ4P9ZhhRLNH/3mWvzmT4spncw==
+react-native-webview@^10.3.2, react-native-webview@^10.9.2:
+  version "10.9.2"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-10.9.2.tgz#6dbfcfefb0684a6665e346c0eca8040cbdb5fb75"
+  integrity sha512-bEIHmD1uH3M95V8cZf45MWpSV/FdxKcrlOOpmfAO5arbA9Wd4CjrB2BYInYkMlY3SfHmUN9NTfz5HoQpIS6GTQ==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
