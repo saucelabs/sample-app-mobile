@@ -11,12 +11,12 @@ export default class ActionButton extends Component {
   }
 
   render() {
-    const { onPress, title } = this.props;
+    const { containerStyle, onPress, title } = this.props;
 
     return (
       <Button
         buttonStyle={ styles.button_style }
-        containerStyle={ styles.button_container_style }
+        containerStyle={ containerStyle || styles.button_container_style }
         titleStyle={ styles.button_title_style }
         onPress={ onPress }
         title={ title }

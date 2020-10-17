@@ -171,6 +171,8 @@ export default {
 	'drawing': {
 		'header': 'DRAWING',
 		'screen': 'DRAWING-SCREEN',
+		'clear':'CLEAR',
+		'save':'SAVE',
 	},
 	'appHeader': {
 		'label': 'Swag Labs',

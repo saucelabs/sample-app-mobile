@@ -146,6 +146,7 @@ export default {
 		'logout': 'UITLOGGEN',
 		'reset': 'RESET APP STATE',
 		'qrCode': 'QR CODE SCANNER',
+		'drawing': 'TEKENEN',
 		'geoLocation': 'GEO LOCATION',
 		'webview': 'WEBVIEW',
 	},
@@ -166,6 +167,12 @@ export default {
 		'position': 'Locatie bepalen...',
 		'latitude': 'breedtegraad',
 		'longitude': 'lengtegraad',
+	},
+	'drawing': {
+		'header': 'TEKENEN',
+		'screen': 'TEKENEN-SCREEN',
+		'clear':'VERWIJDER',
+		'save':'OPSLAAN',
 	},
 	'appHeader': {
 		'label': 'Swag Labs',

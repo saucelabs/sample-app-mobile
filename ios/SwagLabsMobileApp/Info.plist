@@ -50,6 +50,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+    <string>$(PRODUCT_NAME) would like to save images to your device.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>$(PRODUCT_NAME) would like to save images to your device.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) requires camera access to use the QR-code scanner.</string>
 	<key>NSFaceIDUsageDescription</key>
