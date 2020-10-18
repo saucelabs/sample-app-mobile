@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { Alert, PermissionsAndroid, SafeAreaView, StyleSheet, View, Animated, Easing } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import SignatureScreen from 'react-native-signature-canvas';
-import { ThemeProvider } from 'react-native-elements';
+import RNFetchBlob from 'rn-fetch-blob';
+import RNFS from 'react-native-fs';
+import CameraRoll from '@react-native-community/cameraroll';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { colors } from '../utils/colors';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
 import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
-import { IS_IOS, IS_IPHONEX, MUSEO_SANS_BOLD, PLATFORM_VERSION } from '../config/Constants';
+import { IS_IOS, IS_IPHONEX } from '../config/Constants';
 import ActionButton from '../components/ActionButton';
 
 class Drawing extends Component {
-	constructor() {
-		super();
-		this.signatureRef = null;
-	}
+	state = {
+		isLoading: false,
+		spinAnim: new Animated.Value(0),
+	};
+	signatureRef = null;
 
 	componentDidMount() {
 		handleQuickActionsNavigation(this.props.navigation);
-	}
-
-	componentWillUnmount() {
+		Animated.loop(Animated.timing(
+			this.state.spinAnim,
+			{
+				toValue: 1,
+				duration: 3000,
+				easing: Easing.linear,
+				useNativeDriver: true,
+			},
+		)).start();
 	}
 
 	clear() {
@@ -32,24 +41,85 @@ class Drawing extends Component {
 		this.signatureRef?.readSignature();
 	}
 
+	async handleDrawing(base64String) {
+		if (!IS_IOS) {
+			try {
+				const granted = await this.getPermissionAndroid();
+				if (!granted) {
+					return;
+				}
+			} catch (error) {
+				this.notification(I18n.t('drawing.androidPermissions'), `${I18n.t('drawing.androidPermissionsFailed')}: ${ error.message }`);
+
+				return;
+			}
+		}
+
+		this.setState({ isLoading: true });
+		const image = base64String.replace('data:image/png;base64,', '');
+		const dirs = IS_IOS ? RNFS.LibraryDirectoryPath : RNFS.ExternalDirectoryPath; // 外部文件，共享目录的绝对路径（仅限android）
+		const downloadDest = `${ dirs }/${ ((Math.random() * 10000000) | 0) }.png`;
+
+		try {
+			await RNFetchBlob.fs.writeFile(downloadDest, image, 'base64');
+			const imageSaved = await CameraRoll.save(downloadDest, { type: 'photo' });
+
+			if (imageSaved) {
+				this.notification(I18n.t('drawing.saveDrawing'), I18n.t('drawing.savedGallery'));
+			}
+		} catch (error) {
+			this.notification(I18n.t('drawing.saveDrawing'), `${ I18n.t('drawing.failedSave') }: ${ error.message }`);
+		}
+	}
+
+	async getPermissionAndroid() {
+		try {
+			const granted = await PermissionsAndroid.request(
+				PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+				{
+					title: I18n.t('drawing.downloadPermissionsTitle'),
+					message: I18n.t('drawing.downloadPermissionsRequiredMessage'),
+					buttonNegative: I18n.t('drawing.cancel'),
+					buttonPositive: I18n.t('drawing.ok'),
+				},
+			);
+
+			if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+				return true;
+			}
+
+			this.notification(I18n.t('drawing.saveDrawing'), I18n.t('drawing.grantPermissionsMessage'));
+		} catch (err) {
+			this.notification(I18n.t('drawing.saveDrawing'), `${I18n.t('drawing.failedSave')}: ${ err.message }`);
+		}
+	}
+
+	notification(title, message) {
+		Alert.alert(
+			title,
+			message,
+			[ { text: I18n.t('drawing.ok'), onPress: () => this.setState({ isLoading: false }) } ],
+		);
+	}
+
 	render() {
+		const { isLoading, spinAnim } = this.state;
+		const spin = spinAnim.interpolate({
+			inputRange: [ 0, 1 ],
+			outputRange: [ '0deg', '360deg' ],
+		});
 
 		return (
-			<ThemeProvider>
-				<SafeAreaView style={styles.container}>
-				<SecondaryHeader header={ I18n.t('drawing.header') }/>
-				<SignatureScreen
-					ref={ (signature) => { this.signatureRef = signature; } }
-					// handle when you click save button
-					onOK={ (img) => console.log(img) }
-					onEmpty={ () => console.log('empty') }
-					// clear button text
-					clearText="Clear"
-					// save button text
-					confirmText="Save"
-					// String, webview style for overwrite default style, all style:
-					// https://github.com/YanYuanFE/react-native-signature-canvas/blob/master/h5/css/signature-pad.css
-					webStyle={ `
+			<View style={ styles.container } { ...testProperties(I18n.t('drawing.screen')) }>
+				<SafeAreaView style={ styles.container }>
+					<SecondaryHeader header={ I18n.t('drawing.header') }/>
+					<SignatureScreen
+						ref={ (signature) => { this.signatureRef = signature; } }
+						onOK={ (img) => this.handleDrawing(img) }
+						penColor={ colors.slRed }
+						// String, webview style for overwrite default style, all style:
+						// https://github.com/YanYuanFE/react-native-signature-canvas/blob/master/h5/css/signature-pad.css
+						webStyle={ `
 body {
 	background: #fff;
 }
@@ -72,31 +142,38 @@ body {
 }
 .m-signature-pad--body {
 	bottom: 75px;
-	border: 3px solid ${colors.slRed}
+	border: 3px solid ${ colors.slRed };
+	background: ${ colors.white };
 }
 .m-signature-pad--footer .button,
 .m-signature-pad--footer .description{
 	display: none;
 }
 `
-					}
-					autoClear={ true }
-					imageType={ 'image/svg+xml' }
-				/>
-				<View style={styles.buttonContainer}>
-					<ActionButton
-						containerStyle={styles.actionButton}
-						onPress={ ()=> this.clear() }
-						title={ I18n.t('drawing.clear') }
+						}
 					/>
-					<ActionButton
-						containerStyle={styles.actionButton}
-						onPress={ ()=> this.save() }
-						title={ I18n.t('drawing.save') }
-					/>
-				</View>
+					{ isLoading && (
+						<View style={ styles.loadingContainer }>
+							<Animated.Image
+								style={ [ styles.loadingImage, { transform: [ { rotate: spin } ] } ] }
+								source={ require('../../img/sauce-bolt.png') }
+							/>
+						</View>
+					) }
+					<View style={ styles.buttonContainer }>
+						<ActionButton
+							containerStyle={ styles.actionButton }
+							onPress={ () => this.clear() }
+							title={ I18n.t('drawing.clear') }
+						/>
+						<ActionButton
+							containerStyle={ styles.actionButton }
+							onPress={ () => this.save() }
+							title={ I18n.t('drawing.save') }
+						/>
+					</View>
 				</SafeAreaView>
-			</ThemeProvider>
+			</View>
 		);
 	}
 }
@@ -106,13 +183,29 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#FFF',
 	},
-	buttonContainer:{
+	loadingContainer: {
+		backgroundColor: colors.white,
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0,
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		zIndex: 10,
+	},
+	loadingImage: {
+		height: 300,
+		width: 300,
+	},
+	buttonContainer: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		alignItems: 'flex-start',
 		position: 'absolute',
 		left: 0,
-		bottom: IS_IPHONEX ? 24: 0,
+		bottom: IS_IPHONEX ? 24 : 0,
 	},
 	actionButton: {
 		width: '50%',
