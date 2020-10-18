@@ -57,7 +57,7 @@ class Drawing extends Component {
 
 		this.setState({ isLoading: true });
 		const image = base64String.replace('data:image/png;base64,', '');
-		const dirs = IS_IOS ? RNFS.LibraryDirectoryPath : RNFS.ExternalDirectoryPath; // 外部文件，共享目录的绝对路径（仅限android）
+		const dirs = IS_IOS ? RNFS.LibraryDirectoryPath : RNFS.ExternalDirectoryPath;
 		const downloadDest = `${ dirs }/${ ((Math.random() * 10000000) | 0) }.png`;
 
 		try {
