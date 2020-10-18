@@ -131,8 +131,8 @@ android {
         applicationId "com.swaglabsmobileapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10
-        versionName "2.6.0"
+        versionCode 11
+        versionName "2.7.0"
         missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
