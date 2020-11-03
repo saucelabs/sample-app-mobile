@@ -171,10 +171,10 @@ For example, with a button component the following code needs to be added
 
 Always try to use the text that is already available in the translation-JSON-file that can be found [here](../src/js/config/translations/en.json). The `testProperties`-method will make it unique by adding a prefix to it.
 
-> More information about testing with accessibilitID's can be found [here](./AUTOMATION.md#writing-tests)
+> More information about testing with accessibilitID's can be found [here](APPIUM_AUTOMATION.md#writing-tests)
 
 ## Running tests on a local machine when you are developing your app
-> Make sure you've set up Appium and all other stuff to be able to run automated tests, see [AUTOMATION](./AUTOMATION.md)
+> Make sure you've set up Appium and all other stuff to be able to run automated tests, see [AUTOMATION](APPIUM_AUTOMATION.md)
 
 > Because local automation will be ran against a build connected with the packager/metro builder, adjusting code during test execution is not wise. It will reflect immediately in the app which may cause breaking the tests.
 

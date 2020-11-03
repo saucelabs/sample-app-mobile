@@ -1,4 +1,4 @@
-# Automation
+# Appium Automation
 
 ## Table of contents
 1. [Intro](#intro)
