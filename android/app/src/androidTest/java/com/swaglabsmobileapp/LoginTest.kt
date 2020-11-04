@@ -1,6 +1,7 @@
 package com.swaglabsmobileapp
 
 import EspressoViewFinder.waitForDisplayed
+import android.app.Activity
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
@@ -8,6 +9,9 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.squareup.spoon.Spoon
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 
 import org.junit.Rule
@@ -18,9 +22,14 @@ class LoginTest  {
     @Rule @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
 
+    fun takeActivityScreenshot(tag: String) {
+        Spoon.screenshot(activityRule.activity, tag)
+    }
+    
     @Test
     fun successfulLogin() {
         waitForDisplayed(withContentDescription("test-Login"))
+        takeActivityScreenshot("initial_state")
 
         // Sign in
         onView(withContentDescription("test-Username"))
@@ -33,12 +42,14 @@ class LoginTest  {
 
         // Wait for the Products page
         waitForDisplayed(withContentDescription("test-PRODUCTS"))
+        takeActivityScreenshot("end_state")
     }
 
     @Test
     fun lockedUserLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
+        takeActivityScreenshot("initial_state")
 
         // Sign in
         onView(withContentDescription("test-Username"))
@@ -53,12 +64,14 @@ class LoginTest  {
         waitForDisplayed(withContentDescription("test-Error message"))
         // and verify it
         onView(withText("Sorry, this user has been locked out.")).check(matches(isDisplayed()))
+        takeActivityScreenshot("end_state")
     }
 
     @Test
     fun noUsernameLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
+        takeActivityScreenshot("initial_state")
 
         // Sign in
         onView(withContentDescription("test-LOGIN"))
@@ -68,12 +81,14 @@ class LoginTest  {
         waitForDisplayed(withContentDescription("test-Error message"))
         // and verify it
         onView(withText("Username is required")).check(matches(isDisplayed()))
+        takeActivityScreenshot("end_state")
     }
 
     @Test
     fun noPasswordLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
+        takeActivityScreenshot("initial_state")
 
         // Sign in
         onView(withContentDescription("test-Username"))
@@ -86,12 +101,14 @@ class LoginTest  {
         waitForDisplayed(withContentDescription("test-Error message"))
         // and verify it
         onView(withText("Password is required")).check(matches(isDisplayed()))
+        takeActivityScreenshot("end_state")
     }
 
     @Test
     fun noMatchLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
+        takeActivityScreenshot("initial_state")
 
         // Sign in
         onView(withContentDescription("test-Username"))
@@ -106,5 +123,6 @@ class LoginTest  {
         waitForDisplayed(withContentDescription("test-Error message"))
         // and verify it
         onView(withText("Username and password do not match any user in this service.")).check(matches(isDisplayed()))
+        takeActivityScreenshot("end_state")
     }
 }

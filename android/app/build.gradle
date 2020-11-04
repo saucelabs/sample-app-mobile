@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: 'kotlin-android'
+apply plugin: 'spoon'
 
 import com.android.build.OutputFile
 
@@ -120,6 +121,17 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+buildscript {
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
+    }
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -212,6 +224,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.squareup.spoon:spoon-client:1.7.1'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
@@ -228,4 +241,8 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 repositories {
     maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     mavenCentral()
+}
+
+spoon {
+    debug = true
 }
