@@ -16,11 +16,20 @@ import org.junit.Test
 
 import org.junit.Rule
 import org.junit.runner.RunWith
+import androidx.test.rule.GrantPermissionRule
+
+
 
 @RunWith(AndroidJUnit4::class)
 class LoginTest  {
     @Rule @JvmField
     var activityRule = ActivityTestRule(MainActivity::class.java)
+
+    @Rule @JvmField
+    var mRuntimeReadStoragePermissionRule = GrantPermissionRule.grant(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+
+    @Rule @JvmField
+    var mRuntimeWriteStoragePermissionRule = GrantPermissionRule.grant(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     fun takeActivityScreenshot(tag: String) {
         Spoon.screenshot(activityRule.activity, tag)
