@@ -12,6 +12,9 @@ There are two reasons for this:
 1. React Native doesn't provide proper test-id for Android
 1. Rendering React Native views is done async; React Native uses a Javascript thread and bridge. Therefore, the tests will have to wait on the views to become visible.
 
+We use Spoon to take screenshots on each test.
+This achieved with the help of Spoon ([link](https://github.com/square/spoon)) and the spoon-gradle-plugin ([link](https://github.com/stanfy/spoon-gradle-plugin)).
+
 > **The examples in this repository are not for best practices, or have the purpose to test this app with Espresso, but they are only created to build a simple test set for Espresso.**
 
 ## Build an Espresso test app
