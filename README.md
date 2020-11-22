@@ -37,7 +37,7 @@ If you tap on them they will auto fill the login data.
 ### Touch / Face ID
 This app supports TouchID and FaceID for Android and iOS and will only show when the phone supports and has this enabled.
 
-See [AUTOMATION.md](./docs/AUTOMATION.md) for using Touch / Face ID with automation.
+See [AUTOMATION.md](docs/APPIUM_AUTOMATION.md) for using Touch / Face ID with automation.
 
 #### Enabling Touch / Face ID on Android emulators
 >**NOTE:**<br>
@@ -93,7 +93,7 @@ The prefix deep link is `swaglabs://` and the following screens (with their argu
 > The *Swag overview | Details | Cart | Personal info | Checkout overview*-screens all need id(s). The id(s) are the numbers of the products of the `InventoryData.ITEMS` in [this](src/js/data/inventory-data.js) file.
 > The files are in an `array` and an `array` starts counting from `0`. This means that if you need the first product, you  need to provide the id `0` and if you need to the last product you need to provide the  id `5`.
 
-For how to run the deep link automation script see [Deep Linking](./docs/AUTOMATION.md#deep-linking).
+For how to run the deep link automation script see [Deep Linking](docs/APPIUM_AUTOMATION.md#deep-linking).
 
 #### Use with Android
 Open a terminal and add the following
@@ -148,7 +148,7 @@ This app supports 3 different languages and will automatically check the languag
 - Spanish
 - Dutch
 
-For the automation of the different languages see [here](./docs/AUTOMATION.md#different-languages)
+For the automation of the different languages see [here](docs/APPIUM_AUTOMATION.md#different-languages)
 
 ### QR code scanner
 This app now also has a QR code scanner. 
@@ -197,12 +197,16 @@ for more information.
 If you want to contribute to the app and add new functionalities, please check the documentation [here](./docs/CONTRIBUTING.md).
 
 ## Test-automation
-[Here](./docs/AUTOMATION.md) you will find more information about:
+### Appium
+[Here](docs/APPIUM_AUTOMATION.md) you will find more information about:
 
 - how to setup Appium
 - how to write tests
 - how to run tests on a local machine
 - how to run tests in the cloud
+
+### Espresso
+This project can also build an Espresso test apk which can be ran in the Sauce Labs RDC cloud. More information can be found [here](docs/ESPRESSO_AUTOMATION.md).
 
 ## FAQ
 ### Downloaded iOS apps shows 'App is damaged and can't be opened. You should move it to the trash.' after manually install
