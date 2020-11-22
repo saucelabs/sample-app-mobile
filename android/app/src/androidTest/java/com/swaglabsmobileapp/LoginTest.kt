@@ -1,7 +1,6 @@
 package com.swaglabsmobileapp
 
 import EspressoViewFinder.waitForDisplayed
-import android.app.Activity
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
@@ -10,15 +9,11 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.squareup.spoon.Spoon
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 
 import org.junit.Rule
 import org.junit.runner.RunWith
 import androidx.test.rule.GrantPermissionRule
-
-
 
 @RunWith(AndroidJUnit4::class)
 class LoginTest  {
@@ -34,8 +29,9 @@ class LoginTest  {
     fun takeActivityScreenshot(tag: String) {
         Spoon.screenshot(activityRule.activity, tag)
     }
-    
+
     @Test
+    @HappyFlow
     fun successfulLogin() {
         waitForDisplayed(withContentDescription("test-Login"))
         takeActivityScreenshot("initial_state")
@@ -55,6 +51,7 @@ class LoginTest  {
     }
 
     @Test
+    @ErrorFlow
     fun lockedUserLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
@@ -77,6 +74,7 @@ class LoginTest  {
     }
 
     @Test
+    @ErrorFlow
     fun noUsernameLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
@@ -94,6 +92,7 @@ class LoginTest  {
     }
 
     @Test
+    @ErrorFlow
     fun noPasswordLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
@@ -114,6 +113,7 @@ class LoginTest  {
     }
 
     @Test
+    @ErrorFlow
     fun noMatchLogin() {
         // Wait for the screen to be loaded
         waitForDisplayed(withContentDescription("test-Login"))
