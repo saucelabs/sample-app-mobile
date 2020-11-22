@@ -60,7 +60,7 @@ class SwagLabsFlow  {
         // Take a screenshot
         takeActivityScreenshot("happy_flow_cart")
         onView(withContentDescription("test-CHECKOUT"))
-                .perform(click())
+                .perform(scrollTo(), click())
 
         // checkoutPageOne
         // This is a bad practice but we just wait for the animation here
@@ -70,8 +70,10 @@ class SwagLabsFlow  {
         takeActivityScreenshot("happy_flow_submit_data")
         onView(withContentDescription("test-First Name"))
                 .perform(typeText("Sauce"))
+        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
         onView(withContentDescription("test-Last Name"))
                 .perform(typeText("Bot"))
+        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
         onView(withContentDescription("test-Zip/Postal Code"))
                 .perform(typeText("1234 BB"))
         onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
@@ -94,7 +96,7 @@ class SwagLabsFlow  {
         // Take a screenshot
         takeActivityScreenshot("happy_flow_complete")
         onView(withContentDescription("test-BACK HOME"))
-                .perform(click())
+                .perform(scrollTo(), click())
         waitForDisplayed(withContentDescription("test-PRODUCTS"))
         // Take a screenshot
         takeActivityScreenshot("happy_flow_done")
