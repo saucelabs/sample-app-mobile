@@ -55,7 +55,6 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0326630E9A5049CDB42317F9 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		0C5BDB74CFDBF4E80A7C5913 /* Pods-SwagLabsMobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwagLabsMobileApp.debug.xcconfig"; path = "Target Support Files/Pods-SwagLabsMobileApp/Pods-SwagLabsMobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SwagLabsMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwagLabsMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,22 +129,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* SwagLabsMobileAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = SwagLabsMobileAppTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* SwagLabsMobileApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +170,6 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* SwagLabsMobileApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* SwagLabsMobileAppTests */,
 				88EAF091256BC58A003B5C51 /* SwagLabsMobileAppUITests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,

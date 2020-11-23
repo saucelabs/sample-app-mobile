@@ -38,7 +38,8 @@ class LoginTests: XCTestCase {
       
       let password = app.secureTextFields["test-Password"]
       password.tap()
-      password.typeText("secret_sauce")
+      // Add '\n' to hide the keyboard
+      password.typeText("secret_sauce\n")
       
       app.otherElements["test-LOGIN"].tap()
     
@@ -61,7 +62,8 @@ class LoginTests: XCTestCase {
       
       let password = app.secureTextFields["test-Password"]
       password.tap()
-      password.typeText("secret_sauce")
+      // Add '\n' to hide the keyboard
+      password.typeText("secret_sauce\n")
       
       app.otherElements["test-LOGIN"].tap()
     
@@ -124,7 +126,8 @@ class LoginTests: XCTestCase {
       
       let password = app.secureTextFields["test-Password"]
       password.tap()
-      password.typeText("Foo")
+      // Add '\n' to hide the keyboard
+      password.typeText("Foo\n")
       
       app.otherElements["test-LOGIN"].tap()
     

@@ -41,7 +41,8 @@ class SwagLabsFlow: XCTestCase {
       
       let password = app.secureTextFields["test-Password"]
       password.tap()
-      password.typeText("secret_sauce")
+      // Add '\n' to hide the keyboard
+      password.typeText("secret_sauce\n")
       
       app.otherElements["test-LOGIN"].tap()
     
@@ -59,15 +60,18 @@ class SwagLabsFlow: XCTestCase {
       
       let firstName = app.textFields["test-First Name"]
       firstName.tap()
-      firstName.typeText("Sauce")
+      // Add '\n' to hide the keyboard
+      firstName.typeText("Sauce\n")
       
       let lastName = app.textFields["test-Last Name"]
       lastName.tap()
-      lastName.typeText("Bot")
+      // Add '\n' to hide the keyboard
+      lastName.typeText("Bot\n")
       
       let zipPostalCode = app.textFields["test-Zip/Postal Code"]
       zipPostalCode.tap()
-      zipPostalCode.typeText("1234 BB")
+      // Add '\n' to hide the keyboard
+      zipPostalCode.typeText("1234 BB\n")
       
       app.otherElements["test-CONTINUE"].tap()
       
