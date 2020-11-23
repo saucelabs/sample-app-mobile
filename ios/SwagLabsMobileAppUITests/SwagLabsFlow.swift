@@ -30,6 +30,9 @@ class SwagLabsFlow: XCTestCase {
       // UI tests must launch the application that they test.
       let app = XCUIApplication()
       app.launch()
+      
+      // Wait for the login page
+      XCTAssert(app.otherElements["test-Login"].waitForExistence(timeout: 5000))
     
       // Sign in
       let userName = app.textFields["test-Username"]
