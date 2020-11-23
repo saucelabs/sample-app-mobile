@@ -25,7 +25,8 @@
     "ios.clear.build": "yarn clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
     "ios.release": "react-native run-ios --configuration Release",
     "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
-    "postinstall": "npx jetify && patch-package && cd ios && pod install && cd .."
+    "postinstall": "npx jetify && patch-package && cd ios && pod install && cd ..",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
@@ -82,6 +83,7 @@
     "jetifier": "^1.6.5",
     "metro-react-native-babel-preset": "^0.57.0",
     "react-native-clean-project": "^3.3.0",
+    "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0",
     "wdio-native-app-compare-service": "^1.2.0",
     "yargs": "^15.0.2"
