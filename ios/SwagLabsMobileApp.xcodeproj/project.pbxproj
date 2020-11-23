@@ -29,7 +29,8 @@
 		77C2269094C44C24BD26296C /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E55EF42EF064AF2B3EAAD2B /* AntDesign.ttf */; };
 		885771DE25342B1F009C30D4 /* enableSwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885771DD25342B1F009C30D4 /* enableSwiftSupport.swift */; };
 		88877079BD24F0B66421547A /* libPods-SwagLabsMobileApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 955A14D086CE676B96B15E3C /* libPods-SwagLabsMobileApp.a */; };
-		88EAF093256BC58A003B5C51 /* SwagLabsMobileAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAF092256BC58A003B5C51 /* SwagLabsMobileAppUITests.swift */; };
+		88EAF093256BC58A003B5C51 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EAF092256BC58A003B5C51 /* LoginTests.swift */; };
+		88F3DC97256BD21300DA9E8E /* SwagLabsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3DC96256BD21300DA9E8E /* SwagLabsFlow.swift */; };
 		8A6865F1677E47EE9F68146B /* MuseoSans-300Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 653CC85EF80948D28931019F /* MuseoSans-300Italic.otf */; };
 		96B99304CC4A4EC7A2037B7D /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57BA427D85794918A63D0DB3 /* SimpleLineIcons.ttf */; };
 		9713E9B599EF4496856995C0 /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 65E91478319D4DA0B0365D2B /* MuseoSans_500.otf */; };
@@ -81,8 +82,9 @@
 		885771DC25342B1E009C30D4 /* SwagLabsMobileApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwagLabsMobileApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		885771DD25342B1F009C30D4 /* enableSwiftSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enableSwiftSupport.swift; sourceTree = "<group>"; };
 		88EAF090256BC58A003B5C51 /* SwagLabsMobileAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwagLabsMobileAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		88EAF092256BC58A003B5C51 /* SwagLabsMobileAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwagLabsMobileAppUITests.swift; sourceTree = "<group>"; };
+		88EAF092256BC58A003B5C51 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		88EAF094256BC58A003B5C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F3DC96256BD21300DA9E8E /* SwagLabsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwagLabsFlow.swift; sourceTree = "<group>"; };
 		8AC1AD59D3B44D9DB0A49B46 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		8C559E59F64A498F931649D1 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		92B7EADD9FEC40519BF1DAA7 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -209,8 +211,9 @@
 		88EAF091256BC58A003B5C51 /* SwagLabsMobileAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				88EAF092256BC58A003B5C51 /* SwagLabsMobileAppUITests.swift */,
+				88EAF092256BC58A003B5C51 /* LoginTests.swift */,
 				88EAF094256BC58A003B5C51 /* Info.plist */,
+				88F3DC96256BD21300DA9E8E /* SwagLabsFlow.swift */,
 			);
 			path = SwagLabsMobileAppUITests;
 			sourceTree = "<group>";
@@ -514,7 +517,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88EAF093256BC58A003B5C51 /* SwagLabsMobileAppUITests.swift in Sources */,
+				88EAF093256BC58A003B5C51 /* LoginTests.swift in Sources */,
+				88F3DC97256BD21300DA9E8E /* SwagLabsFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

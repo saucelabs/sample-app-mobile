@@ -1,0 +1,81 @@
+//
+//  SwagLabsFlow.swift
+//  SwagLabsMobileAppUITests
+//
+//  Created by Wim Selles on 23/11/2020.
+//  Copyright © 2020 Facebook. All rights reserved.
+//
+
+import XCTest
+
+class SwagLabsFlow: XCTestCase {
+
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        // In UI tests it is usually best to stop immediately when a failure occurs.
+        continueAfterFailure = false
+
+        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        XCUIApplication().launch()
+
+        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    }
+
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testCompleteFlow() throws {
+      // UI tests must launch the application that they test.
+      let app = XCUIApplication()
+      app.launch()
+    
+      // Sign in
+      let userName = app.textFields["test-Username"]
+      userName.tap()
+      userName.typeText("standard_user")
+      
+      let password = app.secureTextFields["test-Password"]
+      password.tap()
+      password.typeText("secret_sauce")
+      
+      app.otherElements["test-LOGIN"].tap()
+    
+      // Wait for the Products page, add article and go to cart
+      XCTAssert(app.otherElements["test-PRODUCTS"].waitForExistence(timeout: 5000))
+      app.otherElements["test-ADD TO CART"].firstMatch.tap()
+      
+      // Go to cart and do a checkout
+      app.otherElements["test-Cart"].tap()
+      XCTAssert(app.otherElements["test-Cart Content"].waitForExistence(timeout: 5000))
+      app.otherElements["test-CHECKOUT"].tap()
+      
+      // checkoutPageOne
+      XCTAssert(app.otherElements["test-Checkout: Your Info"].waitForExistence(timeout: 5000))
+      
+      let firstName = app.textFields["test-First Name"]
+      firstName.tap()
+      firstName.typeText("Sauce")
+      
+      let lastName = app.textFields["test-Last Name"]
+      lastName.tap()
+      lastName.typeText("Bot")
+      
+      let zipPostalCode = app.textFields["test-Zip/Postal Code"]
+      zipPostalCode.tap()
+      zipPostalCode.typeText("1234 BB")
+      
+      app.otherElements["test-CONTINUE"].tap()
+      
+      // checkoutPageTwo
+      XCTAssert(app.otherElements["test-CHECKOUT: OVERVIEW"].waitForExistence(timeout: 5000))
+      app.otherElements["test-FINISH"].tap()
+      
+      // checkoutCompletePage
+      XCTAssert(app.otherElements["test-CHECKOUT: COMPLETE!"].waitForExistence(timeout: 5000))
+      app.otherElements["test-BACK HOME"].tap()
+      XCTAssert(app.otherElements["test-PRODUCTS"].waitForExistence(timeout: 5000))
+    }
+
+}
