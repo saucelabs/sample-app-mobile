@@ -25,6 +25,7 @@
     "ios.clear.build": "yarn clear.cache && rm -rf ./ios/build/Build/Products/Release-iphonesimulator",
     "ios.release": "react-native run-ios --configuration Release",
     "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
+    "ios.xcuitest": "cd scripts && ./build_xcuitest.sh && cd ..",
     "postinstall": "npx jetify && patch-package && cd ios && pod install && cd ..",
     "postversion": "react-native-version"
   },

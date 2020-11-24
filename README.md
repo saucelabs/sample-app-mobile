@@ -208,6 +208,9 @@ If you want to contribute to the app and add new functionalities, please check t
 ### Espresso
 This project can also build an Espresso test apk which can be ran in the Sauce Labs RDC cloud. More information can be found [here](docs/ESPRESSO_AUTOMATION.md).
 
+### XCUITest
+This project can also build an XCUITest test app which can be ran in the Sauce Labs RDC cloud. More information can be found [here](docs/XCUITEST_AUTOMATION.md).
+
 ## FAQ
 ### Downloaded iOS apps shows 'App is damaged and can't be opened. You should move it to the trash.' after manually install
 You can get this warning when you have OSX Catalina or higher and try to install the app manually.
