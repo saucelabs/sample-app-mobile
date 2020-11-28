@@ -10,7 +10,7 @@ config.capabilities = [
   {
     deviceName: 'iPhone ([678]|X.*)',
     platformName: 'iOS',
-    app: 'storage:filename=iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.4.0.ipa',
+    app: 'storage:filename=sample-app-ios.ipa',
     idleTimeout: 180,
     cacheId: new Date().getTime(),
     autoAcceptAlerts: true,

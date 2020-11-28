@@ -10,7 +10,7 @@ config.capabilities = [
   {
     deviceName: 'Samsung Galaxy S([78]|(10|20)).*',
     automationName: 'UiAutomator2',
-    app: 'storage:filename=Android.SauceLabs.Mobile.Sample.app.2.4.0.apk',
+    app: 'storage:filename=sample-app-android.apk',
     appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
     platformName: 'Android',
     idleTimeout: 180,
