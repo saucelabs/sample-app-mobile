@@ -86,7 +86,6 @@
     "react-native-clean-project": "^3.3.0",
     "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0",
-    "wdio-native-app-compare-service": "^1.2.0",
     "yargs": "^15.0.2"
   },
   "husky": {

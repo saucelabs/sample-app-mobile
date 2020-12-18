@@ -25,19 +25,7 @@ exports.config = {
 		defaultTimeoutInterval: 120000,
 		helpers: [require.resolve('@babel/register')],
 	},
-	services: [ [
-		'native-app-compare',
-		{
-			baselineFolder: 'tests/e2e/image-baseline',
-			screenshotPath: '.tmp/image-compare',
-			imageNameFormat: '{tag}-{deviceName}-{platformName}-{platformVersion}',
-			autoSaveBaseline: true,
-			blockOutStatusBar: true,
-			blockOutIphoneXBottomBar: true,
-			blockOutNavigationBar: true,
-			savePerDevice: true,
-		},
-	] ],
+	services: [ ],
 	// =====
 	// Hooks
 	// =====
