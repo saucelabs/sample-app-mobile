@@ -1,12 +1,13 @@
 import Base from './base';
+import { languageSelectors } from '../helpers/utils';
 
 class GeoLocation extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.geoLocation.screen }`);
+		super(`~test-${ languageSelectors().geoLocation.screen }`);
 	}
 
 	get SELECTORS() {
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

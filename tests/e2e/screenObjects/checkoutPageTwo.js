@@ -1,14 +1,14 @@
 import Base from './base';
-import { getTextOfElement } from '../helpers/utils';
+import { getTextOfElement, languageSelectors } from '../helpers/utils';
 import Gestures from '../helpers/Gestures';
 
 class CheckoutPageTwo extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.checkoutPageTwo.screen }`);
+		super(`~test-${ languageSelectors().checkoutPageTwo.screen }`);
 	}
 
 	get SELECTORS(){
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

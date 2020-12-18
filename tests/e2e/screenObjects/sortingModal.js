@@ -1,12 +1,13 @@
 import Base from './base';
+import { languageSelectors } from '../helpers/utils';
 
 class SortingModal extends Base {
 	constructor() {
-		super(`~${ driver.selectors.modalSelector.container }`);
+		super(`~${ languageSelectors().modalSelector.container }`);
 	}
 
 	get SELECTORS(){
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

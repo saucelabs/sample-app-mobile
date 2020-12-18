@@ -1,15 +1,16 @@
 import Base from './base';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
+import { languageSelectors } from '../helpers/utils';
 
 class Menu extends Base {
 	constructor() {
 		// The `all items` is used for that because there is no other way to determine that
 		// the menu container
-		super(`~test-${ driver.selectors.menu.allItems }`);
+		super(`~test-${ languageSelectors().menu.allItems }`);
 	}
 
 	get SELECTORS(){
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get button() {

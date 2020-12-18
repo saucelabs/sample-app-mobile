@@ -7,7 +7,7 @@ exports.config = {
 	// Specify Test Files
 	// ==================
 	specs: [
-		'./tests/e2e/spec/default/*.spec.js',
+		'./tests/e2e/spec/default/login.spec.js',
 	],
 	// ===================
 	// Test Configurations
@@ -23,13 +23,20 @@ exports.config = {
 	reporters: [ 'spec' ],
 	jasmineNodeOpts: {
 		defaultTimeoutInterval: 120000,
-		helpers: [require.resolve('@babel/register')],
+		helpers: [ require.resolve('@babel/register') ],
 	},
-	services: [ ],
+	services: [],
 	// =====
 	// Hooks
 	// =====
+	onPrepare: (config) => {
+		/**
+		 * Set the language on the config which will be used for setting the selectors
+		 */
+		config.language = config.language || 'en';
+	},
 	before: () => {
+		console.log('BEFORE: ', driver);
 		/**
 		 * Custom property that is used to determine if the app is already launched for the first time
 		 * This property is needed because the first time the app is automatically started, so a double
@@ -41,27 +48,5 @@ exports.config = {
 		 * Custom property that is used to determine if biometric access is already allowed.
 		 */
 		driver.isBioMetricAllowed = false;
-
-		/**
-		 * Custom property that will get the language specific selectors based on the used capabilities
-		 */
-		driver.selectors = (() => {
-			let selectors;
-			const DEFAULT_LANGUAGE = 'en';
-			const language = driver.config.language || DEFAULT_LANGUAGE;
-			const path = '../../../src/js/config/translations';
-
-			try {
-				selectors = require(`${ path }/${ language }`);
-			} catch (e) {
-				console.log('\n################################################\n');
-				console.log(`The language code '${ language }' does not exist`);
-				console.log(`It will be defaulted to '${ DEFAULT_LANGUAGE }'`);
-				console.log('\n################################################\n');
-				selectors = require(`${ path }/${ DEFAULT_LANGUAGE }`);
-			}
-
-			return selectors.default;
-		})();
 	},
 };

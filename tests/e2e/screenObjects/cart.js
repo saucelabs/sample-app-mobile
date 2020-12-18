@@ -1,14 +1,14 @@
-import { getTextOfElement } from '../helpers/utils';
+import { getTextOfElement, languageSelectors } from '../helpers/utils';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
 
 class CartContent extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.cartContent.screen }`);
+		super(`~test-${ languageSelectors().cartContent.screen }`);
 	}
 
 	get SELECTORS() {
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

@@ -1,11 +1,11 @@
 import LoginScreen from '../../screenObjects/login';
 import InventoryListScreen from '../../screenObjects/inventoryList';
-import { restartApp } from '../../helpers/utils';
+import { languageSelectors, restartApp } from '../../helpers/utils';
 import { LOGIN_USERS } from '../../helpers/e2eConstants';
 import Gestures from '../../helpers/Gestures';
 
 describe('Login', () => {
-  const SELECTORS = driver.selectors;
+  const SELECTORS = languageSelectors();
 
   beforeEach(() => {
     restartApp();

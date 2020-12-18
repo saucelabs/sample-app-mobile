@@ -1,14 +1,14 @@
-import { getTextOfElement } from '../helpers/utils';
+import { getTextOfElement, languageSelectors } from '../helpers/utils';
 import Base from './base';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
 
 class LoginScreen extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.login.screen }`);
+		super(`~test-${ languageSelectors().login.screen }`);
 	}
 
 	get SELECTORS() {
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

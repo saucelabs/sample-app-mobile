@@ -1,14 +1,14 @@
-import { getTextOfElement } from '../helpers/utils';
+import { getTextOfElement, languageSelectors } from '../helpers/utils';
 import Base from './base';
 import Gestures from '../helpers/Gestures';
 
 class InventoryItemScreen extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.inventoryItemPage.screen }`);
+		super(`~test-${ languageSelectors().inventoryItemPage.screen }`);
 	}
 
 	get SELECTORS() {
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

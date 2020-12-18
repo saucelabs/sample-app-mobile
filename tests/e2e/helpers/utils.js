@@ -205,3 +205,23 @@ export function openDeepLinkUrl(url) {
 		package: BUNDLE_IDS.ANDROID,
 	});
 }
+
+/**
+ * Get the language selectors
+ *
+ * @returns {*}
+ */
+export function languageSelectors(){
+	const DEFAULT_LANGUAGE = 'en';
+	let selectors;
+	const {language} = driver.config;
+	const path = '../../../src/js/config/translations';
+
+	try {
+		selectors = require(`${ path }/${ language }`);
+	} catch (e) {
+		selectors = require(`${ path }/${ DEFAULT_LANGUAGE }`);
+	}
+
+	return selectors.default;
+}

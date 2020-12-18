@@ -1,4 +1,4 @@
-import { openDeepLinkUrl, restartApp } from '../../helpers/utils';
+import { languageSelectors, openDeepLinkUrl, restartApp } from '../../helpers/utils';
 import LoginScreen from '../../screenObjects/login';
 import InventoryListScreen from '../../screenObjects/inventoryList';
 import CartContent from '../../screenObjects/cart';
@@ -7,7 +7,7 @@ import CheckoutPageOne from '../../screenObjects/checkoutPageOne';
 import { LOGIN_USERS } from '../../helpers/e2eConstants';
 
 describe('Cart Content Page', () => {
-	const SELECTORS = driver.selectors;
+	const SELECTORS = languageSelectors();
 
 	beforeEach(() => {
 		// Restart the app before each session, only not for the first session

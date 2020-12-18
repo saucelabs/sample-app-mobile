@@ -1,10 +1,10 @@
-import { openDeepLinkUrl, restartApp } from '../../helpers/utils';
+import { languageSelectors, openDeepLinkUrl, restartApp } from '../../helpers/utils';
 import LoginScreen from '../../screenObjects/login';
 import CheckoutPageTwo from '../../screenObjects/checkoutPageTwo';
 import CheckoutComplete from '../../screenObjects/checkoutComplete';
 
 describe('Checkout: Overview', () => {
-  const SELECTORS = driver.selectors;
+  const SELECTORS = languageSelectors();
 
   beforeEach(() => {
     // Restart the app before each session, only not for the first session

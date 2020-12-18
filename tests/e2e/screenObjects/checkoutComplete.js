@@ -1,13 +1,14 @@
 import Base from './base';
 import Gestures from '../helpers/Gestures';
+import { languageSelectors } from '../helpers/utils';
 
 class CheckoutComplete extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.checkoutCompletePage.screen }`);
+		super(`~test-${ languageSelectors().checkoutCompletePage.screen }`);
 	}
 
 	get SELECTORS() {
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

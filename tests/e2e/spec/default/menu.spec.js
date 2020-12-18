@@ -1,4 +1,4 @@
-import { browserIsOpened, openDeepLinkUrl, restartApp } from '../../helpers/utils';
+import { browserIsOpened, languageSelectors, openDeepLinkUrl, restartApp } from '../../helpers/utils';
 import LoginScreen from '../../screenObjects/login';
 import InventoryListScreen from '../../screenObjects/inventoryList';
 import InventoryItemScreen from '../../screenObjects/inventoryItem';
@@ -7,7 +7,7 @@ import Menu from '../../screenObjects/menu';
 import Webview from '../../screenObjects/webview';
 
 describe('Menu', () => {
-  const SELECTORS = driver.selectors;
+  const SELECTORS = languageSelectors();
 
   beforeEach(() => {
     // Restart the app before each session, only not for the first session

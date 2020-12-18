@@ -1,8 +1,8 @@
-import { getTextOfElement } from '../helpers/utils';
+import { getTextOfElement, languageSelectors } from '../helpers/utils';
 
 class AppHeader {
 	get SELECTORS(){
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get cart() {

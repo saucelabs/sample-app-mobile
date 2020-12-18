@@ -1,5 +1,5 @@
 const { argv } = require('yargs');
-const { config } = require('./wdio.ios.sauce.sim.conf');
+const { config } = require('./wdio.sauce.shared');
 
 // ============
 // Capabilities
@@ -14,8 +14,7 @@ config.capabilities = [
 		platformName: 'Android',
 		platformVersion: '10.0',
 		orientation: 'PORTRAIT',
-		// This is the app-id you get back when you upload the app to the Sauce Storage
-		app: 'storage:67efe5a4-cbcc-41b7-b376-b207a9045397',
+		app: 'storage:filename=sample-app-android.apk',
 		appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
 		appiumVersion: '1.17.1',
 		build: 'Android Sample App Simulator tests',

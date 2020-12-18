@@ -1,12 +1,13 @@
 import Base from './base';
+import { languageSelectors } from '../helpers/utils';
 
 class DrawingScreen extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.drawing.screen }`);
+		super(`~test-${ languageSelectors().drawing.screen }`);
 	}
 
 	get SELECTORS() {
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get screen() {

@@ -1,6 +1,6 @@
 import Base from './base';
 import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
-import { getTextOfElement } from '../helpers/utils';
+import { getTextOfElement, languageSelectors } from '../helpers/utils';
 
 export const CONTEXT_REF = {
 	NATIVE: 'native',
@@ -14,11 +14,11 @@ const DOCUMENT_READY_STATE = {
 
 class Webview extends Base {
 	constructor() {
-		super(`~test-${ driver.selectors.webview.screen }`);
+		super(`~test-${ languageSelectors().webview.screen }`);
 	}
 
 	get SELECTORS() {
-		return driver.selectors;
+		return languageSelectors();
 	}
 
 	get input() {

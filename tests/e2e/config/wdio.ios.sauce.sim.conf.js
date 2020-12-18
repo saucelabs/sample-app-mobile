@@ -13,8 +13,7 @@ config.capabilities = [
 		platformName: 'iOS',
 		platformVersion: '13.4',
 		orientation: 'PORTRAIT',
-		// This is the app-id you get back when you upload the app to the Sauce Storage
-		app: 'storage:91e5468a-6145-43d0-9d3f-451d5ba75353',
+		app: 'storage:filename=sample-app-ios.zip',
 		build: 'iOS Sample App Simulator tests',
 		// Read the reset strategies very well, they differ per platform, see
 		// http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
