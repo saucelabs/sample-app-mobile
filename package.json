@@ -26,17 +26,16 @@
     "ios.release": "react-native run-ios --configuration Release",
     "ios.sim.build": "yarn ios.clear.build && npm run ios.release",
     "ios.xcuitest": "cd scripts && ./build_xcuitest.sh && cd ..",
-    "postinstall": "npx jetify && patch-package && cd ios && pod install && cd ..",
+    "postinstall": "cd ios && pod install && cd ..",
     "postversion": "react-native-version"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
     "@react-native-community/cameraroll": "^4.0.1",
     "i18n-js": "^3.5.1",
-    "patch-package": "^6.2.2",
     "postinstall-postinstall": "^2.1.0",
-    "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react": "16.13.1",
+    "react-native": "0.63.4",
     "react-native-biometrics": "^2.1.2",
     "react-native-camera": "^3.15.1",
     "react-native-elements": "^1.2.7",
@@ -58,11 +57,12 @@
     "sync-storage": "^0.4.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.7",
-    "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.7.7",
-    "@babel/register": "^7.7.7",
-    "@babel/runtime": "^7.6.2",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/register": "^7.8.6",
+    "@babel/runtime": "^7.8.7",
+    "@react-native-community/eslint-config": "^1.1.0",
     "@wdio/appium-service": "^6.10.11",
     "@wdio/cli": "^6.10.11",
     "@wdio/jasmine-framework": "^6.10.11",
@@ -71,7 +71,7 @@
     "@wdio/spec-reporter": "^6.10.6",
     "@wdio/sync": "^6.10.11",
     "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
     "eslint-config-fb-strict": "^24.3.0",
     "eslint-config-fbjs": "^3.1.0",
@@ -81,16 +81,20 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-native": "^3.8.1",
     "husky": "^3.1.0",
+    "jest": "^25.1.0",
     "jetifier": "^1.6.5",
-    "metro-react-native-babel-preset": "^0.57.0",
+    "metro-react-native-babel-preset": "^0.59.0",
     "react-native-clean-project": "^3.3.0",
     "react-native-version": "^4.0.0",
-    "react-test-renderer": "16.9.0",
+    "react-test-renderer": "16.13.1",
     "yargs": "^15.0.2"
   },
   "husky": {
     "hooks": {
       "pre-push": "yarn lint"
     }
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
