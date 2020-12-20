@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import AppHeader from './components/AppHeader';
 import { SCREENS, WINDOW_WIDTH } from './config/Constants';
+
 // The screens
 import Login from './screens/Login';
 import InventoryList from './screens/InventoryList';
