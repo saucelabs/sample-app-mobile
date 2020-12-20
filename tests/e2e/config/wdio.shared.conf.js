@@ -7,7 +7,7 @@ exports.config = {
 	// Specify Test Files
 	// ==================
 	specs: [
-		'./tests/e2e/spec/default/login.spec.js',
+		'./tests/e2e/spec/default/*.spec.js',
 	],
 	// ===================
 	// Test Configurations
@@ -36,7 +36,6 @@ exports.config = {
 		config.language = config.language || 'en';
 	},
 	before: () => {
-		console.log('BEFORE: ', driver);
 		/**
 		 * Custom property that is used to determine if the app is already launched for the first time
 		 * This property is needed because the first time the app is automatically started, so a double
