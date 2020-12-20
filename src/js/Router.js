@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
+import { enableScreens } from 'react-native-screens';
 import AppHeader from './components/AppHeader';
 import { SCREENS, WINDOW_WIDTH } from './config/Constants';
 
@@ -19,6 +20,8 @@ import QrCodeScanner from './screens/QrCodeScanner';
 import DrawerLinks from './components/DrawerLinks';
 import GeoLocation from './screens/GeoLocation';
 import Drawing from './screens/Drawing';
+
+enableScreens();
 
 const StackNavigator = createStackNavigator({
 		[ SCREENS.LOGIN ]: { screen: Login },
