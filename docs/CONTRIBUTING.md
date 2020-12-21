@@ -187,7 +187,7 @@ When all tests have been executed the following will be shown in the console
 
 ```bash
 [iPhone X MAC 11.4 #0-0] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/cart.content.spec.js
-[iPhone X MAC 11.4 #0-0] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-0] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-0]
 [iPhone X MAC 11.4 #0-0] Cart Content Page
 [iPhone X MAC 11.4 #0-0]    ✓ should show 2 items in the cart
@@ -198,7 +198,7 @@ When all tests have been executed the following will be shown in the console
 [iPhone X MAC 11.4 #0-0] 4 passing (50.8s)
 ------------------------------------------------------------------
 [iPhone X MAC 11.4 #0-1] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/checkout.complete.spec.js
-[iPhone X MAC 11.4 #0-1] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-1] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-1]
 [iPhone X MAC 11.4 #0-1] Checkout Complete
 [iPhone X MAC 11.4 #0-1]    ✓ should be able to finish the checkout by going back to the inventory list
@@ -206,7 +206,7 @@ When all tests have been executed the following will be shown in the console
 [iPhone X MAC 11.4 #0-1] 1 passing (16.9s)
 ------------------------------------------------------------------
 [iPhone X MAC 11.4 #0-2] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/checkout.page.one.spec.js
-[iPhone X MAC 11.4 #0-2] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-2] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-2]
 [iPhone X MAC 11.4 #0-2] Checkout: Your info
 [iPhone X MAC 11.4 #0-2]    ✓ should be able to submit my personal info and proceed the checkout
@@ -218,7 +218,7 @@ When all tests have been executed the following will be shown in the console
 [iPhone X MAC 11.4 #0-2] 5 passing (1m 24.7s)
 ------------------------------------------------------------------
 [iPhone X MAC 11.4 #0-3] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/checkout.page.two.spec.js
-[iPhone X MAC 11.4 #0-3] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-3] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-3]
 [iPhone X MAC 11.4 #0-3] Checkout: Overview
 [iPhone X MAC 11.4 #0-3]    ✓ should show the correct selected item in the overview
@@ -227,7 +227,7 @@ When all tests have been executed the following will be shown in the console
 [iPhone X MAC 11.4 #0-3] 2 passing (34.4s)
 ------------------------------------------------------------------
 [iPhone X MAC 11.4 #0-4] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/inventory.item.spec.js
-[iPhone X MAC 11.4 #0-4] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-4] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-4]
 [iPhone X MAC 11.4 #0-4] Inventory Item Page
 [iPhone X MAC 11.4 #0-4]    ✓ should show the details of the selected swag
@@ -239,7 +239,7 @@ When all tests have been executed the following will be shown in the console
 [iPhone X MAC 11.4 #0-4] 5 passing (56.9s)
 ------------------------------------------------------------------
 [iPhone X MAC 11.4 #0-5] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/inventory.list.spec.js
-[iPhone X MAC 11.4 #0-5] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-5] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-5]
 [iPhone X MAC 11.4 #0-5] Inventory List Page
 [iPhone X MAC 11.4 #0-5]    ✓ should contain swag
@@ -252,7 +252,7 @@ When all tests have been executed the following will be shown in the console
 [iPhone X MAC 11.4 #0-5] 6 passing (1m 8.2s)
 ------------------------------------------------------------------
 [iPhone X MAC 11.4 #0-6] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/login.spec.js
-[iPhone X MAC 11.4 #0-6] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-6] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-6]
 [iPhone X MAC 11.4 #0-6] Login
 [iPhone X MAC 11.4 #0-6]    ✓ should be able to login with a standard user
@@ -264,7 +264,7 @@ When all tests have been executed the following will be shown in the console
 [iPhone X MAC 11.4 #0-6] 5 passing (43s)
 ------------------------------------------------------------------
 [iPhone X MAC 11.4 #0-7] Spec: /Users/wswebcreation/Git/sample-app-ios/tests/e2e/spec/menu.spec.js
-[iPhone X MAC 11.4 #0-7] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app
+[iPhone X MAC 11.4 #0-7] Running: iPhone X on MAC 11.4 executing /Users/wswebcreation/Git/sample-app-ios/SwagLabsMobileApp.app
 [iPhone X MAC 11.4 #0-7]
 [iPhone X MAC 11.4 #0-7] Menu
 [iPhone X MAC 11.4 #0-7]    ✓ should be able to be opened and closed

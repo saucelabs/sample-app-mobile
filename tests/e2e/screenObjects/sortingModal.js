@@ -20,8 +20,9 @@ class SortingModal extends Base {
 	}
 
 	get cancel() {
+		const cancelText = this.SELECTORS.modalSelector.cancel;
 		const selector = driver.isIOS
-			? `~${ this.SELECTORS.modalSelector.cancel }`
+			? `-ios predicate string:label == '${cancelText}' AND name == '${cancelText}' AND value == '${cancelText}'`
 			: `//*[@content-desc="${ this.SELECTORS.modalSelector.container }"]/../../*[2]`;
 
 		return $(selector);

@@ -1,12 +1,15 @@
 import { openDeepLinkUrl, restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
 import GeoLocation from '../../screenObjects/geo.location';
 
 describe('Geo Location Page', () => {
 	beforeEach(() => {
 		// Restart the app before each session, only not for the first session
 		restartApp();
+		LoginScreen.waitForIsShown();
 		openDeepLinkUrl('geo-location');
 		GeoLocation.waitForIsShown();
+		GeoLocation.acceptPermissions();
 	});
 
 	it('should be able to set and validate the geo location with Appium', () => {

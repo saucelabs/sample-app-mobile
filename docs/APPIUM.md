@@ -72,7 +72,7 @@ When Appium Desktop is started make sure the _Automatic Server_-tab is enabled. 
   "platformVersion": "7.1.1",
   "platformName": "Android",
   // Adjust the path to your folders
-  "app": "/Users/exampleUser/Git/sample-app-ios/android/app/build/outputs/apk/debug/app-debug.apk",
+  "app": "/Users/exampleUser/Git/sample-app-ios/apps/app-debug.apk",
   // this will not reinstall the app then it is already installed
   "noReset": true,
   // Needed for Android to use the right Android driver
@@ -88,7 +88,7 @@ And the following settings for iOS
   "platformVersion": "11.4",
   "platformName": "iOS",
   // Adjust the path to your folders
-  "app": "/Users/exampleUser/Git/sample-app-ios/ios/build/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app",
+  "app": "/Users/exampleUser/Git/sample-app-ios/apps/SwagLabsMobileApp.app",
   // this will not reinstall the app then it is already installed
   "noReset": true
 }

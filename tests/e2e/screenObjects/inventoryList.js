@@ -68,7 +68,7 @@ class InventoryListScreen extends Base {
 		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.addButton }`).click();
 
 		// there is a small delay in adding items in the cart
-		return driver.pause(250);
+		return driver.pause(750);
 	}
 
 	/**
@@ -89,7 +89,7 @@ class InventoryListScreen extends Base {
 		Gestures.dragAndDrop(swagItemDragHandle, $(`~test-${ this.SELECTORS.inventoryListPage.dropZone }`));
 
 		// there is a small delay in adding items in the cart
-		return driver.pause(250);
+		return driver.pause(750);
 	}
 
 	/**
@@ -110,7 +110,7 @@ class InventoryListScreen extends Base {
 		swagItem.$(`~test-${ this.SELECTORS.inventoryListPage.removeButton }`).click();
 
 		// there is a small delay in adding items in the cart
-		return driver.pause(250);
+		return driver.pause(750);
 	}
 
 	/**
@@ -133,7 +133,8 @@ class InventoryListScreen extends Base {
 	 */
 	toggleLayout() {
 		this.toggle.click();
-		return driver.pause(500);
+		// There is a delay, this can only be done with a hard sleep :(
+		return driver.pause(750);
 	}
 
 	/**

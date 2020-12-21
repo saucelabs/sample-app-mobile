@@ -1,6 +1,13 @@
 const { argv } = require('yargs');
 const { config } = require('./wdio.sauce.shared');
 
+// =============
+// Exclude specs
+// =============
+config.exclude = [
+  './tests/e2e/spec/extra/touch.face.id.spec.js',
+];
+
 // ============
 // Capabilities
 // ============

@@ -171,7 +171,7 @@ export default class InventoryList extends Component {
 						onChange={ (sortOption) => this.changeSort(sortOption.key) }
 						cancelText={ I18n.t('modalSelector.cancel') }
 						listItemAccessible
-						cancelButtonAccessible
+						cancelButtonAccessible={false}
 						openButtonContainerAccessible
 						scrollViewAccessibilityLabel={ I18n.t('modalSelector.container') }
 					>
