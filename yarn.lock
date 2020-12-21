@@ -2012,10 +2012,10 @@
     webdriver "6.10.11"
     webdriverio "6.10.11"
 
-"@wdio/sauce-service@^6.10.11":
-  version "6.10.11"
-  resolved "https://registry.yarnpkg.com/@wdio/sauce-service/-/sauce-service-6.10.11.tgz#865c4eca3fe485b40ad19fbcf691bd5ace8c974f"
-  integrity sha512-ou2Cx/Fi669bTqwHCp5ZKKY8u6jlJOskwbZUfxrnhPnnjR04Ol6n6lPV4GrLQUOj6w5Cn5YmzVQFB84ryuicxg==
+"@wdio/sauce-service@^6.10.14":
+  version "6.10.14"
+  resolved "https://registry.yarnpkg.com/@wdio/sauce-service/-/sauce-service-6.10.14.tgz#dc294059e3d1406cf63cf9a5102a501542223fef"
+  integrity sha512-NKVsJEQ42Ulx1bBerlP35sJL3xUnX/GIjxJQFHAfm1LDeOedO41mAPOOS8cl0NT7pGjFnTUpbCAPAOrhMoUVPw==
   dependencies:
     "@wdio/logger" "6.10.10"
     "@wdio/utils" "6.10.11"

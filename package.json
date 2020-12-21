@@ -70,7 +70,7 @@
     "@wdio/cli": "^6.10.11",
     "@wdio/jasmine-framework": "^6.10.11",
     "@wdio/local-runner": "^6.10.13",
-    "@wdio/sauce-service": "^6.10.11",
+    "@wdio/sauce-service": "^6.10.14",
     "@wdio/spec-reporter": "^6.10.6",
     "@wdio/sync": "^6.10.11",
     "babel-eslint": "^10.0.2",

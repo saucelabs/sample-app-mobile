@@ -8,7 +8,16 @@ describe('Geo Location Page', () => {
 		restartApp();
 		LoginScreen.waitForIsShown();
 		openDeepLinkUrl('geo-location');
-		GeoLocation.waitForIsShown();
+
+		// It could be that the screen can't be detected due to an permission model
+		// That's why we put it in a try catch
+		try {
+			GeoLocation.waitForIsShown();
+		} catch (e){
+			// Ignore
+		}
+
+		// Accept the permissions, if it's not there it will proceed after x amount of seconds
 		GeoLocation.acceptPermissions();
 	});
 

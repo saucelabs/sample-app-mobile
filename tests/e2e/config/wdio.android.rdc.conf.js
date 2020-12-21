@@ -19,7 +19,7 @@ config.exclude = [
 // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
 config.capabilities = [
   {
-    deviceName: 'Samsung Galaxy S([78]|(10|20)).*',
+    deviceName: 'Samsung Galaxy S([0-9]).*',
     automationName: 'UiAutomator2',
     app: 'storage:filename=sample-app-android.apk',
     appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
@@ -34,12 +34,8 @@ config.capabilities = [
     locale: argv.language || 'en',
     build: 'sample-app-mobile',
     name: 'Sample App Test Name',
+    maxInstances: 10,
   },
 ];
-
-// =============================================
-// Max instances of the same device in the cloud
-// =============================================
-config.maxInstances = 5;
 
 exports.config = config;

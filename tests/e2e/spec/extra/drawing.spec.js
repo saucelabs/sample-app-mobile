@@ -223,5 +223,8 @@ describe('Drawing', () => {
 
 		// For demo purpose
 		driver.pause(3000);
+
+		// Store a screenshot
+		driver.saveScreenshot(`${process.cwd()}/${driver.capabilities.deviceName}-drawing.png`);
 	});
 });
