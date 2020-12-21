@@ -1,6 +1,15 @@
 const { argv } = require('yargs');
 const { config } = require('./wdio.sauce.shared');
 
+// =============
+// Exclude specs
+// =============
+config.exclude = [
+	// The app needs to be on the home screen and that doesn't work equal
+	// for all different Android devices / OS versions
+	'./tests/e2e/spec/extra/force.touch.spec.js',
+];
+
 // ============
 // Capabilities
 // ============

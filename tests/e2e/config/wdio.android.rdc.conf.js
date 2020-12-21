@@ -5,7 +5,11 @@ const { config } = require('./wdio.sauce.shared');
 // Exclude specs
 // =============
 config.exclude = [
+  // Touch/FaceID doesn't work on RDC for Android yet
   './tests/e2e/spec/extra/touch.face.id.spec.js',
+  // The app needs to be on the home screen and that doesn't work equal
+  // for all different Android devices / OS versions
+  './tests/e2e/spec/extra/force.touch.spec.js',
 ];
 
 // ============
