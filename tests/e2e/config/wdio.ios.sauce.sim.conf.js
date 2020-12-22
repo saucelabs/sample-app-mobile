@@ -9,19 +9,20 @@ const { config } = require('./wdio.sauce.shared');
 config.capabilities = [
 	{
 		// The defaults you need to have in your config
-		deviceName: 'iPhone XS Simulator',
+		deviceName: 'iPhone 11 Simulator',
 		platformName: 'iOS',
 		platformVersion: '13.4',
 		orientation: 'PORTRAIT',
 		app: 'storage:filename=sample-app-ios.zip',
-		build: 'iOS Sample App Simulator tests',
+		build: `iOS Sample App Simulator tests-${new Date().getTime()}`,
 		// Read the reset strategies very well, they differ per platform, see
 		// http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
 		noReset: true,
-		autoAcceptAlerts: true,
 		newCommandTimeout: 240,
 		language: argv.language || 'en',
+		maxInstances: 25,
 	},
 ];
+config.maxInstances = 25;
 
 exports.config = config;

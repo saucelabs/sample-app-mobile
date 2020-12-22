@@ -2,7 +2,7 @@ import InventoryListScreen from '../../screenObjects/inventoryList';
 import { DEFAULT_TIMEOUT } from '../../helpers/e2eConstants';
 
 describe('Test 3D Touch', () => {
-	it('should be able to open the Safari 3D touch menu', () => {
+	it('should be able to open the 3D touch menu', () => {
 		// Go to home
 		driver.background(-1);
 

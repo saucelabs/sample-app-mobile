@@ -1,6 +1,6 @@
 import { getTextOfElement, languageSelectors } from '../helpers/utils';
 import Base from './base';
-import { DEFAULT_TIMEOUT } from '../helpers/e2eConstants';
+import { DEFAULT_PIN, DEFAULT_TIMEOUT, INCORRECT_PIN } from '../helpers/e2eConstants';
 
 class LoginScreen extends Base {
 	constructor() {
@@ -27,20 +27,8 @@ class LoginScreen extends Base {
 		return $(`~test-${ this.SELECTORS.login.biometry }`);
 	}
 
-	get iosAllowBiometry() {
-		return $('~Don’t Allow');
-	}
-
-	get allowBiometry() {
-		return $('~OK');
-	}
-
-	get iosRetryBiometry() {
-		return $('~Try Again');
-	}
-
-	get androidBiometryAlert() {
-		return $('*//*[@resource-id="com.swaglabsmobileapp:id/fingerprint_icon"]');
+	get faceRecognition() {
+		return $(`~test-${ this.SELECTORS.login.faceRecognition }`);
 	}
 
 	get loginButton() {
@@ -63,6 +51,120 @@ class LoginScreen extends Base {
 		return $(`~test-${ this.SELECTORS.login.loginText.problem }`);
 	}
 
+	///////////////////////////////////////////////////////
+	// These selectors are in English because these are the
+	// system selectors
+	///////////////////////////////////////////////////////
+	get iosAllowBiometry() {
+		return $('~Don’t Allow');
+	}
+
+	get allowBiometry() {
+		return $('~OK');
+	}
+
+	get iosRetryBiometry() {
+		// Sauce Labs (Legacy) RDC mocks iOS in a different then the normal iOS mocking,
+		// so it also needs to be treated differently
+		if (process.env.RDC) {
+			return $('~Cancel');
+		}
+
+		return $('~Try Again');
+	}
+
+	get androidBiometryAlert() {
+		return $('android=new UiSelector().textContains("Please sign in")');
+	}
+
+	/**
+	 * Submit biometric login
+	 *
+	 * @param {boolean} successful
+	 */
+	submitBiometricLogin(successful) {
+		// Touch / Face ID needs to be triggered differently on iOS
+		if (driver.isIOS) {
+			// Determine Face / Touch ID
+			return this.submitIosBiometricLogin(successful);
+		}
+
+		return this.submitAndroidBiometricLogin(successful ? DEFAULT_PIN : INCORRECT_PIN);
+	}
+
+	/**
+	 * Verify that the biometric login failed
+	 *
+	 * return {boolean}
+	 */
+	isBiometryAlertShown() {
+		if (driver.isIOS) {
+			return this.iosRetryBiometry.waitForDisplayed({
+				// On RDC the alert will not be shown again,
+				// so we need to search the reverse here
+				reverse: process.env.RDC,
+			});
+		}
+
+		return this.androidBiometryAlert.waitForDisplayed();
+	}
+
+	/**
+	 * Submit iOS biometric login
+	 *
+	 * @param {boolean} successful
+	 */
+	submitIosBiometricLogin(successful) {
+		// Sauce Labs (Legacy) RDC mocks iOS in a different then the normal iOS mocking,
+		// so it also needs to be treated differently
+		if (process.env.RDC) {
+			return driver.touchId(successful);
+		}
+
+		this.allowIosBiometricUsage();
+
+		return driver.execute(
+			'mobile:sendBiometricMatch',
+			{
+				type: this.isFaceId() ? 'faceId' : 'touchId',
+				match: successful,
+			},
+		);
+	}
+
+	/**
+	 * Allow biometric usage on iOS if it isn't already accepted
+	 */
+	allowIosBiometricUsage() {
+		// Wait for the alert
+		try {
+			this.iosAllowBiometry.waitForDisplayed({ timeout: 3000 });
+			this.allowBiometry.click();
+		} catch (e) {
+			// This means that allow using touch/facID has already been accepted
+		}
+	}
+
+	/**
+	 * Check if this is the biometric login supports FaceID
+	 *
+	 * @return {boolean}
+	 */
+	isFaceId() {
+		return this.faceRecognition.isDisplayed();
+	}
+
+	/**
+	 * Submit Android biometric login
+	 *
+	 * @param {number} fingerprintId
+	 */
+	submitAndroidBiometricLogin(fingerprintId) {
+		this.androidBiometryAlert.waitForDisplayed();
+
+		return driver.fingerPrint(fingerprintId);
+	}
+
 	/**
 	 * Sign in
 	 *
@@ -81,90 +183,6 @@ class LoginScreen extends Base {
 		}
 
 		this.loginButton.click();
-	}
-
-	/**
-	 * Submit biometric login
-	 *
-	 * @param {boolean|number} successful
-	 */
-	submitBiometricLogin(successful) {
-		// Touch / Face ID needs to be triggered differently on iOS
-		if (driver.isIOS) {
-			// Determine Face / Touch ID
-			return this.submitIosBiometricLogin(successful);
-		}
-
-		return this.submitAndroidBiometricLogin(successful ? 1234 : 4321);
-	}
-
-	/**
-	 * Verify that the biometric login failed
-	 *
-	 * return {boolean}
-	 */
-	isBiometryAlertShown() {
-		if (driver.isIOS) {
-			return this.iosRetryBiometry.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
-		}
-
-		// We need to pause here to make sure the biometric log in has been executed
-		driver.pause(1000);
-
-		return this.androidBiometryAlert.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
-	}
-
-	/**
-	 * Submit iOS biometric login
-	 *
-	 * @param {boolean} successful
-	 *
-	 * @return {Promise<void>}
-	 */
-	submitIosBiometricLogin(successful) {
-		// Check if biometric usage is  allowed
-		if (!driver.config.services.includes('sauce')) {
-			this.allowIosBiometricUsage();
-
-			return driver.execute('mobile:sendBiometricMatch', { type: this.isFaceId() ? 'faceId' : 'touchId', match: successful });
-		}
-
-		return driver.touchId(successful);
-	}
-
-	/**
-	 * Allow biometric usage on iOS if it isn't already accepted
-	 */
-	allowIosBiometricUsage() {
-		if (!driver.isBioMetricAllowed) {
-			// Wait for the alert
-			this.iosAllowBiometry.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
-			this.allowBiometry.click();
-			// Set it to accept
-			driver.isBioMetricAllowed = true;
-		}
-	}
-
-	/**
-	 * Check if this is the biometric login supports FaceID
-	 *
-	 * @return {boolean}
-	 */
-	isFaceId() {
-		return $(`~test-${ this.SELECTORS.login.faceRecognition }`).isDisplayed();
-	}
-
-	/**
-	 * Submit Android biometric login
-	 *
-	 * @param {number} fingerprintId
-	 *
-	 * @return {Promise<void>}
-	 */
-	submitAndroidBiometricLogin(fingerprintId) {
-		this.androidBiometryAlert.waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
-
-		return driver.fingerPrint(fingerprintId);
 	}
 
 	/**

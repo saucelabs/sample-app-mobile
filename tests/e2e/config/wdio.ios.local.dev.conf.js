@@ -1,4 +1,3 @@
-const { join } = require('path');
 const { argv } = require('yargs');
 const { config } = require('./wdio.appium.local.shared');
 
@@ -12,10 +11,11 @@ config.capabilities = [
 		// The defaults you need to have in your config
 		deviceName: 'iPhone 11',
 		platformName: 'iOS',
-		platformVersion: '13.7',
+		platformVersion: '14.2',
 		orientation: 'PORTRAIT',
-		// The path to the app
-		app: join(process.cwd(), './ios/build/SwagLabsMobileApp/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app'),
+		// The path to the app, this can be found in the 'XCODE DerivedData'-folder which can look like this
+		// `/Users/{username}/Library/Developer/Xcode/DerivedData/SwagLabsMobileApp-{string}/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app`
+		app: '/Users/wimselles/Library/Developer/Xcode/DerivedData/SwagLabsMobileApp-hcxuhtnhlnfvtbfrbzdjhftgjxiq/Build/Products/Debug-iphonesimulator/SwagLabsMobileApp.app',
 		// Read the reset strategies very well, they differ per platform, see
 		// http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
 		noReset: true,

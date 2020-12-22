@@ -1,6 +1,7 @@
 import { restartApp } from '../../helpers/utils';
 import LoginScreen from '../../screenObjects/login';
 import InventoryListScreen from '../../screenObjects/inventoryList';
+import AndroidSettings from '../../screenObjects/AndroidSettings';
 
 describe('Touch / Face ID', () => {
 	beforeEach(() => {
@@ -9,13 +10,17 @@ describe('Touch / Face ID', () => {
 
 		// If the biometry is not shown on iOS, enable it on the phone
 		if (driver.isIOS && !LoginScreen.biometryButton.isDisplayed()) {
-			// enable it
+			// iOS us pretty straightforward, just enabled it
 			driver.toggleEnrollTouchId(true);
 			// restart the app
 			restartApp();
-			// Wait for the button to be shown
-			LoginScreen.biometryButton.waitForDisplayed({ timeout: 45000 });
+		} else if (driver.isAndroid && !LoginScreen.biometryButton.isDisplayed()) {
+			// Android is more complex, see this method
+			AndroidSettings.enableBiometricLogin();
 		}
+
+		// Wait for the button to be shown
+		LoginScreen.biometryButton.waitForDisplayed();
 	});
 
 	it('Should be able to login with a matching touch / face ID', () => {

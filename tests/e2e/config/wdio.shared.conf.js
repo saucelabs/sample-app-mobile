@@ -8,6 +8,7 @@ exports.config = {
 	// ==================
 	specs: [
 		'./tests/e2e/spec/default/*.spec.js',
+		'./tests/e2e/spec/extra/*.spec.js',
 	],
 	// ===================
 	// Test Configurations
@@ -42,10 +43,5 @@ exports.config = {
 		 * restart is not needed.
 		 */
 		driver.firstAppStart = true;
-
-		/**
-		 * Custom property that is used to determine if biometric access is already allowed.
-		 */
-		driver.isBioMetricAllowed = false;
 	},
 };

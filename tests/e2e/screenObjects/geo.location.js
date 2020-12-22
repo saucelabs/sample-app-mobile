@@ -22,6 +22,37 @@ class GeoLocation extends Base {
 		return $(`~test-${ this.SELECTORS.geoLocation.longitude }`);
 	}
 
+	///////////////////////////////////////////////////////
+	// These selectors are in English because these are the
+	// system selectors
+	///////////////////////////////////////////////////////
+	get iosAllowOnce() {
+		return $('~Allow Once');
+	}
+
+	/**
+	 * Accept the permissions
+	 */
+	acceptPermissions() {
+		if (driver.isAndroid) {
+			return;
+		}
+
+		try {
+			this.acceptIOSPermission();
+		} catch (e) {
+			// Do nothing
+		}
+	}
+
+	/**
+	 * Accept the iOS permissions
+	 */
+	acceptIOSPermission() {
+		this.iosAllowOnce.waitForDisplayed({ timeout: 3000 });
+		this.iosAllowOnce.click();
+	}
+
 	/**
 	 * Set the geo location
 	 *

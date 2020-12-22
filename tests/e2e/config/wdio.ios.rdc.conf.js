@@ -8,7 +8,7 @@ const { config } = require('./wdio.sauce.shared');
 // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
 config.capabilities = [
   {
-    deviceName: 'iPhone ([678]|X.*)',
+    deviceName: 'iPhone ([12]|[7-8]|X.*).*',
     platformName: 'iOS',
     app: 'storage:filename=sample-app-ios.ipa',
     idleTimeout: 180,
@@ -20,12 +20,8 @@ config.capabilities = [
     language: argv.language || 'en',
     build: 'sample-app-mobile',
     name: 'Sample App Test Name',
+    maxInstances: 10,
   },
 ];
-
-// =============================================
-// Max instances of the same device in the cloud
-// =============================================
-config.maxInstances = 5;
 
 exports.config = config;

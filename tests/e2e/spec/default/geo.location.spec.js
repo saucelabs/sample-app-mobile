@@ -1,12 +1,24 @@
 import { openDeepLinkUrl, restartApp } from '../../helpers/utils';
+import LoginScreen from '../../screenObjects/login';
 import GeoLocation from '../../screenObjects/geo.location';
 
 describe('Geo Location Page', () => {
 	beforeEach(() => {
 		// Restart the app before each session, only not for the first session
 		restartApp();
+		LoginScreen.waitForIsShown();
 		openDeepLinkUrl('geo-location');
-		GeoLocation.waitForIsShown();
+
+		// It could be that the screen can't be detected due to an permission model
+		// That's why we put it in a try catch
+		try {
+			GeoLocation.waitForIsShown();
+		} catch (e){
+			// Ignore
+		}
+
+		// Accept the permissions, if it's not there it will proceed after x amount of seconds
+		GeoLocation.acceptPermissions();
 	});
 
 	it('should be able to set and validate the geo location with Appium', () => {
