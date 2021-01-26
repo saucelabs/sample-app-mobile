@@ -26,7 +26,7 @@ config.capabilities = [
 		app: 'storage:filename=sample-app-android.apk',
 		appWaitActivity: 'com.swaglabsmobileapp.MainActivity',
 		appiumVersion: '1.17.1',
-		build: `Android Sample App Simulator tests-${new Date().getTime()}`,
+		build: `Android Sample App Emulator tests-${new Date().getTime()}`,
 		// Read the reset strategies very well, they differ per platform, see
 		// http://appium.io/docs/en/writing-running-appium/other/reset-strategies/
 		noReset: true,
