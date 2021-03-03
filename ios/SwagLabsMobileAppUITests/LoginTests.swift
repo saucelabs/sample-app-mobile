@@ -41,7 +41,7 @@ class LoginTests: XCTestCase {
       // Add '\n' to hide the keyboard
       password.typeText("secret_sauce\n")
       
-      app.otherElements["test-LOGIN"].tap()
+      app.buttons["test-LOGIN"].tap()
     
       // Wait for the Products page
       XCTAssert(app.otherElements["test-PRODUCTS"].waitForExistence(timeout: 5000))
@@ -65,7 +65,7 @@ class LoginTests: XCTestCase {
       // Add '\n' to hide the keyboard
       password.typeText("secret_sauce\n")
       
-      app.otherElements["test-LOGIN"].tap()
+      app.buttons["test-LOGIN"].tap()
     
       // Wait for the error message
       XCTAssert(app.otherElements["test-Error message"].waitForExistence(timeout: 5000))
@@ -82,7 +82,7 @@ class LoginTests: XCTestCase {
       XCTAssert(app.otherElements["test-Login"].waitForExistence(timeout: 5000))
     
       // Sign in
-      app.otherElements["test-LOGIN"].tap()
+      app.buttons["test-LOGIN"].tap()
     
       // Wait for the error message
       XCTAssert(app.otherElements["test-Error message"].waitForExistence(timeout: 5000))
@@ -103,7 +103,7 @@ class LoginTests: XCTestCase {
       userName.tap()
       userName.typeText("standard_user")
       
-      app.otherElements["test-LOGIN"].tap()
+      app.buttons["test-LOGIN"].tap()
     
       // Wait for the error message
       XCTAssert(app.otherElements["test-Error message"].waitForExistence(timeout: 5000))
@@ -129,7 +129,7 @@ class LoginTests: XCTestCase {
       // Add '\n' to hide the keyboard
       password.typeText("Foo\n")
       
-      app.otherElements["test-LOGIN"].tap()
+      app.buttons["test-LOGIN"].tap()
     
       // Wait for the error message
       XCTAssert(app.otherElements["test-Error message"].waitForExistence(timeout: 5000))
