@@ -44,16 +44,16 @@ class SwagLabsFlow: XCTestCase {
       // Add '\n' to hide the keyboard
       password.typeText("secret_sauce\n")
       
-      app.otherElements["test-LOGIN"].tap()
+      app.buttons["test-LOGIN"].tap()
     
       // Wait for the Products page, add article and go to cart
       XCTAssert(app.otherElements["test-PRODUCTS"].waitForExistence(timeout: 5000))
-      app.otherElements["test-ADD TO CART"].firstMatch.tap()
+      app.buttons["test-ADD TO CART"].firstMatch.tap()
       
       // Go to cart and do a checkout
       app.otherElements["test-Cart"].tap()
       XCTAssert(app.otherElements["test-Cart Content"].waitForExistence(timeout: 5000))
-      app.otherElements["test-CHECKOUT"].tap()
+      app.buttons["test-CHECKOUT"].tap()
       
       // checkoutPageOne
       XCTAssert(app.otherElements["test-Checkout: Your Info"].waitForExistence(timeout: 5000))
@@ -73,15 +73,15 @@ class SwagLabsFlow: XCTestCase {
       // Add '\n' to hide the keyboard
       zipPostalCode.typeText("1234 BB\n")
       
-      app.otherElements["test-CONTINUE"].tap()
+      app.buttons["test-CONTINUE"].tap()
       
       // checkoutPageTwo
       XCTAssert(app.otherElements["test-CHECKOUT: OVERVIEW"].waitForExistence(timeout: 5000))
-      app.otherElements["test-FINISH"].tap()
+      app.buttons["test-FINISH"].tap()
       
       // checkoutCompletePage
       XCTAssert(app.otherElements["test-CHECKOUT: COMPLETE!"].waitForExistence(timeout: 5000))
-      app.otherElements["test-BACK HOME"].tap()
+      app.buttons["test-BACK HOME"].tap()
       XCTAssert(app.otherElements["test-PRODUCTS"].waitForExistence(timeout: 5000))
     }
 
