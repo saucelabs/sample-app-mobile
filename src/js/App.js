@@ -10,6 +10,7 @@ import SwagLabsStatusBar from './components/StatusBar';
 import SplashScreen from 'react-native-splash-screen';
 import QuickActions from 'react-native-quick-actions';
 import { IS_IOS, SCREENS } from './config/Constants';
+import TestFairy from 'react-native-testfairy';
 
 QuickActions.setShortcutItems([
 	{
@@ -37,6 +38,12 @@ QuickActions.setShortcutItems([
 
 export default class App extends Component {
 	componentDidMount() {
+		// We call stop to support hot-swap during development. This is call will be ignored silently for the initial app launch.
+		TestFairy.stop();
+
+		// Launch a TestFairy session. The session url will be in the logs for you to navigate.
+		TestFairy.begin('SDK-gLeZiE9i');
+
 		SplashScreen.hide();
 	}
 
