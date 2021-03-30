@@ -12,7 +12,6 @@ import ArrowButton from '../components/ArrowButton';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { SCREENS } from '../config/Constants';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
-import TestFairy from 'react-native-testfairy';
 
 export default class InventoryItem extends Component {
   constructor(props) {
