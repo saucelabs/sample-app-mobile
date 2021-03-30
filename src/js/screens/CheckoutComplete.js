@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import ActionButton from '../components/ActionButton';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
+import TestFairy from 'react-native-testfairy';
 
 export default class CheckoutComplete extends Component {
   constructor(props) {
@@ -17,6 +18,9 @@ export default class CheckoutComplete extends Component {
 
   componentDidMount() {
     handleQuickActionsNavigation(this.props.navigation);
+
+    // Mark important moments in time to be able to later search them in the web dashboard
+    TestFairy.addEvent("Checkout complete");
   }
 
   render() {

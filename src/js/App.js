@@ -38,12 +38,34 @@ QuickActions.setShortcutItems([
 
 export default class App extends Component {
 	componentDidMount() {
-		// We call stop to support hot-swap during development. This is call will be ignored silently for the initial app launch.
+		// We call stop to support hot-swap during development. This call will be ignored silently for the initial app launch.
 		TestFairy.stop();
 
-		// Launch a TestFairy session. The session url will be in the logs for you to navigate.
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//
+		// Launch a TestFairy session. The session url will be in the logs for you to navigate. 
+		// Optionally, specify a private cloud endpoint if it applies to you.
+		// 
+		// When TestFairy launches a session, these will be listened collected until the session is stopped or app is closed:
+		//
+		//   - logs
+		//   - crashes
+		//   - video recording
+		//   - http network events
+		//   - feedbacks via forms launched when the users shakes their device
+		//   - custom attributes set in the code w/ TestFairy.setAttribute()
+		//   - events sent in the code w/ TestFairy.addEvent()
+		//
+		// and many others.
+		//
+		// All of this data will be available in your TestFairy web dashboard as well as the REST API.
+		//
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// TestFairy.setServerEndpoint("https://your.privatecloud.example.com") // Private cloud only
 		TestFairy.begin('SDK-gLeZiE9i');
+		// TestFairy.installFeedbackHandler('SDK-gLeZiE9i'); // Swap this line with the above if you don't want to record a session but still need the shake gesture detection for the feedbacks.
 
+		// Hide splash screen once the component mounts
 		SplashScreen.hide();
 	}
 

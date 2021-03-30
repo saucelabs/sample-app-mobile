@@ -10,6 +10,7 @@ import I18n from '../config/I18n';
 import { testProperties } from '../config/TestProperties';
 import Footer from '../components/Footer';
 import { IS_IOS, MUSEO_SANS_BOLD, PLATFORM_VERSION } from '../config/Constants';
+import TestFairy from 'react-native-testfairy';
 
 class GeoLocation extends Component {
 	componentDidMount() {

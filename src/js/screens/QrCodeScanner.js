@@ -5,6 +5,7 @@ import { ThemeProvider } from 'react-native-elements';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { colors } from '../utils/colors';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
+import TestFairy from 'react-native-testfairy';
 
 export default class QrCodeScanner extends Component {
 	componentDidMount() {
@@ -20,7 +21,12 @@ export default class QrCodeScanner extends Component {
 			const newUrl = `${ validWww ? 'https://' : '' }${ url }`;
 			Linking
 				.openURL(newUrl)
-				.catch(err => Alert.alert('An error occurred', err));
+				.catch(err => {
+					Alert.alert('An error occurred', err)
+
+					// Log important exceptions to have access to their stacktraces inside your session 
+					TestFairy.logException(err);
+				});
 		} else {
 			Alert.alert(`'${ url }' is not a valid url`);
 		}

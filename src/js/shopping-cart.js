@@ -1,3 +1,4 @@
+import TestFairy from 'react-native-testfairy';
 import SyncStorage from 'sync-storage';
 import { InventoryData } from './data/inventory-data';
 
@@ -81,6 +82,9 @@ export class ShoppingCart {
 		ShoppingCart.LISTENERS.forEach((curListener) => {
 			curListener.forceUpdate();
 		});
+
+		// Update attributes with latest cart items, see them on JIRA when a feedback is reported
+		TestFairy.setAttribute("cart", JSON.stringify(newContents));
 	}
 
 	static resetCart() {

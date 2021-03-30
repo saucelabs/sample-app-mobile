@@ -35,6 +35,9 @@ export default class CheckoutScreenTwo extends Component {
     if (!Credentials.isProblemUser()) {
       // Wipe out our shopping cart
       ShoppingCart.resetCart();
+
+      // Mark important moments in time to be able to later search them in the web dashboard.
+      TestFairy.addEvent("Problematic user");
     }
 
     // Checkout complete, redirect to our order complete page
@@ -92,7 +95,12 @@ export default class CheckoutScreenTwo extends Component {
           <View style={ styles.button_container }>
             <ArrowButton
               title={ I18n.t('checkoutPageTwo.cancelButton') }
-              onPress={ () => this.props.navigation.navigate(SCREENS.INVENTORY_LIST) }
+              onPress={ () => { 
+                // Mark important moments in time to be able to later search them in the web dashboard
+                TestFairy.addEvent("Checkout canceled");
+
+                this.props.navigation.navigate(SCREENS.INVENTORY_LIST); 
+              } }
             />
             <Divider style={ styles.button_divider }/>
             <ProceedButton

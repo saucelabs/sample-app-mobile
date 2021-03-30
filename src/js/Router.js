@@ -99,11 +99,11 @@ export default class NavigationContainer extends Component {
 		);
 	}
 
-	// This helps TestFairy to show curent screen name in the session timeline
 	onNavigationStateChange(previousState, newState, action) {
 		if (newState.routes.length > 0) {
 			let newScreen = newState.routes[0].routes[newState.routes[0].routes.length - 1];
 			if (newScreen) {
+				// This helps TestFairy to show curent screen name in the session timeline
 				TestFairy.setScreenName(newScreen.routeName);
 			}
 		}
