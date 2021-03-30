@@ -15,6 +15,7 @@ import SectionHeader from '../components/SectionHeader';
 import CartItem from '../components/CartItem';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
+import TestFairy from 'react-native-testfairy';
 
 export default class CheckoutScreenTwo extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class CheckoutScreenTwo extends Component {
       ShoppingCart.resetCart();
 
       // Mark important moments in time to be able to later search them in the web dashboard.
-      TestFairy.addEvent("Problematic user");
+      TestFairy.addEvent('Problematic user');
     }
 
     // Checkout complete, redirect to our order complete page
@@ -95,11 +96,11 @@ export default class CheckoutScreenTwo extends Component {
           <View style={ styles.button_container }>
             <ArrowButton
               title={ I18n.t('checkoutPageTwo.cancelButton') }
-              onPress={ () => { 
+              onPress={ () => {
                 // Mark important moments in time to be able to later search them in the web dashboard
-                TestFairy.addEvent("Checkout canceled");
+                TestFairy.addEvent('Checkout canceled');
 
-                this.props.navigation.navigate(SCREENS.INVENTORY_LIST); 
+                this.props.navigation.navigate(SCREENS.INVENTORY_LIST);
               } }
             />
             <Divider style={ styles.button_divider }/>

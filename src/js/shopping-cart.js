@@ -84,7 +84,7 @@ export class ShoppingCart {
 		});
 
 		// Update attributes with latest cart items, see them on JIRA when a feedback is reported
-		TestFairy.setAttribute("cart", JSON.stringify(newContents));
+		TestFairy.setAttribute('cart', JSON.stringify(newContents));
 	}
 
 	static resetCart() {

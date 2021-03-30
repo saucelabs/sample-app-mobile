@@ -20,7 +20,7 @@ export default class CheckoutComplete extends Component {
     handleQuickActionsNavigation(this.props.navigation);
 
     // Mark important moments in time to be able to later search them in the web dashboard
-    TestFairy.addEvent("Checkout complete");
+    TestFairy.addEvent('Checkout complete');
   }
 
   render() {

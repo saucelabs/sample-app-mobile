@@ -22,9 +22,9 @@ export default class QrCodeScanner extends Component {
 			Linking
 				.openURL(newUrl)
 				.catch(err => {
-					Alert.alert('An error occurred', err)
+					Alert.alert('An error occurred', err);
 
-					// Log important exceptions to have access to their stacktraces inside your session 
+					// Log important exceptions to have access to their stacktraces inside your session
 					TestFairy.logException(err);
 				});
 		} else {

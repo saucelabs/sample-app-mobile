@@ -60,8 +60,8 @@ export default class Login extends Component {
 		handleQuickActionsNavigation(this.props.navigation);
 
 		// Hide these child components in the screenshots to respect privacy
-		TestFairy.hideView("username");
-		TestFairy.hideView("password");
+		TestFairy.hideView('username');
+		TestFairy.hideView('password');
 	}
 
 	resetState() {
@@ -202,7 +202,7 @@ export default class Login extends Component {
 							style={ styles.swag_logo_image }
 						/>
 						<InputError
-							nativeID={ "username" }
+							nativeID={ 'username' }
 							placeholder={ 'login.username' }
 							value={ this.state.username }
 							onChangeText={ this.handleUserChange }
@@ -210,7 +210,7 @@ export default class Login extends Component {
 						/>
 						<Divider style={ styles.bottomMargin20 }/>
 						<InputError
-							nativeID= { "password" }
+							nativeID= { 'password' }
 							placeholder={ 'login.password' }
 							value={ this.state.password }
 							onChangeText={ this.handlePassChange }

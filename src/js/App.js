@@ -43,9 +43,9 @@ export default class App extends Component {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
-		// Launch a TestFairy session. The session url will be in the logs for you to navigate. 
+		// Launch a TestFairy session. The session url will be in the logs for you to navigate.
 		// Optionally, specify a private cloud endpoint if it applies to you.
-		// 
+		//
 		// When TestFairy launches a session, these will be listened collected until the session is stopped or app is closed:
 		//
 		//   - logs
