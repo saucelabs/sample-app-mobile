@@ -83,8 +83,8 @@ export class ShoppingCart {
 			curListener.forceUpdate();
 		});
 
-		// Update attributes with latest cart items, see them on JIRA when a feedback is reported
-		TestFairy.setAttribute('cart', JSON.stringify(newContents));
+		// Attach latest cart items as json file, see it on session timeline everytime it changes
+		TestFairy.attachFile("cart.txt", JSON.stringify(newContents));
 	}
 
 	static resetCart() {
