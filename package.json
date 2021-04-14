@@ -16,6 +16,7 @@
     "android.test.sauce.emu": "wdio tests/e2e/config/wdio.android.sauce.emu.conf.js",
     "android.test.rdc": "RDC=true wdio ./tests/e2e/config/wdio.android.rdc.conf.js",
     "android.debug.build": "yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "android.debug.build.apk": "yarn android.debug.build && cd android && ./gradlew assembleDebug",
     "android.espresso": "yarn android.debug.build && cd android && ./gradlew assembleDebug && ./gradlew assembleAndroidTest",
     "ios.dev": "react-native run-ios",
     "ios.release.sim.build": "react-native run-ios --configuration Release",

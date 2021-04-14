@@ -11,6 +11,7 @@ import SplashScreen from 'react-native-splash-screen';
 import QuickActions from 'react-native-quick-actions';
 import { IS_IOS, SCREENS } from './config/Constants';
 import TestFairy from 'react-native-testfairy';
+import TestFairyUserData from '../../assets/user_data.json';
 
 QuickActions.setShortcutItems([
 	{
@@ -62,7 +63,9 @@ export default class App extends Component {
 		//
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// TestFairy.setServerEndpoint("https://your.privatecloud.example.com") // Private cloud only
-		TestFairy.begin('SDK-gLeZiE9i');
+		console.log(TestFairyUserData);
+		TestFairy.setServerEndpoint(TestFairyUserData.serverEndpoint);
+		TestFairy.begin(TestFairyUserData.appToken);
 		// TestFairy.installFeedbackHandler('SDK-gLeZiE9i'); // Swap this line with the above if you don't want to record a session but still need the shake gesture detection for the feedbacks.
 
 		// Hide splash screen once the component mounts
