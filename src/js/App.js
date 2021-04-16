@@ -9,7 +9,7 @@ import QuickActions from 'react-native-quick-actions';
 import TestFairy from 'react-native-testfairy';
  
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import NavigationContainer from './Router';
 import SwagLabsStatusBar from './components/StatusBar';
 import { IS_IOS, SCREENS } from './config/Constants';
@@ -86,18 +86,16 @@ export default class App extends Component {
 
 			// TestFairy.setServerEndpoint("https://your.privatecloud.example.com") // Private cloud only
 
-			console.log("TESTFAIRYSDK: " + JSON.stringify(TestFairyUserData));
-
 			TestFairy.setServerEndpoint(TestFairyUserData.serverEndpoint);
 			TestFairy.begin(TestFairyUserData.appToken);
 
 			// TestFairy.installFeedbackHandler(TestFairyUserData.appToken); // Swap this line with the above if you don't want to record a session but still need the shake gesture detection for the feedbacks.
 		}
 
-		if (Platform.OS == 'ios') {
+		if (Platform.OS === 'ios') {
 			fs.readFile(`${fs.MainBundlePath}/user_data.json`, { encoding: 'utf8' }).then(parseAndInit);
-		} else if (Platform.OS == 'android') {
-			fs.readFileAssets("user_data.json", 'utf8').then(parseAndInit);
+		} else if (Platform.OS === 'android') {
+			fs.readFileAssets('user_data.json', 'utf8').then(parseAndInit);
 		}
 	}
 }
