@@ -23,6 +23,7 @@
 		8BE462ED410372C475645C48 /* libPods-SwagLabsMobileApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEFA1E655475B70E32A018C /* libPods-SwagLabsMobileApp.a */; };
 		9713E9B599EF4496856995C0 /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 65E91478319D4DA0B0365D2B /* MuseoSans_500.otf */; };
 		A25BEE6D6B6A4258A80BB927 /* MuseoSans_500_Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2052DCED8B4C41E7AACF5CB7 /* MuseoSans_500_Italic.otf */; };
+		EF07C9112629ACA000EA6846 /* user_data.json in Resources */ = {isa = PBXBuildFile; fileRef = EF07C9102629ACA000EA6846 /* user_data.json */; };
 		F4FB854CDEEB4B1C825CACC1 /* MuseoSans-100Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 819AD89F4773427798EF4E6A /* MuseoSans-100Italic.otf */; };
 		F53CE61010514357AD30270B /* MuseoSans-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9293998A145403EA14C7E77 /* MuseoSans-300.otf */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		EBEFA1E655475B70E32A018C /* libPods-SwagLabsMobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwagLabsMobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EF07C9102629ACA000EA6846 /* user_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_data.json; path = SwagLabsMobileApp/user_data.json; sourceTree = "<group>"; };
 		F2B1E54F0BDD40FCB5A8C7C1 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		F2D978234CE84D62BBA572F4 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		F5511BC1135A40D3A92934C6 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				EF07C9102629ACA000EA6846 /* user_data.json */,
 				885771DD25342B1F009C30D4 /* enableSwiftSupport.swift */,
 			);
 			name = SwagLabsMobileApp;
@@ -308,6 +311,7 @@
 				9713E9B599EF4496856995C0 /* MuseoSans_500.otf in Resources */,
 				6CBE4FEB20B04F10A43B5D3E /* MuseoSans_700.otf in Resources */,
 				0B0306A6047848E39E8FFEEA /* MuseoSans_900.otf in Resources */,
+				EF07C9112629ACA000EA6846 /* user_data.json in Resources */,
 				378F62E24FE54B57B509945D /* MuseoSans-100.otf in Resources */,
 				F4FB854CDEEB4B1C825CACC1 /* MuseoSans-100Italic.otf in Resources */,
 				F53CE61010514357AD30270B /* MuseoSans-300.otf in Resources */,

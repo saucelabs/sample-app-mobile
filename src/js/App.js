@@ -3,15 +3,16 @@
  * @flow strict-local
  */
 
+import fs from 'react-native-fs';
+import SplashScreen from 'react-native-splash-screen';
+import QuickActions from 'react-native-quick-actions';
+import TestFairy from 'react-native-testfairy';
+ 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import NavigationContainer from './Router';
 import SwagLabsStatusBar from './components/StatusBar';
-import SplashScreen from 'react-native-splash-screen';
-import QuickActions from 'react-native-quick-actions';
 import { IS_IOS, SCREENS } from './config/Constants';
-import TestFairy from 'react-native-testfairy';
-import TestFairyUserData from '../../assets/user_data.json';
 
 QuickActions.setShortcutItems([
 	{
@@ -39,9 +40,22 @@ QuickActions.setShortcutItems([
 
 export default class App extends Component {
 	componentDidMount() {
-		// We call stop to support hot-swap during development. This call will be ignored silently for the initial app launch.
-		TestFairy.stop();
+		this.initialzeTestFairy();
 
+		// Hide splash screen once the component mounts
+		SplashScreen.hide();
+	}
+
+	render() {
+		return (
+			<View style={ styles.container }>
+				<SwagLabsStatusBar/>
+				<NavigationContainer/>
+			</View>
+		);
+	}
+
+	initialzeTestFairy() {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//
 		// Launch a TestFairy session. The session url will be in the logs for you to navigate.
@@ -62,23 +76,29 @@ export default class App extends Component {
 		// All of this data will be available in your TestFairy web dashboard as well as the REST API.
 		//
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// TestFairy.setServerEndpoint("https://your.privatecloud.example.com") // Private cloud only
-		console.log(TestFairyUserData);
-		TestFairy.setServerEndpoint(TestFairyUserData.serverEndpoint);
-		TestFairy.begin(TestFairyUserData.appToken);
-		// TestFairy.installFeedbackHandler('SDK-gLeZiE9i'); // Swap this line with the above if you don't want to record a session but still need the shake gesture detection for the feedbacks.
+		
+		function parseAndInit(data) {
+			// Parse configuration
+			const TestFairyUserData = JSON.parse(data);
 
-		// Hide splash screen once the component mounts
-		SplashScreen.hide();
-	}
+			// We call stop to support hot-swap during development. This call will be ignored silently for the initial app launch.
+			TestFairy.stop();
 
-	render() {
-		return (
-			<View style={ styles.container }>
-				<SwagLabsStatusBar/>
-				<NavigationContainer/>
-			</View>
-		);
+			// TestFairy.setServerEndpoint("https://your.privatecloud.example.com") // Private cloud only
+
+			console.log("TESTFAIRYSDK: " + JSON.stringify(TestFairyUserData));
+
+			TestFairy.setServerEndpoint(TestFairyUserData.serverEndpoint);
+			TestFairy.begin(TestFairyUserData.appToken);
+
+			// TestFairy.installFeedbackHandler(TestFairyUserData.appToken); // Swap this line with the above if you don't want to record a session but still need the shake gesture detection for the feedbacks.
+		}
+
+		if (Platform.OS == 'ios') {
+			fs.readFile(`${fs.MainBundlePath}/user_data.json`, { encoding: 'utf8' }).then(parseAndInit);
+		} else if (Platform.OS == 'android') {
+			fs.readFileAssets("user_data.json", 'utf8').then(parseAndInit);
+		}
 	}
 }
 
