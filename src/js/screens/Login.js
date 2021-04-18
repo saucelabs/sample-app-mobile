@@ -15,6 +15,7 @@ import InputError from '../components/InputError';
 import ErrorMessageContainer from '../components/ErrorMessageContainer';
 import BiometryButton from '../components/BiometryButton';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
+import TestFairy from 'react-native-testfairy';
 
 export default class Login extends Component {
 	static navigationOptions = {
@@ -57,6 +58,10 @@ export default class Login extends Component {
 		}
 
 		handleQuickActionsNavigation(this.props.navigation);
+
+		// Hide these child components in the screenshots to respect privacy
+		TestFairy.hideView('username');
+		TestFairy.hideView('password');
 	}
 
 	resetState() {
@@ -104,6 +109,9 @@ export default class Login extends Component {
 			if (isLockedOutUser) {
 				return this.setState({ error: I18n.t('login.errors.lockedOut') });
 			}
+
+			// Identify the user to be able to filter sessions and feedbacks via the web dashboard
+			TestFairy.setUserId(this.state.username);
 
 			return this.successfulLogin();
 		}
@@ -194,6 +202,7 @@ export default class Login extends Component {
 							style={ styles.swag_logo_image }
 						/>
 						<InputError
+							nativeID={ 'username' }
 							placeholder={ 'login.username' }
 							value={ this.state.username }
 							onChangeText={ this.handleUserChange }
@@ -201,6 +210,7 @@ export default class Login extends Component {
 						/>
 						<Divider style={ styles.bottomMargin20 }/>
 						<InputError
+							nativeID= { 'password' }
 							placeholder={ 'login.password' }
 							value={ this.state.password }
 							onChangeText={ this.handlePassChange }

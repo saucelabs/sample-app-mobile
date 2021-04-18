@@ -14,6 +14,7 @@ import SecondaryHeader from '../components/SecondaryHeader';
 import { ShoppingCart } from '../shopping-cart';
 import { SCREENS } from '../config/Constants';
 import { handleQuickActionsNavigation } from '../config/QuickActionsNavigation';
+import TestFairy from 'react-native-testfairy';
 
 export default class CheckoutScreenOne extends Component {
   constructor(props) {
@@ -55,6 +56,9 @@ export default class CheckoutScreenOne extends Component {
     this.setState({
       firstName: text,
     });
+
+    // We set an attribute every time this field changes so we can see these details directly on JIRA when a feedback is submitted
+    TestFairy.setAttribute("firstName", text);
   }
 
   handleLastNameChange(text) {
@@ -65,6 +69,12 @@ export default class CheckoutScreenOne extends Component {
     if (Credentials.isProblemUser()) {
       // Overwrite the firstname also
       newState.firstName = text;
+
+      // We set an attribute every time this field changes so we can see these details directly on JIRA when a feedback is submitted
+      TestFairy.setAttribute("lastName", text);
+    } else {
+      // We set an attribute every time this field changes so we can see these details directly on JIRA when a feedback is submitted
+      TestFairy.setAttribute("lastName", "");
     }
 
     this.setState(newState);
@@ -74,6 +84,9 @@ export default class CheckoutScreenOne extends Component {
     this.setState({
       postalCode: text,
     });
+
+    // We set an attribute every time this field changes so we can see these details directly on JIRA when a feedback is submitted
+    TestFairy.setAttribute("postalCode", text);
   }
 
   handleSubmit() {

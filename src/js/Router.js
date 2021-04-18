@@ -20,6 +20,7 @@ import QrCodeScanner from './screens/QrCodeScanner';
 import DrawerLinks from './components/DrawerLinks';
 import GeoLocation from './screens/GeoLocation';
 import Drawing from './screens/Drawing';
+import TestFairy from 'react-native-testfairy';
 
 enableScreens();
 
@@ -94,7 +95,17 @@ const prefix = 'swaglabs://';
 export default class NavigationContainer extends Component {
 	render() {
 		return (
-			<Router uriPrefix={ prefix }/>
+			<Router uriPrefix={ prefix } onNavigationStateChange={ this.onNavigationStateChange } />
 		);
+	}
+
+	onNavigationStateChange(previousState, newState, action) {
+		if (newState.routes.length > 0) {
+			let newScreen = newState.routes[0].routes[newState.routes[0].routes.length - 1];
+			if (newScreen) {
+				// This helps TestFairy to show curent screen name in the session timeline
+				TestFairy.setScreenName(newScreen.routeName);
+			}
+		}
 	}
 }
