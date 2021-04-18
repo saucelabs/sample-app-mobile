@@ -18,3 +18,4 @@ jobs:
       run: |
         npm install
         npm run android.release
+        find . -name "*.apk"
