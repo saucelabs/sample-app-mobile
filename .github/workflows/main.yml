@@ -1,0 +1,25 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+    - name: Compile SDK
+      run: |
+        echo "org.gradle.daemon=false" >> gradle.properties
+        ./gradlew testfairy-android-sdk:assembleRelease
+        ./gradlew app-sample:assembleRelease
+    - name: Build
+      run: |
+        npm install
+        npm run android.release
