@@ -14,11 +14,6 @@ jobs:
         java-version: 1.8
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
-    - name: Compile SDK
-      run: |
-        echo "org.gradle.daemon=false" >> gradle.properties
-        ./gradlew testfairy-android-sdk:assembleRelease
-        ./gradlew app-sample:assembleRelease
     - name: Build
       run: |
         npm install
