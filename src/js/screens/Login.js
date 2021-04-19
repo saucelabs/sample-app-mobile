@@ -62,6 +62,14 @@ export default class Login extends Component {
 		// Hide these child components in the screenshots to respect privacy
 		TestFairy.hideView('username');
 		TestFairy.hideView('password');
+
+		this.setState({
+			username: I18n.t('login.loginText.standard'),
+			password: I18n.t('login.loginText.password'),
+			error: '',
+			passwordError: false,
+			usernameError: false,
+		});
 	}
 
 	resetState() {
