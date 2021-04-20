@@ -38,14 +38,14 @@ describe('Test 3D Touch', () => {
 			$('~Apps list').click();
 
 			// Check if the app is there
-			$('~Swag Labs Mobile App').waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
+			$('~Swag Labs').waitForDisplayed({ timeout: DEFAULT_TIMEOUT });
 
 			// Open the 3D touch menu with a force touch
 			driver.touchPerform([
 				{
 					action: 'press',
 					options: {
-						element: $('~Swag Labs Mobile App').elementId,
+						element: $('~Swag Labs').elementId,
 					},
 				},
 				{
