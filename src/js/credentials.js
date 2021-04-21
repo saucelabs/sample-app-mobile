@@ -28,12 +28,29 @@ export class Credentials {
     const curUser = SyncStorage.get('session-username');
     return (curUser === 'problem_user');
   }
+
+  static getRandomValidCredentials() {
+    const VALID_USERNAMES_WITH_EMAILS = Credentials.VALID_USERNAMES.slice(3);
+
+    return {
+      username: VALID_USERNAMES_WITH_EMAILS[Math.floor(Math.random() * VALID_USERNAMES_WITH_EMAILS.length)],
+      password: Credentials.VALID_PASSWORD
+    };
+  }
 }
 
 Credentials.VALID_USERNAMES = [
   'standard_user',
   'locked_out_user',
   'problem_user',
+  'simba@lionking.com',
+  'pumbaa@lionking.com',
+  'mufasa@lionking.com',
+  'timon@lionking.com',
+  'nala@lionking.com',
+  'Zazu@lionking.com',
+  'Rafiki@lionking.com',
+  'Sarabi@lionking.com'
 ];
 
 Credentials.VALID_PASSWORD = 'secret_sauce';

@@ -63,9 +63,10 @@ export default class Login extends Component {
 		TestFairy.hideView('username');
 		TestFairy.hideView('password');
 
+		const sampleCreds = Credentials.getRandomValidCredentials();
 		this.setState({
-			username: I18n.t('login.loginText.standard'),
-			password: I18n.t('login.loginText.password'),
+			username: sampleCreds.username,
+			password: sampleCreds.password,
 			error: '',
 			passwordError: false,
 			usernameError: false,
@@ -118,9 +119,6 @@ export default class Login extends Component {
 				return this.setState({ error: I18n.t('login.errors.lockedOut') });
 			}
 
-			// Identify the user to be able to filter sessions and feedbacks via the web dashboard
-			TestFairy.setUserId(this.state.username);
-
 			return this.successfulLogin();
 		}
 
@@ -143,10 +141,14 @@ export default class Login extends Component {
 	}
 
 	successfulLogin() {
-		// First, clear any errors
+		// Identify the user to be able to filter sessions and feedbacks via the web dashboard
+		TestFairy.setUserId(this.state.username);
+
+		// Clear any errors
 		this.resetState();
 		this.handleUserChange('');
 		this.handlePassChange('');
+		
 		// and redirect after we wipe out any previous shopping cart contents
 		ShoppingCart.resetCart();
 		this.props.navigation.navigate(SCREENS.INVENTORY_LIST);

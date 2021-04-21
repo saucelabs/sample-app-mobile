@@ -46,6 +46,6 @@ export const PERSONAL_INFO = {
   },
 };
 export const BUNDLE_IDS = {
-  ANDROID: 'com.swaglabsmobileapp',
-  IOS: 'com.saucelabs.SwagLabsMobileApp',
+  ANDROID: 'com.saucelabs.sample.react',
+  IOS: 'com.saucelabs.sample.react',
 };
