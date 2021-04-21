@@ -122,6 +122,16 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+/**
+ * Name of an espresso build
+ */
+def espressoAppName = "Espresso.Sample.app.Tests"
+
+/**
+ * Name of an debug/release build
+ */
+def appName = "Android.SauceLabs.Sample.App"
+
 buildscript {
 
     repositories {
@@ -139,6 +149,11 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Added to prevent JVM Heap Space Is Exhausted error
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
 
     defaultConfig {
@@ -185,13 +200,22 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    output.outputFileName = "Android.SauceLabs.Mobile.Sample.app.${variant.versionName}.apk"
-                }
-            }
         }
     }
+
+    // Added to change the test apk name
+    testVariants.all { testVariant ->
+        testVariant.outputs.all { output ->
+            outputFileName = "${espressoAppName}.${testVariant.versionName}.apk"
+        }
+    }
+    // Added to change the output name
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFileName = "${appName}.${variant.name}.${variant.versionName}.apk"
+        }
+    }
+
 //     // applicationVariants are e.g. debug, release
 //     applicationVariants.all { variant ->
 //         variant.outputs.each { output ->

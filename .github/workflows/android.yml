@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '!ios'
+      - '!*.md'
 
 jobs:
   build:
@@ -28,10 +31,13 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build Android app
+      - name: Build Android Espresso Debug Build
+        run: yarn android.espresso
+
+      - name: Build Android Release
         run: yarn android.release
 
-      - name: Archive App
+      - name: Archive Apps
         uses: actions/upload-artifact@v2
         with:
           name: Android SauceLabs Mobile Sample App
