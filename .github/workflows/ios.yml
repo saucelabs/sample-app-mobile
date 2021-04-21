@@ -1,0 +1,57 @@
+name: iOS SauceLabs Mobile Sample App
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'android/**'
+      - '**.md'
+defaults:
+  run:
+    working-directory: ios
+
+jobs:
+  SimulatorRelease:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: |
+          yarn install
+          yarn ios.pods
+
+      - name: Build iOS Sim Build
+        run: yarn ios.release.sim.build
+
+  XCUITestBuild:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: |
+          yarn install
+          yarn ios.pods
+
+      - name: Build iOS XCUITest Sim Build
+        run: yarn ios.xcuitest

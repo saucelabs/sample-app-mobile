@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Android SauceLabs Sample App Espresso Tests
-          path: '**/*.apk'
+          path: 'app/build/outputs/apk/**/*.apk'
 
   ReleaseBuild:
     runs-on: ubuntu-20.04
@@ -55,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Android SauceLabs Sample App Release
-          path: '**/*.apk'
+          path: 'app/build/outputs/apk/release/**/*.apk'
