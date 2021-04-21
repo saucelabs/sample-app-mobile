@@ -7,11 +7,10 @@ on:
     paths-ignore:
       - 'ios/**'
       - '**.md'
-
+      - '**/ios.yml'
 defaults:
   run:
     working-directory: android
-
 jobs:
   EspressoBuild:
     runs-on: ubuntu-20.04
@@ -34,7 +33,6 @@ jobs:
         with:
           name: Android SauceLabs Sample App Espresso Tests
           path: '**/app/build/outputs/apk/**/*.apk'
-
   ReleaseBuild:
     runs-on: ubuntu-20.04
     strategy:

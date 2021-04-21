@@ -7,10 +7,12 @@ on:
     paths-ignore:
       - 'android/**'
       - '**.md'
+      - '**/android.yml'
+env:
+  XC_VERSION: ${{ '12.4' }}
 defaults:
   run:
     working-directory: ios
-
 jobs:
   SimulatorRelease:
     runs-on: macos-latest
@@ -18,40 +20,22 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
+      - name: Select latest Xcode
+        run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
       - name: Checkout Repository
         uses: actions/checkout@v2
-
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: Install dependencies
         run: |
           yarn install
           yarn ios.pods
-
       - name: Build iOS Sim Build
         run: yarn ios.release.sim.build
-
-  XCUITestBuild:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Archive Apps
+        uses: actions/upload-artifact@v2
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: |
-          yarn install
-          yarn ios.pods
-
-      - name: Build iOS XCUITest Sim Build
-        run: yarn ios.xcuitest
+          name: iOS SauceLabs Sample App Sim Build
+          path: '**/Build/Products/Release-iphonesimulator/SwagLabsMobileApp.app'
