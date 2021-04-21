@@ -38,8 +38,9 @@ Most of this comes from https://facebook.github.io/react-native/docs/getting-sta
 - `yarn global add react-native-cli`
 - clone this repository: `git clone https://github.com/saucelabs/sample-app-mobile`
 - navigate to the folder that contains this repository
-- `yarn install`
-- `react-native run-ios`
+- `yarn install` => This will install all dependencies
+- `ios.pods` => This will install the PODS
+- `yarn ios.dev` => This start an iOS simulator, pushes the app, and you can start developing
 
 > **NOTE:**<br/>
 > When you build the app you might get warnings or errors like this
@@ -110,7 +111,7 @@ Make sure you have an Android emulator running or a device connected and have
 set up your Android development environment:
 https://facebook.github.io/react-native/docs/getting-started.html
 ```
-- In a shell, in the project root `./sample-app-mobile` run: `react-native run-android`
+- In a shell, in the project root `./sample-app-mobile` run: `yarn android.dev`
 
 > **NOTE:**<br/>
 > When you build the app you might get warnings or errors like this

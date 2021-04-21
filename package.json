@@ -25,7 +25,7 @@
     "ios.test.sauce.sim": "wdio tests/e2e/config/wdio.ios.sauce.sim.conf.js",
     "ios.test.rdc": "RDC=true wdio ./tests/e2e/config/wdio.ios.rdc.conf.js",
     "ios.xcuitest": "cd scripts && ./build_xcuitest.sh && cd ..",
-    "postinstall": "cd ios && pod install && cd ..",
+    "ios.pods": "cd ios && pod install && cd ..",
     "postversion": "react-native-version"
   },
   "dependencies": {
