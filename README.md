@@ -1,5 +1,10 @@
 # Sauce Labs Native Sample Application
 
+> **NOTE:**
+>
+> THIS PROJECT IS DEPRECATED IN FAVOR OF THE NEW SAMPLE APP FOR REACT NATIVE. THE NEW APP CAN BE FOUND [HERE](https://github.com/saucelabs/my-demo-app-rn).
+> THIS PROJECT WILL BE ARCHIVED BY THE END OF FEBRUARY 2022
+
 In this repository you will find our Sauce Labs sample-app. You can use it as a sample app for testautomation on your local machine or in our Real Device Cloud.
 The latest version of the iOS and Android app can be found [here](https://github.com/saucelabs/sample-app-mobile/releases).\
 There are several user accounts for this app that will trigger different stages in the app. If you swipe down on the login page you will see them together with the password. 
